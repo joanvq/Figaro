@@ -14,9 +14,22 @@ namespace Figaro.ViewModels
     public class MainViewModel : INotifyPropertyChanged
     {
         private List<Plato> listaPlatos;
+        private List<Plato> searchedPlatos;
+        private string keywordPlato;
         private Plato platoSeleccionado = new Plato();
 
+        
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public string KeywordPlato
+        {
+            get { return keywordPlato; }
+            set
+            {
+                keywordPlato = value;
+                OnPropertyChanged();
+            }
+        }
 
         public List<Plato> ListaPlatos {
             get
@@ -30,6 +43,15 @@ namespace Figaro.ViewModels
             }
         }
 
+        public List<Plato> SearchedPlatos
+        {
+            get { return searchedPlatos; }
+            set
+            {
+                searchedPlatos = value;
+                OnPropertyChanged();
+            }
+        }
         public Plato PlatoSeleccionado {
             get { return platoSeleccionado; }
             set
@@ -38,6 +60,8 @@ namespace Figaro.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        /*-----COMMANDS-----*/
 
         public Command PostCommand
         {
@@ -59,6 +83,18 @@ namespace Figaro.ViewModels
                 {
                     var platosServices = new PlatosServices();
                     await platosServices.PutPlatoAsync(platoSeleccionado.Id, platoSeleccionado);
+                });
+            }
+        }
+
+        public Command SearchCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    var platosServices = new PlatosServices();
+                    SearchedPlatos = await platosServices.GetPlatosByKeywordAsync(keywordPlato);
                 });
             }
         }

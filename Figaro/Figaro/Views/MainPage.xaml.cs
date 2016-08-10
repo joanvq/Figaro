@@ -19,7 +19,18 @@ namespace Figaro
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
+
             await Navigation.PushAsync(new NuevoPlato());
+        }
+
+        private async void Search_OnClicked(object sender, EventArgs e)
+        {
+            var mainViewModel = BindingContext as MainViewModel;
+
+            if (mainViewModel != null)
+            {
+                await Navigation.PushAsync(new BuscarPlato(mainViewModel));
+            }
         }
 
         private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)

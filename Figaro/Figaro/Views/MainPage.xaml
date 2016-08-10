@@ -11,6 +11,11 @@
   <StackLayout Orientation="Vertical">
     <Button Text="Añadir Plato"
             Clicked="Button_OnClicked" />
+
+    <Button Text="Buscar Platos"
+            TextColor="White"
+            BackgroundColor="Purple"
+            Clicked="Search_OnClicked" />
   
     <ListView x:Name="ListaPlatosView"
               ItemsSource="{Binding ListaPlatos}"

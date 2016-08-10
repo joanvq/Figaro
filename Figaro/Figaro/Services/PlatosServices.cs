@@ -61,5 +61,16 @@ namespace Figaro.Services
             var listaPlatos = await restClient.DeleteAsync(id);
 
         }
+
+        public async Task<List<Plato>> GetPlatosByKeywordAsync(string keyword)
+        {
+
+            RestClient<Plato> restClient = new RestClient<Plato>();
+
+            var listaPlatos = await restClient.GetByKeywordAsync(keyword);
+
+            return listaPlatos;
+        }
+
     }
 }

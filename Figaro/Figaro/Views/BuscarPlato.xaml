@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Figaro.Views.BuscarPlato">
+  <StackLayout Orientation="Vertical"
+               Spacing="12">
+    
+    <Entry Text="{Binding KeywordPlato, Mode=TwoWay}"/>
+    
+    <Button Text="Buscar"
+            TextColor="White"
+            BackgroundColor="Red"
+            Command="{Binding SearchCommand}"/>
+
+    <ListView ItemsSource="{Binding SearchedPlatos}"
+              HasUnevenRows="False">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Vertical"
+                         Padding="12,6">
+              <Label Text="{Binding Titulo}"
+                     FontSize="24"/>
+              <Label Text="{Binding Descripcion}"
+                     FontSize="18"
+                     Opacity="0.6"/>
+              
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+      
+    </ListView>
+  </StackLayout>
+</ContentPage>

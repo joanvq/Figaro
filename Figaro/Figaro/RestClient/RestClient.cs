@@ -64,5 +64,17 @@ namespace Plugin.RestClient
 
             return response.IsSuccessStatusCode;
         }
+
+        public async Task<List<T>> GetByKeywordAsync(string keyword)
+        {
+            var httpClient = new HttpClient();
+
+            var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + keyword);
+
+            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+
+            return taskModels;
+        }
+
     }
 }

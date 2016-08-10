@@ -42,6 +42,9 @@
     <Compile Include="RestClient\TaskModel.cs" />
     <Compile Include="Services\PlatosServices.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\BuscarPlato.xaml.cs">
+      <DependentUpon>BuscarPlato.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\NuevoPlato.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\BuscarPlato.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
