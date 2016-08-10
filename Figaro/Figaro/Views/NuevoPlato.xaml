@@ -18,15 +18,15 @@
     <Entry Text="{Binding PlatoSeleccionado.Descripcion}"/>
 
     <Button Text="Añadir Plato"
-            Command="{Binding PostCommand}"
+            Command="{Binding PostCommand, Mode=TwoWay}"
             />
   
     <Button Text="Modificar Plato"
-            Command="{Binding PutCommand}"
+            Command="{Binding PutCommand, Mode=TwoWay}"
             />
     
     <Button Text="Borrar Plato"
-            Command="{Binding DeleteCommand}"
+            Command="{Binding DeleteCommand, Mode=TwoWay}"
             />
   
   </StackLayout>

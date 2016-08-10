@@ -21,6 +21,8 @@ namespace Figaro.ViewModels
         
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /*----Propiedades-----*/
+
         public string KeywordPlato
         {
             get { return keywordPlato; }
@@ -52,6 +54,7 @@ namespace Figaro.ViewModels
                 OnPropertyChanged();
             }
         }
+
         public Plato PlatoSeleccionado {
             get { return platoSeleccionado; }
             set
@@ -60,6 +63,7 @@ namespace Figaro.ViewModels
                 OnPropertyChanged();
             }
         }
+       
 
         /*-----COMMANDS-----*/
 
