@@ -16,10 +16,12 @@ namespace Figaro
         {
             InitializeComponent();
         }
+
         private async void Button_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NuevoPlato());
         }
+
         private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             var plato = ListaPlatosView.SelectedItem as Plato;

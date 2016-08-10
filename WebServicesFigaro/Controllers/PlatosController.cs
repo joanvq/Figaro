@@ -35,6 +35,20 @@ namespace WebServicesFigaro.Controllers
             return Ok(plato);
         }
 
+        // GET: api/Platos/titulo
+        [Route("api/Platos/Search/{keyword}")]
+        [ResponseType(typeof(List<Plato>))]
+        public IHttpActionResult GetPlatos(string keyword)
+        {
+            List<Plato> plato = db.Platoes.Where(p => p.Titulo.Contains(keyword)).ToList();
+            if (plato == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(plato);
+        }
+
         // PUT: api/Platos/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPlato(int id, Plato plato)

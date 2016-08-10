@@ -15,7 +15,7 @@
     <ListView x:Name="ListaPlatosView"
               ItemsSource="{Binding ListaPlatos}"
 		          HasUnevenRows="true"
-              ItemTapped="">
+              ItemTapped="ListView_OnItemTapped">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
