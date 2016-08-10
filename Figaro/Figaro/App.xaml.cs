@@ -12,9 +12,10 @@ namespace Figaro
         public App()
         {
             InitializeComponent();
+            MainPage = new NavigationPage(new MainPage());
 
-            MainPage = new Figaro.MainPage();
         }
+
 
         protected override void OnStart()
         {

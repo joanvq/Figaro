@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Figaro.Views.NuevoPlato"              
+             xmlns:ViewModels="clr-namespace:Figaro.ViewModels;assembly=Figaro">
+  
+  <ContentPage.BindingContext>
+    <ViewModels:MainViewModel />
+  </ContentPage.BindingContext>
+  
+  <StackLayout Orientation="Vertical"
+               Spacing="18">
+  
+    <Label Text="Titulo" />
+    <Entry Text="{Binding PlatoSeleccionado.Titulo}"/>
+
+    <Label Text="Descripción" />
+    <Entry Text="{Binding PlatoSeleccionado.Descripcion}"/>
+
+    <Button Text="Añadir Plato"
+            Command="{Binding PostCommand}"
+            />
+  
+    <Button Text="Modificar Plato"
+            Command="{Binding PutCommand}"
+            />
+    
+    <Button Text="Borrar Plato"
+            Command="{Binding DeleteCommand}"
+            />
+  
+  </StackLayout>
+           
+</ContentPage>
