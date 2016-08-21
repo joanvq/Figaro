@@ -164,15 +164,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\PlatoMvcController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PlatosController.cs" />
-    <Compile Include="Controllers\PlatosMvcController.cs" />
+    <Compile Include="Controllers\PlatoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Plato.cs" />
-    <Compile Include="Models\PlatosContext.cs" />
+    <Compile Include="Models\PlatoContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -225,16 +225,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\PlatosMvc\Create.cshtml" />
-    <Content Include="Views\PlatosMvc\Delete.cshtml" />
-    <Content Include="Views\PlatosMvc\Details.cshtml" />
-    <Content Include="Views\PlatosMvc\Edit.cshtml" />
-    <Content Include="Views\PlatosMvc\Index.cshtml" />
-    <Content Include="Views\Platos\Create.cshtml" />
-    <Content Include="Views\Platos\Delete.cshtml" />
-    <Content Include="Views\Platos\Details.cshtml" />
-    <Content Include="Views\Platos\Edit.cshtml" />
-    <Content Include="Views\Platos\Index.cshtml" />
+    <Content Include="Views\PlatoMvc\Create.cshtml" />
+    <Content Include="Views\PlatoMvc\Delete.cshtml" />
+    <Content Include="Views\PlatoMvc\Details.cshtml" />
+    <Content Include="Views\PlatoMvc\Edit.cshtml" />
+    <Content Include="Views\PlatoMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

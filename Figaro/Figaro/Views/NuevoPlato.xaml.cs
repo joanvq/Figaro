@@ -16,11 +16,11 @@ namespace Figaro.Views
             InitializeComponent();
         }
 
-        public NuevoPlato(MainViewModel mainViewModel)
-        {
-            InitializeComponent();
+        //public NuevoPlato(MainViewModel mainViewModel)
+        //{
+        //    InitializeComponent();
 
-            BindingContext = mainViewModel;
-        }
+        //    BindingContext = mainViewModel;
+        //}
     }
 }

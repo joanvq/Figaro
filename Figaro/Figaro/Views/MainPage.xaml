@@ -3,10 +3,13 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:local="clr-namespace:Figaro"
               x:Class="Figaro.MainPage"
-              xmlns:ViewModels="clr-namespace:Figaro.ViewModels;assembly=Figaro">
-  <ContentPage.BindingContext>
+             xmlns:ui="clr-namespace:Figaro.UI;assembly=Figaro"
+             Title="Figaro"
+             BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}">
+  
+  <!--<ContentPage.BindingContext>
     <ViewModels:MainViewModel />
-  </ContentPage.BindingContext>
+  </ContentPage.BindingContext>-->
 
   <StackLayout Orientation="Vertical">
     <Button Text="Añadir Plato"
@@ -16,6 +19,14 @@
             TextColor="White"
             BackgroundColor="Purple"
             Clicked="Search_OnClicked" />
+
+    <Button Text="Actualizar"
+        TextColor="White"
+        BackgroundColor="Green"
+        Command="{Binding Refresh}" />
+
+    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                       IsVisible="{Binding IsBusy}" />
   
     <ListView x:Name="ListaPlatosView"
               ItemsSource="{Binding ListaPlatos}"

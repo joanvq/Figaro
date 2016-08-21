@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebServicesFigaro.Models
 {
-     class PlatosContext : DbContext
+    public class PlatoContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -15,7 +15,7 @@ namespace WebServicesFigaro.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public PlatosContext() : base("name=PlatosContext")
+        public PlatoContext() : base("name=PlatoContext")
         {
         }
 

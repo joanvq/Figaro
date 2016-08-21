@@ -12,17 +12,17 @@ using WebServicesFigaro.Models;
 
 namespace WebServicesFigaro.Controllers
 {
-    public class PlatosController : ApiController
+    public class PlatoController : ApiController
     {
-        private PlatosContext db = new PlatosContext();
+        private PlatoContext db = new PlatoContext();
 
-        // GET: api/Platos
+        // GET: api/Plato
         public IQueryable<Plato> GetPlatoes()
         {
             return db.Platoes;
         }
 
-        // GET: api/Platos/5
+        // GET: api/Plato/5
         [ResponseType(typeof(Plato))]
         public IHttpActionResult GetPlato(int id)
         {
@@ -35,8 +35,8 @@ namespace WebServicesFigaro.Controllers
             return Ok(plato);
         }
 
-        // GET: api/Platos/titulo
-        [Route("api/Platos/Search/{keyword}")]
+        // GET: api/Plato/Search/titulo
+        [Route("api/Plato/Search/{keyword}")]
         [ResponseType(typeof(List<Plato>))]
         public IHttpActionResult GetPlatos(string keyword)
         {
@@ -49,7 +49,7 @@ namespace WebServicesFigaro.Controllers
             return Ok(plato);
         }
 
-        // PUT: api/Platos/5
+        // PUT: api/Plato/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPlato(int id, Plato plato)
         {
@@ -84,7 +84,7 @@ namespace WebServicesFigaro.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Platos
+        // POST: api/Plato
         [ResponseType(typeof(Plato))]
         public IHttpActionResult PostPlato(Plato plato)
         {
@@ -99,7 +99,7 @@ namespace WebServicesFigaro.Controllers
             return CreatedAtRoute("DefaultApi", new { id = plato.Id }, plato);
         }
 
-        // DELETE: api/Platos/5
+        // DELETE: api/Plato/5
         [ResponseType(typeof(Plato))]
         public IHttpActionResult DeletePlato(int id)
         {

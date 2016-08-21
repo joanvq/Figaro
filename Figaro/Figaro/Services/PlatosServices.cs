@@ -35,30 +35,37 @@ namespace Figaro.Services
             return list;*/
         }
 
-        public async Task PostPlatoAsync(Plato plato)
+        public async Task<bool> PostPlatoAsync(Plato plato)
         {
 
             RestClient<Plato> restClient = new RestClient<Plato>();
 
-            var listaPlatos = await restClient.PostAsync(plato);
-            
-        }
+            var isSuccessStatusCode = await restClient.PostAsync(plato);
 
-        public async Task PutPlatoAsync(int id, Plato plato)
-        {
+            return isSuccessStatusCode;
 
-            RestClient<Plato> restClient = new RestClient<Plato>();
-
-            var listaPlatos = await restClient.PutAsync(id, plato);
 
         }
 
-        public async Task DeletePlatoAsync(int id)
+        public async Task<bool> PutPlatoAsync(int id, Plato plato)
         {
 
             RestClient<Plato> restClient = new RestClient<Plato>();
 
-            var listaPlatos = await restClient.DeleteAsync(id);
+            var isSuccessStatusCode = await restClient.PutAsync(id, plato);
+
+            return isSuccessStatusCode;
+
+        }
+
+        public async Task<bool> DeletePlatoAsync(int id)
+        {
+
+            RestClient<Plato> restClient = new RestClient<Plato>();
+
+            var isSuccessStatusCode = await restClient.DeleteAsync(id);
+
+            return isSuccessStatusCode;
 
         }
 

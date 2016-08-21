@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Configuration\ViewModelLocator.cs" />
     <Compile Include="RestClient\RestClient.cs" />
     <Compile Include="RestClient\TaskModel.cs" />
     <Compile Include="Services\PlatosServices.cs" />

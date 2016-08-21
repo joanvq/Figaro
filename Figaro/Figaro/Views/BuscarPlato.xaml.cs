@@ -11,11 +11,10 @@ namespace Figaro.Views
 {
     public partial class BuscarPlato : ContentPage
     {
-        public BuscarPlato(MainViewModel mainViewModel)
+        public BuscarPlato()
         {
             InitializeComponent();
-
-            BindingContext = mainViewModel;
+            
         }
     }
 }

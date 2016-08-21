@@ -10,17 +10,17 @@ using WebServicesFigaro.Models;
 
 namespace WebServicesFigaro.Controllers
 {
-    public class PlatosMvcController : Controller
+    public class PlatoMvcController : Controller
     {
-        private PlatosContext db = new PlatosContext();
+        private PlatoContext db = new PlatoContext();
 
-        // GET: PlatosMvc
+        // GET: PlatoMvc
         public ActionResult Index()
         {
             return View(db.Platoes.ToList());
         }
 
-        // GET: PlatosMvc/Details/5
+        // GET: PlatoMvc/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,18 +35,18 @@ namespace WebServicesFigaro.Controllers
             return View(plato);
         }
 
-        // GET: PlatosMvc/Create
+        // GET: PlatoMvc/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PlatosMvc/Create
+        // POST: PlatoMvc/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descripcion")] Plato plato)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descripcion,TiempoCocinado,TipoPlato,Valoracion,Precio,TipoCocina,Categoria,Ingredientes,Utensilios")] Plato plato)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace WebServicesFigaro.Controllers
             return View(plato);
         }
 
-        // GET: PlatosMvc/Edit/5
+        // GET: PlatoMvc/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,12 +73,12 @@ namespace WebServicesFigaro.Controllers
             return View(plato);
         }
 
-        // POST: PlatosMvc/Edit/5
+        // POST: PlatoMvc/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Titulo,Descripcion")] Plato plato)
+        public ActionResult Edit([Bind(Include = "Id,Titulo,Descripcion,TiempoCocinado,TipoPlato,Valoracion,Precio,TipoCocina,Categoria,Ingredientes,Utensilios")] Plato plato)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace WebServicesFigaro.Controllers
             return View(plato);
         }
 
-        // GET: PlatosMvc/Delete/5
+        // GET: PlatoMvc/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace WebServicesFigaro.Controllers
             return View(plato);
         }
 
-        // POST: PlatosMvc/Delete/5
+        // POST: PlatoMvc/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

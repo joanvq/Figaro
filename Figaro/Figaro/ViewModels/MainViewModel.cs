@@ -16,6 +16,8 @@ namespace Figaro.ViewModels
         private List<Plato> listaPlatos;
         private List<Plato> searchedPlatos;
         private string keywordPlato;
+        private bool isBusy;
+        private string statusMessage;
         private Plato platoSeleccionado = new Plato();
 
         
@@ -63,7 +65,26 @@ namespace Figaro.ViewModels
                 OnPropertyChanged();
             }
         }
-       
+
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set
+            {
+                isBusy = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string StatusMessage
+        {
+            get { return statusMessage; }
+            set
+            {
+                statusMessage = value;
+                OnPropertyChanged();
+            }
+        }
 
         /*-----COMMANDS-----*/
 
@@ -73,8 +94,21 @@ namespace Figaro.ViewModels
             {
                 return new Command(async () =>
                 {
+                    IsBusy = true;
+
                     var platosServices = new PlatosServices();
-                    await platosServices.PostPlatoAsync(platoSeleccionado);
+                    var isSuccess = await platosServices.PostPlatoAsync(platoSeleccionado);
+                    
+                    if(isSuccess)
+                    {
+                        StatusMessage = "Se ha añadido correctamente.";
+                    }
+                    else
+                    {
+                        StatusMessage = "No se ha podido añadir.";
+                    }
+                    
+                    IsBusy = false;
                 });
             }
         }
@@ -85,8 +119,21 @@ namespace Figaro.ViewModels
             {
                 return new Command(async () =>
                 {
+                    IsBusy = true;
+
                     var platosServices = new PlatosServices();
-                    await platosServices.PutPlatoAsync(platoSeleccionado.Id, platoSeleccionado);
+                    var isSuccess = await platosServices.PutPlatoAsync(platoSeleccionado.Id, platoSeleccionado);
+
+                    if (isSuccess)
+                    {
+                        StatusMessage = "Se ha modificado correctamente.";
+                    }
+                    else
+                    {
+                        StatusMessage = "No se ha podido modificar.";
+                    }
+
+                    IsBusy = false;
                 });
             }
         }
@@ -97,8 +144,12 @@ namespace Figaro.ViewModels
             {
                 return new Command(async () =>
                 {
+                    IsBusy = true;
+
                     var platosServices = new PlatosServices();
                     SearchedPlatos = await platosServices.GetPlatosByKeywordAsync(keywordPlato);
+
+                    IsBusy = false;
                 });
             }
         }
@@ -109,21 +160,48 @@ namespace Figaro.ViewModels
             {
                 return new Command(async () =>
                 {
+                    IsBusy = true;
+
                     var platosServices = new PlatosServices();
-                    await platosServices.DeletePlatoAsync(platoSeleccionado.Id);
+                    var isSuccess = await platosServices.DeletePlatoAsync(platoSeleccionado.Id);
+
+                    if (isSuccess)
+                    {
+                        StatusMessage = "Se ha borrado correctamente.";
+                    }
+                    else
+                    {
+                        StatusMessage = "No se ha podido borrar.";
+                    }
+
+                    IsBusy = false;
                 });
             }
         }
 
-        public MainViewModel()
+        public Command Refresh
+        {
+            get
+            {
+                return new Command(async () => await InitializeDataAsync());
+            }
+        }
+
+        /*-----FUNCTIONS-----*/
+
+        public MainViewModel(string name)
         {
             InitializeDataAsync();
         }
 
         private async Task InitializeDataAsync()
         {
+            IsBusy = true;
+
             var platosServices = new PlatosServices();
             ListaPlatos = await platosServices.GetPlatosAsync();
+
+            IsBusy = false;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

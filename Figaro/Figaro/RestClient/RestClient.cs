@@ -13,7 +13,7 @@ namespace Plugin.RestClient
     /// </summary>
     public class RestClient<T>
     {
-        private const string WebServiceUrl = "http://figaro.apphb.com/api/Platos/";
+        private const string WebServiceUrl = "http://figaro.apphb.com/api/Plato/";
 
         public async Task<List<T>> GetAsync()
         {

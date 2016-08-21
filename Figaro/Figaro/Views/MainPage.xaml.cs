@@ -29,7 +29,7 @@ namespace Figaro
 
             if (mainViewModel != null)
             {
-                await Navigation.PushAsync(new BuscarPlato(mainViewModel));
+                await Navigation.PushAsync(new BuscarPlato());
             }
         }
 
@@ -45,7 +45,7 @@ namespace Figaro
                 {
                     mainViewModel.PlatoSeleccionado = plato;
 
-                    Navigation.PushAsync(new NuevoPlato(mainViewModel));
+                    Navigation.PushAsync(new NuevoPlato());
                 }
             }
         }

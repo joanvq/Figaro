@@ -1,12 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Figaro.Views.NuevoPlato"              
-             xmlns:ViewModels="clr-namespace:Figaro.ViewModels;assembly=Figaro">
+             x:Class="Figaro.Views.NuevoPlato"            
+             BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}">
   
-  <ContentPage.BindingContext>
-    <ViewModels:MainViewModel />
-  </ContentPage.BindingContext>
   
   <StackLayout Orientation="Vertical"
                Spacing="18">
@@ -28,6 +25,13 @@
     <Button Text="Borrar Plato"
             Command="{Binding DeleteCommand, Mode=TwoWay}"
             />
+    
+    <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                       IsVisible="{Binding IsBusy}"/>
+    
+    <Label Text="{Binding StatusMessage}"
+           TextColor="Green" 
+           FontSize="24"/>
   
   </StackLayout>
            
