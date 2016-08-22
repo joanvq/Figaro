@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -13,14 +14,21 @@ namespace WebServicesFigaro.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [DisplayName("Título")]
         public string Titulo { get; set; }
+        [DisplayName("Descripción")]
         public string Descripcion { get; set; }
         //public List<string> Imagen { get; set; }
+        [DisplayName("Tiempo de Cocinado (minutos)")]
         public int TiempoCocinado { get; set; }
+        [DisplayName("Tipo de Plato")]
         public string TipoPlato { get; set; }
         //[DataType(DataType.Currency)]
-        public Decimal Precio { get; set; } 
+        [DisplayName("Precio (€)")]
+        public Decimal Precio { get; set; }
+        [DisplayName("Valoración (1-5)")]
         public Double Valoracion { get; set; }
+        [DisplayName("Tipo de Cocina (id)")]
         public int TipoCocina { get; set; }
         public string Categoria { get; set; }
         public string Ingredientes { get; set; }
