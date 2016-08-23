@@ -18,17 +18,18 @@ namespace WebServicesFigaro.Models
         public string Titulo { get; set; }
         [DisplayName("Descripción")]
         public string Descripcion { get; set; }
-        //public List<string> Imagen { get; set; }
+        public string Imagen { get; set; }
         [DisplayName("Tiempo de Cocinado (minutos)")]
         public int TiempoCocinado { get; set; }
         [DisplayName("Tipo de Plato")]
         public string TipoPlato { get; set; }
-        //[DataType(DataType.Currency)]
         [DisplayName("Precio (€)")]
+        [DisplayFormat(DataFormatString = "{0:n} €")]
         public Decimal Precio { get; set; }
         [DisplayName("Valoración (1-5)")]
+        [Range(1, 5)]
         public Double Valoracion { get; set; }
-        [DisplayName("Tipo de Cocina (id)")]
+        [DisplayName("Tipo de Cocina")]
         public int TipoCocina { get; set; }
         public string Categoria { get; set; }
         public string Ingredientes { get; set; }

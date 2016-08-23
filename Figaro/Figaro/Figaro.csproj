@@ -39,10 +39,14 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Configuration\ViewModelLocator.cs" />
+    <Compile Include="Models\TipoCocina.cs" />
     <Compile Include="RestClient\RestClient.cs" />
     <Compile Include="RestClient\TaskModel.cs" />
     <Compile Include="Services\PlatosServices.cs" />
+    <Compile Include="Services\TipoCocinaServices.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PlatoViewModel.cs" />
+    <Compile Include="ViewModels\TipoCocinaViewModel.cs" />
     <Compile Include="Views\BuscarPlato.xaml.cs">
       <DependentUpon>BuscarPlato.xaml</DependentUpon>
     </Compile>

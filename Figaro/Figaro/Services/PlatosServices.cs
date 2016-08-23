@@ -12,14 +12,15 @@ namespace Figaro.Services
     {
         public async Task<List<Plato>> GetPlatosAsync()
         {
-
-            RestClient<Plato> restClient = new RestClient<Plato>();
+            
+            RestClient<Plato> restClient = new RestClient<Plato>("Plato");
 
             var listaPlatos = await restClient.GetAsync();
 
             return listaPlatos;
 
-            /*var list = new List<Plato>
+            /*
+            var list = new List<Plato>
             {
                 new Plato
                 {
@@ -32,13 +33,15 @@ namespace Figaro.Services
                     Descripcion = "con tomate"
                 }
             };
-            return list;*/
+            return list;
+            */
+
         }
 
         public async Task<bool> PostPlatoAsync(Plato plato)
         {
 
-            RestClient<Plato> restClient = new RestClient<Plato>();
+            RestClient<Plato> restClient = new RestClient<Plato>("Plato");
 
             var isSuccessStatusCode = await restClient.PostAsync(plato);
 
@@ -49,8 +52,8 @@ namespace Figaro.Services
 
         public async Task<bool> PutPlatoAsync(int id, Plato plato)
         {
-
-            RestClient<Plato> restClient = new RestClient<Plato>();
+            
+            RestClient<Plato> restClient = new RestClient<Plato>("Plato");
 
             var isSuccessStatusCode = await restClient.PutAsync(id, plato);
 
@@ -61,7 +64,7 @@ namespace Figaro.Services
         public async Task<bool> DeletePlatoAsync(int id)
         {
 
-            RestClient<Plato> restClient = new RestClient<Plato>();
+            RestClient<Plato> restClient = new RestClient<Plato>("Plato");
 
             var isSuccessStatusCode = await restClient.DeleteAsync(id);
 
@@ -72,7 +75,7 @@ namespace Figaro.Services
         public async Task<List<Plato>> GetPlatosByKeywordAsync(string keyword)
         {
 
-            RestClient<Plato> restClient = new RestClient<Plato>();
+            RestClient<Plato> restClient = new RestClient<Plato>("Plato");
 
             var listaPlatos = await restClient.GetByKeywordAsync(keyword);
 

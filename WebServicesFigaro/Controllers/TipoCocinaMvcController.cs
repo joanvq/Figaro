@@ -38,6 +38,7 @@ namespace WebServicesFigaro.Controllers
         // GET: TipoCocinaMvc/Create
         public ActionResult Create()
         {
+            //ViewBag.TipoCocina = db.TipoCocina;
             return View();
         }
 

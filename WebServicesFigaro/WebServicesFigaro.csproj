@@ -170,6 +170,7 @@
     <Compile Include="Controllers\TipoCocinaController.cs" />
     <Compile Include="Controllers\TipoCocinaMvcController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\ZonaMvcController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,12 +183,27 @@
     <Compile Include="Models\PlatoContext.cs" />
     <Compile Include="Models\TipoCocina.cs" />
     <Compile Include="Models\TipoCocinaContext.cs" />
+    <Compile Include="Models\Zona.cs" />
+    <Compile Include="Models\ZonaContext.cs" />
+    <Compile Include="Models\ZonaController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\barcelona.jpg" />
+    <Content Include="Content\Images\dublin.jpg" />
+    <Content Include="Content\Images\london.jpg" />
+    <Content Include="Content\Images\madrid.jpg" />
+    <Content Include="Content\Images\moscow.jpg" />
+    <Content Include="Content\Images\plato_arroz.jpg" />
+    <Content Include="Content\Images\plato_asian.jpg" />
+    <Content Include="Content\Images\plato_calamari.jpg" />
+    <Content Include="Content\Images\plato_newyork.jpg" />
+    <Content Include="Content\Images\plato_pastel.jpg" />
+    <Content Include="Content\Images\plato_pizza.jpg" />
+    <Content Include="Content\Images\plato_raro.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -244,6 +260,11 @@
     <Content Include="Views\TipoCocinaMvc\Details.cshtml" />
     <Content Include="Views\TipoCocinaMvc\Edit.cshtml" />
     <Content Include="Views\TipoCocinaMvc\Index.cshtml" />
+    <Content Include="Views\ZonaMvc\Create.cshtml" />
+    <Content Include="Views\ZonaMvc\Delete.cshtml" />
+    <Content Include="Views\ZonaMvc\Details.cshtml" />
+    <Content Include="Views\ZonaMvc\Edit.cshtml" />
+    <Content Include="Views\ZonaMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608220827247_TipoCocina.resx">

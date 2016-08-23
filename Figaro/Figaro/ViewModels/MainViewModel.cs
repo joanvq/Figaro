@@ -189,7 +189,7 @@ namespace Figaro.ViewModels
 
         /*-----FUNCTIONS-----*/
 
-        public MainViewModel(string name)
+        public MainViewModel()
         {
             InitializeDataAsync();
         }

@@ -10,11 +10,13 @@ namespace Figaro.Configuration
     class ViewModelLocator
     {
         public MainViewModel MainViewModel { get; }
+        public PlatoViewModel PlatoViewModel { get; }
         
 
         public ViewModelLocator()
         {
-            MainViewModel = new MainViewModel("Espaguetis");
+            MainViewModel = new MainViewModel();
+            PlatoViewModel = new PlatoViewModel();
         }
     }
 }
