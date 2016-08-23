@@ -46,7 +46,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descripcion,TiempoCocinado,TipoPlato,Valoracion,Precio,TipoCocina,Categoria,Ingredientes,Utensilios")] Plato plato)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descripcion,Imagen,TiempoCocinado,TipoPlato,Valoracion,Precio,TipoCocina,Categoria,Ingredientes,Utensilios")] Plato plato)
         {
             if (ModelState.IsValid)
             {

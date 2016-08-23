@@ -7,13 +7,13 @@ namespace WebServicesFigaro.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class TipoCocina : IMigrationMetadata
+    public sealed partial class InitialMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TipoCocina));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201608220827247_TipoCocina"; }
+            get { return "201608231211137_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

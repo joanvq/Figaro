@@ -13,6 +13,7 @@ namespace WebServicesFigaro
     {
         protected void Application_Start()
         {
+            //System.Data.Entity.Database.SetInitializer(new System.Data.Entity.MigrateDatabaseToLatestVersion<Models.PlatoContext, Migrations.ConfigurationPlato>());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

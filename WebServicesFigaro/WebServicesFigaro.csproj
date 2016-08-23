@@ -174,11 +174,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608220827247_TipoCocina.cs" />
-    <Compile Include="Migrations\201608220827247_TipoCocina.Designer.cs">
-      <DependentUpon>201608220827247_TipoCocina.cs</DependentUpon>
+    <Compile Include="Migrations\201608231211137_InitialMigration.cs" />
+    <Compile Include="Migrations\201608231211137_InitialMigration.Designer.cs">
+      <DependentUpon>201608231211137_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\201608231215009_AddImagen.cs" />
+    <Compile Include="Migrations\201608231215009_AddImagen.Designer.cs">
+      <DependentUpon>201608231215009_AddImagen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ConfigurationPlato.cs" />
     <Compile Include="Models\Plato.cs" />
     <Compile Include="Models\PlatoContext.cs" />
     <Compile Include="Models\TipoCocina.cs" />
@@ -267,17 +271,20 @@
     <Content Include="Views\ZonaMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608220827247_TipoCocina.resx">
-      <DependentUpon>201608220827247_TipoCocina.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201608231211137_InitialMigration.resx">
+      <DependentUpon>201608231211137_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608231215009_AddImagen.resx">
+      <DependentUpon>201608231215009_AddImagen.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
