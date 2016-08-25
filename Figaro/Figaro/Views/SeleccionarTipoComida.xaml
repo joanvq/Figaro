@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Figaro.SeleccionarTipoComida"
+             xmlns:local="clr-namespace:Figaro;assembly=Figaro;"
+             BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}">
+  <MasterDetailPage.Master>
+    <ContentPage Title="Figaro">
+      <StackLayout Orientation="Vertical">
+        <ListView x:Name="ListaTipoCocinaView"
+              ItemsSource="{Binding ListaTipoCocina}"
+		          HasUnevenRows="true"
+              ItemTapped="TipoCocina_OnItemTapped">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <ViewCell>
+                <StackLayout Orientation="Horizontal" Padding="12,6">
+                  <Label Text="{Binding Titulo}"
+                         FontSize="24"/>
+                </StackLayout>
+              </ViewCell>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+      </StackLayout>
+    </ContentPage>
+  </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+    <local:MainPage/>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

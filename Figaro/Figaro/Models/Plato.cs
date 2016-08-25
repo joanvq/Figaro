@@ -11,7 +11,7 @@ namespace Figaro.Models
         public int Id { get; set; }
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
-        public List<string> Imagen { get; set; }
+        public string Imagen { get; set; }
         public int TiempoCocinado { get; set; }
         public string TipoPlato { get; set; }
         public Decimal Precio { get; set; }

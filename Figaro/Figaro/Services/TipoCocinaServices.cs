@@ -14,7 +14,7 @@ namespace Figaro.Services
         {
             RestClient<TipoCocina> restClient = new RestClient<TipoCocina>("TipoCocina");
 
-            var listaTipoCocina= await restClient.GetAsync();
+            var listaTipoCocina = await restClient.GetAsync();
 
             return listaTipoCocina;
         }

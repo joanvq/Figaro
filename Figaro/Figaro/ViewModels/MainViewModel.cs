@@ -20,7 +20,10 @@ namespace Figaro.ViewModels
         private string statusMessage;
         private Plato platoSeleccionado = new Plato();
 
-        
+        private TipoCocina tipoCocinaSeleccionado = null;
+        private List<TipoCocina> listaTipoCocina;
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         /*----Propiedades-----*/
@@ -62,6 +65,29 @@ namespace Figaro.ViewModels
             set
             {
                 platoSeleccionado = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TipoCocina TipoCocinaSeleccionado
+        {
+            get { return tipoCocinaSeleccionado; }
+            set
+            {
+                tipoCocinaSeleccionado = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<TipoCocina> ListaTipoCocina
+        {
+            get
+            {
+                return listaTipoCocina;
+            }
+            set
+            {
+                listaTipoCocina = value;
                 OnPropertyChanged();
             }
         }
@@ -191,15 +217,24 @@ namespace Figaro.ViewModels
 
         public MainViewModel()
         {
+            //Fatla Inizializar TipoCocina
             InitializeDataAsync();
         }
 
-        private async Task InitializeDataAsync()
+        public async Task InitializeDataAsync()
         {
             IsBusy = true;
 
+
+            var tipoCocinaServices = new TipoCocinaServices();
+            ListaTipoCocina = await tipoCocinaServices.GetTipoCocinaAsync();
+
             var platosServices = new PlatosServices();
             ListaPlatos = await platosServices.GetPlatosAsync();
+            if(TipoCocinaSeleccionado != null)
+            {
+                ListaPlatos = ListaPlatos.Where(plato => plato.TipoCocina == TipoCocinaSeleccionado.Id).ToList();
+            }
 
             IsBusy = false;
         }

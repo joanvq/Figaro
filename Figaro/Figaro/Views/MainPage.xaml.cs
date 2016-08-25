@@ -12,10 +12,14 @@ namespace Figaro
 {
     public partial class MainPage : ContentPage
     {
+        private ListView listViewPlatos; 
+        private int TipoCocinaSeleccinado { get; set; }
+
         public MainPage()
         {
             InitializeComponent();
             //this.ToolbarItems.Add(new ToolbarItem { Text = "BTN 1", Icon = "myicon.png" });
+            
         }
 
         private async void Button_OnClicked(object sender, EventArgs e)
@@ -50,5 +54,7 @@ namespace Figaro
                 }
             }
         }
+
+
     }
 }

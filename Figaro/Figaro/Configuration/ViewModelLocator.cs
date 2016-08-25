@@ -11,12 +11,14 @@ namespace Figaro.Configuration
     {
         public MainViewModel MainViewModel { get; }
         public PlatoViewModel PlatoViewModel { get; }
+        public TipoCocinaViewModel TipoCocinaViewModel { get; }
         
 
         public ViewModelLocator()
         {
             MainViewModel = new MainViewModel();
             PlatoViewModel = new PlatoViewModel();
+            TipoCocinaViewModel = new TipoCocinaViewModel();
         }
     }
 }

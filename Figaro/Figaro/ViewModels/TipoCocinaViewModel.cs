@@ -53,8 +53,10 @@ namespace Figaro.ViewModels
                 OnPropertyChanged();
             }
         }
+
         /*-----FUNCTIONS-----*/
-        TipoCocinaViewModel()
+
+        public TipoCocinaViewModel()
         {
             InitializeDataAsync();
         }

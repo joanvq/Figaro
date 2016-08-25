@@ -4,7 +4,6 @@
               xmlns:local="clr-namespace:Figaro"
               x:Class="Figaro.MainPage"
              xmlns:ui="clr-namespace:Figaro.UI;assembly=Figaro"
-             Title="Figaro"
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}">
   
   <!--<ContentPage.BindingContext>
@@ -36,7 +35,6 @@
         <DataTemplate>
           <ViewCell>
             <StackLayout Orientation="Horizontal" Padding="12,6">
-
               <Label Text="{Binding Titulo}"
                      FontSize="24"/>
               <Label Text="{Binding Descripcion}" 
