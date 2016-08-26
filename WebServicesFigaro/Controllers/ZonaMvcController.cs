@@ -12,12 +12,12 @@ namespace WebServicesFigaro.Controllers
 {
     public class ZonaMvcController : Controller
     {
-        private ZonaContext db = new ZonaContext();
+        private DBContext db = new DBContext();
 
         // GET: ZonaMvc
         public ActionResult Index()
         {
-            return View(db.Zona.ToList());
+            return View(db.Zonas.ToList());
         }
 
         // GET: ZonaMvc/Details/5
@@ -27,7 +27,7 @@ namespace WebServicesFigaro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zona zona = db.Zona.Find(id);
+            Zona zona = db.Zonas.Find(id);
             if (zona == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace WebServicesFigaro.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Zona.Add(zona);
+                db.Zonas.Add(zona);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace WebServicesFigaro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zona zona = db.Zona.Find(id);
+            Zona zona = db.Zonas.Find(id);
             if (zona == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace WebServicesFigaro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zona zona = db.Zona.Find(id);
+            Zona zona = db.Zonas.Find(id);
             if (zona == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace WebServicesFigaro.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Zona zona = db.Zona.Find(id);
-            db.Zona.Remove(zona);
+            Zona zona = db.Zonas.Find(id);
+            db.Zonas.Remove(zona);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

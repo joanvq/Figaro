@@ -14,7 +14,7 @@ namespace WebServicesFigaro.Controllers
 {
     public class PlatoController : ApiController
     {
-        private PlatoContext db = new PlatoContext();
+        private DBContext db = new DBContext();
 
         // GET: api/Plato
         public IQueryable<Plato> GetPlatoes()

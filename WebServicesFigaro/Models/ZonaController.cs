@@ -13,19 +13,19 @@ namespace WebServicesFigaro.Models
 {
     public class ZonaController : ApiController
     {
-        private ZonaContext db = new ZonaContext();
+        private DBContext db = new DBContext();
 
         // GET: api/Zona
         public IQueryable<Zona> GetZonas()
         {
-            return db.Zona;
+            return db.Zonas;
         }
 
         // GET: api/Zona/5
         [ResponseType(typeof(Zona))]
         public IHttpActionResult GetZona(int id)
         {
-            Zona zona = db.Zona.Find(id);
+            Zona zona = db.Zonas.Find(id);
             if (zona == null)
             {
                 return NotFound();
@@ -78,7 +78,7 @@ namespace WebServicesFigaro.Models
                 return BadRequest(ModelState);
             }
 
-            db.Zona.Add(zona);
+            db.Zonas.Add(zona);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = zona.Id }, zona);
@@ -88,13 +88,13 @@ namespace WebServicesFigaro.Models
         [ResponseType(typeof(Zona))]
         public IHttpActionResult DeleteZona(int id)
         {
-            Zona zona = db.Zona.Find(id);
+            Zona zona = db.Zonas.Find(id);
             if (zona == null)
             {
                 return NotFound();
             }
 
-            db.Zona.Remove(zona);
+            db.Zonas.Remove(zona);
             db.SaveChanges();
 
             return Ok(zona);
@@ -111,7 +111,7 @@ namespace WebServicesFigaro.Models
 
         private bool ZonaExists(int id)
         {
-            return db.Zona.Count(e => e.Id == id) > 0;
+            return db.Zonas.Count(e => e.Id == id) > 0;
         }
     }
 }

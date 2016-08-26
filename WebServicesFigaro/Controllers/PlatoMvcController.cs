@@ -12,12 +12,13 @@ namespace WebServicesFigaro.Controllers
 {
     public class PlatoMvcController : Controller
     {
-        private PlatoContext db = new PlatoContext();
+        private DBContext db = new DBContext();
 
         // GET: PlatoMvc
         public ActionResult Index()
         {
-            return View(db.Platoes.ToList());
+            var platoes = db.Platoes.Include(p => p.TipoCocina);
+            return View(platoes.ToList());
         }
 
         // GET: PlatoMvc/Details/5
@@ -38,6 +39,7 @@ namespace WebServicesFigaro.Controllers
         // GET: PlatoMvc/Create
         public ActionResult Create()
         {
+            ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descripcion,Imagen,TiempoCocinado,TipoPlato,Valoracion,Precio,TipoCocina,Categoria,Ingredientes,Utensilios")] Plato plato)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descripcion,Imagen,TiempoCocinado,TipoPlato,Precio,Valoracion,TipoCocinaId,Categoria,Ingredientes,Utensilios")] Plato plato)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace WebServicesFigaro.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo", plato.TipoCocinaId);
             return View(plato);
         }
 
@@ -70,6 +73,7 @@ namespace WebServicesFigaro.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo", plato.TipoCocinaId);
             return View(plato);
         }
 
@@ -78,7 +82,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Titulo,Descripcion,Imagen,TiempoCocinado,TipoPlato,Valoracion,Precio,TipoCocina,Categoria,Ingredientes,Utensilios")] Plato plato)
+        public ActionResult Edit([Bind(Include = "Id,Titulo,Descripcion,Imagen,TiempoCocinado,TipoPlato,Precio,Valoracion,TipoCocinaId,Categoria,Ingredientes,Utensilios")] Plato plato)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace WebServicesFigaro.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo", plato.TipoCocinaId);
             return View(plato);
         }
 

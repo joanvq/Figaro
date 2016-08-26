@@ -233,7 +233,7 @@ namespace Figaro.ViewModels
             ListaPlatos = await platosServices.GetPlatosAsync();
             if(TipoCocinaSeleccionado != null)
             {
-                ListaPlatos = ListaPlatos.Where(plato => plato.TipoCocina == TipoCocinaSeleccionado.Id).ToList();
+                ListaPlatos = ListaPlatos.Where(plato => plato.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
             }
 
             IsBusy = false;

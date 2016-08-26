@@ -16,7 +16,7 @@ namespace Figaro.Models
         public string TipoPlato { get; set; }
         public Decimal Precio { get; set; }
         public double Valoracion { get; set; }
-        public int TipoCocina { get; set; }
+        public TipoCocina TipoCocina { get; set; }
         public string Categoria { get; set; }
         public string Ingredientes { get; set; }
         public string Utensilios { get; set; }

@@ -12,21 +12,21 @@ using WebServicesFigaro.Models;
 
 namespace WebServicesFigaro.Controllers
 {
-    public class TipoCocinaController : ApiController
+    public class DBController : ApiController
     {
-        private TipoCocinaContext db = new TipoCocinaContext();
+        private DBContext db = new DBContext();
 
         // GET: api/TipoCocina
         public IQueryable<TipoCocina> GetTipoCocinas()
         {
-            return db.TipoCocina;
+            return db.TipoCocinas;
         }
 
         // GET: api/TipoCocina/5
         [ResponseType(typeof(TipoCocina))]
         public IHttpActionResult GetTipoCocina(int id)
         {
-            TipoCocina tipoCocina = db.TipoCocina.Find(id);
+            TipoCocina tipoCocina = db.TipoCocinas.Find(id);
             if (tipoCocina == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace WebServicesFigaro.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.TipoCocina.Add(tipoCocina);
+            db.TipoCocinas.Add(tipoCocina);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = tipoCocina.Id }, tipoCocina);
@@ -89,13 +89,13 @@ namespace WebServicesFigaro.Controllers
         [ResponseType(typeof(TipoCocina))]
         public IHttpActionResult DeleteTipoCocina(int id)
         {
-            TipoCocina tipoCocina = db.TipoCocina.Find(id);
+            TipoCocina tipoCocina = db.TipoCocinas.Find(id);
             if (tipoCocina == null)
             {
                 return NotFound();
             }
 
-            db.TipoCocina.Remove(tipoCocina);
+            db.TipoCocinas.Remove(tipoCocina);
             db.SaveChanges();
 
             return Ok(tipoCocina);
@@ -112,7 +112,7 @@ namespace WebServicesFigaro.Controllers
 
         private bool TipoCocinaExists(int id)
         {
-            return db.TipoCocina.Count(e => e.Id == id) > 0;
+            return db.TipoCocinas.Count(e => e.Id == id) > 0;
         }
     }
 }

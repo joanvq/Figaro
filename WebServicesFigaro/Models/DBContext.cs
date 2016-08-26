@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebServicesFigaro.Models
 {
-    public class ZonaContext : DbContext
+    public class DBContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -15,10 +15,12 @@ namespace WebServicesFigaro.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public ZonaContext() : base("name=ZonaContext")
+        public DBContext() : base("name=DBContext")
         {
         }
 
-        public System.Data.Entity.DbSet<WebServicesFigaro.Models.Zona> Zona { get; set; }
+        public System.Data.Entity.DbSet<WebServicesFigaro.Models.Plato> Platoes { get; set; }
+        public System.Data.Entity.DbSet<WebServicesFigaro.Models.Zona> Zonas { get; set; }
+        public System.Data.Entity.DbSet<WebServicesFigaro.Models.TipoCocina> TipoCocinas { get; set; }
     }
 }

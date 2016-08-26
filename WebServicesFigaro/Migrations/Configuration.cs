@@ -5,14 +5,14 @@ namespace WebServicesFigaro.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class ConfigurationPlato : DbMigrationsConfiguration<WebServicesFigaro.Models.PlatoContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<WebServicesFigaro.Models.DBContext>
     {
-        public ConfigurationPlato()
+        public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(WebServicesFigaro.Models.PlatoContext context)
+        protected override void Seed(WebServicesFigaro.Models.DBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

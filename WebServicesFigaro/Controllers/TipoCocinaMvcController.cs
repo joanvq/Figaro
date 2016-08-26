@@ -12,12 +12,12 @@ namespace WebServicesFigaro.Controllers
 {
     public class TipoCocinaMvcController : Controller
     {
-        private TipoCocinaContext db = new TipoCocinaContext();
+        private DBContext db = new DBContext();
 
         // GET: TipoCocinaMvc
         public ActionResult Index()
         {
-            return View(db.TipoCocina.ToList());
+            return View(db.TipoCocinas.ToList());
         }
 
         // GET: TipoCocinaMvc/Details/5
@@ -27,7 +27,7 @@ namespace WebServicesFigaro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoCocina tipoCocina = db.TipoCocina.Find(id);
+            TipoCocina tipoCocina = db.TipoCocinas.Find(id);
             if (tipoCocina == null)
             {
                 return HttpNotFound();
@@ -51,7 +51,7 @@ namespace WebServicesFigaro.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.TipoCocina.Add(tipoCocina);
+                db.TipoCocinas.Add(tipoCocina);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +66,7 @@ namespace WebServicesFigaro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoCocina tipoCocina = db.TipoCocina.Find(id);
+            TipoCocina tipoCocina = db.TipoCocinas.Find(id);
             if (tipoCocina == null)
             {
                 return HttpNotFound();
@@ -97,7 +97,7 @@ namespace WebServicesFigaro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoCocina tipoCocina = db.TipoCocina.Find(id);
+            TipoCocina tipoCocina = db.TipoCocinas.Find(id);
             if (tipoCocina == null)
             {
                 return HttpNotFound();
@@ -110,8 +110,8 @@ namespace WebServicesFigaro.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TipoCocina tipoCocina = db.TipoCocina.Find(id);
-            db.TipoCocina.Remove(tipoCocina);
+            TipoCocina tipoCocina = db.TipoCocinas.Find(id);
+            db.TipoCocinas.Remove(tipoCocina);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

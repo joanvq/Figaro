@@ -30,7 +30,9 @@ namespace WebServicesFigaro.Models
         [Range(1, 5)]
         public Double Valoracion { get; set; }
         [DisplayName("Tipo de Cocina")]
-        public int TipoCocina { get; set; }
+        public int TipoCocinaId { get; set; }
+        [ForeignKey("TipoCocinaId")]
+        public virtual TipoCocina TipoCocina { get; set; }
         public string Categoria { get; set; }
         public string Ingredientes { get; set; }
         public string Utensilios { get; set; }

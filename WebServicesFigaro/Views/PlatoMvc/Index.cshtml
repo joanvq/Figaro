@@ -27,13 +27,14 @@
             @Html.DisplayNameFor(model => model.TipoPlato)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Valoracion)
+            @*@Html.DisplayNameFor(model => model.TipoCocina.Titulo)*@
+            Tipo Cocina
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Precio)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TipoCocina)
+            @Html.DisplayNameFor(model => model.Valoracion)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Categoria)
@@ -65,13 +66,13 @@
             @Html.DisplayFor(modelItem => item.TipoPlato)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Valoracion)
+            @Html.DisplayFor(modelItem => item.TipoCocina.Titulo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Precio)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TipoCocina)
+            @Html.DisplayFor(modelItem => item.Valoracion)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Categoria)
