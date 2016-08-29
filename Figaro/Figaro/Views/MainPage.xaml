@@ -35,8 +35,7 @@
         <DataTemplate>
            <ViewCell>
              <StackLayout Orientation="Horizontal" Padding="12,6">
-              <Image Source="{Binding Imagen}" 
-                     Width ="{Binding ImageSize}" Height ="{Binding ImageSize}"/>
+              <Image Source="{Binding Imagen}" WidthRequest="100.0" HeightRequest="100.0"/>
               <Label Text="{Binding Titulo}"
                      FontSize="24"/>
               <Label Text="{Binding Descripcion}" 

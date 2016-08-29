@@ -20,7 +20,7 @@ namespace Figaro.Services
             foreach(Plato plato in listaPlatos)
             {
                 plato.Imagen = "http://figaro.apphb.com" + plato.Imagen;
-                plato.ImageSize = 100;
+                plato.ImageSize = 50;
             }
 
             return listaPlatos;
