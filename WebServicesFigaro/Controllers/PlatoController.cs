@@ -19,20 +19,8 @@ namespace WebServicesFigaro.Controllers
         // GET: api/Plato
         public IQueryable<Plato> GetPlatoes()
         {
-            return db.Platoes;
-        }
-
-        // GET: api/Plato/5
-        [ResponseType(typeof(Plato))]
-        public IHttpActionResult GetPlato(int id)
-        {
-            Plato plato = db.Platoes.Find(id);
-            if (plato == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(plato);
+            return db.Platoes
+                .Include(p => p.TipoCocina);
         }
 
         // GET: api/Plato/Search/titulo
@@ -41,6 +29,19 @@ namespace WebServicesFigaro.Controllers
         public IHttpActionResult GetPlatos(string keyword)
         {
             List<Plato> plato = db.Platoes.Where(p => p.Titulo.Contains(keyword)).ToList();
+            if (plato == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(plato);
+        }
+
+        // GET: api/Plato/5
+        [ResponseType(typeof(Plato))]
+        public IHttpActionResult GetPlato(int id)
+        {
+            Plato plato = db.Platoes.Find(id);
             if (plato == null)
             {
                 return NotFound();

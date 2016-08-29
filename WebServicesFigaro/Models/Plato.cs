@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,12 +32,12 @@ namespace WebServicesFigaro.Models
         [Range(1, 5)]
         public Double Valoracion { get; set; }
         [DisplayName("Tipo de Cocina")]
+        [ForeignKey("TipoCocina")]
         public int TipoCocinaId { get; set; }
-        [ForeignKey("TipoCocinaId")]
-        public virtual TipoCocina TipoCocina { get; set; }
         public string Categoria { get; set; }
         public string Ingredientes { get; set; }
         public string Utensilios { get; set; }
 
+        public TipoCocina TipoCocina { get; set; }
     }
 }

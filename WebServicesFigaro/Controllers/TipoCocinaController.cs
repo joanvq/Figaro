@@ -12,7 +12,7 @@ using WebServicesFigaro.Models;
 
 namespace WebServicesFigaro.Controllers
 {
-    public class DBController : ApiController
+    public class TipoCocinaController : ApiController
     {
         private DBContext db = new DBContext();
 

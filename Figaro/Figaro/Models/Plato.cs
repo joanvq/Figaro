@@ -21,5 +21,8 @@ namespace Figaro.Models
         public string Ingredientes { get; set; }
         public string Utensilios { get; set; }
 
+        public double ImageSize { get; set; }
+
+
     }
 }

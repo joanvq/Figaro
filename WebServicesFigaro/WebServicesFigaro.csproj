@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DTOs\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -177,6 +178,22 @@
     <Compile Include="Migrations\201608260705375_Inicial.cs" />
     <Compile Include="Migrations\201608260705375_Inicial.Designer.cs">
       <DependentUpon>201608260705375_Inicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608261052437_QuitarForeignKey.cs" />
+    <Compile Include="Migrations\201608261052437_QuitarForeignKey.Designer.cs">
+      <DependentUpon>201608261052437_QuitarForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608261057037_AnadirForeignKey.cs" />
+    <Compile Include="Migrations\201608261057037_AnadirForeignKey.Designer.cs">
+      <DependentUpon>201608261057037_AnadirForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608261103480_AnadidoPlatos.cs" />
+    <Compile Include="Migrations\201608261103480_AnadidoPlatos.Designer.cs">
+      <DependentUpon>201608261103480_AnadidoPlatos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608261113015_AnadidoPlatos1.cs" />
+    <Compile Include="Migrations\201608261113015_AnadidoPlatos1.Designer.cs">
+      <DependentUpon>201608261113015_AnadidoPlatos1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Plato.cs" />
@@ -275,6 +292,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608260705375_Inicial.resx">
       <DependentUpon>201608260705375_Inicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608261052437_QuitarForeignKey.resx">
+      <DependentUpon>201608261052437_QuitarForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608261057037_AnadirForeignKey.resx">
+      <DependentUpon>201608261057037_AnadirForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608261103480_AnadidoPlatos.resx">
+      <DependentUpon>201608261103480_AnadidoPlatos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608261113015_AnadidoPlatos1.resx">
+      <DependentUpon>201608261113015_AnadidoPlatos1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

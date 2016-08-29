@@ -17,6 +17,12 @@ namespace Figaro.Services
 
             var listaPlatos = await restClient.GetAsync();
 
+            foreach(Plato plato in listaPlatos)
+            {
+                plato.Imagen = "http://figaro.apphb.com" + plato.Imagen;
+                plato.ImageSize = 100;
+            }
+
             return listaPlatos;
 
             /*
