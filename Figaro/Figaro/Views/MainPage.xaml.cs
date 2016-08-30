@@ -22,21 +22,21 @@ namespace Figaro
             
         }
 
-        private async void Button_OnClicked(object sender, EventArgs e)
-        {
+        //private async void Button_OnClicked(object sender, EventArgs e)
+        //{
 
-            await Navigation.PushAsync(new NuevoPlato());
-        }
+        //    await Navigation.PushAsync(new NuevoPlato());
+        //}
 
-        private async void Search_OnClicked(object sender, EventArgs e)
-        {
-            var mainViewModel = BindingContext as MainViewModel;
+        //private async void Search_OnClicked(object sender, EventArgs e)
+        //{
+        //    var mainViewModel = BindingContext as MainViewModel;
 
-            if (mainViewModel != null)
-            {
-                await Navigation.PushAsync(new BuscarPlato());
-            }
-        }
+        //    if (mainViewModel != null)
+        //    {
+        //        await Navigation.PushAsync(new BuscarPlato());
+        //    }
+        //}
 
         private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
@@ -50,9 +50,14 @@ namespace Figaro
                 {
                     mainViewModel.PlatoSeleccionado = plato;
 
-                    Navigation.PushAsync(new NuevoPlato());
+                    Navigation.PushAsync(new VerPlato(mainViewModel));
                 }
             }
+        }
+
+        private async void Menu_OnClicked(object sender, EventArgs e)
+        {
+            
         }
 
 

@@ -36,15 +36,55 @@
            <ViewCell>
              <StackLayout Orientation="Horizontal" Padding="12,6">
               <Image Source="{Binding Imagen}" WidthRequest="100.0" HeightRequest="100.0"/>
-              <Label Text="{Binding Titulo}"
-                     FontSize="24"/>
-              <Label Text="{Binding Descripcion}" 
-                     FontSize="18"
-                     Opacity="0.6"/>
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="*"/>
+                  <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="2*"/>
+                  <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{Binding Titulo}"
+                       FontSize="24" 
+                       Grid.Row="0"
+                       Grid.Column="0"/>
+                <Label Text="{Binding Descripcion}" 
+                       FontSize="18"
+                       Opacity="0.6"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+                <Label Text="{Binding HorasCocinado}" 
+                       FontSize="14"
+                       Opacity="0.6"
+                       Grid.Row="0"
+                       Grid.Column="2"/>
+                <!--Falta imagen button (+)-->
+                <Button BackgroundColor="#CC0311" Image="" WidthRequest="10"
+                         Grid.Row="1"
+                         Grid.Column="2">
+                </Button>
+                  
+              </Grid>
             </StackLayout>
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
+    <StackLayout HeightRequest="50" BackgroundColor="#CC0311">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+         <!--Cambiar buttons por imagenes con tap-->
+        <Button Text="1" Grid.Column="0" Clicked="Menu_OnClicked"/>
+        <Button Text="2" Grid.Column="1"/>
+        <Button Text="3" Grid.Column="2"/>
+        <Button Text="4" Grid.Column="3"/>
+      </Grid>
+    </StackLayout>
   </StackLayout>
 </ContentPage>

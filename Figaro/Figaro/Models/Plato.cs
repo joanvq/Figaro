@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace Figaro.Models
 {
-    public class Plato : INotifyPropertyChanged
+    public class Plato
     {
-
-        private double imageSize;
 
         public int Id { get; set; }
         public string Titulo { get; set; }
@@ -25,23 +23,7 @@ namespace Figaro.Models
         public string Categoria { get; set; }
         public string Ingredientes { get; set; }
         public string Utensilios { get; set; }
+        public string HorasCocinado { get; set; }
 
-
-        public double ImageSize
-        {
-            get { return imageSize; }
-            set
-            {
-                imageSize = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

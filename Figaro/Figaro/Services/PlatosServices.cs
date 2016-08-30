@@ -20,7 +20,15 @@ namespace Figaro.Services
             foreach(Plato plato in listaPlatos)
             {
                 plato.Imagen = "http://figaro.apphb.com" + plato.Imagen;
-                plato.ImageSize = 50;
+                plato.HorasCocinado = (plato.TiempoCocinado / 60).ToString();
+                if ((plato.TiempoCocinado % 60) < 10)
+                {
+                    plato.HorasCocinado += "h 0" + (plato.TiempoCocinado % 60).ToString() + "' ⏱";
+                }
+                else
+                {
+                    plato.HorasCocinado += "h " + (plato.TiempoCocinado % 60).ToString() + "' ⏱";
+                }
             }
 
             return listaPlatos;

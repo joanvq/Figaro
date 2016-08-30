@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Figaro.Views.VerPlato"            
+             BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}">
+ <ScrollView x:Name="VerPlatoView">
+  
+  <StackLayout Orientation="Vertical"
+               Spacing="18">
+    
+    <RelativeLayout HeightRequest="200">
+      <Image Source="{Binding PlatoSeleccionado.Imagen}" 
+             RelativeLayout.WidthConstraint=
+                    "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+             RelativeLayout.HeightConstraint=
+                "{ConstraintExpression Type=RelativeToParent, Property=Height}"
+             Aspect="AspectFill"
+                  />
+      <Grid RelativeLayout.WidthConstraint=
+                "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+              RelativeLayout.HeightConstraint=
+                "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+
+        <Label Text="{Binding PlatoSeleccionado.Titulo}" VerticalOptions="End"
+            HorizontalOptions="StartAndExpand" FontSize="30" TextColor="White" Opacity="0.8"
+            TranslationX="10" TranslationY="-10"/>
+        <Grid VerticalOptions="End" HorizontalOptions="End" TranslationX="-10" TranslationY="-10" >
+          <Grid.RowDefinitions>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="24"/>
+          </Grid.RowDefinitions> 
+          <!--Stars Rating-->
+          <StackLayout Orientation="Horizontal" HeightRequest="70" Grid.Row="0">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <Image x:Name="starOne" HeightRequest="18" Grid.Column="0"/>
+              <Image x:Name="starTwo" HeightRequest="18" Grid.Column="1"/>
+              <Image x:Name="starThree" HeightRequest="18" Grid.Column="2"/>
+              <Image x:Name="starFour" HeightRequest="18" Grid.Column="3"/>
+              <Image x:Name="starFive" HeightRequest="18" Grid.Column="4"/>
+            </Grid>
+          </StackLayout>
+          <Label Text="{Binding PlatoSeleccionado.HorasCocinado}" Grid.Row="1" FontSize="18" 
+                TextColor="White" HorizontalTextAlignment="End"/>
+        </Grid>
+      </Grid>
+    </RelativeLayout>
+    <StackLayout BackgroundColor="#eee">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="25"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+      </Grid>
+      <Label Text="NÚMERO DE PLATOS" HorizontalTextAlignment="Center" FontSize="20" Grid.Column="0" VerticalOptions="Start"/>
+      <Entry Keyboard="Numeric" BackgroundColor="#aaa" Text="1" Grid.Column="1" VerticalOptions="Start"/>
+      <Button BackgroundColor="#CC0311" Grid.Column="2" VerticalOptions="Start">
+        <Label FontSize="36" Text="ADD" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>
+      </Button> 
+    </StackLayout>
+    <Label Text="{Binding PlatoSeleccionado.Descripcion}" FontSize="16" TranslationX="10"/>
+    <Label Text="INGREDIENTES" FontSize="20" TranslationX="10" FontAttributes="Bold"  />
+    <Label Text="{Binding PlatoSeleccionado.Ingredientes}" FontSize="16" Opacity="0.7" />
+    
+  </StackLayout>
+ </ScrollView>          
+</ContentPage>
