@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:local="clr-namespace:Figaro"
-              x:Class="Figaro.MainPage"
+              x:Class="Figaro.Views.PlatosPage"
              xmlns:ui="clr-namespace:Figaro.UI;assembly=Figaro"
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}">
   
@@ -71,7 +71,7 @@
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-    <StackLayout HeightRequest="50" BackgroundColor="#CC0311">
+    <StackLayout HeightRequest="50" BackgroundColor="#ddd">
       <Grid>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*"/>
@@ -80,10 +80,14 @@
           <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
          <!--Cambiar buttons por imagenes con tap-->
-        <Button Text="1" Grid.Column="0" Clicked="Menu_OnClicked"/>
-        <Button Text="2" Grid.Column="1"/>
-        <Button Text="3" Grid.Column="2"/>
-        <Button Text="4" Grid.Column="3"/>
+        <Image x:Name="Menu_Button" Grid.Column="0" Source="icono_menu.png" 
+               HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+        <Image x:Name="Plato_Button" Grid.Column="1" Source="icono_descubrir_select.png" 
+               HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+        <Image x:Name="Chefs_Button" Grid.Column="2" Source="icon_chefs.png"
+               HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+        <Image x:Name="Profile_Button" Grid.Column="3" Source="icono_profile.png"
+               HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
       </Grid>
     </StackLayout>
   </StackLayout>

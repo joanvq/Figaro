@@ -196,6 +196,7 @@
       <DependentUpon>201608261113015_AnadidoPlatos1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Plato.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\TipoCocina.cs" />

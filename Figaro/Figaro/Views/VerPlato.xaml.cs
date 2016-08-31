@@ -14,6 +14,7 @@ namespace Figaro.Views
         public VerPlato(MainViewModel mainViewModel)
         {
             InitializeComponent();
+            //Cargar estrellas valoración
             var valoracion = Convert.ToInt32(mainViewModel.PlatoSeleccionado.Valoracion);
             switch (valoracion)
             {
@@ -60,13 +61,66 @@ namespace Figaro.Views
                     starFive.Source = "icono_star.png";
                     break;
             }
+
+            //Cargar tabs de abajo
+            var tapIngredientesTab = new TapGestureRecognizer();
+            var tapUtensiliosTab = new TapGestureRecognizer();
+            var tapOpinionesTab = new TapGestureRecognizer();
+
+            tapIngredientesTab.Tapped += (s, e) => {
+                // handle the tap
+                IngredientesTab.FontAttributes = FontAttributes.Bold;
+                IngredientesTab.TextColor = Color.FromHex("#CC0311");
+                LineaIngredientesTab.IsVisible = true;
+
+                UtensiliosTab.FontAttributes = FontAttributes.None;
+                UtensiliosTab.TextColor = Color.Default;
+                LineaUtensiliosTab.IsVisible = false;
+
+                OpinionesTab.FontAttributes = FontAttributes.None;
+                OpinionesTab.TextColor = Color.Default;
+                LineaOpinionesTab.IsVisible = false;
+
+                TabAMostrar.Text = mainViewModel.PlatoSeleccionado.Ingredientes;
+            };
+            IngredientesTab.GestureRecognizers.Add(tapIngredientesTab);
+
+            tapUtensiliosTab.Tapped += (s, e) => {
+                // handle the tap
+                IngredientesTab.FontAttributes = FontAttributes.None;
+                IngredientesTab.TextColor = Color.Default;
+                LineaIngredientesTab.IsVisible = false;
+
+                UtensiliosTab.FontAttributes = FontAttributes.Bold;
+                UtensiliosTab.TextColor = Color.FromHex("#CC0311");
+                LineaUtensiliosTab.IsVisible = true;
+
+                OpinionesTab.FontAttributes = FontAttributes.None;
+                OpinionesTab.TextColor = Color.Default;
+                LineaOpinionesTab.IsVisible = false;
+
+                TabAMostrar.Text = mainViewModel.PlatoSeleccionado.Utensilios;
+            };
+            UtensiliosTab.GestureRecognizers.Add(tapUtensiliosTab);
+
+            tapOpinionesTab.Tapped += (s, e) => {
+                // handle the tap
+                IngredientesTab.FontAttributes = FontAttributes.None;
+                IngredientesTab.TextColor = Color.Default;
+                LineaIngredientesTab.IsVisible = false;
+
+                UtensiliosTab.FontAttributes = FontAttributes.None;
+                UtensiliosTab.TextColor = Color.Default;
+                LineaUtensiliosTab.IsVisible = false;
+
+                OpinionesTab.FontAttributes = FontAttributes.Bold;
+                OpinionesTab.TextColor = Color.FromHex("#CC0311");
+                LineaOpinionesTab.IsVisible = true;
+
+                TabAMostrar.Text = "";
+            };
+            OpinionesTab.GestureRecognizers.Add(tapOpinionesTab);
         }
-
-        //public NuevoPlato(MainViewModel mainViewModel)
-        //{
-        //    InitializeComponent();
-
-        //    BindingContext = mainViewModel;
-        //}
+        
     }
 }

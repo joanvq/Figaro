@@ -28,6 +28,6 @@
     </ContentPage>
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
-    <local:MainPage />
+    <local:Views.PlatosPage />
   </MasterDetailPage.Detail>
 </MasterDetailPage>
