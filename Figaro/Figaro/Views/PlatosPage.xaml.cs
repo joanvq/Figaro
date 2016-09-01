@@ -49,6 +49,25 @@ namespace Figaro.Views
             };
             Profile_Button.GestureRecognizers.Add(tapProfile);
 
+            //var ciudades = new ToolbarItem
+            //{
+            //    Icon = "icono_map_maker.png",
+            //    Command = new Command(() =>
+            //    {
+            //        DisplayAlert("Menu", "Ciudades tapped", "OK");
+            //    })
+            //};
+            //this.ToolbarItems.Add(ciudades);
+
+            //var cesta = new ToolbarItem {
+            //    Icon = "icono_shopping_bag_empty.png",
+            //    Command = new Command(() =>
+            //    {
+            //        DisplayAlert("Menu", "Cesta tapped", "OK");
+            //    })
+            //};
+            //this.ToolbarItems.Add(cesta);
+            
         }
 
         //private async void Button_OnClicked(object sender, EventArgs e)
@@ -84,11 +103,13 @@ namespace Figaro.Views
             }
         }
 
-        private async void Menu_OnClicked(object sender, EventArgs e)
+        private void AnadirCesta_OnClick(object sender, EventArgs e)
         {
-            
+            var mainViewModel = BindingContext as MainViewModel;
+            Button btn = (Button)sender;
+            mainViewModel.AnadirPlatoCesta.Execute(btn.ClassId);
         }
-
+        
 
     }
 }

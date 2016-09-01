@@ -9,6 +9,11 @@
     <ResourceDictionary>
       <configuration:ViewModelLocator x:Key="ViewModelLocator"/>
       <!--<viewModels:MainViewModel x:Key="MainViewModel"/>-->
+      <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="#CC0311"/>
+        <Setter Property="BarTextColor" Value="Color.White"/>
+        
+      </Style>
     </ResourceDictionary>
   </Application.Resources>
 </Application>

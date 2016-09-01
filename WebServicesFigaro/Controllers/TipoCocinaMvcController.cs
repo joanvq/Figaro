@@ -47,7 +47,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo")] TipoCocina tipoCocina)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Imagen")] TipoCocina tipoCocina)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Titulo")] TipoCocina tipoCocina)
+        public ActionResult Edit([Bind(Include = "Id,Titulo,Imagen")] TipoCocina tipoCocina)
         {
             if (ModelState.IsValid)
             {

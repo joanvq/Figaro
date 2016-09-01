@@ -165,6 +165,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\MenuMvcController.cs" />
     <Compile Include="Controllers\PlatoMvcController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlatoController.cs" />
@@ -194,6 +196,18 @@
     <Compile Include="Migrations\201608261113015_AnadidoPlatos1.cs" />
     <Compile Include="Migrations\201608261113015_AnadidoPlatos1.Designer.cs">
       <DependentUpon>201608261113015_AnadidoPlatos1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609010740192_AddImagen.cs" />
+    <Compile Include="Migrations\201609010740192_AddImagen.Designer.cs">
+      <DependentUpon>201609010740192_AddImagen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609010759006_RemovePlatosForeign.cs" />
+    <Compile Include="Migrations\201609010759006_RemovePlatosForeign.Designer.cs">
+      <DependentUpon>201609010759006_RemovePlatosForeign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609011122453_AddMenu.cs" />
+    <Compile Include="Migrations\201609011122453_AddMenu.Designer.cs">
+      <DependentUpon>201609011122453_AddMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Menu.cs" />
@@ -281,6 +295,11 @@
     <Content Include="Views\ZonaMvc\Details.cshtml" />
     <Content Include="Views\ZonaMvc\Edit.cshtml" />
     <Content Include="Views\ZonaMvc\Index.cshtml" />
+    <Content Include="Views\MenuMvc\Create.cshtml" />
+    <Content Include="Views\MenuMvc\Delete.cshtml" />
+    <Content Include="Views\MenuMvc\Details.cshtml" />
+    <Content Include="Views\MenuMvc\Edit.cshtml" />
+    <Content Include="Views\MenuMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -305,6 +324,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608261113015_AnadidoPlatos1.resx">
       <DependentUpon>201608261113015_AnadidoPlatos1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609010740192_AddImagen.resx">
+      <DependentUpon>201609010740192_AddImagen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609010759006_RemovePlatosForeign.resx">
+      <DependentUpon>201609010759006_RemovePlatosForeign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609011122453_AddMenu.resx">
+      <DependentUpon>201609011122453_AddMenu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

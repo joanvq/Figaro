@@ -212,6 +212,22 @@ namespace Figaro.ViewModels
                 return new Command(async () => await InitializeDataAsync());
             }
         }
+        
+        public Command AnadirPlatoCesta
+        {
+            get
+            {
+                return new Command<string>(async (key) => 
+                {
+                    IsBusy = true;
+
+                    var platosServices = new PlatosServices();
+                    platoSeleccionado = await platosServices.GetPlatosAsync(int.Parse(key));
+                    StatusMessage = "Se ha añadido el plato " + platoSeleccionado.Titulo + " correctamente.";
+                    IsBusy = false;
+                });
+            }
+        }
 
         /*-----FUNCTIONS-----*/
 

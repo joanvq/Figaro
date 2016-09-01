@@ -15,7 +15,28 @@ namespace Figaro
 
         public SeleccionarTipoComida()
         {
+            
             InitializeComponent();
+            var ciudades = new ToolbarItem
+            {
+                Icon = "icono_map_maker.png",
+                Command = new Command(() =>
+                {
+                    DisplayAlert("Menu", "Ciudades tapped", "OK");
+                })
+            };
+            this.ToolbarItems.Add(ciudades);
+
+            var cesta = new ToolbarItem
+            {
+                Icon = "icono_shopping_bag_empty.png",
+                Command = new Command(() =>
+                {
+                    DisplayAlert("Menu", "Cesta tapped", "OK");
+                })
+            };
+            this.ToolbarItems.Add(cesta);
+
         }       
 
         public void TipoCocina_OnItemTapped(object sender, ItemTappedEventArgs e)
@@ -26,6 +47,7 @@ namespace Figaro
                 var mainViewModel = BindingContext as MainViewModel;
                 if (mainViewModel != null)
                 {
+                    this.IsPresented = false;
                     mainViewModel.TipoCocinaSeleccionado = tipoCocina;
                     //Navigation.PopToRootAsync();
                     mainViewModel.Refresh.Execute(null);

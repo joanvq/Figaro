@@ -23,8 +23,8 @@ namespace WebServicesFigaro.Models
         [DisplayName("Primer Plato")]
         [ForeignKey("Primero")]
         public int PrimeroId { get; set; }
-        [DisplayName("Segundo Plato")]
         [ForeignKey("Segundo")]
+        [DisplayName("Segundo Plato")]
         public int SegundoId { get; set; }
         [DisplayName("Guarnición")]
         [ForeignKey("Guarnicion")]

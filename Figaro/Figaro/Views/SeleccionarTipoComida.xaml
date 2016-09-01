@@ -16,9 +16,20 @@
           <ListView.ItemTemplate>
             <DataTemplate>
               <ViewCell>
-                <StackLayout Orientation="Horizontal" Padding="12,6">
-                  <Label Text="{Binding Titulo}"
-                         FontSize="24"/>
+                <StackLayout Orientation="Horizontal" HeightRequest="100">
+                  <RelativeLayout Padding="0,0,0,0">
+                    <Image Source="{Binding Imagen}"
+                           RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                           RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                           Aspect="AspectFill"/>
+                    <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+
+                      <Label Text="{Binding Titulo}" VerticalOptions="Center"
+                          HorizontalOptions="Center" FontSize="30" TextColor="Black"/>
+                      
+                    </Grid>
+                  </RelativeLayout>
                 </StackLayout>
               </ViewCell>
             </DataTemplate>

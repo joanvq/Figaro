@@ -1,0 +1,144 @@
+﻿@model WebServicesFigaro.Models.Menu
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Menu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Entrante.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entrante.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Guarnicion.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guarnicion.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Postre.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Postre.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Primero.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Primero.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Segundo.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Segundo.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoCocina.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoCocina.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TiempoCocinado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TiempoCocinado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valoracion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valoracion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ingredientes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ingredientes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utensilios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utensilios)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

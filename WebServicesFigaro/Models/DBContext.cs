@@ -23,5 +23,6 @@ namespace WebServicesFigaro.Models
         public System.Data.Entity.DbSet<WebServicesFigaro.Models.Zona> Zonas { get; set; }
         public System.Data.Entity.DbSet<WebServicesFigaro.Models.TipoCocina> TipoCocinas { get; set; }
 
+        public System.Data.Entity.DbSet<WebServicesFigaro.Models.Menu> Menus { get; set; }
     }
 }

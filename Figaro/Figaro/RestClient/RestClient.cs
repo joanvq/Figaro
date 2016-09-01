@@ -33,6 +33,17 @@ namespace Plugin.RestClient
             return taskModels;
         }
 
+        public async Task<T> GetAsync(int id)
+        {
+            var httpClient = new HttpClient();
+
+            var json = await httpClient.GetStringAsync(WebServiceUrl + id);
+
+            var taskModels = JsonConvert.DeserializeObject<T>(json);
+
+            return taskModels;
+        }
+
         public async Task<bool> PostAsync(T t)
         {
             var httpClient = new HttpClient();

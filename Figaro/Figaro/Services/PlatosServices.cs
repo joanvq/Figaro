@@ -96,5 +96,15 @@ namespace Figaro.Services
             return listaPlatos;
         }
 
+        public async Task<Plato> GetPlatosAsync(int id)
+        {
+
+            RestClient<Plato> restClient = new RestClient<Plato>("Plato");
+
+            var plato = await restClient.GetAsync(id);
+
+            return plato;
+        }
+
     }
 }
