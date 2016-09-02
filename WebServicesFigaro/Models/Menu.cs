@@ -19,19 +19,19 @@ namespace WebServicesFigaro.Models
         public string Descripcion { get; set; }
         [DisplayName("Entrante")]
         [ForeignKey("Entrante")]
-        public int EntranteId { get; set; }
+        public int ?EntranteId { get; set; }
         [DisplayName("Primer Plato")]
         [ForeignKey("Primero")]
-        public int PrimeroId { get; set; }
+        public int ?PrimeroId { get; set; }
         [ForeignKey("Segundo")]
         [DisplayName("Segundo Plato")]
-        public int SegundoId { get; set; }
+        public int ?SegundoId { get; set; }
         [DisplayName("Guarnición")]
         [ForeignKey("Guarnicion")]
-        public int GuarnicionId { get; set; }
+        public int ?GuarnicionId { get; set; }
         [DisplayName("Postre")]
         [ForeignKey("Postre")]
-        public int PostreId { get; set; }
+        public int ?PostreId { get; set; }
         public string Imagen { get; set; }
         [DisplayName("Tiempo de Cocinado (minutos)")]
         public int TiempoCocinado { get; set; }

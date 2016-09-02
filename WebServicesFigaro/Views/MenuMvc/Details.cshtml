@@ -33,7 +33,10 @@
 
         <dd>
             @Html.DisplayFor(model => model.Imagen)
-            <img src="@Url.Content(Model.Imagen)" alt="Imagen Plato" style="width:400px" />
+            @if (Model.Imagen != null)
+            {
+                <img src="@Url.Content(Model.Imagen)" alt="Imagen Plato" style="width:400px" />
+            }
         </dd>
 
         <dt>

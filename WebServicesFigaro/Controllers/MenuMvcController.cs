@@ -39,11 +39,11 @@ namespace WebServicesFigaro.Controllers
         // GET: MenuMvc/Create
         public ActionResult Create()
         {
-            ViewBag.EntranteId = new SelectList(db.Platoes, "Id", "Titulo");
-            ViewBag.GuarnicionId = new SelectList(db.Platoes, "Id", "Titulo");
-            ViewBag.PostreId = new SelectList(db.Platoes, "Id", "Titulo");
-            ViewBag.PrimeroId = new SelectList(db.Platoes, "Id", "Titulo");
-            ViewBag.SegundoId = new SelectList(db.Platoes, "Id", "Titulo");
+            ViewBag.EntranteId = new SelectList(db.Platoes.Where(x => x.EsEntrante == true), "Id", "Titulo");
+            ViewBag.GuarnicionId = new SelectList(db.Platoes.Where(x => x.EsGuarnicion == true), "Id", "Titulo");
+            ViewBag.PostreId = new SelectList(db.Platoes.Where(x => x.EsPostre == true), "Id", "Titulo");
+            ViewBag.PrimeroId = new SelectList(db.Platoes.Where(x => x.EsPrimero == true), "Id", "Titulo");
+            ViewBag.SegundoId = new SelectList(db.Platoes.Where(x => x.EsSegundo == true), "Id", "Titulo");
             ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo");
             return View();
         }
@@ -57,6 +57,7 @@ namespace WebServicesFigaro.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (menu.EntranteId == 0) menu.EntranteId = null;
                 db.Menus.Add(menu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,11 +84,11 @@ namespace WebServicesFigaro.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EntranteId = new SelectList(db.Platoes.Where(x => x.Titulo == "Fideos"), "Id", "Titulo", menu.EntranteId);
-            ViewBag.GuarnicionId = new SelectList(db.Platoes, "Id", "Titulo", menu.GuarnicionId);
-            ViewBag.PostreId = new SelectList(db.Platoes, "Id", "Titulo", menu.PostreId);
-            ViewBag.PrimeroId = new SelectList(db.Platoes, "Id", "Titulo", menu.PrimeroId);
-            ViewBag.SegundoId = new SelectList(db.Platoes, "Id", "Titulo", menu.SegundoId);
+            ViewBag.EntranteId = new SelectList(db.Platoes.Where(x => x.EsEntrante == true), "Id", "Titulo", menu.EntranteId);
+            ViewBag.GuarnicionId = new SelectList(db.Platoes.Where(x => x.EsGuarnicion == true), "Id", "Titulo", menu.GuarnicionId);
+            ViewBag.PostreId = new SelectList(db.Platoes.Where(x => x.EsPostre == true), "Id", "Titulo", menu.PostreId);
+            ViewBag.PrimeroId = new SelectList(db.Platoes.Where(x => x.EsPrimero == true), "Id", "Titulo", menu.PrimeroId);
+            ViewBag.SegundoId = new SelectList(db.Platoes.Where(x => x.EsSegundo == true), "Id", "Titulo", menu.SegundoId);
             ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo", menu.TipoCocinaId);
             return View(menu);
         }

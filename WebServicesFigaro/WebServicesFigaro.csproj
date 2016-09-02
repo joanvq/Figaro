@@ -209,6 +209,18 @@
     <Compile Include="Migrations\201609011122453_AddMenu.Designer.cs">
       <DependentUpon>201609011122453_AddMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609020732484_ModificadoTipoPlato.cs" />
+    <Compile Include="Migrations\201609020732484_ModificadoTipoPlato.Designer.cs">
+      <DependentUpon>201609020732484_ModificadoTipoPlato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609020842376_NullableFKTipoPlato.cs" />
+    <Compile Include="Migrations\201609020842376_NullableFKTipoPlato.Designer.cs">
+      <DependentUpon>201609020842376_NullableFKTipoPlato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609020853167_NullableFKTipoPlato2.cs" />
+    <Compile Include="Migrations\201609020853167_NullableFKTipoPlato2.Designer.cs">
+      <DependentUpon>201609020853167_NullableFKTipoPlato2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Plato.cs" />
@@ -333,6 +345,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609011122453_AddMenu.resx">
       <DependentUpon>201609011122453_AddMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609020732484_ModificadoTipoPlato.resx">
+      <DependentUpon>201609020732484_ModificadoTipoPlato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609020842376_NullableFKTipoPlato.resx">
+      <DependentUpon>201609020842376_NullableFKTipoPlato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609020853167_NullableFKTipoPlato2.resx">
+      <DependentUpon>201609020853167_NullableFKTipoPlato2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

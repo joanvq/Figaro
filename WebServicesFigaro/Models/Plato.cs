@@ -23,8 +23,16 @@ namespace WebServicesFigaro.Models
         public string Imagen { get; set; }
         [DisplayName("Tiempo de Cocinado (minutos)")]
         public int TiempoCocinado { get; set; }
-        [DisplayName("Tipo de Plato")]
-        public string TipoPlato { get; set; }
+        [DisplayName("Es Entrante?")]
+        public bool EsEntrante { get; set; }
+        [DisplayName("Es Primero?")]
+        public bool EsPrimero { get; set; }
+        [DisplayName("Es Segundo?")]
+        public bool EsSegundo { get; set; }
+        [DisplayName("Es Guarnición?")]
+        public bool EsGuarnicion { get; set; }
+        [DisplayName("Es Postre?")]
+        public bool EsPostre { get; set; }
         [DisplayName("Precio (€)")]
         [DisplayFormat(DataFormatString = "{0:n} €")]
         public Decimal Precio { get; set; }

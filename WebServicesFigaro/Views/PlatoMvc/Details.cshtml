@@ -33,7 +33,10 @@
 
         <dd>
             @Html.DisplayFor(model => model.Imagen)
-            <img src="@Url.Content(Model.Imagen)" alt="Imagen Plato" style="width:400px" />
+            @if (Model.Imagen != null)
+            {
+                <img src="@Url.Content(Model.Imagen)" alt="Imagen Plato" style="width:400px" />
+            }
         </dd>
 
         <dt>
@@ -53,11 +56,43 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TipoPlato)
+            @Html.DisplayNameFor(model => model.EsEntrante)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TipoPlato)
+            @Html.DisplayFor(model => model.EsEntrante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsPrimero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsPrimero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsSegundo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsSegundo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsGuarnicion)
+        </dt>
+        
+        <dd>
+            @Html.DisplayFor(model => model.EsGuarnicion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsPostre)
+        </dt>
+        
+        <dd>
+            @Html.DisplayFor(model => model.EsPostre)
         </dd>
 
         <dt>

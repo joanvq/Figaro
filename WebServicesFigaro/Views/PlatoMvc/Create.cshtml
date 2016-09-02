@@ -48,11 +48,52 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TipoPlato, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TipoPlato, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TipoPlato, "", new { @class = "text-danger" })
-            </div>
+            <table class="table">
+                <tr>
+                    <th>
+                        Tipo Plato
+                    </th>
+                    <th>
+                        @Html.LabelFor(model => model.EsEntrante, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </th>
+                    <th>
+                        @Html.LabelFor(model => model.EsPrimero, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </th>
+                    <th>
+                        @Html.LabelFor(model => model.EsSegundo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </th>
+                    <th>
+                        @Html.LabelFor(model => model.EsGuarnicion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </th>
+                    <th>
+                        @Html.LabelFor(model => model.EsPostre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                        @Html.CheckBoxFor(model => model.EsEntrante, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EsEntrante, "", new { @class = "text-danger" })
+                    </th>
+                    <th>
+                        @Html.CheckBoxFor(model => model.EsPrimero, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EsPrimero, "", new { @class = "text-danger" })
+                    </th>
+                    <th>
+                        @Html.CheckBoxFor(model => model.EsSegundo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EsSegundo, "", new { @class = "text-danger" })
+                    </th>
+                    <th>
+                        @Html.CheckBoxFor(model => model.EsGuarnicion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EsGuarnicion, "", new { @class = "text-danger" })
+                    </th>
+                    <th>
+                        @Html.CheckBoxFor(model => model.EsPostre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EsPostre, "", new { @class = "text-danger" })
+                    </th>
+                </tr>
+            </table>
         </div>
 
         <div class="form-group">

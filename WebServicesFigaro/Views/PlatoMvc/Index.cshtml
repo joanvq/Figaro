@@ -9,6 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<h3>Comida China</h3>
 <table class="table">
     <tr>
         <th>
@@ -22,9 +23,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TiempoCocinado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TipoPlato)
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.TipoCocina.Titulo)*@
@@ -48,7 +46,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Where(p => p.TipoCocina.Titulo == "China")) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Titulo)
@@ -61,9 +59,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TiempoCocinado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoPlato)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TipoCocina.Titulo)
@@ -90,5 +85,86 @@
         </td>
     </tr>
 }
+
+</table>
+
+<h3>Comida Italiana</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TiempoCocinado)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.TipoCocina.Titulo)*@
+            Tipo Cocina
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valoracion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ingredientes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Utensilios)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Where(p => p.TipoCocina.Titulo == "Italiana"))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TiempoCocinado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoCocina.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valoracion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ingredientes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Utensilios)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
