@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace Figaro.Models
 {
-    public class Plato
+    public class Menu
     {
 
         public int Id { get; set; }
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
+        public Plato Entrante { get; set; }
+        public Plato Primero { get; set; }
+        public Plato Segundo { get; set; }
+        public Plato Guarnicion { get; set; }
+        public Plato Postre { get; set; }
         public string Imagen { get; set; }
         public int TiempoCocinado { get; set; }
-        public bool EsEntrante { get; set; }
-        public bool EsPrimero { get; set; }
-        public bool EsSegundo { get; set; }
-        public bool EsGuarnicion { get; set; }
-        public bool EsPostre { get; set; }
         public Decimal Precio { get; set; }
         public double Valoracion { get; set; }
         public TipoCocina TipoCocina { get; set; }

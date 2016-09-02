@@ -8,8 +8,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using WebServicesFigaro.Models;
 
-namespace WebServicesFigaro.Models
+namespace WebServicesFigaro.Cntrollers
 {
     public class ZonaController : ApiController
     {

@@ -19,7 +19,18 @@ namespace WebServicesFigaro.Controllers
         // GET: api/Menu
         public IQueryable<Menu> GetMenus()
         {
-            return db.Menus;
+            return db.Menus
+                .Include(p => p.TipoCocina)
+                .Include(p => p.Entrante)
+                .Include(p => p.Primero)
+                .Include(p => p.Segundo)
+                .Include(p => p.Guarnicion)
+                .Include(p => p.Postre.TipoCocina)
+                .Include(p => p.Entrante.TipoCocina)
+                .Include(p => p.Primero.TipoCocina)
+                .Include(p => p.Segundo.TipoCocina)
+                .Include(p => p.Guarnicion.TipoCocina)
+                .Include(p => p.Postre.TipoCocina);
         }
 
         // GET: api/Menu/5

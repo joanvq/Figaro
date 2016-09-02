@@ -57,7 +57,6 @@ namespace WebServicesFigaro.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (menu.EntranteId == 0) menu.EntranteId = null;
                 db.Menus.Add(menu);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -29,6 +29,7 @@ namespace Figaro.Services
                 {
                     plato.HorasCocinado += "h " + (plato.TiempoCocinado % 60).ToString() + "' ⏱";
                 }
+                plato.PrecioEuros = plato.Precio.ToString("0.00") + " €";
             }
 
             return listaPlatos;

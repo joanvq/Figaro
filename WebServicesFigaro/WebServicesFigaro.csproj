@@ -227,7 +227,7 @@
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\TipoCocina.cs" />
     <Compile Include="Models\Zona.cs" />
-    <Compile Include="Models\ZonaController.cs" />
+    <Compile Include="Controllers\ZonaController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

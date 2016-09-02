@@ -23,6 +23,8 @@ namespace Figaro.ViewModels
         private TipoCocina tipoCocinaSeleccionado = null;
         private List<TipoCocina> listaTipoCocina;
 
+        private List<Menu> listaMenus;
+        private Menu menuSeleccionado = new Menu();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -88,6 +90,29 @@ namespace Figaro.ViewModels
             set
             {
                 listaTipoCocina = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<Menu> ListaMenus
+        {
+            get
+            {
+                return listaMenus;
+            }
+            set
+            {
+                listaMenus = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Menu MenuSeleccionado
+        {
+            get { return menuSeleccionado; }
+            set
+            {
+                menuSeleccionado = value;
                 OnPropertyChanged();
             }
         }
@@ -224,6 +249,24 @@ namespace Figaro.ViewModels
                     var platosServices = new PlatosServices();
                     platoSeleccionado = await platosServices.GetPlatosAsync(int.Parse(key));
                     StatusMessage = "Se ha añadido el plato " + platoSeleccionado.Titulo + " correctamente.";
+
+                    IsBusy = false;
+                });
+            }
+        }
+
+        public Command AnadirMenuCesta
+        {
+            get
+            {
+                return new Command<string>(async (key) =>
+                {
+                    IsBusy = true;
+
+                    var menusServices = new MenusServices();
+                    menuSeleccionado = await menusServices.GetMenusAsync(int.Parse(key));
+                    StatusMessage = "Se ha añadido el plato " + menuSeleccionado.Titulo + " correctamente.";
+
                     IsBusy = false;
                 });
             }
@@ -247,9 +290,14 @@ namespace Figaro.ViewModels
 
             var platosServices = new PlatosServices();
             ListaPlatos = await platosServices.GetPlatosAsync();
+
+            var menusServices = new MenusServices();
+            ListaMenus = await menusServices.GetMenusAsync();
+
             if(TipoCocinaSeleccionado != null)
             {
                 ListaPlatos = ListaPlatos.Where(plato => plato.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
+                ListaMenus = ListaMenus.Where(menu => menu.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
             }
 
             IsBusy = false;

@@ -6,48 +6,56 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Figaro.Models;
+using Figaro.Other;
 
 namespace Figaro.Views
 {
     public partial class PlatosPage : ContentPage
     {
-        private ListView listViewPlatos; 
-        private int TipoCocinaSeleccinado { get; set; }
+        //private ListView listViewPlatos; 
+        //private int TipoCocinaSeleccinado { get; set; }
 
         public PlatosPage()
         {
             InitializeComponent();
-            var tapMenu = new TapGestureRecognizer();
-            var tapPlato = new TapGestureRecognizer();
-            var tapChefs = new TapGestureRecognizer();
-            var tapProfile = new TapGestureRecognizer();
 
-            tapMenu.Tapped += (s, e) => {
-                // handle the tap
-                var app = Application.Current as App;
-                var mainPage = (NavigationPage)app.MainPage;
-                var currentPage = (MasterDetailPage)mainPage.CurrentPage;
-                currentPage.Detail = new MenuPage();
-            };
-            Menu_Button.GestureRecognizers.Add(tapMenu);
+            var menuInferior = new MenuInferior(this);
+            Menu_Button.GestureRecognizers.Add(menuInferior.tapMenu);
+            Plato_Button.GestureRecognizers.Add(menuInferior.tapPlato);
+            Chefs_Button.GestureRecognizers.Add(menuInferior.tapChefs);
+            Profile_Button.GestureRecognizers.Add(menuInferior.tapProfile);
 
-            tapPlato.Tapped += (s, e) => {
-                // handle the tap
-                DisplayAlert("Menu", "Plato tapped", "OK");
-            };
-            Plato_Button.GestureRecognizers.Add(tapPlato);
+            //var tapMenu = new TapGestureRecognizer();
+            //var tapPlato = new TapGestureRecognizer();
+            //var tapChefs = new TapGestureRecognizer();
+            //var tapProfile = new TapGestureRecognizer();
 
-            tapChefs.Tapped += (s, e) => {
-                // handle the tap
-                DisplayAlert("Menu", "Chefs tapped", "OK");
-            };
-            Chefs_Button.GestureRecognizers.Add(tapChefs);
+            //tapMenu.Tapped += (s, e) => {
+            //    // handle the tap
+            //    var app = Application.Current as App;
+            //    var mainPage = (NavigationPage)app.MainPage;
+            //    var currentPage = (MasterDetailPage)mainPage.CurrentPage;
+            //    currentPage.Detail = new MenuPage();
+            //};
+            //Menu_Button.GestureRecognizers.Add(tapMenu);
 
-            tapProfile.Tapped += (s, e) => {
-                // handle the tap
-                DisplayAlert("Menu", "Perfil tapped", "OK");
-            };
-            Profile_Button.GestureRecognizers.Add(tapProfile);
+            //tapPlato.Tapped += (s, e) => {
+            //    // handle the tap
+            //    DisplayAlert("Menu", "Plato tapped", "OK");
+            //};
+            //Plato_Button.GestureRecognizers.Add(tapPlato);
+
+            //tapChefs.Tapped += (s, e) => {
+            //    // handle the tap
+            //    DisplayAlert("Menu", "Chefs tapped", "OK");
+            //};
+            //Chefs_Button.GestureRecognizers.Add(tapChefs);
+
+            //tapProfile.Tapped += (s, e) => {
+            //    // handle the tap
+            //    DisplayAlert("Menu", "Perfil tapped", "OK");
+            //};
+            //Profile_Button.GestureRecognizers.Add(tapProfile);
 
             //var ciudades = new ToolbarItem
             //{
