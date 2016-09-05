@@ -38,7 +38,18 @@ namespace WebServicesFigaro.Controllers
         [ResponseType(typeof(Menu))]
         public IHttpActionResult GetMenu(int id)
         {
-            Menu menu = db.Menus.Find(id);
+            Menu menu = db.Menus
+                .Include(p => p.Entrante)
+                .Include(p => p.Primero)
+                .Include(p => p.Segundo)
+                .Include(p => p.Guarnicion)
+                .Include(p => p.Postre.TipoCocina)
+                .Include(p => p.Entrante.TipoCocina)
+                .Include(p => p.Primero.TipoCocina)
+                .Include(p => p.Segundo.TipoCocina)
+                .Include(p => p.Guarnicion.TipoCocina)
+                .Include(p => p.Postre.TipoCocina)
+                .SingleOrDefault(p => p.Id == id);
             if (menu == null || menu.EstaOculto)
             {
                 return NotFound();
