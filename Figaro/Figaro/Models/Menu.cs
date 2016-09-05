@@ -27,6 +27,7 @@ namespace Figaro.Models
         public string Categoria { get; set; }
         public string Ingredientes { get; set; }
         public string Utensilios { get; set; }
+        public bool EstaOculto { get; set; }
         public string HorasCocinado { get; set; }
         public string PrecioEuros { get; set; }
 

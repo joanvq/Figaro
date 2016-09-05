@@ -53,8 +53,7 @@
                   </Grid.ColumnDefinitions>
                   <Label Text="{Binding Titulo}"
                           FontSize="24" 
-                          Grid.Row="0"
-                          Grid.Column="0"/>
+                          Grid.Row="0"/>
                   <Label Text="{Binding Descripcion}" 
                           FontSize="18"
                           Opacity="0.6"
@@ -65,11 +64,10 @@
                           Opacity="0.6"
                           Grid.Row="0"
                           Grid.Column="2"/>
-                    <Button ClassId="{Binding Id}" BackgroundColor="#CC0311" Text="+" TextColor="White"
+                  <Button ClassId="{Binding Id}" BackgroundColor="#CC0311" Text="+" TextColor="White"
                             FontSize="24" WidthRequest="10"
                             Grid.Row="1" Grid.Column="2"
-                            Clicked="AnadirCesta_OnClick"
-                            />
+                            Clicked="AnadirCesta_OnClick"/>
                   
                 </Grid>
             </StackLayout>

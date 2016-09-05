@@ -36,8 +36,8 @@ namespace Figaro.Views
                 {
                     mainViewModel.MenuSeleccionado = menu;
 
-                    //Navigation.PushAsync(new VerPlato(mainViewModel));
-                    DisplayAlert("Menu", "Menu " + menu.Titulo + " tapped", "OK");
+                    Navigation.PushAsync(new VerMenu(mainViewModel));
+                    //DisplayAlert("Menu", "Menu " + menu.Titulo + " tapped", "OK");
                 }
             }
         }

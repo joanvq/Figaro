@@ -47,6 +47,8 @@ namespace WebServicesFigaro.Models
         public string Categoria { get; set; }
         public string Ingredientes { get; set; }
         public string Utensilios { get; set; }
+        [DisplayName("Ocultado (si se selecciona no se mostrará en la app)")]
+        public bool EstaOculto { get; set; }
         
         public Plato Entrante { get; set; }
         public Plato Primero { get; set; }

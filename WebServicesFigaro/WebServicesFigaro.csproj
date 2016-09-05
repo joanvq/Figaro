@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201609020853167_NullableFKTipoPlato2.Designer.cs">
       <DependentUpon>201609020853167_NullableFKTipoPlato2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609051104585_AnadidoEstaOculto.cs" />
+    <Compile Include="Migrations\201609051104585_AnadidoEstaOculto.Designer.cs">
+      <DependentUpon>201609051104585_AnadidoEstaOculto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Plato.cs" />
@@ -354,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609020853167_NullableFKTipoPlato2.resx">
       <DependentUpon>201609020853167_NullableFKTipoPlato2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609051104585_AnadidoEstaOculto.resx">
+      <DependentUpon>201609051104585_AnadidoEstaOculto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

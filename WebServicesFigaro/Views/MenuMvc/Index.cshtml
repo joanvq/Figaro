@@ -9,6 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<h3>Comida China</h3>
 <table class="table">
     <tr>
         <th>
@@ -44,50 +45,162 @@
         <th>
             @Html.DisplayNameFor(model => model.Precio)
         </th>
+        <th>
+            Oculto
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model.Where(m => m.TipoCocina.Titulo == "China"))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Entrante.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Primero.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Segundo.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Guarnicion.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Postre.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoCocina.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TiempoCocinado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @if (item.EstaOculto == true)
+                {
+                    @Html.Raw("Si")
+                }
+                else
+                {
+                    @Html.Raw("No")
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h3>Comida Italiana</h3>
+
+<table class="table">
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Imagen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Entrante.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Primero.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Segundo.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Guarnicion.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postre.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoCocina.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TiempoCocinado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Precio)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </th>
+        <th>
+            Entrante@*@Html.DisplayNameFor(model => model.Entrante.Titulo)*@
+        </th>
+        <th>
+            Primero@*@Html.DisplayNameFor(model => model.Primero.Titulo)*@
+        </th>
+        <th>
+            Segundo@*@Html.DisplayNameFor(model => model.Segundo.Titulo)*@
+        </th>
+        <th>
+            Guarnición@*@Html.DisplayNameFor(model => model.Guarnicion.Titulo)*@
+        </th>
+        <th>
+            Postre@*@Html.DisplayNameFor(model => model.Postre.Titulo)*@
+        </th>
+        <th>
+            Tipo Cocina@*@Html.DisplayNameFor(model => model.TipoCocina.Titulo)*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TiempoCocinado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            Oculto
+        </th>
+        <th></th>
     </tr>
-}
+
+    @foreach (var item in Model.Where(m => m.TipoCocina.Titulo == "Italiana"))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Entrante.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Primero.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Segundo.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Guarnicion.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Postre.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoCocina.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TiempoCocinado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @if (item.EstaOculto == true)
+                {
+                    @Html.Raw("Si")
+                }
+                else
+                {
+                    @Html.Raw("No")
+                }
+<td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

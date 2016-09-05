@@ -53,7 +53,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descripcion,EntranteId,PrimeroId,SegundoId,GuarnicionId,PostreId,Imagen,TiempoCocinado,Precio,Valoracion,TipoCocinaId,Categoria,Ingredientes,Utensilios")] Menu menu)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descripcion,EntranteId,PrimeroId,SegundoId,GuarnicionId,PostreId,Imagen,TiempoCocinado,Precio,Valoracion,TipoCocinaId,Categoria,Ingredientes,Utensilios,EstaOculto")] Menu menu)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Titulo,Descripcion,EntranteId,PrimeroId,SegundoId,GuarnicionId,PostreId,Imagen,TiempoCocinado,Precio,Valoracion,TipoCocinaId,Categoria,Ingredientes,Utensilios")] Menu menu)
+        public ActionResult Edit([Bind(Include = "Id,Titulo,Descripcion,EntranteId,PrimeroId,SegundoId,GuarnicionId,PostreId,Imagen,TiempoCocinado,Precio,Valoracion,TipoCocinaId,Categoria,Ingredientes,Utensilios,EstaOculto")] Menu menu)
         {
             if (ModelState.IsValid)
             {
