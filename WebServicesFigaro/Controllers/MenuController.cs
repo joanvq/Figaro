@@ -30,7 +30,8 @@ namespace WebServicesFigaro.Controllers
                 .Include(p => p.Primero.TipoCocina)
                 .Include(p => p.Segundo.TipoCocina)
                 .Include(p => p.Guarnicion.TipoCocina)
-                .Include(p => p.Postre.TipoCocina);
+                .Include(p => p.Postre.TipoCocina)
+                .Where(p => p.EstaOculto != true);
         }
 
         // GET: api/Menu/5
@@ -38,7 +39,7 @@ namespace WebServicesFigaro.Controllers
         public IHttpActionResult GetMenu(int id)
         {
             Menu menu = db.Menus.Find(id);
-            if (menu == null)
+            if (menu == null || menu.EstaOculto)
             {
                 return NotFound();
             }
