@@ -94,7 +94,8 @@
           </Picker.Items>
           <Picker.SelectedIndex>0</Picker.SelectedIndex>
         </Picker>
-        <Button BackgroundColor="#CC0311" Grid.Column="2" VerticalOptions="Center" Text="Añadir" TextColor="White">
+        <Button BackgroundColor="#CC0311" Grid.Column="2" VerticalOptions="Center"
+                Text="Añadir" TextColor="White" Clicked="Anadir_OnClick">
           <!--<Label FontSize="36" Text="ADD" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>-->
         </Button> 
         </Grid>

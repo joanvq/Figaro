@@ -97,7 +97,7 @@ namespace Figaro.Views
         {
             var mainViewModel = BindingContext as MainViewModel;
             Image img = (Image)sender;
-            mainViewModel.ElegirChef.Execute(img.ClassId);
+            mainViewModel.ElegirChef.Execute(int.Parse(img.ClassId));
         }
     }
 }

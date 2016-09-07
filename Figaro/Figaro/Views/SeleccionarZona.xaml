@@ -13,7 +13,7 @@
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <StackLayout Orientation="Horizontal"  HeightRequest="300">
+            <StackLayout Orientation="Horizontal"  HeightRequest="200">
               <RelativeLayout Padding="0,0,0,0">
                 <Image Source="{Binding ImagenFondo}"
                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"

@@ -15,7 +15,7 @@ namespace Figaro.Views
         {
             InitializeComponent();
             //Cargar estrellas valoración
-            var valoracion = Convert.ToInt32(mainViewModel.PlatoSeleccionado.Valoracion);
+            var valoracion = Convert.ToInt32(mainViewModel.ChefSeleccionado.Valoracion);
             switch (valoracion)
             {
                 case 0:
@@ -62,6 +62,13 @@ namespace Figaro.Views
                     break;
             }
 
+        }
+
+        private void Elegir_OnClick(object sender, EventArgs e)
+        {
+            var mainViewModel = BindingContext as MainViewModel;
+            var idChef = mainViewModel.ChefSeleccionado.Id;
+            mainViewModel.ElegirChef.Execute(idChef);
         }
     }
 }

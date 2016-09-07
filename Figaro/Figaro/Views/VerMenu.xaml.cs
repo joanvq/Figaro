@@ -238,5 +238,14 @@ namespace Figaro.Views
                 }
             }
         }
+
+        private void Anadir_OnClick(object sender, EventArgs e)
+        {
+            var mainViewModel = BindingContext as MainViewModel;
+            int idMenu = mainViewModel.MenuSeleccionado.Id;
+            Tuple<int, int> idCant = new Tuple<int, int>(idMenu, int.Parse(NumeroMenus.Items[NumeroMenus.SelectedIndex]));
+            mainViewModel.AnadirMenuCesta.Execute(idCant);
+            
+        }
     }
 }

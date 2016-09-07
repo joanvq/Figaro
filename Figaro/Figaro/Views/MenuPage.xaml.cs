@@ -46,7 +46,8 @@ namespace Figaro.Views
         {
             var mainViewModel = BindingContext as MainViewModel;
             Button btn = (Button)sender;
-            mainViewModel.AnadirMenuCesta.Execute(btn.ClassId);
+            Tuple<int, int> idCant = new Tuple<int, int>(int.Parse(btn.ClassId), 1);
+            mainViewModel.AnadirMenuCesta.Execute(idCant);
         }
 
     }

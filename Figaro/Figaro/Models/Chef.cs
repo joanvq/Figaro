@@ -21,7 +21,7 @@ namespace Figaro.Models
         public DateTime FechaNacimiento { get; set; }
         public string Genero { get; set; }
         public string NombreApellidos { get; set; }
-
+        public int Edad { get; set; }
 
 
 

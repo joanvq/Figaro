@@ -121,6 +121,15 @@ namespace Figaro.Views
             };
             OpinionesTab.GestureRecognizers.Add(tapOpinionesTab);
         }
+
+        private void Anadir_OnClick(object sender, EventArgs e)
+        {
+            var mainViewModel = BindingContext as MainViewModel;
+            int idPlato = mainViewModel.PlatoSeleccionado.Id;
+            Tuple<int, int> idCant = new Tuple<int, int>(idPlato, int.Parse(NumeroPlatos.Items[NumeroPlatos.SelectedIndex]));
+            mainViewModel.AnadirPlatoCesta.Execute(idCant);
+
+        }
         
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Figaro.Models;
+using Figaro.Other;
 using Figaro.Services;
 using System;
 using System.Collections.Generic;
@@ -30,9 +31,9 @@ namespace Figaro.ViewModels
         private Chef chefSeleccionado = new Chef();
 
         private List<Zona> listaZonas;
-        private Zona zonaSeleccionada = new Zona();
+        private Zona zonaSeleccionada = null;
 
-        private Carrito carritoCompra;
+        private static Carrito carritoCompra = new Carrito();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -318,31 +319,35 @@ namespace Figaro.ViewModels
         {
             get
             {
-                return new Command<string>(async (key) => 
+                return new Command<Tuple<int, int>>(async (key) => 
                 {
                     IsBusy = true;
 
                     var platosServices = new PlatosServices();
-                    platoSeleccionado = await platosServices.GetPlatosAsync(int.Parse(key));
-                    StatusMessage = "Se ha añadido el plato " + platoSeleccionado.Titulo + " correctamente.";
+                    platoSeleccionado = await platosServices.GetPlatosAsync(key.Item1);
+                    KeyValuePair<Plato, int> platoCant = new KeyValuePair<Plato, int>(platoSeleccionado, key.Item2);
+                    carritoCompra.anadirPlato(platoCant);
+                    StatusMessage = "Se han añadido " + key.Item2 + " platos de " + platoSeleccionado.Titulo + " correctamente.";
 
                     IsBusy = false;
                 });
             }
         }
 
+        /*Item1 = idMenu; Item2 = Cantidad*/
         public Command AnadirMenuCesta
         {
             get
             {
-                return new Command<string>(async (key) =>
+                return new Command<Tuple<int, int>>(async (key) =>
                 {
                     IsBusy = true;
-
                     var menusServices = new MenusServices();
-                    menuSeleccionado = await menusServices.GetMenusAsync(int.Parse(key));
-                    StatusMessage = "Se ha añadido el plato " + menuSeleccionado.Titulo + " correctamente.";
-
+                    menuSeleccionado = await menusServices.GetMenusAsync(key.Item1);
+                    KeyValuePair<Menu, int> menuCant = new KeyValuePair<Menu, int>(menuSeleccionado, key.Item2);
+                    carritoCompra.anadirMenu(menuCant);
+                    StatusMessage = "Se han añadido " + key.Item2 + " menus " + menuSeleccionado.Titulo + " en el carrito.";
+                    
                     IsBusy = false;
                 });
             }
@@ -352,13 +357,14 @@ namespace Figaro.ViewModels
         {
             get
             {
-                return new Command<string>(async (key) =>
+                return new Command<int>(async (key) =>
                 {
                     IsBusy = true;
 
                     var chefServices = new ChefServices();
-                    chefSeleccionado = await chefServices.GetChefsAsync(int.Parse(key));
+                    chefSeleccionado = await chefServices.GetChefsAsync(key);
                     StatusMessage = "Se ha elegido el chef " + chefSeleccionado.NombreApellidos + " correctamente.";
+                    carritoCompra.chef = chefSeleccionado;
 
                     IsBusy = false;
                 });
