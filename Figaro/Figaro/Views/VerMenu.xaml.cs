@@ -62,6 +62,28 @@ namespace Figaro.Views
                     break;
             }
 
+            //Cargar platos del menu a visible si no es null
+            if(mainViewModel.MenuSeleccionado.Entrante != null)
+            {
+                Entrante.IsVisible = true;
+            }
+            if (mainViewModel.MenuSeleccionado.Primero != null)
+            {
+                Primero.IsVisible = true;
+            }
+            if (mainViewModel.MenuSeleccionado.Segundo != null)
+            {
+                Segundo.IsVisible = true;
+            }
+            if (mainViewModel.MenuSeleccionado.Guarnicion != null)
+            {
+                Guarnicion.IsVisible = true;
+            }
+            if (mainViewModel.MenuSeleccionado.Postre != null)
+            {
+                Postre.IsVisible = true;
+            }
+
             //Cargar tabs de abajo
             var tapIngredientesTab = new TapGestureRecognizer();
             var tapUtensiliosTab = new TapGestureRecognizer();
@@ -120,6 +142,101 @@ namespace Figaro.Views
                 TabAMostrar.Text = "";
             };
             OpinionesTab.GestureRecognizers.Add(tapOpinionesTab);
+        }
+
+        void Entrante_OnTapped(object sender, EventArgs e)
+        {
+            
+            var mainViewModel = BindingContext as MainViewModel;
+
+            if (mainViewModel != null)
+            {
+
+                var plato = mainViewModel.MenuSeleccionado.Entrante;
+
+                if (plato != null)
+                {
+                    mainViewModel.PlatoSeleccionado = plato;
+
+                    Navigation.PushAsync(new VerPlato(mainViewModel));
+                }
+            }
+        }
+
+        void Postre_OnTapped(object sender, EventArgs e)
+        {
+
+            var mainViewModel = BindingContext as MainViewModel;
+
+            if (mainViewModel != null)
+            {
+
+                var plato = mainViewModel.MenuSeleccionado.Postre;
+
+                if (plato != null)
+                {
+                    mainViewModel.PlatoSeleccionado = plato;
+
+                    Navigation.PushAsync(new VerPlato(mainViewModel));
+                }
+            }
+        }
+
+        void Primero_OnTapped(object sender, EventArgs e)
+        {
+
+            var mainViewModel = BindingContext as MainViewModel;
+
+            if (mainViewModel != null)
+            {
+
+                var plato = mainViewModel.MenuSeleccionado.Primero;
+
+                if (plato != null)
+                {
+                    mainViewModel.PlatoSeleccionado = plato;
+
+                    Navigation.PushAsync(new VerPlato(mainViewModel));
+                }
+            }
+        }
+
+        void Segundo_OnTapped(object sender, EventArgs e)
+        {
+
+            var mainViewModel = BindingContext as MainViewModel;
+
+            if (mainViewModel != null)
+            {
+
+                var plato = mainViewModel.MenuSeleccionado.Segundo;
+
+                if (plato != null)
+                {
+                    mainViewModel.PlatoSeleccionado = plato;
+
+                    Navigation.PushAsync(new VerPlato(mainViewModel));
+                }
+            }
+        }
+
+        void Guarnicion_OnTapped(object sender, EventArgs e)
+        {
+
+            var mainViewModel = BindingContext as MainViewModel;
+
+            if (mainViewModel != null)
+            {
+
+                var plato = mainViewModel.MenuSeleccionado.Guarnicion;
+
+                if (plato != null)
+                {
+                    mainViewModel.PlatoSeleccionado = plato;
+
+                    Navigation.PushAsync(new VerPlato(mainViewModel));
+                }
+            }
         }
     }
 }

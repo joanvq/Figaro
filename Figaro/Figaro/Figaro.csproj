@@ -39,19 +39,27 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Configuration\ViewModelLocator.cs" />
+    <Compile Include="Models\Carrito.cs" />
+    <Compile Include="Models\Chef.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\TipoCocina.cs" />
+    <Compile Include="Models\Zona.cs" />
     <Compile Include="Other\MenuInferior.cs" />
     <Compile Include="RestClient\RestClient.cs" />
     <Compile Include="RestClient\TaskModel.cs" />
+    <Compile Include="Services\ChefServices.cs" />
     <Compile Include="Services\MenusServices.cs" />
     <Compile Include="Services\PlatosServices.cs" />
     <Compile Include="Services\TipoCocinaServices.cs" />
+    <Compile Include="Services\ZonaServices.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PlatoViewModel.cs" />
     <Compile Include="ViewModels\TipoCocinaViewModel.cs" />
     <Compile Include="Views\BuscarPlato.xaml.cs">
       <DependentUpon>BuscarPlato.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChefsPage.xaml.cs">
+      <DependentUpon>ChefsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PlatosPage.xaml.cs">
       <DependentUpon>PlatosPage.xaml</DependentUpon>
@@ -60,6 +68,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SeleccionarZona.xaml.cs">
+      <DependentUpon>SeleccionarZona.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerChef.xaml.cs">
+      <DependentUpon>VerChef.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VerMenu.xaml.cs">
       <DependentUpon>VerMenu.xaml</DependentUpon>
@@ -162,6 +176,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\VerMenu.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ChefsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\VerChef.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SeleccionarZona.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

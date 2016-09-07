@@ -3,102 +3,225 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Figaro.Views.VerMenu"
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              Title="Menu">
+  <ScrollView>
+    <StackLayout Orientation="Vertical"
+               Spacing="18" VerticalOptions="FillAndExpand">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="200"/>
+          <RowDefinition Height="50"/>
+          <!--<RowDefinition Height="5*"/>-->
+        </Grid.RowDefinitions>
+        <RelativeLayout Padding="0,0,0,0" Grid.Row="0">
+          <Image Source="{Binding MenuSeleccionado.Imagen}"
+                 RelativeLayout.WidthConstraint=
+                        "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                 RelativeLayout.HeightConstraint=
+                    "{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                 Aspect="AspectFill"
+                      />
+          <Grid RelativeLayout.WidthConstraint=
+                    "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                  RelativeLayout.HeightConstraint=
+                    "{ConstraintExpression Type=RelativeToParent, Property=Height}">
 
-  <StackLayout Orientation="Vertical"
-             Spacing="18" VerticalOptions="FillAndExpand">
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="4*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="5*"/>
-      </Grid.RowDefinitions>
-      <RelativeLayout Padding="0,0,0,0" Grid.Row="0">
-        <Image Source="{Binding MenuSeleccionado.Imagen}"
-               RelativeLayout.WidthConstraint=
-                      "{ConstraintExpression Type=RelativeToParent, Property=Width}"
-               RelativeLayout.HeightConstraint=
-                  "{ConstraintExpression Type=RelativeToParent, Property=Height}"
-               Aspect="AspectFill"
-                    />
-        <Grid RelativeLayout.WidthConstraint=
-                  "{ConstraintExpression Type=RelativeToParent, Property=Width}"
-                RelativeLayout.HeightConstraint=
-                  "{ConstraintExpression Type=RelativeToParent, Property=Height}">
-
-          <Label Text="{Binding MenuSeleccionado.Titulo}" VerticalOptions="End"
-              HorizontalOptions="StartAndExpand" FontSize="30" TextColor="White" Opacity="0.8"
-              TranslationX="10" TranslationY="-10"/>
-          <Grid VerticalOptions="End" HorizontalOptions="End" TranslationX="-10" TranslationY="-10" >
-            <Grid.RowDefinitions>
-              <RowDefinition Height="24"/>
-              <RowDefinition Height="24"/>
-            </Grid.RowDefinitions>
-            <!--Stars Rating-->
-            <StackLayout Orientation="Horizontal" HeightRequest="70" Grid.Row="0">
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Image x:Name="starOne" HeightRequest="18" Grid.Column="0"/>
-                <Image x:Name="starTwo" HeightRequest="18" Grid.Column="1"/>
-                <Image x:Name="starThree" HeightRequest="18" Grid.Column="2"/>
-                <Image x:Name="starFour" HeightRequest="18" Grid.Column="3"/>
-                <Image x:Name="starFive" HeightRequest="18" Grid.Column="4"/>
-              </Grid>
-            </StackLayout>
-            <Label Text="{Binding MenuSeleccionado.HorasCocinado}" Grid.Row="1" FontSize="18"
-                  TextColor="White" HorizontalTextAlignment="End"/>
+            <Label Text="{Binding MenuSeleccionado.Titulo}" VerticalOptions="End"
+                HorizontalOptions="StartAndExpand" FontSize="30" TextColor="White" Opacity="0.8"
+                TranslationX="10" TranslationY="-10"/>
+            <Grid VerticalOptions="End" HorizontalOptions="End" TranslationX="-10" TranslationY="-10" >
+              <Grid.RowDefinitions>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="24"/>
+              </Grid.RowDefinitions>
+              <!--Stars Rating-->
+              <StackLayout Orientation="Horizontal" HeightRequest="70" Grid.Row="0">
+                <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                  </Grid.ColumnDefinitions>
+                  <Image x:Name="starOne" HeightRequest="18" Grid.Column="0"/>
+                  <Image x:Name="starTwo" HeightRequest="18" Grid.Column="1"/>
+                  <Image x:Name="starThree" HeightRequest="18" Grid.Column="2"/>
+                  <Image x:Name="starFour" HeightRequest="18" Grid.Column="3"/>
+                  <Image x:Name="starFive" HeightRequest="18" Grid.Column="4"/>
+                </Grid>
+              </StackLayout>
+              <Label Text="{Binding MenuSeleccionado.HorasCocinado}" Grid.Row="1" FontSize="18"
+                    TextColor="White" HorizontalTextAlignment="End"/>
+            </Grid>
           </Grid>
-        </Grid>
-      </RelativeLayout>
-      <StackLayout BackgroundColor="#eee" Padding="0,0,0,0" Grid.Row="1">
-        <Grid Padding="10, 0, 10, 0">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="*"/>
-          </Grid.ColumnDefinitions>
-          <Label Text="NÚMERO DE MENÚS" HorizontalTextAlignment="Center" FontSize="16" Grid.Column="0" VerticalOptions="Center"/>
-          <!--<Entry Keyboard="Numeric" BackgroundColor="#aaa" Text="1" Grid.Column="1" 
-               VerticalOptions="Center" HorizontalOptions="Center"
-                WidthRequest="40"/>-->
-          <Picker x:Name="NumeroMenus" HorizontalOptions="FillAndExpand" Grid.Column="1" >
-            <Picker.Items>
-              <x:String>1</x:String>
-              <x:String>2</x:String>
-              <x:String>3</x:String>
-              <x:String>4</x:String>
-              <x:String>5</x:String>
-              <x:String>6</x:String>
-              <x:String>7</x:String>
-              <x:String>8</x:String>
-              <x:String>9</x:String>
-              <x:String>10</x:String>
-              <x:String>11</x:String>
-              <x:String>12</x:String>
-              <x:String>13</x:String>
-              <x:String>14</x:String>
-              <x:String>10</x:String>
-              <x:String>15</x:String>
-              <x:String>16</x:String>
-              <x:String>17</x:String>
-              <x:String>18</x:String>
-              <x:String>19</x:String>
-              <x:String>20</x:String>
-            </Picker.Items>
-            <Picker.SelectedIndex>0</Picker.SelectedIndex>
-          </Picker>
-          <Button BackgroundColor="#CC0311" Grid.Column="2" VerticalOptions="Center" Text="Añadir" TextColor="White">
-            <!--<Label FontSize="36" Text="ADD" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>-->
-          </Button>
-        </Grid>
+        </RelativeLayout>
+        <StackLayout BackgroundColor="#eee" Padding="0,0,0,0" Grid.Row="1">
+          <Grid Padding="10, 0, 10, 0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="40"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="NÚMERO DE MENÚS" HorizontalTextAlignment="Center" FontSize="16" Grid.Column="0" VerticalOptions="Center"/>
+            <!--<Entry Keyboard="Numeric" BackgroundColor="#aaa" Text="1" Grid.Column="1" 
+                 VerticalOptions="Center" HorizontalOptions="Center"
+                  WidthRequest="40"/>-->
+            <Picker x:Name="NumeroMenus" HorizontalOptions="FillAndExpand" Grid.Column="1" >
+              <Picker.Items>
+                <x:String>1</x:String>
+                <x:String>2</x:String>
+                <x:String>3</x:String>
+                <x:String>4</x:String>
+                <x:String>5</x:String>
+                <x:String>6</x:String>
+                <x:String>7</x:String>
+                <x:String>8</x:String>
+                <x:String>9</x:String>
+                <x:String>10</x:String>
+                <x:String>11</x:String>
+                <x:String>12</x:String>
+                <x:String>13</x:String>
+                <x:String>14</x:String>
+                <x:String>10</x:String>
+                <x:String>15</x:String>
+                <x:String>16</x:String>
+                <x:String>17</x:String>
+                <x:String>18</x:String>
+                <x:String>19</x:String>
+                <x:String>20</x:String>
+              </Picker.Items>
+              <Picker.SelectedIndex>0</Picker.SelectedIndex>
+            </Picker>
+            <Button BackgroundColor="#CC0311" Grid.Column="2" VerticalOptions="Center" Text="Añadir" TextColor="White">
+              <!--<Label FontSize="36" Text="ADD" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>-->
+            </Button>
+          </Grid>
+        </StackLayout>
+      </Grid>
+      
+      <StackLayout x:Name="Entrante" IsVisible="False">
+        <Label Text="Entrante" FontSize="24" Margin="10,0,0,0"/>
+        <StackLayout Orientation="Horizontal" Padding="12,6">
+          <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="Entrante_OnTapped"/>
+          </StackLayout.GestureRecognizers>
+          <controls:CircleImage Source="{Binding MenuSeleccionado.Entrante.Imagen}" WidthRequest="70.0"
+                                HeightRequest="70.0" Aspect="AspectFill" />
+          <Grid Padding="10,0,0,0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="{Binding MenuSeleccionado.Entrante.Titulo}"
+                    FontSize="20"
+                    Grid.Row="0"/>
+            <Label Text="{Binding MenuSeleccionado.Entrante.Descripcion}"
+                    FontSize="16"
+                    Opacity="0.6"
+                    Grid.Row="1"/>
+          </Grid>
+        </StackLayout>
       </StackLayout>
-      <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" Grid.Row="2">
+
+      <StackLayout x:Name="Primero" IsVisible="False">
+        <Label Text="Primer Plato" FontSize="24" Margin="10,0,0,0"/>
+        <StackLayout Orientation="Horizontal" Padding="12,6">
+          <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="Primero_OnTapped"/>
+          </StackLayout.GestureRecognizers>
+          <controls:CircleImage Source="{Binding MenuSeleccionado.Primero.Imagen}" WidthRequest="70.0"
+                                HeightRequest="70.0" Aspect="AspectFill" />
+          <Grid Padding="10,0,0,0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="{Binding MenuSeleccionado.Primero.Titulo}"
+                    FontSize="20"
+                    Grid.Row="0"/>
+            <Label Text="{Binding MenuSeleccionado.Primero.Descripcion}"
+                    FontSize="16"
+                    Opacity="0.6"
+                    Grid.Row="1"/>
+          </Grid>
+        </StackLayout>
+      </StackLayout>
+
+      <StackLayout x:Name="Segundo" IsVisible="False">
+        <Label Text="Segundo Plato" FontSize="24" Margin="10,0,0,0"/>
+        <StackLayout Orientation="Horizontal" Padding="12,6">
+          <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="Segundo_OnTapped"/>
+          </StackLayout.GestureRecognizers>
+          <controls:CircleImage Source="{Binding MenuSeleccionado.Segundo.Imagen}" WidthRequest="70.0"
+                                HeightRequest="70.0" Aspect="AspectFill" />
+          <Grid Padding="10,0,0,0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="{Binding MenuSeleccionado.Segundo.Titulo}"
+                    FontSize="20"
+                    Grid.Row="0"/>
+            <Label Text="{Binding MenuSeleccionado.Segundo.Descripcion}"
+                    FontSize="16"
+                    Opacity="0.6"
+                    Grid.Row="1"/>
+          </Grid>
+        </StackLayout>
+      </StackLayout>
+
+      <StackLayout x:Name="Guarnicion" IsVisible="False">
+        <Label Text="Guarnición" FontSize="24" Margin="10,0,0,0"/>
+        <StackLayout Orientation="Horizontal" Padding="12,6">
+          <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="Guarnicion_OnTapped"/>
+          </StackLayout.GestureRecognizers>
+          <controls:CircleImage Source="{Binding MenuSeleccionado.Guarnicion.Imagen}" WidthRequest="70.0"
+                                HeightRequest="70.0" Aspect="AspectFill" />
+          <Grid Padding="10,0,0,0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="{Binding MenuSeleccionado.Guarnicion.Titulo}"
+                    FontSize="20"
+                    Grid.Row="0"/>
+            <Label Text="{Binding MenuSeleccionado.Guarnicion.Descripcion}"
+                    FontSize="16"
+                    Opacity="0.6"
+                    Grid.Row="1"/>
+          </Grid>
+        </StackLayout>
+      </StackLayout>
+
+      <StackLayout x:Name="Postre" IsVisible="False">
+        <Label Text="Postre" FontSize="24" Margin="10,0,0,0"/>
+        <StackLayout Orientation="Horizontal" Padding="12,6">
+          <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="Postre_OnTapped"/>
+          </StackLayout.GestureRecognizers>
+          <controls:CircleImage Source="{Binding MenuSeleccionado.Postre.Imagen}" WidthRequest="70.0"
+                                HeightRequest="70.0" Aspect="AspectFill" />
+          <Grid Padding="10,0,0,0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="{Binding MenuSeleccionado.Postre.Titulo}"
+                    FontSize="20"
+                    Grid.Row="0"/>
+            <Label Text="{Binding MenuSeleccionado.Postre.Descripcion}"
+                    FontSize="16"
+                    Opacity="0.6"
+                    Grid.Row="1"/>
+          </Grid>
+        </StackLayout>
+      </StackLayout>
+
+      <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
         <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
           <Label Text="{Binding MenuSeleccionado.Descripcion}" FontSize="14" TranslationX="10"/>
           <Grid x:Name="GridTab" Padding="0,14,0,0">
@@ -108,21 +231,23 @@
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label x:Name="IngredientesTab" Text="INGREDIENTES" FontSize="14"
-                   FontAttributes="Bold" TextColor="#CC0311"  Grid.Column="0" HorizontalOptions="Center"/>
+                    FontAttributes="Bold" TextColor="#CC0311"  Grid.Column="0" HorizontalOptions="Center"/>
             <Label x:Name="UtensiliosTab" Text="UTENSILIOS" FontSize="14"
-                   FontAttributes="None"  Grid.Column="1" HorizontalOptions="Center"/>
+                    FontAttributes="None"  Grid.Column="1" HorizontalOptions="Center"/>
             <Label x:Name="OpinionesTab" Text="OPINIONES" FontSize="14"
-                   FontAttributes="None"  Grid.Column="2" HorizontalOptions="Center"/>
+                    FontAttributes="None"  Grid.Column="2" HorizontalOptions="Center"/>
             <BoxView x:Name="LineaIngredientesTab" Color="#CC0311" HeightRequest="0.5"
-                     VerticalOptions="End" Grid.Column="0" IsVisible="True"/>
+                      VerticalOptions="End" Grid.Column="0" IsVisible="True"/>
             <BoxView x:Name="LineaUtensiliosTab" Color="#CC0311" HeightRequest="0.5"
-                     VerticalOptions="End" Grid.Column="1" IsVisible="False"/>
+                      VerticalOptions="End" Grid.Column="1" IsVisible="False"/>
             <BoxView x:Name="LineaOpinionesTab" Color="#CC0311" HeightRequest="0.5"
-                     VerticalOptions="End" Grid.Column="2" IsVisible="False"/>
+                      VerticalOptions="End" Grid.Column="2" IsVisible="False"/>
           </Grid>
-          <Label x:Name="TabAMostrar" Text="{Binding MenuSeleccionado.Ingredientes}" FontSize="14" Opacity="0.7"  TranslationX="10" TranslationY="14" />
+          <Label x:Name="TabAMostrar" Text="{Binding MenuSeleccionado.Ingredientes}" FontSize="14" Opacity="0.7" 
+                 TranslationX="10" TranslationY="14" 
+                 HeightRequest="100"/>
         </StackLayout>
       </ScrollView>
-    </Grid>
-  </StackLayout>
+    </StackLayout>
+  </ScrollView>
 </ContentPage>

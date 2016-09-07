@@ -10,107 +10,116 @@ using WebServicesFigaro.Models;
 
 namespace WebServicesFigaro.Controllers
 {
-    public class ZonaMvcController : Controller
+    public class ChefMvcController : Controller
     {
         private DBContext db = new DBContext();
 
-        // GET: ZonaMvc
+        // GET: ChefMvc
         public ActionResult Index()
         {
-            return View(db.Zonas.ToList());
+            var chefs = db.Chefs.Include(c => c.TipoCocina).Include(c => c.Zona);
+            return View(chefs.ToList());
         }
 
-        // GET: ZonaMvc/Details/5
+        // GET: ChefMvc/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zona zona = db.Zonas.Find(id);
-            if (zona == null)
+            Chef chef = db.Chefs.Find(id);
+            if (chef == null)
             {
                 return HttpNotFound();
             }
-            return View(zona);
+            return View(chef);
         }
 
-        // GET: ZonaMvc/Create
+        // GET: ChefMvc/Create
         public ActionResult Create()
         {
+            ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo");
+            ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo");
             return View();
         }
 
-        // POST: ZonaMvc/Create
+        // POST: ChefMvc/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,ImagenFondo")] Zona zona)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Apellidos,Imagen,ImagenFondo,Subtitulo,ZonaId,TipoCocinaId,Valoracion,Descripcion,FechaNacimiento,Genero")] Chef chef)
         {
             if (ModelState.IsValid)
             {
-                db.Zonas.Add(zona);
+                db.Chefs.Add(chef);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(zona);
+            ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo", chef.TipoCocinaId);
+            ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", chef.ZonaId);
+            return View(chef);
         }
 
-        // GET: ZonaMvc/Edit/5
+        // GET: ChefMvc/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zona zona = db.Zonas.Find(id);
-            if (zona == null)
+            Chef chef = db.Chefs.Find(id);
+            if (chef == null)
             {
                 return HttpNotFound();
             }
-            return View(zona);
+            ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo", chef.TipoCocinaId);
+            ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", chef.ZonaId);
+            return View(chef);
         }
 
-        // POST: ZonaMvc/Edit/5
+        // POST: ChefMvc/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Titulo,ImagenFondo")] Zona zona)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Apellidos,Imagen,ImagenFondo,Subtitulo,ZonaId,TipoCocinaId,Valoracion,Descripcion,FechaNacimiento,Genero")] Chef chef)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(zona).State = EntityState.Modified;
+                db.Entry(chef).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(zona);
+            ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo", chef.TipoCocinaId);
+            ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", chef.ZonaId);
+            return View(chef);
         }
 
-        // GET: ZonaMvc/Delete/5
+        // GET: ChefMvc/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zona zona = db.Zonas.Find(id);
-            if (zona == null)
+            Chef chef = db.Chefs.Find(id);
+            if (chef == null)
             {
                 return HttpNotFound();
             }
-            return View(zona);
+            return View(chef);
         }
 
-        // POST: ZonaMvc/Delete/5
+        // POST: ChefMvc/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Zona zona = db.Zonas.Find(id);
-            db.Zonas.Remove(zona);
+            Chef chef = db.Chefs.Find(id);
+            db.Chefs.Remove(chef);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Figaro.ViewModels;
 using Figaro.Models;
+using Figaro.Views;
 
 namespace Figaro
 {
@@ -22,7 +23,8 @@ namespace Figaro
                 Icon = "icono_map_maker.png",
                 Command = new Command(() =>
                 {
-                    DisplayAlert("Menu", "Ciudades tapped", "OK");
+                    //DisplayAlert("Menu", "Ciudades tapped", "OK");
+                    Navigation.PushAsync(new SeleccionarZona());
                 })
             };
             this.ToolbarItems.Add(ciudades);

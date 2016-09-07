@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Figaro.Views.SeleccionarZona"
+             xmlns:local="clr-namespace:Figaro;assembly=Figaro;"
+             BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+             Title="Seleccionar Zona">
+  <StackLayout Orientation="Vertical">
+    <ListView x:Name="ListaZonaView"
+              ItemsSource="{Binding ListaZonas}"
+		          HasUnevenRows="true"
+              ItemTapped="Zona_OnItemTapped">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal"  HeightRequest="300">
+              <RelativeLayout Padding="0,0,0,0">
+                <Image Source="{Binding ImagenFondo}"
+                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                       Aspect="AspectFill"/>
+                <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+
+                  <Label Text="{Binding Titulo}" VerticalOptions="Center"
+                      HorizontalOptions="Center" FontSize="30" TextColor="White"/>
+                  
+                  <!--<Image Source="icono_select.png" VerticalOptions="Center" HorizontalOptions="Center"
+                         HeightRequest="40" Aspect="AspectFill" />-->
+
+                </Grid>
+              </RelativeLayout>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>

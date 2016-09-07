@@ -36,7 +36,10 @@ namespace Figaro.Other
 
             tapChefs.Tapped += (s, e) => {
                 // handle the tap
-                sender.DisplayAlert("Chefs", "Chefs tapped", "OK");
+                var app = Application.Current as App;
+                var mainPage = (NavigationPage)app.MainPage;
+                var currentPage = (MasterDetailPage)mainPage.CurrentPage;
+                currentPage.Detail = new ChefsPage();
 
             };
 

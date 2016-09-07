@@ -24,58 +24,6 @@ namespace Figaro.Views
             Plato_Button.GestureRecognizers.Add(menuInferior.tapPlato);
             Chefs_Button.GestureRecognizers.Add(menuInferior.tapChefs);
             Profile_Button.GestureRecognizers.Add(menuInferior.tapProfile);
-
-            //var tapMenu = new TapGestureRecognizer();
-            //var tapPlato = new TapGestureRecognizer();
-            //var tapChefs = new TapGestureRecognizer();
-            //var tapProfile = new TapGestureRecognizer();
-
-            //tapMenu.Tapped += (s, e) => {
-            //    // handle the tap
-            //    var app = Application.Current as App;
-            //    var mainPage = (NavigationPage)app.MainPage;
-            //    var currentPage = (MasterDetailPage)mainPage.CurrentPage;
-            //    currentPage.Detail = new MenuPage();
-            //};
-            //Menu_Button.GestureRecognizers.Add(tapMenu);
-
-            //tapPlato.Tapped += (s, e) => {
-            //    // handle the tap
-            //    DisplayAlert("Menu", "Plato tapped", "OK");
-            //};
-            //Plato_Button.GestureRecognizers.Add(tapPlato);
-
-            //tapChefs.Tapped += (s, e) => {
-            //    // handle the tap
-            //    DisplayAlert("Menu", "Chefs tapped", "OK");
-            //};
-            //Chefs_Button.GestureRecognizers.Add(tapChefs);
-
-            //tapProfile.Tapped += (s, e) => {
-            //    // handle the tap
-            //    DisplayAlert("Menu", "Perfil tapped", "OK");
-            //};
-            //Profile_Button.GestureRecognizers.Add(tapProfile);
-
-            //var ciudades = new ToolbarItem
-            //{
-            //    Icon = "icono_map_maker.png",
-            //    Command = new Command(() =>
-            //    {
-            //        DisplayAlert("Menu", "Ciudades tapped", "OK");
-            //    })
-            //};
-            //this.ToolbarItems.Add(ciudades);
-
-            //var cesta = new ToolbarItem {
-            //    Icon = "icono_shopping_bag_empty.png",
-            //    Command = new Command(() =>
-            //    {
-            //        DisplayAlert("Menu", "Cesta tapped", "OK");
-            //    })
-            //};
-            //this.ToolbarItems.Add(cesta);
-            
         }
 
         //private async void Button_OnClicked(object sender, EventArgs e)

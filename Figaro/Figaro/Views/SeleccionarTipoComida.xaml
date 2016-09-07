@@ -39,6 +39,6 @@
     </ContentPage>
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
-    <local:Views.PlatosPage />
+    <local:Views.MenuPage />
   </MasterDetailPage.Detail>
 </MasterDetailPage>

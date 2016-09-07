@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Figaro.Views.VerChef"
+             BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             Title="Chef">
+
+  <StackLayout Orientation="Vertical"
+             Spacing="18" VerticalOptions="FillAndExpand">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="200"/>
+        <RowDefinition Height="50"/>
+        <!--<RowDefinition Height="5*"/>-->
+      </Grid.RowDefinitions>
+      <RelativeLayout Padding="0,0,0,0" Grid.Row="0">
+        <Image Source="{Binding ChefSeleccionado.ImagenFondo}"
+               RelativeLayout.WidthConstraint=
+                          "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+               RelativeLayout.HeightConstraint=
+                      "{ConstraintExpression Type=RelativeToParent, Property=Height}"
+               Aspect="AspectFill"
+                        />
+        <Grid RelativeLayout.WidthConstraint=
+                      "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                RelativeLayout.HeightConstraint=
+                      "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+          <controls:CircleImage Source="{Binding ChefSeleccionado.Imagen}" WidthRequest="70.0"
+                                    HeightRequest="70.0" Aspect="AspectFill" 
+                                VerticalOptions="Start" HorizontalOptions="Center"/>
+          <Label Text="{Binding ChefSeleccionado.NombreApellidos}" VerticalOptions="End"
+              HorizontalOptions="StartAndExpand" FontSize="30" TextColor="White" Opacity="0.8"
+              TranslationX="10" TranslationY="-10"/>
+          <Grid VerticalOptions="End" HorizontalOptions="End" TranslationX="-10" TranslationY="-10" >
+            <Grid.RowDefinitions>
+              <RowDefinition Height="24"/>
+              <RowDefinition Height="24"/>
+            </Grid.RowDefinitions>
+            <!--Stars Rating-->
+            <StackLayout Orientation="Horizontal" HeightRequest="70" Grid.Row="0">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="starOne" HeightRequest="18" Grid.Column="0"/>
+                <Image x:Name="starTwo" HeightRequest="18" Grid.Column="1"/>
+                <Image x:Name="starThree" HeightRequest="18" Grid.Column="2"/>
+                <Image x:Name="starFour" HeightRequest="18" Grid.Column="3"/>
+                <Image x:Name="starFive" HeightRequest="18" Grid.Column="4"/>
+              </Grid>
+            </StackLayout>
+          </Grid>
+        </Grid>
+      </RelativeLayout>
+      <StackLayout BackgroundColor="#eee" Padding="0,0,0,0" Grid.Row="1">
+        <Button BackgroundColor="#CC0311" VerticalOptions="End" Text="Elegir chef" TextColor="White"/>
+      </StackLayout>
+    </Grid>
+  </StackLayout>
+  
+</ContentPage>

@@ -26,9 +26,19 @@ namespace Figaro.ViewModels
         private List<Menu> listaMenus;
         private Menu menuSeleccionado = new Menu();
 
+        private List<Chef> listaChefs;
+        private Chef chefSeleccionado = new Chef();
+
+        private List<Zona> listaZonas;
+        private Zona zonaSeleccionada = new Zona();
+
+        private Carrito carritoCompra;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         /*----Propiedades-----*/
+
+       /* PLATO */
 
         public string KeywordPlato
         {
@@ -71,6 +81,8 @@ namespace Figaro.ViewModels
             }
         }
 
+        /* TIPO COCINA */
+
         public TipoCocina TipoCocinaSeleccionado
         {
             get { return tipoCocinaSeleccionado; }
@@ -94,6 +106,8 @@ namespace Figaro.ViewModels
             }
         }
 
+        /* MENU */
+
         public List<Menu> ListaMenus
         {
             get
@@ -113,6 +127,68 @@ namespace Figaro.ViewModels
             set
             {
                 menuSeleccionado = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /* PLATO */
+
+        public List<Chef> ListaChefs
+        {
+            get
+            {
+                return listaChefs;
+            }
+            set
+            {
+                listaChefs = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Chef ChefSeleccionado
+        {
+            get { return chefSeleccionado; }
+            set
+            {
+                chefSeleccionado = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /* ZONA */
+
+        public List<Zona> ListaZonas
+        {
+            get
+            {
+                return listaZonas;
+            }
+            set
+            {
+                listaZonas = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Zona ZonaSeleccionada
+        {
+            get { return zonaSeleccionada; }
+            set
+            {
+                zonaSeleccionada = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /* OTROS */
+
+        public Carrito CarritoCompra
+        {
+            get { return carritoCompra; }
+            set
+            {
+                carritoCompra = value;
                 OnPropertyChanged();
             }
         }
@@ -272,6 +348,23 @@ namespace Figaro.ViewModels
             }
         }
 
+        public Command ElegirChef
+        {
+            get
+            {
+                return new Command<string>(async (key) =>
+                {
+                    IsBusy = true;
+
+                    var chefServices = new ChefServices();
+                    chefSeleccionado = await chefServices.GetChefsAsync(int.Parse(key));
+                    StatusMessage = "Se ha elegido el chef " + chefSeleccionado.NombreApellidos + " correctamente.";
+
+                    IsBusy = false;
+                });
+            }
+        }
+
         /*-----FUNCTIONS-----*/
 
         public MainViewModel()
@@ -294,10 +387,22 @@ namespace Figaro.ViewModels
             var menusServices = new MenusServices();
             ListaMenus = await menusServices.GetMenusAsync();
 
+            var chefServices = new ChefServices();
+            ListaChefs = await chefServices.GetChefsAsync();
+
+            var zonaServices = new ZonaServices();
+            ListaZonas = await zonaServices.GetZonaAsync();
+
             if(TipoCocinaSeleccionado != null)
             {
                 ListaPlatos = ListaPlatos.Where(plato => plato.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
                 ListaMenus = ListaMenus.Where(menu => menu.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
+                ListaChefs = ListaChefs.Where(chef => chef.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
+            }
+
+            if(ZonaSeleccionada != null)
+            {
+                ListaChefs = ListaChefs.Where(chef => chef.Zona.Id == ZonaSeleccionada.Id).ToList();
             }
 
             IsBusy = false;
