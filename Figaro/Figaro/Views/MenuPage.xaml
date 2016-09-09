@@ -27,33 +27,32 @@
                                       HeightRequest="70.0" Aspect="AspectFill" />
                 <Grid Padding="10,0,0,0">
                   <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                   </Grid.RowDefinitions>
                   <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                   </Grid.ColumnDefinitions>
                   <Label Text="{Binding Titulo}"
-                          FontSize="24" 
+                          FontSize="24" HorizontalOptions="StartAndExpand" 
                           Grid.Row="0"
                           Grid.Column="0"/>
                   <Label Text="{Binding Descripcion}" 
-                          FontSize="18"
+                          FontSize="18" HorizontalOptions="StartAndExpand"
                           Opacity="0.6"
                           Grid.Row="1"
                           Grid.Column="0"/>
                   <Label Text="{Binding PrecioEuros}" 
-                          FontSize="14"
+                          FontSize="14" HorizontalOptions="End"
                           Opacity="0.6"
                           Grid.Row="0"
-                          Grid.Column="2"/>
+                          Grid.Column="1"/>
                     <Button ClassId="{Binding Id}" BackgroundColor="#CC0311" Text="+" TextColor="White"
-                            FontSize="24" WidthRequest="10"
-                            Grid.Row="1" Grid.Column="2"
+                            FontSize="24" WidthRequest="10" HorizontalOptions="End"
+                            Grid.Row="1" Grid.Column="1"
                             Clicked="AnadirCesta_OnClick"
                             />
-                  
                 </Grid>
             </StackLayout>
           </ViewCell>

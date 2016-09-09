@@ -94,6 +94,21 @@ namespace Figaro.Services
 
             var listaPlatos = await restClient.GetByKeywordAsync(keyword);
 
+            foreach (Plato plato in listaPlatos)
+            {
+                plato.Imagen = "http://figaro.apphb.com" + plato.Imagen;
+                plato.HorasCocinado = (plato.TiempoCocinado / 60).ToString();
+                if ((plato.TiempoCocinado % 60) < 10)
+                {
+                    plato.HorasCocinado += "h 0" + (plato.TiempoCocinado % 60).ToString() + "' ⏱";
+                }
+                else
+                {
+                    plato.HorasCocinado += "h " + (plato.TiempoCocinado % 60).ToString() + "' ⏱";
+                }
+                plato.PrecioEuros = plato.Precio.ToString("0.00") + " €";
+            }
+
             return listaPlatos;
         }
 
@@ -103,6 +118,18 @@ namespace Figaro.Services
             RestClient<Plato> restClient = new RestClient<Plato>("Plato");
 
             var plato = await restClient.GetAsync(id);
+
+            plato.Imagen = "http://figaro.apphb.com" + plato.Imagen;
+            plato.HorasCocinado = (plato.TiempoCocinado / 60).ToString();
+            if ((plato.TiempoCocinado % 60) < 10)
+            {
+                plato.HorasCocinado += "h 0" + (plato.TiempoCocinado % 60).ToString() + "' ⏱";
+            }
+            else
+            {
+                plato.HorasCocinado += "h " + (plato.TiempoCocinado % 60).ToString() + "' ⏱";
+            }
+            plato.PrecioEuros = plato.Precio.ToString("0.00") + " €";
 
             return plato;
         }

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Figaro.Views.VerCarrito" 
+             xmlns:local="clr-namespace:Figaro;assembly=Figaro;"
+             BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+             Title="Cesta">
+
+  <StackLayout Orientation="Vertical" Padding="20">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="6*"/>
+        <RowDefinition Height="3*"/>
+      </Grid.RowDefinitions>
+      
+      <StackLayout Orientation="Horizontal" Grid.Row="0">
+        <Label Text="Chef" VerticalOptions="Start" HorizontalOptions="Start" FontSize="24"/>
+        <Label Text="{Binding CarritoCompra.chef.NombreApellidos}" />
+      </StackLayout>
+      
+      <StackLayout Orientation="Vertical" Grid.Row="1">
+        <ListView x:Name="ListaMenus"
+                  ItemsSource="{Binding CarritoCompra.listaMenus}"
+		              HasUnevenRows="true"
+                  ItemTapped="Menu_OnItemTapped">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <ViewCell>
+                <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+                  <!--Cantidad-->
+                  <StackLayout Grid.Column="0" Orientation="Horizontal">
+                    <Label Text="{Binding Value}"/>
+                    <Label Text="-"/>
+                    <Label Text = "{Binding Key.Titulo}" />
+                  </StackLayout>
+                  <Label Text = "{Binding Key.HorasCocinado}" HorizontalOptions="End"  Grid.Column="2"/>
+                </Grid>
+              </ViewCell>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView x:Name="ListaPlatos"
+                  ItemsSource="{Binding CarritoCompra.listaPlatos}"
+		              HasUnevenRows="true"
+                  ItemTapped="Plato_OnItemTapped">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <ViewCell>
+                <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+                  <!--Cantidad-->
+                  <StackLayout Grid.Column="0" Orientation="Horizontal">
+                    <Label Text="{Binding Value}"  />
+                    <Label Text="-"/>
+                    <Label Text = "{Binding Key.Titulo}" />
+                  </StackLayout>
+                  <Label Text ="{Binding Key.HorasCocinado}" HorizontalOptions="End" Grid.Column="2"/>
+                </Grid>
+              </ViewCell>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+      </StackLayout>
+      
+      <StackLayout Orientation="Vertical" Grid.Row="2">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Label Text="TIEMPO TOTAL" FontSize="18" Grid.Row="0" Grid.Column="0"/>
+          <Label x:Name="TiempoTotal" Text="Prueba" FontSize="18"
+                 HorizontalOptions="End" Grid.Row="0" Grid.Column="2"/>
+          <Label Text="COSTE" Grid.Row="1" Grid.Column="0" />  
+          <Label x:Name="Coste" FontSize="18"
+                 HorizontalOptions="End" Grid.Row="1" Grid.Column="2"/>
+          <Label Text="DESPLAZAMIENTO" Grid.Row="2" Grid.Column="0"/>  
+          <Label x:Name="Desplazamiento" FontSize="18" 
+                 HorizontalOptions="End" Grid.Row="2" Grid.Column="2"/>
+        </Grid>
+      </StackLayout>
+    </Grid>
+    
+  </StackLayout>
+  
+</ContentPage>

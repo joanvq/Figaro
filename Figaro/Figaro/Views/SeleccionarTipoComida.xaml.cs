@@ -34,7 +34,8 @@ namespace Figaro
                 Icon = "icono_shopping_bag_empty.png",
                 Command = new Command(() =>
                 {
-                    DisplayAlert("Menu", "Cesta tapped", "OK");
+                    //DisplayAlert("Menu", "Cesta tapped", "OK");
+                    Navigation.PushAsync(new VerCarrito());
                 })
             };
             this.ToolbarItems.Add(cesta);

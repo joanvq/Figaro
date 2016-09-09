@@ -72,6 +72,9 @@
     <Compile Include="Views\SeleccionarZona.xaml.cs">
       <DependentUpon>SeleccionarZona.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\VerCarrito.xaml.cs">
+      <DependentUpon>VerCarrito.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VerChef.xaml.cs">
       <DependentUpon>VerChef.xaml</DependentUpon>
     </Compile>
@@ -194,6 +197,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SeleccionarZona.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\VerCarrito.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

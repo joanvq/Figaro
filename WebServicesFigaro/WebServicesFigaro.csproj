@@ -167,6 +167,8 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ChefController.cs" />
     <Compile Include="Controllers\ChefMvcController.cs" />
+    <Compile Include="Controllers\ComentarioChefController.cs" />
+    <Compile Include="Controllers\ComentarioChefMvcController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MenuMvcController.cs" />
     <Compile Include="Controllers\PlatoMvcController.cs" />
@@ -235,8 +237,13 @@
     <Compile Include="Migrations\201609070811061_ImagenFondoZona.Designer.cs">
       <DependentUpon>201609070811061_ImagenFondoZona.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609090719352_ComentarioChefAnadido.cs" />
+    <Compile Include="Migrations\201609090719352_ComentarioChefAnadido.Designer.cs">
+      <DependentUpon>201609090719352_ComentarioChefAnadido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chef.cs" />
+    <Compile Include="Models\ComentarioChef.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Plato.cs" />
     <Compile Include="Models\DBContext.cs" />
@@ -332,6 +339,11 @@
     <Content Include="Views\ChefMvc\Details.cshtml" />
     <Content Include="Views\ChefMvc\Edit.cshtml" />
     <Content Include="Views\ChefMvc\Index.cshtml" />
+    <Content Include="Views\ComentarioChefMvc\Create.cshtml" />
+    <Content Include="Views\ComentarioChefMvc\Delete.cshtml" />
+    <Content Include="Views\ComentarioChefMvc\Details.cshtml" />
+    <Content Include="Views\ComentarioChefMvc\Edit.cshtml" />
+    <Content Include="Views\ComentarioChefMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -383,6 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609070811061_ImagenFondoZona.resx">
       <DependentUpon>201609070811061_ImagenFondoZona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609090719352_ComentarioChefAnadido.resx">
+      <DependentUpon>201609090719352_ComentarioChefAnadido.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

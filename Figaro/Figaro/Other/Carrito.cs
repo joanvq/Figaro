@@ -26,9 +26,9 @@ namespace Figaro.Other
             var existPlato = listaPlatos.Exists(x => x.Key.Id == item.Key.Id);
             if (existPlato)
             {
-                var plato = listaPlatos.Find(x => x.Key.Id == item.Key.Id);
-                var newplato = new KeyValuePair<Plato, int>(plato.Key, plato.Value + item.Value);
-                listaPlatos.Remove(item);
+                var platoCant = listaPlatos.Find(x => x.Key.Id == item.Key.Id);
+                var newplato = new KeyValuePair<Plato, int>(platoCant.Key, platoCant.Value + item.Value);
+                listaPlatos.Remove(platoCant);
                 listaPlatos.Add(newplato);
             }
             else
@@ -44,7 +44,7 @@ namespace Figaro.Other
             {
                 var menuCant = listaMenus.Find(x => x.Key.Id == item.Key.Id);
                 var newplato = new KeyValuePair<Menu, int>(menuCant.Key, menuCant.Value + item.Value);
-                listaMenus.Remove(item);
+                listaMenus.Remove(menuCant);
                 listaMenus.Add(newplato);
             }
             else

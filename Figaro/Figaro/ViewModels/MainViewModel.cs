@@ -314,7 +314,8 @@ namespace Figaro.ViewModels
                 return new Command(async () => await InitializeDataAsync());
             }
         }
-        
+
+        /*Item1 = idPlato; Item2 = Cantidad*/
         public Command AnadirPlatoCesta
         {
             get
@@ -342,6 +343,7 @@ namespace Figaro.ViewModels
                 return new Command<Tuple<int, int>>(async (key) =>
                 {
                     IsBusy = true;
+
                     var menusServices = new MenusServices();
                     menuSeleccionado = await menusServices.GetMenusAsync(key.Item1);
                     KeyValuePair<Menu, int> menuCant = new KeyValuePair<Menu, int>(menuSeleccionado, key.Item2);

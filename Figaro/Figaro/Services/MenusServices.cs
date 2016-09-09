@@ -43,6 +43,18 @@ namespace Figaro.Services
 
             var menu = await restClient.GetAsync(id);
 
+            menu.Imagen = "http://figaro.apphb.com" + menu.Imagen;
+            menu.HorasCocinado = (menu.TiempoCocinado / 60).ToString();
+            if ((menu.TiempoCocinado % 60) < 10)
+            {
+                menu.HorasCocinado += "h 0" + (menu.TiempoCocinado % 60).ToString() + "' ⏱";
+            }
+            else
+            {
+                menu.HorasCocinado += "h " + (menu.TiempoCocinado % 60).ToString() + "' ⏱";
+            }
+            menu.PrecioEuros = menu.Precio.ToString("0.00") + " €";
+
             return menu;
         }
 
