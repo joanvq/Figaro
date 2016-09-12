@@ -43,6 +43,10 @@ namespace Figaro.Services
             chef.Imagen = "http://figaro.apphb.com" + chef.Imagen;
             chef.ImagenFondo = "http://figaro.apphb.com" + chef.ImagenFondo;
             chef.NombreApellidos = chef.Nombre + " " + chef.Apellidos;
+            var today = DateTime.Today;
+            var age = today.Year - chef.FechaNacimiento.Year;
+            if (chef.FechaNacimiento > today.AddYears(-age)) age--;
+            chef.Edad = age;
 
             return chef;
         }

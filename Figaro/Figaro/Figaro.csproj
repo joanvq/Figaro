@@ -39,6 +39,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Configuration\ViewModelLocator.cs" />
+    <Compile Include="Models\ComentarioChef.cs" />
     <Compile Include="Other\Carrito.cs" />
     <Compile Include="Models\Chef.cs" />
     <Compile Include="Models\Menu.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="RestClient\RestClient.cs" />
     <Compile Include="RestClient\TaskModel.cs" />
     <Compile Include="Services\ChefServices.cs" />
+    <Compile Include="Services\ComentarioChefServices.cs" />
     <Compile Include="Services\MenusServices.cs" />
     <Compile Include="Services\PlatosServices.cs" />
     <Compile Include="Services\TipoCocinaServices.cs" />

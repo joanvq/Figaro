@@ -33,6 +33,8 @@ namespace Figaro.ViewModels
         private List<Zona> listaZonas;
         private Zona zonaSeleccionada = null;
 
+        private List<ComentarioChef> listaComentariosChef;
+        
         private static Carrito carritoCompra = new Carrito();
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -178,6 +180,18 @@ namespace Figaro.ViewModels
             set
             {
                 zonaSeleccionada = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /* COMENTARIO CHEF */
+
+        public List<ComentarioChef> ListaComentariosChef
+        {
+            get { return listaComentariosChef; }
+            set
+            {
+                listaComentariosChef = value;
                 OnPropertyChanged();
             }
         }
@@ -385,7 +399,6 @@ namespace Figaro.ViewModels
         {
             IsBusy = true;
 
-
             var tipoCocinaServices = new TipoCocinaServices();
             ListaTipoCocina = await tipoCocinaServices.GetTipoCocinaAsync();
 
@@ -412,6 +425,16 @@ namespace Figaro.ViewModels
             {
                 ListaChefs = ListaChefs.Where(chef => chef.Zona.Id == ZonaSeleccionada.Id).ToList();
             }
+
+            IsBusy = false;
+        }
+
+        public async Task InitializeComentariosAsync(int idChef)
+        {
+            IsBusy = true;
+
+            var comentarioChefServices = new ComentarioChefServices();
+            ListaComentariosChef = await comentarioChefServices.GetComentariosChefAsync(idChef);
 
             IsBusy = false;
         }

@@ -19,14 +19,26 @@ namespace WebServicesFigaro.Controllers
         // GET: api/ComentarioChef
         public IQueryable<ComentarioChef> GetComentarioChefs()
         {
-            return db.ComentarioChefs;
+            return db.ComentarioChefs
+                .Include(c => c.Chef);
+        }
+
+        // GET: api/ComentariosChef/{idChef}
+        [ResponseType(typeof(ComentarioChef))]
+        [Route("api/ComentariosChef/{id}")]
+        public IQueryable<ComentarioChef> GetComentariosChef(int id)
+        {
+           return db.ComentarioChefs.Where(c => c.ChefId == id)
+                .Include(c => c.Chef);
         }
 
         // GET: api/ComentarioChef/5
         [ResponseType(typeof(ComentarioChef))]
         public IHttpActionResult GetComentarioChef(int id)
         {
-            ComentarioChef comentarioChef = db.ComentarioChefs.Find(id);
+            ComentarioChef comentarioChef = db.ComentarioChefs
+                .Include(c => c.Chef)
+                .SingleOrDefault(c => c.Id == id);
             if (comentarioChef == null)
             {
                 return NotFound();

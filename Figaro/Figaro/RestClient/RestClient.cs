@@ -94,5 +94,16 @@ namespace Plugin.RestClient
             return taskModels;
         }
 
+        public async Task<List<T>> GetByKeyAsync(int key)
+        {
+            var httpClient = new HttpClient();
+
+            var json = await httpClient.GetStringAsync(WebServiceUrl + key);
+
+            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+
+            return taskModels;
+        }
+
     }
 }

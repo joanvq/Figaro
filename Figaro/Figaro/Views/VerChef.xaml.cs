@@ -62,6 +62,44 @@ namespace Figaro.Views
                     break;
             }
 
+            //Cargar tabs de abajo
+            var tapDisponibilidadTab = new TapGestureRecognizer();
+            var tapOpinionesTab = new TapGestureRecognizer();
+
+            tapDisponibilidadTab.Tapped += (s, e) => {
+                // handle the tap
+                DisponibilidadTab.FontAttributes = FontAttributes.Bold;
+                DisponibilidadTab.TextColor = Color.FromHex("#CC0311");
+                LineaDisponibilidadTab.IsVisible = true;
+
+                OpinionesTab.FontAttributes = FontAttributes.None;
+                OpinionesTab.TextColor = Color.Default;
+                LineaOpinionesTab.IsVisible = false;
+
+                OpinionesAMostrar.IsVisible = false;
+                TabAMostrar.IsVisible = true;
+            };
+            DisponibilidadTab.GestureRecognizers.Add(tapDisponibilidadTab);
+
+            tapOpinionesTab.Tapped += (s, e) => {
+                // handle the tap
+                DisponibilidadTab.FontAttributes = FontAttributes.None;
+                DisponibilidadTab.TextColor = Color.Default;
+                LineaDisponibilidadTab.IsVisible = false;
+
+                OpinionesTab.FontAttributes = FontAttributes.Bold;
+                OpinionesTab.TextColor = Color.FromHex("#CC0311");
+                LineaOpinionesTab.IsVisible = true;
+
+                OpinionesAMostrar.IsVisible = true;
+                TabAMostrar.IsVisible = false;
+                //Mostrar Opiniones
+            };
+            OpinionesTab.GestureRecognizers.Add(tapOpinionesTab);
+
+            //Inicializar comentarios Opiniones Chef
+            mainViewModel.InitializeComentariosAsync(mainViewModel.ChefSeleccionado.Id);
+
         }
 
         private void Elegir_OnClick(object sender, EventArgs e)
