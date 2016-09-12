@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Figaro.Views.VerCarrito" 
+             x:Class="Figaro.Views.VerCarrito"
              xmlns:local="clr-namespace:Figaro;assembly=Figaro;"
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
              Title="Cesta">
 
-  <StackLayout Orientation="Vertical" Padding="20">
-    <Grid>
+  <StackLayout Orientation="Vertical" Padding="0">
+    <Grid Padding="20">
       <Grid.RowDefinitions>
         <RowDefinition Height="*"/>
         <RowDefinition Height="6*"/>
         <RowDefinition Height="3*"/>
       </Grid.RowDefinitions>
-      
+
       <StackLayout Orientation="Horizontal" Grid.Row="0">
         <Label Text="Chef" VerticalOptions="Start" HorizontalOptions="Start" FontSize="24"/>
         <Label Text="{Binding CarritoCompra.chef.NombreApellidos}" />
       </StackLayout>
-      
+
       <StackLayout Orientation="Vertical" Grid.Row="1">
         <ListView x:Name="ListaMenus"
                   ItemsSource="{Binding CarritoCompra.listaMenus}"
@@ -72,7 +72,7 @@
           </ListView.ItemTemplate>
         </ListView>
       </StackLayout>
-      
+
       <StackLayout Orientation="Vertical" Grid.Row="2">
         <Grid>
           <Grid.RowDefinitions>
@@ -89,16 +89,29 @@
           <Label Text="TIEMPO TOTAL" FontSize="18" Grid.Row="0" Grid.Column="0"/>
           <Label x:Name="TiempoTotal" Text="Prueba" FontSize="18"
                  HorizontalOptions="End" Grid.Row="0" Grid.Column="2"/>
-          <Label Text="COSTE" Grid.Row="1" Grid.Column="0" />  
+          <Label Text="COSTE" Grid.Row="1" Grid.Column="0" />
           <Label x:Name="Coste" FontSize="18"
                  HorizontalOptions="End" Grid.Row="1" Grid.Column="2"/>
-          <Label Text="DESPLAZAMIENTO" Grid.Row="2" Grid.Column="0"/>  
-          <Label x:Name="Desplazamiento" FontSize="18" 
+          <Label Text="DESPLAZAMIENTO" Grid.Row="2" Grid.Column="0"/>
+          <Label x:Name="Desplazamiento" FontSize="18"
                  HorizontalOptions="End" Grid.Row="2" Grid.Column="2"/>
         </Grid>
       </StackLayout>
     </Grid>
-    
+
+    <Grid VerticalOptions="End" Padding="0,0,0,0"
+                 BackgroundColor="#ddd" HeightRequest="130">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <Label Text="TOTAL:" FontSize="20" Opacity="0.7" VerticalOptions="Center" Grid.Column="0" Margin="20,0,0,0"/>
+      <Label x:Name="Total" TextColor="#CC0311" FontSize="20" VerticalOptions="Center" Grid.Column="1"/>
+      <Button Text="Pedir" TextColor="White" BackgroundColor="#CC0311"  Grid.Column="2"
+              FontSize="20" Clicked="Pedir_OnClicked" HorizontalOptions="End" Margin="0,0,20,0"/>
+    </Grid>
+
   </StackLayout>
-  
+
 </ContentPage>

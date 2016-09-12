@@ -21,6 +21,7 @@ namespace Figaro.Views
             int tiempoTotal = 0;
             decimal coste = 0;
             decimal desplazamiento = 0;
+            decimal costeTotal = 0;
 
             //Falta calculo de tiempo correcto
             foreach (KeyValuePair<Menu, int> menuCant in mainViewModel.CarritoCompra.listaMenus)
@@ -49,6 +50,9 @@ namespace Figaro.Views
             //Cálculo de desplazamiento
 
             Desplazamiento.Text = desplazamiento.ToString() + " €";
+
+            costeTotal = coste + desplazamiento;
+            Total.Text = costeTotal.ToString() + " €";
         }
 
         public void Menu_OnItemTapped(object sender, ItemTappedEventArgs e) 
@@ -59,6 +63,11 @@ namespace Figaro.Views
         public void Plato_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             ((ListView)sender).SelectedItem = null; // de-select the row
+        }
+
+        public void Pedir_OnClicked(object sender, EventArgs e)
+        {
+            DisplayAlert("Pedir", "Pedir tapped", "OK");
         }
     }
 }
