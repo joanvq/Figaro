@@ -18,7 +18,9 @@ namespace WebServicesFigaro.Controllers
         // GET: ComentarioChefMvc
         public ActionResult Index()
         {
-            var comentarioChefs = db.ComentarioChefs.Include(c => c.Chef);
+            var comentarioChefs = db.ComentarioChefs
+                .Include(c => c.Chef)
+                .Include(c => c.Usuario);
             return View(comentarioChefs.ToList());
         }
 
@@ -26,7 +28,9 @@ namespace WebServicesFigaro.Controllers
         //[Route("ComentarioChefMvc/IndexChef/{id}")]
         public ActionResult IndexChef(int id)
         {
-            var comentarioChefs = db.ComentarioChefs.Where(c => c.ChefId == id).Include(c => c.Chef);
+            var comentarioChefs = db.ComentarioChefs.Where(c => c.ChefId == id)
+                .Include(c => c.Chef)
+                .Include(c => c.Usuario);
 
             ComentarioChef idChef = new ComentarioChef();
             idChef.ChefId = id;
@@ -44,7 +48,9 @@ namespace WebServicesFigaro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ComentarioChef comentarioChef = db.ComentarioChefs.Include(c => c.Chef)
+            ComentarioChef comentarioChef = db.ComentarioChefs
+                .Include(c => c.Chef)
+                .Include(c => c.Usuario)
                 .SingleOrDefault(c => c.Id==id);
             if (comentarioChef == null)
             {
@@ -56,6 +62,7 @@ namespace WebServicesFigaro.Controllers
         // GET: ComentarioChefMvc/Create/5
         public ActionResult Create(int idChef)
         {
+            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre");
             ViewBag.ChefId = new SelectList(db.Chefs, "Id", "Nombre");
             ComentarioChef comentario = new ComentarioChef();
             comentario.ChefId = idChef;
@@ -68,7 +75,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Valoracion,ChefId")] ComentarioChef comentarioChef)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Valoracion,ChefId,UsuarioId")] ComentarioChef comentarioChef)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +109,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Valoracion,ChefId")] ComentarioChef comentarioChef)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Valoracion,ChefId,UsuarioId")] ComentarioChef comentarioChef)
         {
             if (ModelState.IsValid)
             {

@@ -28,5 +28,7 @@ namespace WebServicesFigaro.Models
         public System.Data.Entity.DbSet<WebServicesFigaro.Models.Chef> Chefs { get; set; }
 
         public System.Data.Entity.DbSet<WebServicesFigaro.Models.ComentarioChef> ComentarioChefs { get; set; }
+
+        public System.Data.Entity.DbSet<WebServicesFigaro.Models.Usuario> Usuarios { get; set; }
     }
 }

@@ -116,8 +116,8 @@
                       <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
                         <Label Text="Por:"
                                 FontSize="16" />
-                        <!--Usuario-->
-                        <Label Text="Usuario"
+                        <Label Text="{Binding Usuario.Nombre}"
+                                FontSize="16"/> <Label Text="{Binding Usuario.Apellidos}"
                                 FontSize="16"/>
                       </StackLayout>
                       <!--Star rating-->

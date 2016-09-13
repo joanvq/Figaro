@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using XLabs.Forms.Controls;
 
 namespace Figaro.Views
 {
@@ -58,6 +59,46 @@ namespace Figaro.Views
         public void Menu_OnItemTapped(object sender, ItemTappedEventArgs e) 
         {
             ((ListView)sender).SelectedItem = null; // de-select the row
+            var button = new Button
+            {
+                Text = "Open popup"
+            };
+            var popup = new PopupLayout
+            {
+                Content = new StackLayout
+                {
+                    Orientation = StackOrientation.Vertical,
+                    Children =
+                    {
+                      button
+                    }
+                }
+            };
+            button.Clicked += (s, ev) =>
+            {
+                button.IsEnabled = false;
+                popup.DismissPopup();
+                button.IsEnabled = true;
+            };
+            var label = new Label
+            {
+                Text = "Test"
+            };
+
+            var popLayout = new StackLayout
+            {
+                WidthRequest = 250,
+                HeightRequest = 400,
+                BackgroundColor = Color.White,
+                Children =
+                {
+                    button,
+                    label
+                }
+            };
+
+            popup.ShowPopup(popLayout);
+            
         }
 
         public void Plato_OnItemTapped(object sender, ItemTappedEventArgs e)

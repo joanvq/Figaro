@@ -176,6 +176,8 @@
     <Compile Include="Controllers\PlatoController.cs" />
     <Compile Include="Controllers\TipoCocinaController.cs" />
     <Compile Include="Controllers\TipoCocinaMvcController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\UsuarioMvcController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\ZonaMvcController.cs" />
     <Compile Include="Global.asax.cs">
@@ -241,6 +243,14 @@
     <Compile Include="Migrations\201609090719352_ComentarioChefAnadido.Designer.cs">
       <DependentUpon>201609090719352_ComentarioChefAnadido.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609121541455_UsuarioAnadido.cs" />
+    <Compile Include="Migrations\201609121541455_UsuarioAnadido.Designer.cs">
+      <DependentUpon>201609121541455_UsuarioAnadido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609131042094_UsuarioEnComentarioChef.cs" />
+    <Compile Include="Migrations\201609131042094_UsuarioEnComentarioChef.Designer.cs">
+      <DependentUpon>201609131042094_UsuarioEnComentarioChef.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chef.cs" />
     <Compile Include="Models\ComentarioChef.cs" />
@@ -248,6 +258,7 @@
     <Compile Include="Models\Plato.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\TipoCocina.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Zona.cs" />
     <Compile Include="Controllers\ZonaController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -344,6 +355,11 @@
     <Content Include="Views\ComentarioChefMvc\Details.cshtml" />
     <Content Include="Views\ComentarioChefMvc\Edit.cshtml" />
     <Content Include="Views\ComentarioChefMvc\Index.cshtml" />
+    <Content Include="Views\UsuarioMvc\Create.cshtml" />
+    <Content Include="Views\UsuarioMvc\Delete.cshtml" />
+    <Content Include="Views\UsuarioMvc\Details.cshtml" />
+    <Content Include="Views\UsuarioMvc\Edit.cshtml" />
+    <Content Include="Views\UsuarioMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -398,6 +414,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609090719352_ComentarioChefAnadido.resx">
       <DependentUpon>201609090719352_ComentarioChefAnadido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609121541455_UsuarioAnadido.resx">
+      <DependentUpon>201609121541455_UsuarioAnadido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609131042094_UsuarioEnComentarioChef.resx">
+      <DependentUpon>201609131042094_UsuarioEnComentarioChef.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -21,8 +21,11 @@ namespace WebServicesFigaro.Models
         [DisplayName("Chef")]
         [ForeignKey("Chef")]
         public int ChefId { get; set; }
-        //Falta UsuarioId
+        [DisplayName("Usuario")]
+        [ForeignKey("Usuario")]
+        public int UsuarioId { get; set; }
 
+        public Usuario Usuario { get; set; }
         public Chef Chef { get; set; }
         
     }

@@ -11,6 +11,7 @@ namespace Figaro.Models
         public string Descripcion { get; set; }
         public double Valoracion { get; set; }
         public Chef Chef { get; set; }
+        public Usuario Usuario { get; set; }
         
     }
 }

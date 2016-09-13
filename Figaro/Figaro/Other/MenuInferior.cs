@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Figaro.Views;
 using Xamarin.Forms;
+using Figaro.ViewModels;
 
 namespace Figaro.Other
 {
@@ -15,6 +16,7 @@ namespace Figaro.Other
         public TapGestureRecognizer tapPlato = new TapGestureRecognizer();
         public TapGestureRecognizer tapChefs = new TapGestureRecognizer();
         public TapGestureRecognizer tapProfile = new TapGestureRecognizer();
+        public MainViewModel mainViewmodel;
 
         public MenuInferior(Page sender)
         {
@@ -45,7 +47,7 @@ namespace Figaro.Other
 
             tapProfile.Tapped += (s, e) => {
                 // handle the tap
-                sender.DisplayAlert("Perfil", "Perfil tapped", "OK");
+                sender.DisplayAlert("Perfil", "Usuario logueado: " + mainViewmodel.UsuarioLogueado.NombreApellidos, "OK");
             };
         }
         

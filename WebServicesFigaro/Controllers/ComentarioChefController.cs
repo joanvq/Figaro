@@ -20,7 +20,8 @@ namespace WebServicesFigaro.Controllers
         public IQueryable<ComentarioChef> GetComentarioChefs()
         {
             return db.ComentarioChefs
-                .Include(c => c.Chef);
+                .Include(c => c.Chef)
+                .Include(c => c.Usuario);
         }
 
         // GET: api/ComentariosChef/{idChef}
@@ -29,7 +30,8 @@ namespace WebServicesFigaro.Controllers
         public IQueryable<ComentarioChef> GetComentariosChef(int id)
         {
            return db.ComentarioChefs.Where(c => c.ChefId == id)
-                .Include(c => c.Chef);
+                .Include(c => c.Chef)
+                .Include(c => c.Usuario);
         }
 
         // GET: api/ComentarioChef/5
@@ -38,6 +40,7 @@ namespace WebServicesFigaro.Controllers
         {
             ComentarioChef comentarioChef = db.ComentarioChefs
                 .Include(c => c.Chef)
+                .Include(c => c.Usuario)
                 .SingleOrDefault(c => c.Id == id);
             if (comentarioChef == null)
             {

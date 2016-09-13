@@ -34,6 +34,8 @@ namespace Figaro.ViewModels
         private Zona zonaSeleccionada = null;
 
         private List<ComentarioChef> listaComentariosChef;
+
+        private Usuario usuarioLogueado;
         
         private static Carrito carritoCompra = new Carrito();
 
@@ -192,6 +194,18 @@ namespace Figaro.ViewModels
             set
             {
                 listaComentariosChef = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /* USUARIO */
+
+        public Usuario UsuarioLogueado
+        {
+            get { return usuarioLogueado; }
+            set
+            {
+                usuarioLogueado = value;
                 OnPropertyChanged();
             }
         }
@@ -413,6 +427,10 @@ namespace Figaro.ViewModels
 
             var zonaServices = new ZonaServices();
             ListaZonas = await zonaServices.GetZonaAsync();
+
+            //seleccion por defecto el 2
+            var usuarioServices = new UsuarioServices();
+            UsuarioLogueado = await usuarioServices.GetUsuariosAsync(2);
 
             if(TipoCocinaSeleccionado != null)
             {
