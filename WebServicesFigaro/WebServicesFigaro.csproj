@@ -171,6 +171,8 @@
     <Compile Include="Controllers\ComentarioChefMvcController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MenuMvcController.cs" />
+    <Compile Include="Controllers\PedidoController.cs" />
+    <Compile Include="Controllers\PedidoMvcController.cs" />
     <Compile Include="Controllers\PlatoMvcController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlatoController.cs" />
@@ -251,10 +253,19 @@
     <Compile Include="Migrations\201609131042094_UsuarioEnComentarioChef.Designer.cs">
       <DependentUpon>201609131042094_UsuarioEnComentarioChef.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609131314266_PedidoAnadido.cs" />
+    <Compile Include="Migrations\201609131314266_PedidoAnadido.Designer.cs">
+      <DependentUpon>201609131314266_PedidoAnadido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609131320037_PedidoAnadido2.cs" />
+    <Compile Include="Migrations\201609131320037_PedidoAnadido2.Designer.cs">
+      <DependentUpon>201609131320037_PedidoAnadido2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chef.cs" />
     <Compile Include="Models\ComentarioChef.cs" />
     <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Plato.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\TipoCocina.cs" />
@@ -360,6 +371,11 @@
     <Content Include="Views\UsuarioMvc\Details.cshtml" />
     <Content Include="Views\UsuarioMvc\Edit.cshtml" />
     <Content Include="Views\UsuarioMvc\Index.cshtml" />
+    <Content Include="Views\PedidoMvc\Create.cshtml" />
+    <Content Include="Views\PedidoMvc\Delete.cshtml" />
+    <Content Include="Views\PedidoMvc\Details.cshtml" />
+    <Content Include="Views\PedidoMvc\Edit.cshtml" />
+    <Content Include="Views\PedidoMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -420,6 +436,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609131042094_UsuarioEnComentarioChef.resx">
       <DependentUpon>201609131042094_UsuarioEnComentarioChef.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609131314266_PedidoAnadido.resx">
+      <DependentUpon>201609131314266_PedidoAnadido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609131320037_PedidoAnadido2.resx">
+      <DependentUpon>201609131320037_PedidoAnadido2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

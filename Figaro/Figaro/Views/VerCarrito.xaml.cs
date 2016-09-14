@@ -108,7 +108,7 @@ namespace Figaro.Views
 
         public void Pedir_OnClicked(object sender, EventArgs e)
         {
-            DisplayAlert("Pedir", "Pedir tapped", "OK");
+            Navigation.PushAsync(new PedirDatos());
         }
     }
 }

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Figaro.Views.ModoPago"
+             xmlns:local="clr-namespace:Figaro;assembly=Figaro;"
+             BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+             Title="Confirmar Pedido">
+  
+  <StackLayout Orientation="Vertical" Padding="20">
+    
+    <Label Text="Resumen del pedido" FontSize="24" />
+    
+    <StackLayout Orientation="Horizontal">
+      <Label Text="Nombre: " FontSize="18"/>
+      <Label x:Name="NombreApellidos" FontSize="18" />
+    </StackLayout>
+    
+    <StackLayout Orientation="Horizontal">
+      <Label Text="Dirección: " FontSize="18"/>
+      <Label x:Name ="Direccion" Text="{Binding pedido.Direccion}" FontSize="18" />
+    </StackLayout>
+    
+    <StackLayout Orientation="Horizontal">
+      <Label Text="Zona: " FontSize="18"/>
+      <Label x:Name="Zona" FontSize="18" />
+    </StackLayout>
+    
+    <StackLayout Orientation="Horizontal" >
+      <Label Text="Chef: " FontSize="18"/>
+      <Label x:Name="NombreChef" Text="nombre" FontSize="18" /> <!--Pedido.Disponibilidad.Chef.Nombre-->
+      <Label x:Name="ApellidosChef" FontSize="18" /><!--Pedido.Disponibilidad.Chef.Nombre-->
+    </StackLayout>
+    
+    <StackLayout Orientation="Horizontal">
+      <Label Text="Fecha y Hora: " FontSize="18"/>
+      <Label x:Name="FechaHora" FontSize="18" /> <!--Pedido.Disponibilidad.FechaHora-->
+    </StackLayout>
+    
+    <Label Text="Pedido: " FontSize="18"/>
+    
+    <ScrollView>
+      <ListView x:Name="ListaMenus"
+                ItemsSource="{Binding CarritoCompra.listaMenus}"
+		            HasUnevenRows="true"
+                ItemTapped="Menu_OnItemTapped">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                  <!--Cantidad-->
+                <StackLayout Grid.Column="0" Orientation="Horizontal">
+                  <Label Text="{Binding Value}"/>
+                  <Label Text="-"/>
+                  <Label Text = "{Binding Key.Titulo}" />
+                </StackLayout>
+                <Label Text = "{Binding Key.HorasCocinado}" HorizontalOptions="End"  Grid.Column="2"/>
+              </Grid>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+      <ListView x:Name="ListaPlatos"
+                ItemsSource="{Binding CarritoCompra.listaPlatos}"
+		            HasUnevenRows="true"
+                ItemTapped="Plato_OnItemTapped">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--Cantidad-->
+                <StackLayout Grid.Column="0" Orientation="Horizontal">
+                  <Label Text="{Binding Value}"  />
+                  <Label Text="-"/>
+                  <Label Text = "{Binding Key.Titulo}" />
+                </StackLayout>
+                <Label Text ="{Binding Key.HorasCocinado}" HorizontalOptions="End" Grid.Column="2"/>
+              </Grid>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </ScrollView>
+    
+    <Button Text="Pagar con PayPal" 
+            Clicked="PagarPaypal_OnClicked"/>
+  
+  </StackLayout>
+</ContentPage>

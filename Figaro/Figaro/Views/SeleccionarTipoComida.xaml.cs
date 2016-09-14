@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Figaro.ViewModels;
 using Figaro.Models;
-using Figaro.Views;
 
-namespace Figaro
+namespace Figaro.Views
 {
     public partial class SeleccionarTipoComida : MasterDetailPage
     {
