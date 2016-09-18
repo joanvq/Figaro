@@ -13,27 +13,47 @@ namespace Figaro.Views
 {
     public partial class PedirDatos : ContentPage
     {
-        public PedirDatos()
+
+        private decimal precioTotal;
+
+        public PedirDatos(decimal costeTotal)
         {
+            precioTotal = costeTotal;
             InitializeComponent();
+            
         }
 
-        public void Pagar_OnClicked(object sender, EventArgs e)
+        public async void Pagar_OnClicked(object sender, EventArgs e)
         {
-            if(direccion.Text != null)
+            var mainViewModel = BindingContext as MainViewModel;
+            if (mainViewModel.ZonaSeleccionada == null 
+                || mainViewModel.CarritoCompra.chef == null 
+                || (mainViewModel.CarritoCompra.listaMenus.Count == 0 
+                    && mainViewModel.CarritoCompra.listaPlatos.Count == 0))
             {
-                var mainViewModel = BindingContext as MainViewModel;
+                DisplayAlert("Error", "Faltan datos", "OK");
+            }
+            else if(direccion.Text != null)
+            {
                 Pedido nuevoPedido = new Pedido();
                 nuevoPedido.Direccion = direccion.Text;
                 nuevoPedido.Usuario = mainViewModel.UsuarioLogueado;
                 nuevoPedido.Estado = "pendiente";
+                nuevoPedido.Zona = mainViewModel.ZonaSeleccionada;
+                nuevoPedido.PrecioTotal = precioTotal;
+                nuevoPedido.Comentario = comentario.Text;
+                nuevoPedido.CP = cp.Text;
+                nuevoPedido.NombreApellidos = nombreApellidos.Text;
                 //Para numero pedido deber generar y 
                 //comprovar que no existe, si existe generará uno nuevo
-                Random rnd = new Random();
-                nuevoPedido.NPedido = rnd.Next(0, 999999999);
-                nuevoPedido.Zona = mainViewModel.ZonaSeleccionada;
-                //var pedidoServices = new PedidoServices();
-                //await pedidoServices.PostPlatoAsync(nuevoPedido);
+                //Generar Numero Pedido unico en funcion del tiempo 
+                long ticks = DateTime.Now.Ticks;
+                byte[] bytes = BitConverter.GetBytes(ticks);
+                string nPedido = Convert.ToBase64String(bytes)
+                                        .Replace('+', '_')
+                                        .Replace('/', '-')
+                                        .TrimEnd('=');
+                nuevoPedido.NPedido = nPedido;
                 Navigation.PushAsync(new ModoPago(nuevoPedido));
             }
 

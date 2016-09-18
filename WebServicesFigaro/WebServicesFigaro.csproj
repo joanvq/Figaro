@@ -171,11 +171,15 @@
     <Compile Include="Controllers\ComentarioChefMvcController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MenuMvcController.cs" />
+    <Compile Include="Controllers\MenuPedidoController.cs" />
+    <Compile Include="Controllers\MenuPedidoMvcController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PedidoMvcController.cs" />
     <Compile Include="Controllers\PlatoMvcController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlatoController.cs" />
+    <Compile Include="Controllers\PlatoPedidoController.cs" />
+    <Compile Include="Controllers\PlatoPedidoMvcController.cs" />
     <Compile Include="Controllers\TipoCocinaController.cs" />
     <Compile Include="Controllers\TipoCocinaMvcController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -261,13 +265,27 @@
     <Compile Include="Migrations\201609131320037_PedidoAnadido2.Designer.cs">
       <DependentUpon>201609131320037_PedidoAnadido2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609150920482_CpActualizado2.cs" />
+    <Compile Include="Migrations\201609150920482_CpActualizado2.Designer.cs">
+      <DependentUpon>201609150920482_CpActualizado2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609150944105_PrecioTotalActualizado2.cs" />
+    <Compile Include="Migrations\201609150944105_PrecioTotalActualizado2.Designer.cs">
+      <DependentUpon>201609150944105_PrecioTotalActualizado2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609181830496_MenuPlatoPedidosAnadidos.cs" />
+    <Compile Include="Migrations\201609181830496_MenuPlatoPedidosAnadidos.Designer.cs">
+      <DependentUpon>201609181830496_MenuPlatoPedidosAnadidos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chef.cs" />
     <Compile Include="Models\ComentarioChef.cs" />
     <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\MenuPedido.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Plato.cs" />
     <Compile Include="Models\DBContext.cs" />
+    <Compile Include="Models\PlatoPedido.cs" />
     <Compile Include="Models\TipoCocina.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Zona.cs" />
@@ -376,6 +394,16 @@
     <Content Include="Views\PedidoMvc\Details.cshtml" />
     <Content Include="Views\PedidoMvc\Edit.cshtml" />
     <Content Include="Views\PedidoMvc\Index.cshtml" />
+    <Content Include="Views\PlatoPedidoMvc\Create.cshtml" />
+    <Content Include="Views\PlatoPedidoMvc\Delete.cshtml" />
+    <Content Include="Views\PlatoPedidoMvc\Details.cshtml" />
+    <Content Include="Views\PlatoPedidoMvc\Edit.cshtml" />
+    <Content Include="Views\PlatoPedidoMvc\Index.cshtml" />
+    <Content Include="Views\MenuPedidoMvc\Create.cshtml" />
+    <Content Include="Views\MenuPedidoMvc\Delete.cshtml" />
+    <Content Include="Views\MenuPedidoMvc\Details.cshtml" />
+    <Content Include="Views\MenuPedidoMvc\Edit.cshtml" />
+    <Content Include="Views\MenuPedidoMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -442,6 +470,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609131320037_PedidoAnadido2.resx">
       <DependentUpon>201609131320037_PedidoAnadido2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609150920482_CpActualizado2.resx">
+      <DependentUpon>201609150920482_CpActualizado2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609150944105_PrecioTotalActualizado2.resx">
+      <DependentUpon>201609150944105_PrecioTotalActualizado2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609181830496_MenuPlatoPedidosAnadidos.resx">
+      <DependentUpon>201609181830496_MenuPlatoPedidosAnadidos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

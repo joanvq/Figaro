@@ -14,11 +14,13 @@ namespace WebServicesFigaro.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [DisplayName("Número de pedido")]
-        [Index("NPedidoIndex", IsUnique = true)]
-        public int NPedido { get; set; }
+        [DisplayName("Identificador pedido")]
+        public string NPedido { get; set; }
+        [DisplayName("Nombre y apellidos")]
+        public string NombreApellidos { get; set; }
         [DisplayName("Dirección")]
         public string Direccion { get; set; }
+        public string CP { get; set; }
         [DisplayName("Estado")]
         public string Estado { get; set; }
         [DisplayName("Usuario")]
@@ -27,6 +29,9 @@ namespace WebServicesFigaro.Models
         [DisplayName("Zona")]
         [ForeignKey("Zona")]
         public int ZonaId { get; set; }
+        [DisplayName("Precio")]
+        public Decimal PrecioTotal { get; set; }
+        public string Comentario { get; set; }
         //Falta
         //Ocupación chef
 

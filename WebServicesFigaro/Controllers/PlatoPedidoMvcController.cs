@@ -10,119 +10,112 @@ using WebServicesFigaro.Models;
 
 namespace WebServicesFigaro.Controllers
 {
-    public class PedidoMvcController : Controller
+    public class PlatoPedidoMvcController : Controller
     {
         private DBContext db = new DBContext();
 
-        // GET: PedidoMvc
+        // GET: PlatoPedidoMvc
         public ActionResult Index()
         {
-            var pedidoes = db.Pedidoes.Include(p => p.Usuario).Include(p => p.Zona);
-            return View(pedidoes.ToList());
+            var platoPedidoes = db.PlatoPedidoes.Include(p => p.Pedido);
+            return View(platoPedidoes.ToList());
         }
 
-        // GET: PedidoMvc/Details/5
+        // GET: PlatoPedidoMvc/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pedido pedido = db.Pedidoes
-                .Include(p => p.Usuario)
-                .Include(p => p.Zona)
-                .SingleOrDefault(p => p.Id == id);
-            if (pedido == null)
+            PlatoPedido platoPedido = db.PlatoPedidoes.Find(id);
+            if (platoPedido == null)
             {
                 return HttpNotFound();
             }
-            return View(pedido);
+            return View(platoPedido);
         }
 
-        // GET: PedidoMvc/Create
+        // GET: PlatoPedidoMvc/Create
         public ActionResult Create()
         {
-            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre");
-            ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo");
+            ViewBag.PedidoId = new SelectList(db.Pedidoes, "Id", "NPedido");
             return View();
         }
 
-        // POST: PedidoMvc/Create
+        // POST: PlatoPedidoMvc/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NPedido,Direccion,Estado,UsuarioId,ZonaId,NombreApellidos,CP,PrecioTotal,Comentario")] Pedido pedido)
+        public ActionResult Create([Bind(Include = "Id,PedidoId,TituloPlato,PrecioPlato,TiempoCocinado,Ingredientes,Utensilios")] PlatoPedido platoPedido)
         {
             if (ModelState.IsValid)
             {
-                db.Pedidoes.Add(pedido);
+                db.PlatoPedidoes.Add(platoPedido);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre", pedido.UsuarioId);
-            ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", pedido.ZonaId);
-            return View(pedido);
+            ViewBag.PedidoId = new SelectList(db.Pedidoes, "Id", "NPedido", platoPedido.PedidoId);
+            return View(platoPedido);
         }
 
-        // GET: PedidoMvc/Edit/5
+        // GET: PlatoPedidoMvc/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pedido pedido = db.Pedidoes.Find(id);
-            if (pedido == null)
+            PlatoPedido platoPedido = db.PlatoPedidoes.Find(id);
+            if (platoPedido == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre", pedido.UsuarioId);
-            ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", pedido.ZonaId);
-            return View(pedido);
+            ViewBag.PedidoId = new SelectList(db.Pedidoes, "Id", "NPedido", platoPedido.PedidoId);
+            return View(platoPedido);
         }
 
-        // POST: PedidoMvc/Edit/5
+        // POST: PlatoPedidoMvc/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,NPedido,Direccion,Estado,UsuarioId,ZonaId,NombreApellidos,CP,PrecioTotal,Comentario")] Pedido pedido)
+        public ActionResult Edit([Bind(Include = "Id,PedidoId,TituloPlato,PrecioPlato,TiempoCocinado,Ingredientes,Utensilios")] PlatoPedido platoPedido)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pedido).State = EntityState.Modified;
+                db.Entry(platoPedido).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre", pedido.UsuarioId);
-            ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", pedido.ZonaId);
-            return View(pedido);
+            ViewBag.PedidoId = new SelectList(db.Pedidoes, "Id", "NPedido", platoPedido.PedidoId);
+            return View(platoPedido);
         }
 
-        // GET: PedidoMvc/Delete/5
+        // GET: PlatoPedidoMvc/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pedido pedido = db.Pedidoes.Find(id);
-            if (pedido == null)
+            PlatoPedido platoPedido = db.PlatoPedidoes.Find(id);
+            if (platoPedido == null)
             {
                 return HttpNotFound();
             }
-            return View(pedido);
+            return View(platoPedido);
         }
 
-        // POST: PedidoMvc/Delete/5
+        // POST: PlatoPedidoMvc/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Pedido pedido = db.Pedidoes.Find(id);
-            db.Pedidoes.Remove(pedido);
+            PlatoPedido platoPedido = db.PlatoPedidoes.Find(id);
+            db.PlatoPedidoes.Remove(platoPedido);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

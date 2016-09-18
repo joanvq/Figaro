@@ -1,0 +1,106 @@
+﻿@model WebServicesFigaro.Models.MenuPedido
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MenuPedido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pedido.NPedido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pedido.NPedido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TituloMenu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TituloMenu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioMenu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioMenu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entrante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entrante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Primero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Primero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Segundo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Segundo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Guarnicion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guarnicion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Postre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Postre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TiempoCocinado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TiempoCocinado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ingredientes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ingredientes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utensilios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utensilios)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

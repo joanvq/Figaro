@@ -32,5 +32,9 @@ namespace WebServicesFigaro.Models
         public System.Data.Entity.DbSet<WebServicesFigaro.Models.Usuario> Usuarios { get; set; }
 
         public System.Data.Entity.DbSet<WebServicesFigaro.Models.Pedido> Pedidoes { get; set; }
+
+        public System.Data.Entity.DbSet<WebServicesFigaro.Models.PlatoPedido> PlatoPedidoes { get; set; }
+
+        public System.Data.Entity.DbSet<WebServicesFigaro.Models.MenuPedido> MenuPedidoes { get; set; }
     }
 }

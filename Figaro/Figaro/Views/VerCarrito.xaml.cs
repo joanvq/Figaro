@@ -13,6 +13,8 @@ namespace Figaro.Views
 {
     public partial class VerCarrito : ContentPage
     {
+        private decimal costeTotal = 0;
+
         public VerCarrito()
         {
             InitializeComponent();
@@ -22,7 +24,6 @@ namespace Figaro.Views
             int tiempoTotal = 0;
             decimal coste = 0;
             decimal desplazamiento = 0;
-            decimal costeTotal = 0;
 
             //Falta calculo de tiempo correcto
             foreach (KeyValuePair<Menu, int> menuCant in mainViewModel.CarritoCompra.listaMenus)
@@ -108,7 +109,22 @@ namespace Figaro.Views
 
         public void Pedir_OnClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PedirDatos());
+            var mainViewModel = BindingContext as MainViewModel;
+
+            if (mainViewModel.ZonaSeleccionada == null)
+            {
+                DisplayAlert("Error", "No hay ninguna Zona seleccioanda.", "OK");
+            }
+            else if (mainViewModel.CarritoCompra.chef.Nombre == "")
+            {
+                DisplayAlert("Error", "No hay ningun Chef seleccionado.", "OK");
+            }
+            else if (mainViewModel.CarritoCompra.listaMenus.Count == 0
+                    && mainViewModel.CarritoCompra.listaPlatos.Count == 0)
+            {
+                DisplayAlert("Error", "No hay ningun Plato o Menú seleccionado.", "OK");
+            }
+                Navigation.PushAsync(new PedirDatos(costeTotal));
         }
     }
 }

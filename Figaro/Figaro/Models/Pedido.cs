@@ -9,10 +9,14 @@ namespace Figaro.Models
     {
         
         public int Id { get; set; }
-        public int NPedido { get; set; }
+        public string NPedido { get; set; }
+        public string NombreApellidos { get; set; }
         public string Direccion { get; set; }
+        public string CP { get; set; }
         public string Estado { get; set; }
         public Usuario Usuario { get; set; }
         public Zona Zona { get; set; }
+        public decimal PrecioTotal { get; set; }
+        public string Comentario { get; set; }
     }
 }

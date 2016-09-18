@@ -4,11 +4,20 @@
              x:Class="Figaro.Views.PedirDatos"
              xmlns:local="clr-namespace:Figaro;assembly=Figaro;"
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
-             Title="Confirmar Datos">
+             Title="Confirmar Datos Personales">
   
   <StackLayout Orientation="Vertical">
+    <Label Text="Nombre y Apellidos" />
+    <Entry x:Name="nombreApellidos" Text="{Binding UsuarioLogueado.NombreApellidos}" />
+    
     <Label Text="Dirección" />
     <Entry x:Name="direccion"/>
+
+    <Label Text="Código Postal" />
+    <Entry x:Name="cp"/>
+
+    <Label Text="Comentario" />
+    <Editor WidthRequest="60" x:Name="comentario" />
 
     <Button Text="Continuar"
             Clicked="Pagar_OnClicked"/>

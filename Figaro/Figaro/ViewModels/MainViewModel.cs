@@ -206,6 +206,7 @@ namespace Figaro.ViewModels
             set
             {
                 usuarioLogueado = value;
+                usuarioLogueado.NombreApellidos = usuarioLogueado.Nombre + " " + usuarioLogueado.Apellidos;
                 OnPropertyChanged();
             }
         }
