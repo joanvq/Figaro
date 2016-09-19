@@ -11,6 +11,8 @@ using PayPal.Forms.Abstractions.Enum;
 using System.Diagnostics;
 using PayPal.Forms;
 using Figaro.Services;
+using Figaro.ViewModels;
+using Figaro.Other;
 
 namespace Figaro.Views
 {
@@ -62,20 +64,30 @@ namespace Figaro.Views
             else if (result.Status == PayPalStatus.Error)
             {
                 //Debug.WriteLine(result.ErrorMessage);
+                
                 await DisplayAlert("Error", "Hubo un error durante el pago", "OK");
             }
             else if (result.Status == PayPalStatus.Successful)
             {
                 //Debug.WriteLine(result.ServerResponse.Response.Id);
-                await Navigation.PopToRootAsync();
                 //Navegar a una nueva pagina con los datos del pedido.
-                //Vaciar carrito de la compra y variables de pago.
-                //Añadir pedido a BD
+                await Navigation.PopToRootAsync();
 
                 var pedidoServices = new PedidoServices();
-                await pedidoServices.PostPlatoAsync(pedidoActual);
 
-                await DisplayAlert("Pago", "El pago se realizó correctamente", "OK");
+                var mainViewModel = BindingContext as MainViewModel;
+
+                //Añadir pedido a BD
+                var isSuccessStatusCode = await mainViewModel.NuevoPedido(pedidoActual);
+                
+                //Vaciar carrito de la compra y variables de pago.
+                mainViewModel.CarritoCompra = new Carrito();
+
+                if (isSuccessStatusCode == false)
+                    await DisplayAlert("Error", "Error guardando pedido en la Base de Datos. Por favor contácte con ....", "OK");
+
+                else await DisplayAlert("Pago", "El pago se realizó correctamente", "OK");
+                
             }
         }
     }

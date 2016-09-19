@@ -57,6 +57,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -189,93 +197,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608260705375_Inicial.cs" />
-    <Compile Include="Migrations\201608260705375_Inicial.Designer.cs">
-      <DependentUpon>201608260705375_Inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608261052437_QuitarForeignKey.cs" />
-    <Compile Include="Migrations\201608261052437_QuitarForeignKey.Designer.cs">
-      <DependentUpon>201608261052437_QuitarForeignKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608261057037_AnadirForeignKey.cs" />
-    <Compile Include="Migrations\201608261057037_AnadirForeignKey.Designer.cs">
-      <DependentUpon>201608261057037_AnadirForeignKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608261103480_AnadidoPlatos.cs" />
-    <Compile Include="Migrations\201608261103480_AnadidoPlatos.Designer.cs">
-      <DependentUpon>201608261103480_AnadidoPlatos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608261113015_AnadidoPlatos1.cs" />
-    <Compile Include="Migrations\201608261113015_AnadidoPlatos1.Designer.cs">
-      <DependentUpon>201608261113015_AnadidoPlatos1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609010740192_AddImagen.cs" />
-    <Compile Include="Migrations\201609010740192_AddImagen.Designer.cs">
-      <DependentUpon>201609010740192_AddImagen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609010759006_RemovePlatosForeign.cs" />
-    <Compile Include="Migrations\201609010759006_RemovePlatosForeign.Designer.cs">
-      <DependentUpon>201609010759006_RemovePlatosForeign.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609011122453_AddMenu.cs" />
-    <Compile Include="Migrations\201609011122453_AddMenu.Designer.cs">
-      <DependentUpon>201609011122453_AddMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609020732484_ModificadoTipoPlato.cs" />
-    <Compile Include="Migrations\201609020732484_ModificadoTipoPlato.Designer.cs">
-      <DependentUpon>201609020732484_ModificadoTipoPlato.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609020842376_NullableFKTipoPlato.cs" />
-    <Compile Include="Migrations\201609020842376_NullableFKTipoPlato.Designer.cs">
-      <DependentUpon>201609020842376_NullableFKTipoPlato.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609020853167_NullableFKTipoPlato2.cs" />
-    <Compile Include="Migrations\201609020853167_NullableFKTipoPlato2.Designer.cs">
-      <DependentUpon>201609020853167_NullableFKTipoPlato2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609051104585_AnadidoEstaOculto.cs" />
-    <Compile Include="Migrations\201609051104585_AnadidoEstaOculto.Designer.cs">
-      <DependentUpon>201609051104585_AnadidoEstaOculto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609051536456_AnadidoChef.cs" />
-    <Compile Include="Migrations\201609051536456_AnadidoChef.Designer.cs">
-      <DependentUpon>201609051536456_AnadidoChef.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609070811061_ImagenFondoZona.cs" />
-    <Compile Include="Migrations\201609070811061_ImagenFondoZona.Designer.cs">
-      <DependentUpon>201609070811061_ImagenFondoZona.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609090719352_ComentarioChefAnadido.cs" />
-    <Compile Include="Migrations\201609090719352_ComentarioChefAnadido.Designer.cs">
-      <DependentUpon>201609090719352_ComentarioChefAnadido.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609121541455_UsuarioAnadido.cs" />
-    <Compile Include="Migrations\201609121541455_UsuarioAnadido.Designer.cs">
-      <DependentUpon>201609121541455_UsuarioAnadido.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609131042094_UsuarioEnComentarioChef.cs" />
-    <Compile Include="Migrations\201609131042094_UsuarioEnComentarioChef.Designer.cs">
-      <DependentUpon>201609131042094_UsuarioEnComentarioChef.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609131314266_PedidoAnadido.cs" />
-    <Compile Include="Migrations\201609131314266_PedidoAnadido.Designer.cs">
-      <DependentUpon>201609131314266_PedidoAnadido.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609131320037_PedidoAnadido2.cs" />
-    <Compile Include="Migrations\201609131320037_PedidoAnadido2.Designer.cs">
-      <DependentUpon>201609131320037_PedidoAnadido2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609150920482_CpActualizado2.cs" />
-    <Compile Include="Migrations\201609150920482_CpActualizado2.Designer.cs">
-      <DependentUpon>201609150920482_CpActualizado2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609150944105_PrecioTotalActualizado2.cs" />
-    <Compile Include="Migrations\201609150944105_PrecioTotalActualizado2.Designer.cs">
-      <DependentUpon>201609150944105_PrecioTotalActualizado2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609181830496_MenuPlatoPedidosAnadidos.cs" />
-    <Compile Include="Migrations\201609181830496_MenuPlatoPedidosAnadidos.Designer.cs">
-      <DependentUpon>201609181830496_MenuPlatoPedidosAnadidos.cs</DependentUpon>
+    <Compile Include="Migrations\201609191437306_Initial.cs" />
+    <Compile Include="Migrations\201609191437306_Initial.Designer.cs">
+      <DependentUpon>201609191437306_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chef.cs" />
@@ -414,71 +338,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608260705375_Inicial.resx">
-      <DependentUpon>201608260705375_Inicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608261052437_QuitarForeignKey.resx">
-      <DependentUpon>201608261052437_QuitarForeignKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608261057037_AnadirForeignKey.resx">
-      <DependentUpon>201608261057037_AnadirForeignKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608261103480_AnadidoPlatos.resx">
-      <DependentUpon>201608261103480_AnadidoPlatos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608261113015_AnadidoPlatos1.resx">
-      <DependentUpon>201608261113015_AnadidoPlatos1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609010740192_AddImagen.resx">
-      <DependentUpon>201609010740192_AddImagen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609010759006_RemovePlatosForeign.resx">
-      <DependentUpon>201609010759006_RemovePlatosForeign.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609011122453_AddMenu.resx">
-      <DependentUpon>201609011122453_AddMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609020732484_ModificadoTipoPlato.resx">
-      <DependentUpon>201609020732484_ModificadoTipoPlato.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609020842376_NullableFKTipoPlato.resx">
-      <DependentUpon>201609020842376_NullableFKTipoPlato.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609020853167_NullableFKTipoPlato2.resx">
-      <DependentUpon>201609020853167_NullableFKTipoPlato2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609051104585_AnadidoEstaOculto.resx">
-      <DependentUpon>201609051104585_AnadidoEstaOculto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609051536456_AnadidoChef.resx">
-      <DependentUpon>201609051536456_AnadidoChef.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609070811061_ImagenFondoZona.resx">
-      <DependentUpon>201609070811061_ImagenFondoZona.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609090719352_ComentarioChefAnadido.resx">
-      <DependentUpon>201609090719352_ComentarioChefAnadido.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609121541455_UsuarioAnadido.resx">
-      <DependentUpon>201609121541455_UsuarioAnadido.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609131042094_UsuarioEnComentarioChef.resx">
-      <DependentUpon>201609131042094_UsuarioEnComentarioChef.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609131314266_PedidoAnadido.resx">
-      <DependentUpon>201609131314266_PedidoAnadido.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609131320037_PedidoAnadido2.resx">
-      <DependentUpon>201609131320037_PedidoAnadido2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609150920482_CpActualizado2.resx">
-      <DependentUpon>201609150920482_CpActualizado2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609150944105_PrecioTotalActualizado2.resx">
-      <DependentUpon>201609150944105_PrecioTotalActualizado2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609181830496_MenuPlatoPedidosAnadidos.resx">
-      <DependentUpon>201609181830496_MenuPlatoPedidosAnadidos.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609191437306_Initial.resx">
+      <DependentUpon>201609191437306_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

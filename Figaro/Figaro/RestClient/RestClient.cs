@@ -17,7 +17,8 @@ namespace Plugin.RestClient
 
         public RestClient(string endPoint)
         {
-           WebServiceUrl = "http://figaro.apphb.com/api/" + endPoint + "/";
+            WebServiceUrl = "http://figaro.apphb.com/api/" + endPoint + "/";
+            //WebServiceUrl = "http://localhost:59998/api/" + endPoint + "/";
         }
 
 
@@ -87,7 +88,7 @@ namespace Plugin.RestClient
         {
             var httpClient = new HttpClient();
 
-            var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + keyword);
+            var json = await httpClient.GetStringAsync(WebServiceUrl + keyword);
 
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 

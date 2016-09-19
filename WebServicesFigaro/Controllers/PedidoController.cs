@@ -35,6 +35,16 @@ namespace WebServicesFigaro.Controllers
             return Ok(pedido);
         }
 
+        // GET: api/Pedido/NPedido/{nPedido}
+        [ResponseType(typeof(Pedido))]
+        [Route("api/Pedido/NPedido/{nPedido}")]
+        public IQueryable<Pedido> GetPedidoByNPedido(string nPedido)
+        {
+            return db.Pedidoes.Where(p => p.NPedido == nPedido)
+                .Include(p => p.Usuario)
+                .Include(p => p.Zona);
+        }
+
         // GET: api/Pedido/Usuario/{idUsuario}
         [ResponseType(typeof(Pedido))]
         [Route("api/Pedido/Usuario/{id}")]

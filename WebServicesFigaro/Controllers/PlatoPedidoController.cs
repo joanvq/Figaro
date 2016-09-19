@@ -35,6 +35,14 @@ namespace WebServicesFigaro.Controllers
             return Ok(platoPedido);
         }
 
+        // GET: api/PlatoPedido/Pedido/{idPedido}
+        [ResponseType(typeof(MenuPedido))]
+        [Route("api/PlatoPedido/Pedido/{id}")]
+        public IQueryable<PlatoPedido> GetPlatoPedidosByPedido(int id)
+        {
+            return db.PlatoPedidoes.Where(p => p.PedidoId == id);
+        }
+
         // PUT: api/PlatoPedido/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPlatoPedido(int id, PlatoPedido platoPedido)

@@ -19,11 +19,12 @@ namespace WebServicesFigaro.Models
         [DisplayName("Nombre")]
         public string TituloPlato { get; set; }
         [DisplayName("Precio")]
-        public string PrecioPlato { get; set; }
+        public Decimal PrecioPlato { get; set; }
         [DisplayName("Tiempo de Cocinado (minutos)")]
-        public string TiempoCocinado { get; set; }
+        public int TiempoCocinado { get; set; }
         public string Ingredientes { get; set; }
         public string Utensilios { get; set; }
+        public int Cantidad { get; set; }
 
         public Pedido Pedido { get; set; }
 

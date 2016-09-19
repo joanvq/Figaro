@@ -431,7 +431,7 @@ namespace Figaro.ViewModels
 
             //seleccion por defecto el 2
             var usuarioServices = new UsuarioServices();
-            UsuarioLogueado = await usuarioServices.GetUsuariosAsync(2);
+            UsuarioLogueado = await usuarioServices.GetUsuariosAsync(1);
 
             if(TipoCocinaSeleccionado != null)
             {
@@ -456,6 +456,72 @@ namespace Figaro.ViewModels
             ListaComentariosChef = await comentarioChefServices.GetComentariosChefAsync(idChef);
 
             IsBusy = false;
+        }
+
+        public async Task<bool> NuevoPedido(Pedido pedido)
+        {
+            IsBusy = true;
+
+            var pedidoServices = new PedidoServices();
+            var platoPedidoServices = new PlatoPedidoServices();
+            var menuPedidoServices = new MenuPedidoServices();
+
+            var isSuccessStatusCode = await pedidoServices.PostPedidoAsync(pedido);
+
+            if (isSuccessStatusCode == false)
+            {
+                IsBusy = false;
+                return isSuccessStatusCode;
+            }
+
+            Pedido pedidoCreado = await pedidoServices.GetPedidoByNPedidoAsync(pedido.NPedido);
+
+            foreach (KeyValuePair<Plato, int> platoCant in CarritoCompra.listaPlatos)
+            {
+                PlatoPedido platoPedido = new PlatoPedido();
+                platoPedido.Pedido = pedidoCreado;
+                platoPedido.PrecioPlato = platoCant.Key.Precio;
+                platoPedido.Ingredientes = platoCant.Key.Ingredientes;
+                platoPedido.TiempoCocinado = platoCant.Key.TiempoCocinado;
+                platoPedido.TituloPlato = platoCant.Key.Titulo;
+                platoPedido.Utensilios = platoCant.Key.Utensilios;
+                platoPedido.Cantidad = platoCant.Value;
+
+                isSuccessStatusCode = await platoPedidoServices.PostPlatoPedidoAsync(platoPedido);
+                if (isSuccessStatusCode == false)
+                {
+                    IsBusy = false;
+                    return isSuccessStatusCode;
+                }
+            }
+
+            foreach (KeyValuePair<Menu, int> menuCant in CarritoCompra.listaMenus)
+            {
+                MenuPedido menuPedido = new MenuPedido();
+                menuPedido.Pedido = pedidoCreado;
+                if (menuCant.Key.Entrante != null) menuPedido.Entrante = menuCant.Key.Entrante.Titulo;
+                if (menuCant.Key.Primero != null) menuPedido.Primero = menuCant.Key.Primero.Titulo;
+                if (menuCant.Key.Segundo != null) menuPedido.Segundo = menuCant.Key.Segundo.Titulo;
+                if (menuCant.Key.Guarnicion != null) menuPedido.Guarnicion = menuCant.Key.Guarnicion.Titulo;
+                if (menuCant.Key.Postre != null) menuPedido.Postre = menuCant.Key.Postre.Titulo;
+                menuPedido.PrecioMenu = menuCant.Key.Precio;
+                menuPedido.Ingredientes = menuCant.Key.Ingredientes;
+                menuPedido.TiempoCocinado = menuCant.Key.TiempoCocinado;
+                menuPedido.TituloMenu = menuCant.Key.Titulo;
+                menuPedido.Utensilios = menuCant.Key.Utensilios;
+                menuPedido.Cantidad = menuCant.Value;
+
+                isSuccessStatusCode = await menuPedidoServices.PostMenuPedidoAsync(menuPedido);
+                if (isSuccessStatusCode == false)
+                {
+                    IsBusy = false;
+                    return isSuccessStatusCode;
+                }
+            }
+
+            IsBusy = false;
+            return true;
+
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

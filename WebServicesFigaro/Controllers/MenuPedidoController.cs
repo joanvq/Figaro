@@ -35,6 +35,15 @@ namespace WebServicesFigaro.Controllers
             return Ok(menuPedido);
         }
 
+        // GET: api/MenuPedido/Pedido/{idPedido}
+        [ResponseType(typeof(MenuPedido))]
+        [Route("api/MenuPedido/Pedido/{id}")]
+        public IQueryable<MenuPedido> GetMenuPedidosByPedido(int id)
+        {
+            return db.MenuPedidoes.Where(p => p.PedidoId == id);
+        }
+
+
         // PUT: api/MenuPedido/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutMenuPedido(int id, MenuPedido menuPedido)

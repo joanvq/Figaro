@@ -54,6 +54,7 @@ namespace Figaro.Views
                                         .Replace('/', '-')
                                         .TrimEnd('=');
                 nuevoPedido.NPedido = nPedido;
+
                 Navigation.PushAsync(new ModoPago(nuevoPedido));
             }
 

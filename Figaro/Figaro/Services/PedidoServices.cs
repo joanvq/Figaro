@@ -32,7 +32,6 @@ namespace Figaro.Services
 
         public async Task<Pedido> GetPedidosAsync(int id)
         {
-
             RestClient<Pedido> restClient = new RestClient<Pedido>("Pedido");
 
             var pedido = await restClient.GetAsync(id);
@@ -40,8 +39,19 @@ namespace Figaro.Services
             return pedido;
         }
 
+        public async Task<Pedido> GetPedidoByNPedidoAsync(string nPedido)
+        {
+            RestClient<Pedido> restClient = new RestClient<Pedido>("Pedido/NPedido");
+
+            var listPedido = await restClient.GetByKeywordAsync(nPedido);
+
+            var pedido = listPedido.FirstOrDefault();
+
+            return pedido;
+        }
+
         // Añadir pedido
-        public async Task<bool> PostPlatoAsync(Pedido pedido)
+        public async Task<bool> PostPedidoAsync(Pedido pedido)
         {
 
             RestClient<Pedido> restClient = new RestClient<Pedido>("Pedido");
@@ -49,8 +59,7 @@ namespace Figaro.Services
             var isSuccessStatusCode = await restClient.PostAsync(pedido);
 
             return isSuccessStatusCode;
-
-
+            
         }
     }
 }
