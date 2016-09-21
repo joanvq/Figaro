@@ -5,7 +5,7 @@
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              Title="Chef">
-  <ScrollView>
+  <!--<ScrollView>-->
     <StackLayout Orientation="Vertical"
                Spacing="18" VerticalOptions="FillAndExpand">
       <Grid>
@@ -63,38 +63,47 @@
         </StackLayout>
       </Grid>
 
-      <StackLayout Padding="10,0">
-        <Label Text="{Binding ChefSeleccionado.Subtitulo}" FontSize="20"/>
-        <Label Text="Descripción" FontSize="24" />
-        <Label Text="{Binding ChefSeleccionado.Descripcion}" FontSize="14" />
-        <Label Text="Tipo de Cocina" FontSize="24" />
-        <Label Text="{Binding ChefSeleccionado.TipoCocina.Titulo}" FontSize="14" />
-        <Label Text="Edad" FontSize="24" />
-        <Label Text="{Binding ChefSeleccionado.Edad}" FontSize="14" />
-        <Label Text="Ciudad/Zona" FontSize="24" />
-        <Label Text="{Binding ChefSeleccionado.Zona.Titulo}" FontSize="14" />
-      </StackLayout>
-
       <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
         <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
           <Grid x:Name="GridTab" Padding="0,14,0,0">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="*"/>
               <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <Label x:Name="PerfilTab" TextColor="#CC0311" Text="PERFIL" FontSize="14"
+                    FontAttributes="None"  Grid.Column="0" HorizontalOptions="Center"/>
             <Label x:Name="DisponibilidadTab" Text="DISPONIBILIDAD" FontSize="14"
-                    FontAttributes="Bold" TextColor="#CC0311"  Grid.Column="0" HorizontalOptions="Center"/>
+                    FontAttributes="Bold"  Grid.Column="1" HorizontalOptions="Center"/>
             <Label x:Name="OpinionesTab" Text="OPINIONES" FontSize="14"
-                    FontAttributes="None"  Grid.Column="1" HorizontalOptions="Center"/>
-            <BoxView x:Name="LineaDisponibilidadTab" Color="#CC0311" HeightRequest="0.5"
+                    FontAttributes="None"  Grid.Column="2" HorizontalOptions="Center"/>
+            <BoxView x:Name="LineaPerfilTab" Color="#CC0311" HeightRequest="0.5"
                       VerticalOptions="End" Grid.Column="0" IsVisible="True"/>
-            <BoxView x:Name="LineaOpinionesTab" Color="#CC0311" HeightRequest="0.5"
+            <BoxView x:Name="LineaDisponibilidadTab" Color="#CC0311" HeightRequest="0.5"
                       VerticalOptions="End" Grid.Column="1" IsVisible="False"/>
+            <BoxView x:Name="LineaOpinionesTab" Color="#CC0311" HeightRequest="0.5"
+                      VerticalOptions="End" Grid.Column="2" IsVisible="False"/>
           </Grid>
-          <Label x:Name="TabAMostrar" Text="-----------POR HACER-----------" FontSize="14" Opacity="0.7"
-                 TranslationX="10" TranslationY="14"
-                 HeightRequest="100"/>
-          <!--Faltaaaa-->
+         
+          <!--Perfil-->
+          <StackLayout x:Name="PerfilAMostrar" Padding="10,0">
+            <Label Text="{Binding ChefSeleccionado.Subtitulo}" FontSize="20"/>
+            <Label Text="Descripción" FontSize="24" />
+            <Label Text="{Binding ChefSeleccionado.Descripcion}" FontSize="14" />
+            <Label Text="Tipo de Cocina" FontSize="24" />
+            <Label Text="{Binding ChefSeleccionado.TipoCocina.Titulo}" FontSize="14" />
+            <Label Text="Edad" FontSize="24" />
+            <Label Text="{Binding ChefSeleccionado.Edad}" FontSize="14" />
+            <Label Text="Ciudad/Zona" FontSize="24" />
+            <Label Text="{Binding ChefSeleccionado.Zona.Titulo}" FontSize="14" />
+          </StackLayout>
+
+          <!--Disponibilidad-->
+          <Label x:Name="DisponibilidadAMostrar" Text="-----------POR HACER-----------" FontSize="14" Opacity="0.7"
+             TranslationX="10" TranslationY="14"
+             HeightRequest="100" IsVisible="False"/>
+
+          <!--Opiniones-->
           <ListView x:Name="OpinionesAMostrar"
                      ItemsSource="{Binding ListaComentariosChef}"
 		                 HasUnevenRows="true"
@@ -138,5 +147,5 @@
       </ScrollView>
       
     </StackLayout>
-  </ScrollView>
+  <!--</ScrollView>-->
 </ContentPage>

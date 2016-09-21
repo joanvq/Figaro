@@ -15,8 +15,14 @@ namespace Figaro.Models
         public string CP { get; set; }
         public string Estado { get; set; }
         public Usuario Usuario { get; set; }
+        public int UsuarioId { get; set; }
         public Zona Zona { get; set; }
+        public int ZonaId { get; set; }
         public decimal PrecioTotal { get; set; }
         public string Comentario { get; set; }
+        public DateTime FechaPedido { get; set; }
+        public string NombreChef { get; set; }
+        public string TipoCocina { get; set; }
+
     }
 }

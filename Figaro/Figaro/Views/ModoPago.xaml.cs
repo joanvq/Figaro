@@ -25,9 +25,11 @@ namespace Figaro.Views
         {
             InitializeComponent();
 
-            NombreApellidos.Text = pedido.Usuario.NombreApellidos;
+            var mainViewModel = BindingContext as MainViewModel; 
+
+            NombreApellidos.Text = mainViewModel.UsuarioLogueado.NombreApellidos;
             Direccion.Text = pedido.Direccion;
-            Zona.Text = pedido.Zona.Titulo;
+            Zona.Text = mainViewModel.ZonaSeleccionada.Titulo;
             NombreChef.Text = "nombrechef"; //cambiar
             ApellidosChef.Text = "apellidochef1 apellidochef2"; //cambiar
             FechaHora.Text = "14/09/2016 21:00"; //cambiar
@@ -47,14 +49,39 @@ namespace Figaro.Views
 
         public async void PagarPaypal_OnClicked(object sender, EventArgs e)
         {
-            var result = await CrossPayPalManager.Current.Buy(new PayPalItem[] {
-                new PayPalItem ("sample item #1", 2, new Decimal (87.50), "USD",
-                    "sku-12345678"),
-                new PayPalItem ("free sample item #2", 1, new Decimal (0.00),
-                    "USD", "sku-zero-price"),
-                new PayPalItem ("sample item #3 with a longer name", 6, new Decimal (37.99),
-                    "USD", "sku-33333")
-            }, new Decimal(20.5), new Decimal(13.20));
+            
+            var mainViewModel = BindingContext as MainViewModel;
+
+            //Numero de platos y menus diferentes que hay en el carrito
+            var cantidad = mainViewModel.CarritoCompra.listaMenus.Count 
+                + mainViewModel.CarritoCompra.listaPlatos.Count;
+
+            var listaPayPalItems = new PayPalItem[cantidad];
+
+            int i = 0;
+
+            //Sku number = numero de pedido
+            foreach (KeyValuePair<Menu,int> menuCant in mainViewModel.CarritoCompra.listaMenus)
+            {
+                if(i < cantidad)
+                {
+                    listaPayPalItems[i] = new PayPalItem(menuCant.Key.Titulo, (uint)menuCant.Value,
+                        menuCant.Key.Precio, "EUR", pedidoActual.NPedido);
+                    i++;
+                }
+            }
+
+            foreach (KeyValuePair<Plato, int> platoCant in mainViewModel.CarritoCompra.listaPlatos)
+            {
+                if (i < cantidad)
+                {
+                    listaPayPalItems[i] = new PayPalItem(platoCant.Key.Titulo, (uint)platoCant.Value,
+                        platoCant.Key.Precio, "EUR", pedidoActual.NPedido);
+                    i++;
+                }
+            }
+
+            var result = await CrossPayPalManager.Current.Buy(listaPayPalItems, new Decimal(0), new Decimal(0));
 
             if (result.Status == PayPalStatus.Cancelled)
             {
@@ -71,23 +98,23 @@ namespace Figaro.Views
             {
                 //Debug.WriteLine(result.ServerResponse.Response.Id);
                 //Navegar a una nueva pagina con los datos del pedido.
-                await Navigation.PopToRootAsync();
+                //await Navigation.PopToRootAsync();
+
+                ResumenPedido resumenPedido = new ResumenPedido(pedidoActual);
+                //Pop al inicio
+                await Navigation.PushAsync(resumenPedido);
 
                 var pedidoServices = new PedidoServices();
 
-                var mainViewModel = BindingContext as MainViewModel;
-
                 //Añadir pedido a BD
                 var isSuccessStatusCode = await mainViewModel.NuevoPedido(pedidoActual);
-                
+
                 //Vaciar carrito de la compra y variables de pago.
                 mainViewModel.CarritoCompra = new Carrito();
 
-                if (isSuccessStatusCode == false)
-                    await DisplayAlert("Error", "Error guardando pedido en la Base de Datos. Por favor contácte con ....", "OK");
+                resumenPedido.EnviarMail(isSuccessStatusCode);
 
-                else await DisplayAlert("Pago", "El pago se realizó correctamente", "OK");
-                
+
             }
         }
     }

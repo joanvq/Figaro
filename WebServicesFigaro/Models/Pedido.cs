@@ -32,6 +32,11 @@ namespace WebServicesFigaro.Models
         [DisplayName("Precio")]
         public Decimal PrecioTotal { get; set; }
         public string Comentario { get; set; }
+        public DateTime FechaPedido { get; set; }
+        [DisplayName("Nombre Chef")]
+        public string NombreChef { get; set; }
+        [DisplayName("Tipo Cocina")]
+        public string TipoCocina { get; set; }
         //Falta
         //Ocupación chef
 

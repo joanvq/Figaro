@@ -474,12 +474,14 @@ namespace Figaro.ViewModels
                 return isSuccessStatusCode;
             }
 
+            // Obtengo el pedido que acabamos de crear para obtener el Id 
+            // creado automaticamente por la BD.
             Pedido pedidoCreado = await pedidoServices.GetPedidoByNPedidoAsync(pedido.NPedido);
 
             foreach (KeyValuePair<Plato, int> platoCant in CarritoCompra.listaPlatos)
             {
                 PlatoPedido platoPedido = new PlatoPedido();
-                platoPedido.Pedido = pedidoCreado;
+                platoPedido.PedidoId = pedidoCreado.Id;
                 platoPedido.PrecioPlato = platoCant.Key.Precio;
                 platoPedido.Ingredientes = platoCant.Key.Ingredientes;
                 platoPedido.TiempoCocinado = platoCant.Key.TiempoCocinado;
@@ -498,7 +500,7 @@ namespace Figaro.ViewModels
             foreach (KeyValuePair<Menu, int> menuCant in CarritoCompra.listaMenus)
             {
                 MenuPedido menuPedido = new MenuPedido();
-                menuPedido.Pedido = pedidoCreado;
+                menuPedido.PedidoId = pedidoCreado.Id;
                 if (menuCant.Key.Entrante != null) menuPedido.Entrante = menuCant.Key.Entrante.Titulo;
                 if (menuCant.Key.Primero != null) menuPedido.Primero = menuCant.Key.Primero.Titulo;
                 if (menuCant.Key.Segundo != null) menuPedido.Segundo = menuCant.Key.Segundo.Titulo;

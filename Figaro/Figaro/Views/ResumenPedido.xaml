@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Figaro"
+             x:Class="Figaro.Views.ResumenPedido"
+             xmlns:ui="clr-namespace:Figaro.UI;assembly=Figaro"
+             BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+             x:Name="resumenPedido"
+             Title="Resumen Pedido"
+             NavigationPage.HasBackButton="False">  
+
+  <StackLayout Orientation="Vertical">
+
+    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                       IsVisible="{Binding IsBusy}" />
+
+    <StackLayout Orientation="Horizontal">
+      <Label x:Name="status"/>
+      <Label x:Name="emailUsuario"/>
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal">
+      <Label Text="Numero de pedido:" />
+      <Label x:Name="nPedido" />
+    </StackLayout>
+
+    <Label Text="Añadir otros datos...." />
+
+    <Button Text="Cerrar" Clicked="Cerrar_OnClicked"/>
+    
+  </StackLayout>
+  
+</ContentPage>

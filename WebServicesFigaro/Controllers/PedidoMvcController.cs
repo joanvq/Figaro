@@ -52,7 +52,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NPedido,Direccion,Estado,UsuarioId,ZonaId,NombreApellidos,CP,PrecioTotal,Comentario")] Pedido pedido)
+        public ActionResult Create([Bind(Include = "Id,NPedido,Direccion,Estado,UsuarioId,ZonaId,NombreApellidos,CP,PrecioTotal,Comentario,NombreChef,TipoCocina,FechaPedido")] Pedido pedido)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,NPedido,Direccion,Estado,UsuarioId,ZonaId,NombreApellidos,CP,PrecioTotal,Comentario")] Pedido pedido)
+        public ActionResult Edit([Bind(Include = "Id,NPedido,Direccion,Estado,UsuarioId,ZonaId,NombreApellidos,CP,PrecioTotal,Comentario,NombreChef,TipoCocina,FechaPedido")] Pedido pedido)
         {
             if (ModelState.IsValid)
             {

@@ -33,13 +33,13 @@ namespace Figaro.Views
             {
                 DisplayAlert("Error", "Faltan datos", "OK");
             }
-            else if(direccion.Text != null)
+            else if(direccion.Text != null && cp.Text != null && direccion.Text != "" && cp.Text != "")
             {
                 Pedido nuevoPedido = new Pedido();
                 nuevoPedido.Direccion = direccion.Text;
-                nuevoPedido.Usuario = mainViewModel.UsuarioLogueado;
+                nuevoPedido.UsuarioId = mainViewModel.UsuarioLogueado.Id;
                 nuevoPedido.Estado = "pendiente";
-                nuevoPedido.Zona = mainViewModel.ZonaSeleccionada;
+                nuevoPedido.ZonaId = mainViewModel.ZonaSeleccionada.Id;
                 nuevoPedido.PrecioTotal = precioTotal;
                 nuevoPedido.Comentario = comentario.Text;
                 nuevoPedido.CP = cp.Text;
@@ -54,6 +54,9 @@ namespace Figaro.Views
                                         .Replace('/', '-')
                                         .TrimEnd('=');
                 nuevoPedido.NPedido = nPedido;
+                nuevoPedido.FechaPedido = DateTime.Now;
+                nuevoPedido.NombreChef = mainViewModel.CarritoCompra.chef.NombreApellidos;
+                nuevoPedido.TipoCocina = mainViewModel.TipoCocinaSeleccionado.Titulo;
 
                 Navigation.PushAsync(new ModoPago(nuevoPedido));
             }

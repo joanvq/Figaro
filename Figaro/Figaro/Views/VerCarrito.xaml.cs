@@ -1,4 +1,5 @@
 ﻿using Figaro.Models;
+using Figaro.Other;
 using Figaro.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,53 @@ namespace Figaro.Views
     public partial class VerCarrito : ContentPage
     {
         private decimal costeTotal = 0;
+        private List<KeyValuePair<PlatoMenu, int>> listaCarrito = null;
 
         public VerCarrito()
         {
+            
             InitializeComponent();
 
             var mainViewModel = BindingContext as MainViewModel;
+
+            // Combinar lista menus y platos para poder imprimir una sola lista 
+            // Se usa la clase PlatoMenu, que es una classe generica que puede contener los 
+            // campos que comparten el plato y el menú. 
+            listaCarrito = new List<KeyValuePair<PlatoMenu, int>>();
+            foreach (var menuCant in mainViewModel.CarritoCompra.listaMenus)
+            {
+                PlatoMenu menu = new PlatoMenu();
+                menu.Categoria = menuCant.Key.Categoria;
+                menu.Descripcion = menuCant.Key.Descripcion;
+                menu.HorasCocinado = menuCant.Key.HorasCocinado;
+                menu.Imagen = menuCant.Key.Imagen;
+                menu.Ingredientes = menuCant.Key.Ingredientes;
+                menu.Precio = menuCant.Key.Precio;
+                menu.TiempoCocinado = menuCant.Key.TiempoCocinado;
+                menu.Titulo = menuCant.Key.Titulo;
+                menu.Utensilios = menuCant.Key.Utensilios;
+                menu.Valoracion = menuCant.Key.Valoracion;
+                KeyValuePair<PlatoMenu, int> platoMenuCant = new KeyValuePair<PlatoMenu, int>(menu, menuCant.Value);
+                listaCarrito.Add(platoMenuCant);
+            }
+            foreach (var platoCant in mainViewModel.CarritoCompra.listaPlatos)
+            {
+                PlatoMenu plato = new PlatoMenu();
+                plato.Categoria = platoCant.Key.Categoria;
+                plato.Descripcion = platoCant.Key.Descripcion;
+                plato.HorasCocinado = platoCant.Key.HorasCocinado;
+                plato.Imagen = platoCant.Key.Imagen;
+                plato.Ingredientes = platoCant.Key.Ingredientes;
+                plato.Precio = platoCant.Key.Precio;
+                plato.TiempoCocinado = platoCant.Key.TiempoCocinado;
+                plato.Titulo = platoCant.Key.Titulo;
+                plato.Utensilios = platoCant.Key.Utensilios;
+                plato.Valoracion = platoCant.Key.Valoracion;
+                KeyValuePair<PlatoMenu, int> platoMenuCant = new KeyValuePair<PlatoMenu, int>(plato, platoCant.Value);
+                listaCarrito.Add(platoMenuCant);
+            }
+
+            ListaPlatosMenus.ItemsSource = listaCarrito;
 
             int tiempoTotal = 0;
             decimal coste = 0;

@@ -10,8 +10,9 @@ namespace Figaro.Models
 
         public int Id { get; set; }
         public Pedido Pedido { get; set; }
+        public int PedidoId { get; set; }
         public string TituloMenu { get; set; }
-        public Decimal PrecioMenu { get; set; }
+        public decimal PrecioMenu { get; set; }
         public string Entrante { get; set; }
         public string Primero { get; set; }
         public string Segundo { get; set; }

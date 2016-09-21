@@ -18,11 +18,12 @@
     <ListView x:Name="ListaMenusView"
               ItemsSource="{Binding ListaMenus}"
 		          HasUnevenRows="true"
-              ItemTapped="ListView_OnItemTapped">
+              ItemTapped="ListView_OnItemTapped"
+              HorizontalOptions="FillAndExpand">
       <ListView.ItemTemplate>
         <DataTemplate>
            <ViewCell>
-             <StackLayout Orientation="Horizontal" Padding="12,6">
+             <StackLayout Orientation="Horizontal" Padding="12,6" >
                 <controls:CircleImage Source="{Binding Imagen}" WidthRequest="70.0" 
                                       HeightRequest="70.0" Aspect="AspectFill" />
                 <Grid Padding="10,0,0,0">
@@ -31,15 +32,16 @@
                     <RowDefinition Height="Auto"/>
                   </Grid.RowDefinitions>
                   <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="AUto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                   </Grid.ColumnDefinitions>
                   <Label Text="{Binding Titulo}"
-                          FontSize="24" HorizontalOptions="StartAndExpand" 
+                          FontSize="24" HorizontalOptions="Start" 
                           Grid.Row="0"
                           Grid.Column="0"/>
                   <Label Text="{Binding Descripcion}" 
-                          FontSize="18" HorizontalOptions="StartAndExpand"
+                          FontSize="18" HorizontalOptions="Start"
                           Opacity="0.6"
                           Grid.Row="1"
                           Grid.Column="0"/>
@@ -47,10 +49,10 @@
                           FontSize="14" HorizontalOptions="End"
                           Opacity="0.6"
                           Grid.Row="0"
-                          Grid.Column="1"/>
+                          Grid.Column="2"/>
                     <Button ClassId="{Binding Id}" BackgroundColor="#CC0311" Text="+" TextColor="White"
                             FontSize="24" WidthRequest="10" HorizontalOptions="End"
-                            Grid.Row="1" Grid.Column="1"
+                            Grid.Row="1" Grid.Column="2"
                             Clicked="AnadirCesta_OnClick"
                             />
                 </Grid>
