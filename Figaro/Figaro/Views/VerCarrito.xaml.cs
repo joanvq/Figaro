@@ -15,22 +15,39 @@ namespace Figaro.Views
     public partial class VerCarrito : ContentPage
     {
         private decimal costeTotal = 0;
+
         private List<KeyValuePair<PlatoMenu, int>> listaCarrito = null;
+
+        private List<KeyValuePair<PlatoMenu, int>> ListaCarrito
+        {
+            get { return listaCarrito; }
+            set
+            {
+                listaCarrito = value;
+                OnPropertyChanged();
+            }
+        }
 
         public VerCarrito()
         {
-            
+
             InitializeComponent();
+
+            InitializeData();
+        }
+
+        public void InitializeData() { 
 
             var mainViewModel = BindingContext as MainViewModel;
 
             // Combinar lista menus y platos para poder imprimir una sola lista 
             // Se usa la clase PlatoMenu, que es una classe generica que puede contener los 
             // campos que comparten el plato y el menú. 
-            listaCarrito = new List<KeyValuePair<PlatoMenu, int>>();
+            ListaCarrito = new List<KeyValuePair<PlatoMenu, int>>();
             foreach (var menuCant in mainViewModel.CarritoCompra.listaMenus)
             {
                 PlatoMenu menu = new PlatoMenu();
+                menu.Id = "M" + menuCant.Key.Id;
                 menu.Categoria = menuCant.Key.Categoria;
                 menu.Descripcion = menuCant.Key.Descripcion;
                 menu.HorasCocinado = menuCant.Key.HorasCocinado;
@@ -42,11 +59,12 @@ namespace Figaro.Views
                 menu.Utensilios = menuCant.Key.Utensilios;
                 menu.Valoracion = menuCant.Key.Valoracion;
                 KeyValuePair<PlatoMenu, int> platoMenuCant = new KeyValuePair<PlatoMenu, int>(menu, menuCant.Value);
-                listaCarrito.Add(platoMenuCant);
+                ListaCarrito.Add(platoMenuCant);
             }
             foreach (var platoCant in mainViewModel.CarritoCompra.listaPlatos)
             {
                 PlatoMenu plato = new PlatoMenu();
+                plato.Id = "P" + platoCant.Key.Id;
                 plato.Categoria = platoCant.Key.Categoria;
                 plato.Descripcion = platoCant.Key.Descripcion;
                 plato.HorasCocinado = platoCant.Key.HorasCocinado;
@@ -58,10 +76,10 @@ namespace Figaro.Views
                 plato.Utensilios = platoCant.Key.Utensilios;
                 plato.Valoracion = platoCant.Key.Valoracion;
                 KeyValuePair<PlatoMenu, int> platoMenuCant = new KeyValuePair<PlatoMenu, int>(plato, platoCant.Value);
-                listaCarrito.Add(platoMenuCant);
+                ListaCarrito.Add(platoMenuCant);
             }
 
-            ListaPlatosMenus.ItemsSource = listaCarrito;
+            ListaPlatosMenus.ItemsSource = ListaCarrito;
 
             int tiempoTotal = 0;
             decimal coste = 0;
@@ -99,7 +117,7 @@ namespace Figaro.Views
             Total.Text = costeTotal.ToString() + " €";
         }
 
-        public void Menu_OnItemTapped(object sender, ItemTappedEventArgs e) 
+        private void Menu_OnItemTapped(object sender, ItemTappedEventArgs e) 
         {
             ((ListView)sender).SelectedItem = null; // de-select the row
             var button = new Button
@@ -144,12 +162,60 @@ namespace Figaro.Views
             
         }
 
-        public void Plato_OnItemTapped(object sender, ItemTappedEventArgs e)
+        private void Plato_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             ((ListView)sender).SelectedItem = null; // de-select the row
         }
 
-        public void Pedir_OnClicked(object sender, EventArgs e)
+        private void QuitarElemento_OnTapped(object sender, EventArgs e)
+        {
+            var mainViewModel = BindingContext as MainViewModel;
+            Image img = (Image)sender;
+
+            //quitar plato del carrito
+            if (img.ClassId.Substring(0, 1) == "P")
+            {
+                var newid = Int32.Parse(img.ClassId.Substring(1));
+                var elemento = mainViewModel.CarritoCompra.listaPlatos.FirstOrDefault(l => l.Key.Id == newid);
+                if (!elemento.Equals(new KeyValuePair<Plato, int>()))
+                {
+                    var newElemento = new KeyValuePair<Plato, int>(elemento.Key, elemento.Value - 1);
+                    var index = mainViewModel.CarritoCompra.listaPlatos.FindIndex(l => l.Key.Id == newid);
+                    if (newElemento.Value > 0)
+                    {
+                        mainViewModel.CarritoCompra.listaPlatos[index] = newElemento;
+                    }
+                    else
+                    {
+                        mainViewModel.CarritoCompra.listaPlatos.RemoveAt(index);
+                    }
+                }
+            }
+
+            //quitar menu del carrito
+            if (img.ClassId.Substring(0, 1) == "M")
+            {
+                var newid = Int32.Parse(img.ClassId.Substring(1));
+                var elemento = mainViewModel.CarritoCompra.listaMenus.FirstOrDefault(l => l.Key.Id == newid);
+                if (!elemento.Equals(new KeyValuePair<Menu, int>()))
+                {
+                    var newElemento = new KeyValuePair<Menu, int>(elemento.Key, elemento.Value - 1);
+                    var index = mainViewModel.CarritoCompra.listaMenus.FindIndex(l => l.Key.Id == newid);
+                    if (newElemento.Value > 0)
+                    {
+                        mainViewModel.CarritoCompra.listaMenus[index] = newElemento;
+                    }
+                    else
+                    {
+                        mainViewModel.CarritoCompra.listaMenus.RemoveAt(index);
+                    }
+                }
+            }
+
+            InitializeData();
+        }
+
+        private void Pedir_OnClicked(object sender, EventArgs e)
         {
             var mainViewModel = BindingContext as MainViewModel;
 

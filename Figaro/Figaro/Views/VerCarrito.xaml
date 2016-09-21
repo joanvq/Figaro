@@ -35,7 +35,11 @@
                     </Grid.ColumnDefinitions>
                     <!--Cantidad-->
                     <StackLayout Grid.Column="0" Orientation="Horizontal">
-                      <Image Source="minus.png" HeightRequest="16" />
+                      <Image ClassId="{Binding Key.Id}" Source="minus.png" HeightRequest="16">
+                        <Image.GestureRecognizers>
+                          <TapGestureRecognizer Tapped="QuitarElemento_OnTapped"/>
+                        </Image.GestureRecognizers>
+                      </Image>
                       <Label Text="{Binding Value}" FontSize="16" Margin="10,0,0,0"/>
                       <Label Text="-" FontSize="16"/>
                       <Label Text = "{Binding Key.Titulo}" FontSize="16"/>
