@@ -19,7 +19,9 @@ namespace WebServicesFigaro.Controllers
         // GET: api/PlatoCarrito
         public IQueryable<PlatoCarrito> GetPlatoCarritoes()
         {
-            return db.PlatoCarritoes;
+            return db.PlatoCarritoes
+                .Include(p => p.Usuario)
+                .Include(p => p.Plato);
         }
 
         // GET: api/PlatoCarrito/5
@@ -40,7 +42,9 @@ namespace WebServicesFigaro.Controllers
         [Route("api/PlatoCarrito/Usuario/{id}")]
         public IQueryable<PlatoCarrito> GetPlatoPedidosByPedido(int id)
         {
-            return db.PlatoCarritoes.Where(p => p.UsuarioId == id);
+            return db.PlatoCarritoes.Where(p => p.UsuarioId == id)
+                .Include(p => p.Usuario)
+                .Include(p => p.Plato);
         }
 
         // PUT: api/PlatoCarrito/5

@@ -10,118 +10,118 @@ using WebServicesFigaro.Models;
 
 namespace WebServicesFigaro.Controllers
 {
-    public class PlatoCarritoMvcController : Controller
+    public class MenuCarritoMvcController : Controller
     {
         private DBContext db = new DBContext();
 
-        // GET: PlatoCarritoMvc
+        // GET: MenuCarritoMvc
         public ActionResult Index()
         {
-            var platoCarritoes = db.PlatoCarritoes.Include(p => p.Plato).Include(p => p.Usuario);
-            return View(platoCarritoes.ToList());
+            var menuCarritoes = db.MenuCarritoes.Include(m => m.Menu).Include(m => m.Usuario);
+            return View(menuCarritoes.ToList());
         }
 
-        // GET: PlatoCarritoMvc/Details/5
+        // GET: MenuCarritoMvc/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PlatoCarrito platoCarrito = db.PlatoCarritoes.Include(p => p.Plato).Include(p => p.Usuario)
-                .FirstOrDefault(p => p.Id == id);
-            if (platoCarrito == null)
+            MenuCarrito menuCarrito = db.MenuCarritoes.Include(m => m.Menu).Include(m => m.Usuario)
+                .FirstOrDefault(m => m.Id == id);
+            if (menuCarrito == null)
             {
                 return HttpNotFound();
             }
-            return View(platoCarrito);
+            return View(menuCarrito);
         }
 
-        // GET: PlatoCarritoMvc/Create
+        // GET: MenuCarritoMvc/Create
         public ActionResult Create()
         {
-            ViewBag.PlatoId = new SelectList(db.Platoes, "Id", "Titulo");
+            ViewBag.MenuId = new SelectList(db.Menus, "Id", "Titulo");
             ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre");
             return View();
         }
 
-        // POST: PlatoCarritoMvc/Create
+        // POST: MenuCarritoMvc/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UsuarioId,PlatoId,Cantidad")] PlatoCarrito platoCarrito)
+        public ActionResult Create([Bind(Include = "Id,UsuarioId,MenuId,Cantidad")] MenuCarrito menuCarrito)
         {
             if (ModelState.IsValid)
             {
-                db.PlatoCarritoes.Add(platoCarrito);
+                db.MenuCarritoes.Add(menuCarrito);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PlatoId = new SelectList(db.Platoes, "Id", "Titulo", platoCarrito.PlatoId);
-            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre", platoCarrito.UsuarioId);
-            return View(platoCarrito);
+            ViewBag.MenuId = new SelectList(db.Menus, "Id", "Titulo", menuCarrito.MenuId);
+            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre", menuCarrito.UsuarioId);
+            return View(menuCarrito);
         }
 
-        // GET: PlatoCarritoMvc/Edit/5
+        // GET: MenuCarritoMvc/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PlatoCarrito platoCarrito = db.PlatoCarritoes.Find(id);
-            if (platoCarrito == null)
+            MenuCarrito menuCarrito = db.MenuCarritoes.Find(id);
+            if (menuCarrito == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.PlatoId = new SelectList(db.Platoes, "Id", "Titulo", platoCarrito.PlatoId);
-            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre", platoCarrito.UsuarioId);
-            return View(platoCarrito);
+            ViewBag.MenuId = new SelectList(db.Menus, "Id", "Titulo", menuCarrito.MenuId);
+            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre", menuCarrito.UsuarioId);
+            return View(menuCarrito);
         }
 
-        // POST: PlatoCarritoMvc/Edit/5
+        // POST: MenuCarritoMvc/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UsuarioId,PlatoId,Cantidad")] PlatoCarrito platoCarrito)
+        public ActionResult Edit([Bind(Include = "Id,UsuarioId,MenuId,Cantidad")] MenuCarrito menuCarrito)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(platoCarrito).State = EntityState.Modified;
+                db.Entry(menuCarrito).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PlatoId = new SelectList(db.Platoes, "Id", "Titulo", platoCarrito.PlatoId);
-            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre", platoCarrito.UsuarioId);
-            return View(platoCarrito);
+            ViewBag.MenuId = new SelectList(db.Menus, "Id", "Titulo", menuCarrito.MenuId);
+            ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre", menuCarrito.UsuarioId);
+            return View(menuCarrito);
         }
 
-        // GET: PlatoCarritoMvc/Delete/5
+        // GET: MenuCarritoMvc/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PlatoCarrito platoCarrito = db.PlatoCarritoes.Include(p => p.Plato).Include(p => p.Usuario)
-                .FirstOrDefault(p => p.Id == id);
-            if (platoCarrito == null)
+            MenuCarrito menuCarrito = db.MenuCarritoes.Include(m => m.Menu).Include(m => m.Usuario)
+                .FirstOrDefault(m => m.Id == id);
+            if (menuCarrito == null)
             {
                 return HttpNotFound();
             }
-            return View(platoCarrito);
+            return View(menuCarrito);
         }
 
-        // POST: PlatoCarritoMvc/Delete/5
+        // POST: MenuCarritoMvc/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PlatoCarrito platoCarrito = db.PlatoCarritoes.Find(id);
-            db.PlatoCarritoes.Remove(platoCarrito);
+            MenuCarrito menuCarrito = db.MenuCarritoes.Find(id);
+            db.MenuCarritoes.Remove(menuCarrito);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

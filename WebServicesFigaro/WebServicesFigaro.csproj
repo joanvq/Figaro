@@ -177,6 +177,8 @@
     <Compile Include="Controllers\ChefMvcController.cs" />
     <Compile Include="Controllers\ComentarioChefController.cs" />
     <Compile Include="Controllers\ComentarioChefMvcController.cs" />
+    <Compile Include="Controllers\MenuCarritoController.cs" />
+    <Compile Include="Controllers\MenuCarritoMvcController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MenuMvcController.cs" />
     <Compile Include="Controllers\MenuPedidoController.cs" />
@@ -337,6 +339,11 @@
     <Content Include="Views\PlatoCarritoMvc\Details.cshtml" />
     <Content Include="Views\PlatoCarritoMvc\Edit.cshtml" />
     <Content Include="Views\PlatoCarritoMvc\Index.cshtml" />
+    <Content Include="Views\MenuCarritoMvc\Create.cshtml" />
+    <Content Include="Views\MenuCarritoMvc\Delete.cshtml" />
+    <Content Include="Views\MenuCarritoMvc\Details.cshtml" />
+    <Content Include="Views\MenuCarritoMvc\Edit.cshtml" />
+    <Content Include="Views\MenuCarritoMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -20,14 +20,16 @@ namespace WebServicesFigaro.Controllers
         public IQueryable<Usuario> GetUsuarios()
         {
             return db.Usuarios
-                .Include(p => p.Zona);
+                .Include(p => p.Zona)
+                .Include(p => p.ChefSeleccionado);
         }
 
         // GET: api/Usuario/5
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult GetUsuario(int id)
         {
-            Usuario usuario = db.Usuarios.Include(u => u.Zona).FirstOrDefault(u => u.Id == id);
+            Usuario usuario = db.Usuarios.Include(u => u.Zona).Include(u => u.ChefSeleccionado)
+                .FirstOrDefault(u => u.Id == id);
             if (usuario == null)
             {
                 return NotFound();

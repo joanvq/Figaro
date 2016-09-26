@@ -39,6 +39,9 @@ namespace Figaro.ViewModels
         
         private static Carrito carritoCompra = new Carrito();
 
+        private List<PlatoCarrito> listaPlatoCarrito;
+        private List<MenuCarrito> listaMenuCarrito;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         /*----Propiedades-----*/
@@ -211,7 +214,7 @@ namespace Figaro.ViewModels
             }
         }
 
-        /* OTROS */
+        /* CARRITO */
 
         public Carrito CarritoCompra
         {
@@ -222,6 +225,28 @@ namespace Figaro.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public List<MenuCarrito> ListaMenuCarrito
+        {
+            get { return listaMenuCarrito; }
+            set
+            {
+                listaMenuCarrito = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<PlatoCarrito> ListaPlatoCarrito
+        {
+            get { return listaPlatoCarrito; }
+            set
+            {
+                listaPlatoCarrito = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /* OTROS */
 
         public bool IsBusy
         {
@@ -404,11 +429,16 @@ namespace Figaro.ViewModels
             var zonaServices = new ZonaServices();
             ListaZonas = await zonaServices.GetZonaAsync();
 
-            //seleccion por defecto el 2
+            //seleccion por defecto el 1 - cambiar cuando se implemente el login
             var usuarioServices = new UsuarioServices();
             UsuarioLogueado = await usuarioServices.GetUsuariosAsync(1);
 
-            if(TipoCocinaSeleccionado != null)
+            var platoCarritoServices = new PlatoCarritoServices();
+            ListaPlatoCarrito = await platoCarritoServices.GetPlatoCarritoByUsuarioAsync(UsuarioLogueado.Id);
+            var menuCarritoServices = new MenuCarritoServices();
+            ListaMenuCarrito = await menuCarritoServices.GetMenuCarritoByUsuarioAsync(UsuarioLogueado.Id);
+            
+            if (TipoCocinaSeleccionado != null)
             {
                 ListaPlatos = ListaPlatos.Where(plato => plato.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
                 ListaMenus = ListaMenus.Where(menu => menu.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
