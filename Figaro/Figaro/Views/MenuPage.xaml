@@ -51,7 +51,7 @@
                           Grid.Row="0"
                           Grid.Column="2"/>
                     <Button ClassId="{Binding Id}" BackgroundColor="#CC0311" Text="+" TextColor="White"
-                            FontSize="24" WidthRequest="10" HorizontalOptions="End"
+                            FontSize="24" WidthRequest="10" 
                             Grid.Row="1" Grid.Column="2"
                             Clicked="AnadirCesta_OnClick"
                             />

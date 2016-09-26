@@ -270,31 +270,6 @@ namespace Figaro.ViewModels
             }
         }
 
-        public Command PutCommand
-        {
-            get
-            {
-                return new Command(async () =>
-                {
-                    IsBusy = true;
-
-                    var platosServices = new PlatosServices();
-                    var isSuccess = await platosServices.PutPlatoAsync(platoSeleccionado.Id, platoSeleccionado);
-
-                    if (isSuccess)
-                    {
-                        StatusMessage = "Se ha modificado correctamente.";
-                    }
-                    else
-                    {
-                        StatusMessage = "No se ha podido modificar.";
-                    }
-
-                    IsBusy = false;
-                });
-            }
-        }
-
         public Command SearchCommand
         {
             get
@@ -525,6 +500,20 @@ namespace Figaro.ViewModels
             return true;
 
         }
+
+        public async Task<bool> ModificarUsuarioAsync()
+        {
+            IsBusy = true;
+
+            var usuarioServices = new UsuarioServices();
+
+            var isSuccess = await usuarioServices.PutUsuarioAsync(usuarioLogueado.Id, usuarioLogueado);
+
+            IsBusy = false;
+
+            return isSuccess;
+        }
+
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

@@ -50,7 +50,6 @@ namespace Figaro.Services
             return pedido;
         }
 
-        // Añadir pedido
         public async Task<bool> PostPedidoAsync(Pedido pedido)
         {
 

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Figaro"
+             x:Class="Figaro.Views.UserPage"
+              xmlns:ui="clr-namespace:Figaro.UI;assembly=Figaro"
+              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+              x:Name="userPage"
+              Title="Mi Perfil">
+  <StackLayout>
+    <ScrollView>
+      <StackLayout Orientation="Vertical">
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}" />
+        <controls:CircleImage Source="{Binding UsuarioLogueado.Imagen}" WidthRequest="70.0"
+                                        HeightRequest="70.0" Aspect="AspectFit" />
+        <Label Text="Nombre" />
+        <Entry x:Name="Nombre" Text="{Binding UsuarioLogueado.Nombre}" />
+        <Label Text="Apellidos" />
+        <Entry x:Name="Apellidos" Text="{Binding UsuarioLogueado.Apellidos}" />
+        <Label Text="Dirección" />
+        <Entry x:Name="Direccion" Text="{Binding UsuarioLogueado.Direccion}" />
+        <Label Text="Ciudad" />
+        <Entry x:Name="Ciudad" Text="{Binding UsuarioLogueado.Ciudad}" />
+        <Label Text="Género" />
+        <Picker x:Name="Genero" SelectedIndex="{Binding UsuarioLogueado.Genero}"
+                HorizontalOptions="FillAndExpand" SelectedIndexChanged="ActualizarUsuario_OnClicked">
+          <Picker.Items>
+            <x:String>Sin especificar</x:String>
+            <x:String>Hombre</x:String>
+            <x:String>Mujer</x:String>
+          </Picker.Items>
+        </Picker>      
+        <Button Text="Guardar cambios" Clicked="Post_OnClicked" />
+        <Button Text="Ver pedidos realizados" />
+    
+      </StackLayout>
+    </ScrollView>
+    <StackLayout HeightRequest="50" BackgroundColor="#ddd">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="Menu_Button" Grid.Column="0" Source="icono_menu.png"
+                HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+        <Image x:Name="Plato_Button" Grid.Column="1" Source="icono_descubrir.png"
+                HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+        <Image x:Name="Chefs_Button" Grid.Column="2" Source="icon_chefs.png"
+                HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+        <Image x:Name="Profile_Button" Grid.Column="3" Source="icono_profile_select.png"
+                HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+      </Grid>
+    </StackLayout>
+  </StackLayout>
+</ContentPage>

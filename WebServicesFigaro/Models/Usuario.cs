@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebServicesFigaro.Models
 {
@@ -37,7 +38,11 @@ namespace WebServicesFigaro.Models
         public DateTime FechaRegistro { get; set; }
         [DisplayName("Género")]
         public string genero { get; set; }
+        [DisplayName("ChefSeleccionado")]
+        [ForeignKey("ChefSeleccionado")]
+        public int ChefSeleccionadoId { get; set; }
 
+        public Chef ChefSeleccionado { get; set; }
         public Zona Zona { get; set; }
     }
 }

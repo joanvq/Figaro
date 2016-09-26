@@ -183,6 +183,8 @@
     <Compile Include="Controllers\MenuPedidoMvcController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PedidoMvcController.cs" />
+    <Compile Include="Controllers\PlatoCarritoController.cs" />
+    <Compile Include="Controllers\PlatoCarritoMvcController.cs" />
     <Compile Include="Controllers\PlatoMvcController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlatoController.cs" />
@@ -197,11 +199,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609191437306_Initial.cs" />
-    <Compile Include="Migrations\201609191437306_Initial.Designer.cs">
-      <DependentUpon>201609191437306_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201609261058261_carrito.cs" />
+    <Compile Include="Migrations\201609261058261_carrito.Designer.cs">
+      <DependentUpon>201609261058261_carrito.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\MenuCarrito.cs" />
+    <Compile Include="Models\PlatoCarrito.cs" />
     <Compile Include="Models\Chef.cs" />
     <Compile Include="Models\ComentarioChef.cs" />
     <Compile Include="Models\Menu.cs" />
@@ -328,6 +332,11 @@
     <Content Include="Views\MenuPedidoMvc\Details.cshtml" />
     <Content Include="Views\MenuPedidoMvc\Edit.cshtml" />
     <Content Include="Views\MenuPedidoMvc\Index.cshtml" />
+    <Content Include="Views\PlatoCarritoMvc\Create.cshtml" />
+    <Content Include="Views\PlatoCarritoMvc\Delete.cshtml" />
+    <Content Include="Views\PlatoCarritoMvc\Details.cshtml" />
+    <Content Include="Views\PlatoCarritoMvc\Edit.cshtml" />
+    <Content Include="Views\PlatoCarritoMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -338,8 +347,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609191437306_Initial.resx">
-      <DependentUpon>201609191437306_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609261058261_carrito.resx">
+      <DependentUpon>201609261058261_carrito.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

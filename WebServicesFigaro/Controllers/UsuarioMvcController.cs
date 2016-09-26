@@ -31,7 +31,7 @@ namespace WebServicesFigaro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuarios.Include(u => u.Zona).FirstOrDefault(u => u.Id == id);
+            Usuario usuario = db.Usuarios.Include(u => u.Zona).Include(u => u.ChefSeleccionado).FirstOrDefault(u => u.Id == id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -43,6 +43,7 @@ namespace WebServicesFigaro.Controllers
         public ActionResult Create()
         {
             ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo");
+            ViewBag.ChefSeleccionadoId = new SelectList(db.Chefs, "Id", "Apellidos");
             return View();
         }
 
@@ -62,6 +63,7 @@ namespace WebServicesFigaro.Controllers
             }
 
             ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", usuario.ZonaId);
+            ViewBag.ChefSeleccionadoId = new SelectList(db.Chefs, "Id", "Apellidos", usuario.ChefSeleccionadoId);
             return View(usuario);
         }
 
@@ -78,6 +80,7 @@ namespace WebServicesFigaro.Controllers
                 return HttpNotFound();
             }
             ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", usuario.ZonaId);
+            ViewBag.ChefSeleccionadoId = new SelectList(db.Chefs, "Id", "Apellidos", usuario.ChefSeleccionadoId);
             return View(usuario);
         }
 
@@ -95,6 +98,7 @@ namespace WebServicesFigaro.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", usuario.ZonaId);
+            ViewBag.ChefSeleccionadoId = new SelectList(db.Chefs, "Id", "Apellidos", usuario.ChefSeleccionadoId);
             return View(usuario);
         }
 
@@ -105,7 +109,7 @@ namespace WebServicesFigaro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuarios.Find(id);
+            Usuario usuario = db.Usuarios.Include(u => u.Zona).Include(u => u.ChefSeleccionado).FirstOrDefault(u => u.Id == id); ;
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -118,7 +122,7 @@ namespace WebServicesFigaro.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Usuario usuario = db.Usuarios.Find(id);
+            Usuario usuario = db.Usuarios.Include(u => u.Zona).Include(u => u.ChefSeleccionado).FirstOrDefault(u => u.Id == id);
             db.Usuarios.Remove(usuario);
             db.SaveChanges();
             return RedirectToAction("Index");

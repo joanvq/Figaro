@@ -11,13 +11,6 @@
     <h4>Usuario</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Zona.Titulo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Zona.Titulo)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)
@@ -41,6 +34,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zona.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zona.Titulo)
         </dd>
 
         <dt>
@@ -97,6 +98,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.genero)
+        </dd>
+
+        <dt>
+            Chef Seleccionado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChefSeleccionado.Nombre)
         </dd>
 
     </dl>

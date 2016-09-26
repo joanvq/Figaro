@@ -33,7 +33,6 @@
                       <ColumnDefinition Width="*" />
                       <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <!--Cantidad-->
                     <StackLayout Grid.Column="0" Orientation="Horizontal">
                       <Image ClassId="{Binding Key.Id}" Source="minus.png" HeightRequest="16">
                         <Image.GestureRecognizers>
@@ -79,7 +78,7 @@
     </Grid>
 
     <Grid VerticalOptions="End" Padding="0,0,0,0"
-                 BackgroundColor="#ddd" HeightRequest="50">
+                 BackgroundColor="#ddd" HeightRequest="60">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="*"/>

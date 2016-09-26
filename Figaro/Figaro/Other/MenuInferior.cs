@@ -47,7 +47,10 @@ namespace Figaro.Other
 
             tapProfile.Tapped += (s, e) => {
                 // handle the tap
-                sender.DisplayAlert("Perfil", "Usuario logueado: " + mainViewmodel.UsuarioLogueado.NombreApellidos, "OK");
+                var app = Application.Current as App;
+                var mainPage = (NavigationPage)app.MainPage;
+                var currentPage = (MasterDetailPage)mainPage.CurrentPage;
+                currentPage.Detail = new UserPage();
             };
         }
         

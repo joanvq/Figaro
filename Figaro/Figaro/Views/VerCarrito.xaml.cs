@@ -223,7 +223,11 @@ namespace Figaro.Views
             {
                 DisplayAlert("Error", "No hay ninguna Zona seleccioanda.", "OK");
             }
-            else if (mainViewModel.CarritoCompra.chef.Nombre == "")
+            else if (mainViewModel.TipoCocinaSeleccionado == null)
+            {
+                DisplayAlert("Error", "No hay ningun Tipo de Cocina seleccionado.", "OK");
+            }
+            else if (mainViewModel.CarritoCompra.chef.Nombre == null || mainViewModel.CarritoCompra.chef.Nombre == "")
             {
                 DisplayAlert("Error", "No hay ningun Chef seleccionado.", "OK");
             }
@@ -232,7 +236,10 @@ namespace Figaro.Views
             {
                 DisplayAlert("Error", "No hay ningun Plato o Menú seleccionado.", "OK");
             }
+            else
+            {
                 Navigation.PushAsync(new PedirDatos(costeTotal));
+            }
         }
     }
 }

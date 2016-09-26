@@ -31,8 +31,11 @@ namespace Figaro.Views
             }
             else
             {
-                status.Text = "Ha ocurrido un problema mientras se guardaba el pedido." +
-                    "Porfavor contacte con ..... Se ha enviado un mail con la incidancia.";
+
+                //MIRAR COM CONTROLAR AQUEST ERROR
+
+                //status.Text = "Ha ocurrido un problema mientras se guardaba el pedido." +
+                //    "Porfavor contacte con ..... Se ha enviado un mail con la incidancia.";
                 //Enviar mail al admministrador
             }
         }
