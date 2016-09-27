@@ -30,9 +30,9 @@ namespace Figaro.Views
             NombreApellidos.Text = mainViewModel.UsuarioLogueado.NombreApellidos;
             Direccion.Text = pedido.Direccion;
             Zona.Text = mainViewModel.ZonaSeleccionada.Titulo;
-            NombreChef.Text = "nombrechef"; //cambiar
-            ApellidosChef.Text = "apellidochef1 apellidochef2"; //cambiar
-            FechaHora.Text = "14/09/2016 21:00"; //cambiar
+            NombreChef.Text = mainViewModel.UsuarioLogueado.ChefSeleccionado.Nombre; //cambiar
+            ApellidosChef.Text = mainViewModel.UsuarioLogueado.ChefSeleccionado.Apellidos; //cambiar
+            FechaHora.Text = DateTime.Now.ToString(); //cambiar
 
             pedidoActual = pedido;
         }
@@ -53,30 +53,30 @@ namespace Figaro.Views
             var mainViewModel = BindingContext as MainViewModel;
 
             //Numero de platos y menus diferentes que hay en el carrito
-            var cantidad = mainViewModel.CarritoCompra.listaMenus.Count 
-                + mainViewModel.CarritoCompra.listaPlatos.Count;
+            var cantidad = mainViewModel.ListaMenuCarrito.Count 
+                + mainViewModel.ListaPlatoCarrito.Count;
 
             var listaPayPalItems = new PayPalItem[cantidad];
 
             int i = 0;
 
             //Sku number = numero de pedido
-            foreach (KeyValuePair<Menu,int> menuCant in mainViewModel.CarritoCompra.listaMenus)
+            foreach (MenuCarrito menuCarrito in mainViewModel.ListaMenuCarrito)
             {
                 if(i < cantidad)
                 {
-                    listaPayPalItems[i] = new PayPalItem(menuCant.Key.Titulo, (uint)menuCant.Value,
-                        menuCant.Key.Precio, "EUR", pedidoActual.NPedido);
+                    listaPayPalItems[i] = new PayPalItem(menuCarrito.Menu.Titulo, (uint)menuCarrito.Cantidad,
+                        menuCarrito.Menu.Precio, "EUR", pedidoActual.NPedido);
                     i++;
                 }
             }
 
-            foreach (KeyValuePair<Plato, int> platoCant in mainViewModel.CarritoCompra.listaPlatos)
+            foreach (PlatoCarrito platoCarrito in mainViewModel.ListaPlatoCarrito)
             {
                 if (i < cantidad)
                 {
-                    listaPayPalItems[i] = new PayPalItem(platoCant.Key.Titulo, (uint)platoCant.Value,
-                        platoCant.Key.Precio, "EUR", pedidoActual.NPedido);
+                    listaPayPalItems[i] = new PayPalItem(platoCarrito.Plato.Titulo, (uint)platoCarrito.Cantidad,
+                        platoCarrito.Plato.Precio, "EUR", pedidoActual.NPedido);
                     i++;
                 }
             }
@@ -110,11 +110,11 @@ namespace Figaro.Views
                 var isSuccessStatusCode = await mainViewModel.NuevoPedido(pedidoActual);
 
                 //Vaciar carrito de la compra y variables de pago.
-                mainViewModel.CarritoCompra = new Carrito();
+                mainViewModel.ListaPlatoCarrito = new List<PlatoCarrito>();
+                mainViewModel.ListaMenuCarrito = new List<MenuCarrito>();
 
                 resumenPedido.EnviarMail(isSuccessStatusCode);
-
-
+                
             }
         }
     }

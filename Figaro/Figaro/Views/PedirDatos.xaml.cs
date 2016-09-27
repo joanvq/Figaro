@@ -27,9 +27,9 @@ namespace Figaro.Views
         {
             var mainViewModel = BindingContext as MainViewModel;
             if (mainViewModel.ZonaSeleccionada == null 
-                || mainViewModel.CarritoCompra.chef == null 
-                || (mainViewModel.CarritoCompra.listaMenus.Count == 0 
-                    && mainViewModel.CarritoCompra.listaPlatos.Count == 0))
+                || mainViewModel.UsuarioLogueado.ChefSeleccionado == null 
+                || (mainViewModel.ListaMenuCarrito.Count == 0 
+                    && mainViewModel.ListaPlatoCarrito.Count == 0))
             {
                 DisplayAlert("Error", "Faltan datos", "OK");
             }
@@ -38,7 +38,7 @@ namespace Figaro.Views
                 Pedido nuevoPedido = new Pedido();
                 nuevoPedido.Direccion = direccion.Text;
                 nuevoPedido.UsuarioId = mainViewModel.UsuarioLogueado.Id;
-                nuevoPedido.Estado = "pendiente";
+                nuevoPedido.Estado = "No pagado";
                 nuevoPedido.ZonaId = mainViewModel.ZonaSeleccionada.Id;
                 nuevoPedido.PrecioTotal = precioTotal;
                 nuevoPedido.Comentario = comentario.Text;
@@ -55,7 +55,7 @@ namespace Figaro.Views
                                         .TrimEnd('=');
                 nuevoPedido.NPedido = nPedido;
                 nuevoPedido.FechaPedido = DateTime.Now;
-                nuevoPedido.NombreChef = mainViewModel.CarritoCompra.chef.NombreApellidos;
+                nuevoPedido.NombreChef = mainViewModel.UsuarioLogueado.ChefSeleccionado.NombreApellidos;
                 nuevoPedido.TipoCocina = mainViewModel.TipoCocinaSeleccionado.Titulo;
 
                 Navigation.PushAsync(new ModoPago(nuevoPedido));

@@ -11,7 +11,9 @@ namespace Figaro.Models
         
         public int Id { get; set; }
         public Menu Menu { get; set; }
+        public int MenuId { get; set; }
         public Usuario Usuario { get; set; }
+        public int UsuarioId { get; set; }
         public int Cantidad { get; set; }
 
     }

@@ -44,38 +44,38 @@ namespace Figaro.Views
             // Se usa la clase PlatoMenu, que es una classe generica que puede contener los 
             // campos que comparten el plato y el menú. 
             ListaCarrito = new List<KeyValuePair<PlatoMenu, int>>();
-            foreach (var menuCant in mainViewModel.CarritoCompra.listaMenus)
+            foreach (var menuCarrito in mainViewModel.ListaMenuCarrito)
             {
                 PlatoMenu menu = new PlatoMenu();
-                menu.Id = "M" + menuCant.Key.Id;
-                menu.Categoria = menuCant.Key.Categoria;
-                menu.Descripcion = menuCant.Key.Descripcion;
-                menu.HorasCocinado = menuCant.Key.HorasCocinado;
-                menu.Imagen = menuCant.Key.Imagen;
-                menu.Ingredientes = menuCant.Key.Ingredientes;
-                menu.Precio = menuCant.Key.Precio;
-                menu.TiempoCocinado = menuCant.Key.TiempoCocinado;
-                menu.Titulo = menuCant.Key.Titulo;
-                menu.Utensilios = menuCant.Key.Utensilios;
-                menu.Valoracion = menuCant.Key.Valoracion;
-                KeyValuePair<PlatoMenu, int> platoMenuCant = new KeyValuePair<PlatoMenu, int>(menu, menuCant.Value);
+                menu.Id = "M" + menuCarrito.Menu.Id;
+                menu.Categoria = menuCarrito.Menu.Categoria;
+                menu.Descripcion = menuCarrito.Menu.Descripcion;
+                menu.HorasCocinado = menuCarrito.Menu.HorasCocinado;
+                menu.Imagen = menuCarrito.Menu.Imagen;
+                menu.Ingredientes = menuCarrito.Menu.Ingredientes;
+                menu.Precio = menuCarrito.Menu.Precio;
+                menu.TiempoCocinado = menuCarrito.Menu.TiempoCocinado;
+                menu.Titulo = menuCarrito.Menu.Titulo;
+                menu.Utensilios = menuCarrito.Menu.Utensilios;
+                menu.Valoracion = menuCarrito.Menu.Valoracion;
+                KeyValuePair<PlatoMenu, int> platoMenuCant = new KeyValuePair<PlatoMenu, int>(menu, menuCarrito.Cantidad);
                 ListaCarrito.Add(platoMenuCant);
             }
-            foreach (var platoCant in mainViewModel.CarritoCompra.listaPlatos)
+            foreach (var platoCarrito in mainViewModel.ListaPlatoCarrito)
             {
                 PlatoMenu plato = new PlatoMenu();
-                plato.Id = "P" + platoCant.Key.Id;
-                plato.Categoria = platoCant.Key.Categoria;
-                plato.Descripcion = platoCant.Key.Descripcion;
-                plato.HorasCocinado = platoCant.Key.HorasCocinado;
-                plato.Imagen = platoCant.Key.Imagen;
-                plato.Ingredientes = platoCant.Key.Ingredientes;
-                plato.Precio = platoCant.Key.Precio;
-                plato.TiempoCocinado = platoCant.Key.TiempoCocinado;
-                plato.Titulo = platoCant.Key.Titulo;
-                plato.Utensilios = platoCant.Key.Utensilios;
-                plato.Valoracion = platoCant.Key.Valoracion;
-                KeyValuePair<PlatoMenu, int> platoMenuCant = new KeyValuePair<PlatoMenu, int>(plato, platoCant.Value);
+                plato.Id = "P" + platoCarrito.Plato.Id;
+                plato.Categoria = platoCarrito.Plato.Categoria;
+                plato.Descripcion = platoCarrito.Plato.Descripcion;
+                plato.HorasCocinado = platoCarrito.Plato.HorasCocinado;
+                plato.Imagen = platoCarrito.Plato.Imagen;
+                plato.Ingredientes = platoCarrito.Plato.Ingredientes;
+                plato.Precio = platoCarrito.Plato.Precio;
+                plato.TiempoCocinado = platoCarrito.Plato.TiempoCocinado;
+                plato.Titulo = platoCarrito.Plato.Titulo;
+                plato.Utensilios = platoCarrito.Plato.Utensilios;
+                plato.Valoracion = platoCarrito.Plato.Valoracion;
+                KeyValuePair<PlatoMenu, int> platoMenuCant = new KeyValuePair<PlatoMenu, int>(plato, platoCarrito.Cantidad);
                 ListaCarrito.Add(platoMenuCant);
             }
 
@@ -86,15 +86,15 @@ namespace Figaro.Views
             decimal desplazamiento = 0;
 
             //Falta calculo de tiempo correcto
-            foreach (KeyValuePair<Menu, int> menuCant in mainViewModel.CarritoCompra.listaMenus)
+            foreach (MenuCarrito menuCarrito in mainViewModel.ListaMenuCarrito)
             {
-                tiempoTotal += menuCant.Key.TiempoCocinado;
-                coste += menuCant.Key.Precio * menuCant.Value;
+                tiempoTotal += menuCarrito.Menu.TiempoCocinado;
+                coste += menuCarrito.Menu.Precio * menuCarrito.Cantidad;
             }
-            foreach (KeyValuePair<Plato, int> platoCant in mainViewModel.CarritoCompra.listaPlatos)
+            foreach (PlatoCarrito platoCarrito in mainViewModel.ListaPlatoCarrito)
             {
-                tiempoTotal += platoCant.Key.TiempoCocinado;
-                coste += platoCant.Key.Precio * platoCant.Value;
+                tiempoTotal += platoCarrito.Plato.TiempoCocinado;
+                coste += platoCarrito.Plato.Precio * platoCarrito.Cantidad;
             }
 
             TiempoTotal.Text = (tiempoTotal / 60).ToString();
@@ -167,51 +167,14 @@ namespace Figaro.Views
             ((ListView)sender).SelectedItem = null; // de-select the row
         }
 
-        private void QuitarElemento_OnTapped(object sender, EventArgs e)
+        private async void QuitarElemento_OnTapped(object sender, EventArgs e)
         {
             var mainViewModel = BindingContext as MainViewModel;
             Image img = (Image)sender;
 
-            //quitar plato del carrito
-            if (img.ClassId.Substring(0, 1) == "P")
-            {
-                var newid = Int32.Parse(img.ClassId.Substring(1));
-                var elemento = mainViewModel.CarritoCompra.listaPlatos.FirstOrDefault(l => l.Key.Id == newid);
-                if (!elemento.Equals(new KeyValuePair<Plato, int>()))
-                {
-                    var newElemento = new KeyValuePair<Plato, int>(elemento.Key, elemento.Value - 1);
-                    var index = mainViewModel.CarritoCompra.listaPlatos.FindIndex(l => l.Key.Id == newid);
-                    if (newElemento.Value > 0)
-                    {
-                        mainViewModel.CarritoCompra.listaPlatos[index] = newElemento;
-                    }
-                    else
-                    {
-                        mainViewModel.CarritoCompra.listaPlatos.RemoveAt(index);
-                    }
-                }
-            }
-
-            //quitar menu del carrito
-            if (img.ClassId.Substring(0, 1) == "M")
-            {
-                var newid = Int32.Parse(img.ClassId.Substring(1));
-                var elemento = mainViewModel.CarritoCompra.listaMenus.FirstOrDefault(l => l.Key.Id == newid);
-                if (!elemento.Equals(new KeyValuePair<Menu, int>()))
-                {
-                    var newElemento = new KeyValuePair<Menu, int>(elemento.Key, elemento.Value - 1);
-                    var index = mainViewModel.CarritoCompra.listaMenus.FindIndex(l => l.Key.Id == newid);
-                    if (newElemento.Value > 0)
-                    {
-                        mainViewModel.CarritoCompra.listaMenus[index] = newElemento;
-                    }
-                    else
-                    {
-                        mainViewModel.CarritoCompra.listaMenus.RemoveAt(index);
-                    }
-                }
-            }
-
+            //quitar elemento del carrito local y BD
+            var isStatus = await mainViewModel.QuitarElementoCarritoAsync(img.ClassId.Substring(0, 1), Int32.Parse(img.ClassId.Substring(1)));
+            
             InitializeData();
         }
 
@@ -227,12 +190,12 @@ namespace Figaro.Views
             {
                 DisplayAlert("Error", "No hay ningun Tipo de Cocina seleccionado.", "OK");
             }
-            else if (mainViewModel.CarritoCompra.chef.Nombre == null || mainViewModel.CarritoCompra.chef.Nombre == "")
+            else if (mainViewModel.UsuarioLogueado.ChefSeleccionado.Nombre == null || mainViewModel.UsuarioLogueado.ChefSeleccionado.Nombre == "")
             {
                 DisplayAlert("Error", "No hay ningun Chef seleccionado.", "OK");
             }
-            else if (mainViewModel.CarritoCompra.listaMenus.Count == 0
-                    && mainViewModel.CarritoCompra.listaPlatos.Count == 0)
+            else if (mainViewModel.ListaPlatoCarrito.Count == 0
+                    && mainViewModel.ListaMenuCarrito.Count == 0)
             {
                 DisplayAlert("Error", "No hay ningun Plato o Menú seleccionado.", "OK");
             }

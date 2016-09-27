@@ -40,8 +40,10 @@
     </Compile>
     <Compile Include="Configuration\ViewModelLocator.cs" />
     <Compile Include="Models\ComentarioChef.cs" />
+    <Compile Include="Models\MenuCarrito.cs" />
     <Compile Include="Models\MenuPedido.cs" />
     <Compile Include="Models\Pedido.cs" />
+    <Compile Include="Models\PlatoCarrito.cs" />
     <Compile Include="Models\PlatoPedido.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Other\Carrito.cs" />
@@ -58,6 +60,8 @@
     <Compile Include="Services\MenuPedidoServices.cs" />
     <Compile Include="Services\MenusServices.cs" />
     <Compile Include="Services\PedidoServices.cs" />
+    <Compile Include="Services\MenuCarritoServices.cs" />
+    <Compile Include="Services\PlatoCarritoServices.cs" />
     <Compile Include="Services\PlatoPedidoServices.cs" />
     <Compile Include="Services\PlatosServices.cs" />
     <Compile Include="Services\TipoCocinaServices.cs" />
