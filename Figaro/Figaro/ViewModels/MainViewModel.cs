@@ -364,12 +364,12 @@ namespace Figaro.ViewModels
                         platoCarrito.Id = enCarrito.Id;
                         platoCarrito.PlatoId = enCarrito.PlatoId;
                         platoCarrito.UsuarioId = enCarrito.UsuarioId;
-                        platoCarrito.Cantidad += key.Item2;
+                        platoCarrito.Cantidad = enCarrito.Cantidad + key.Item2;
                         var isSuccessStatusCode = await platoCarritoServices.PutPlatoCarritoAsync(platoCarrito);
                         if (isSuccessStatusCode)
                         {
                             //ListaPlatoCarrito.Where(p => p.Plato == platoSeleccionado).FirstOrDefault().Cantidad = platoCarrito.Cantidad;
-                            enCarrito.Cantidad = enCarrito.Cantidad;
+                            enCarrito.Cantidad = platoCarrito.Cantidad;
                             StatusMessage = "Se han añadido " + key.Item2 + " platos de " + platoSeleccionado.Titulo
                                 + " correctamente.";
                         }
@@ -390,7 +390,6 @@ namespace Figaro.ViewModels
                         {
                             List<PlatoCarrito> newListaPlatoCarrito = await platoCarritoServices.GetPlatoCarritoByUsuarioAsync(UsuarioLogueado.Id);
                             ListaPlatoCarrito.Add(newListaPlatoCarrito.Where(p => p.PlatoId == platoCarrito.PlatoId).FirstOrDefault());
-
                             StatusMessage = "Se han añadido " + key.Item2 + " platos de " + platoSeleccionado.Titulo 
                                 + " correctamente.";
                         }
@@ -481,10 +480,14 @@ namespace Figaro.ViewModels
                     var chefServices = new ChefServices();
                     chefSeleccionado = await chefServices.GetChefsAsync(key);
                     var usuarioServices = new UsuarioServices();
-                    UsuarioLogueado.ChefSeleccionado = chefSeleccionado;
-                    var isSuccessStatusCode = await usuarioServices.PutUsuarioAsync(UsuarioLogueado.Id, UsuarioLogueado);
+                    Usuario usuario = UsuarioLogueado;
+                    usuario.ChefSeleccionadoId = chefSeleccionado.Id;
+
+                    var isSuccessStatusCode = await usuarioServices.PutUsuarioAsync(usuario.Id, usuario);
                     if (isSuccessStatusCode)
                     {
+                        UsuarioLogueado.ChefSeleccionado = chefSeleccionado;
+                        UsuarioLogueado.ChefSeleccionadoId = chefSeleccionado.Id;
                         StatusMessage = "Se ha elegido el chef " + chefSeleccionado.NombreApellidos + " correctamente.";
                     }
                     else
@@ -649,9 +652,9 @@ namespace Figaro.ViewModels
                 var platoCarrito = ListaPlatoCarrito.FirstOrDefault(l => l.Plato.Id == id);
                 if (!platoCarrito.Equals(new PlatoCarrito()))
                 {
-                    platoCarrito.Cantidad--;
+                    var cant = platoCarrito.Cantidad - 1;
                     var platoCarritoServices = new PlatoCarritoServices();
-                    if (platoCarrito.Cantidad <= 0)
+                    if (cant <= 0)
                     {
                         var isSuccess = await platoCarritoServices.DeletePlatoCarritoAsync(platoCarrito.Id);
                         if (isSuccess)
@@ -667,6 +670,10 @@ namespace Figaro.ViewModels
                     {
                         
                         var isSuccess = await platoCarritoServices.PutPlatoCarritoAsync(platoCarrito);
+                        if(isSuccess)
+                        {
+                            platoCarrito.Cantidad--;
+                        }
 
                         IsBusy = false;
 
@@ -681,9 +688,9 @@ namespace Figaro.ViewModels
                 
                 if (!menuCarrito.Equals(new MenuCarrito()))
                 {
-                    menuCarrito.Cantidad -= menuCarrito.Cantidad;
+                    var cant = menuCarrito.Cantidad - 1;
                     var menuCarritoServices = new MenuCarritoServices();
-                    if (menuCarrito.Cantidad <= 0)
+                    if (cant <= 0)
                     {
                         var isSuccess = await menuCarritoServices.DeleteMenuCarritoAsync(menuCarrito.Id);
                         if (isSuccess)
@@ -697,14 +704,16 @@ namespace Figaro.ViewModels
                     }
                     else
                     {
-                        menuCarrito.Cantidad--;
-
                         MenuCarrito newMenuCarrito = new MenuCarrito();
                         newMenuCarrito.Id = menuCarrito.Id;
                         newMenuCarrito.MenuId = menuCarrito.MenuId;
                         newMenuCarrito.UsuarioId = menuCarrito.UsuarioId;
                         newMenuCarrito.Cantidad = menuCarrito.Cantidad;
                         var isSuccess = await menuCarritoServices.PutMenuCarritoAsync(newMenuCarrito);
+                        if(isSuccess)
+                        {
+                            menuCarrito.Cantidad--;
+                        }
 
                         IsBusy = false;
 

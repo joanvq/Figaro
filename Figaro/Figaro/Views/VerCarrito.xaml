@@ -16,7 +16,7 @@
 
       <StackLayout Orientation="Horizontal" Grid.Row="0">
         <Label Text="Chef" VerticalOptions="Start" HorizontalOptions="Start" FontSize="24"/>
-        <Label Text="{Binding CarritoCompra.chef.NombreApellidos}" />
+        <Label Text="{Binding UsuarioLogueado.ChefSeleccionado.NombreApellidos}" />
       </StackLayout>
 
       <StackLayout Orientation="Vertical" Grid.Row="1">

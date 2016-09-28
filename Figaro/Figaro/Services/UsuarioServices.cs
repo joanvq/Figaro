@@ -25,7 +25,7 @@ namespace Figaro.Services
 
         public async Task<bool> PutUsuarioAsync(int id, Usuario usuario)
         {
-            UsuarioPost nuevoUsuario = new UsuarioPost();
+            Usuario nuevoUsuario = new Usuario();
             nuevoUsuario.Id = usuario.Id;
             nuevoUsuario.Nombre = usuario.Nombre;
             nuevoUsuario.Apellidos = usuario.Apellidos;
@@ -35,6 +35,7 @@ namespace Figaro.Services
             nuevoUsuario.Email = usuario.Email;
             nuevoUsuario.Estado = usuario.Estado;
             nuevoUsuario.FechaRegistro = usuario.FechaRegistro;
+            nuevoUsuario.ChefSeleccionadoId = usuario.ChefSeleccionadoId;
             var index = usuario.Imagen.IndexOf("/Content");
             if (index > -1)
             {
@@ -47,7 +48,7 @@ namespace Figaro.Services
             nuevoUsuario.Password = usuario.Password;
             nuevoUsuario.ZonaId = usuario.ZonaId;
 
-            RestClient<UsuarioPost> restClient = new RestClient<UsuarioPost>("Usuario");
+            RestClient<Usuario> restClient = new RestClient<Usuario>("Usuario");
 
             var isSuccessStatusCode = await restClient.PutAsync(id, nuevoUsuario);
 
@@ -56,19 +57,19 @@ namespace Figaro.Services
         }
     }
 
-    internal class UsuarioPost
-    {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Apellidos { get; set; }
-        public string Email { get; set; }
-        public string Imagen { get; set; }
-        public string Password { get; set; }
-        public int ZonaId { get; set; }
-        public string Ciudad { get; set; }
-        public string Direccion { get; set; }
-        public string Estado { get; set; }
-        public DateTime FechaRegistro { get; set; }
-        public string genero { get; set; }
-    }
+    //internal class UsuarioPost
+    //{
+    //    public int Id { get; set; }
+    //    public string Nombre { get; set; }
+    //    public string Apellidos { get; set; }
+    //    public string Email { get; set; }
+    //    public string Imagen { get; set; }
+    //    public string Password { get; set; }
+    //    public int ZonaId { get; set; }
+    //    public string Ciudad { get; set; }
+    //    public string Direccion { get; set; }
+    //    public string Estado { get; set; }
+    //    public DateTime FechaRegistro { get; set; }
+    //    public string genero { get; set; }
+    //}
 }

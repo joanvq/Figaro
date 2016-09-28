@@ -22,6 +22,7 @@ namespace Figaro.Models
         public DateTime FechaRegistro { get; set; }
         public string genero { get; set; }
         public string NombreApellidos { get; set; }
+        public int ChefSeleccionadoId { get; set; }
         public Chef ChefSeleccionado { get; set; }
 
     }
