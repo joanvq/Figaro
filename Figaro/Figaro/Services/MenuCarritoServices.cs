@@ -81,5 +81,17 @@ namespace Figaro.Services
 
         }
 
+        // Eliminar menu carrito por usuario
+        public async Task<bool> DeleteMenuCarritoByUserAsync(int userId)
+        {
+
+            RestClient<MenuCarrito> restClient = new RestClient<MenuCarrito>("MenuCarrito/Usuario");
+
+            var isSuccessStatusCode = await restClient.DeleteAsync(userId);
+
+            return isSuccessStatusCode;
+
+        }
+
     }
 }

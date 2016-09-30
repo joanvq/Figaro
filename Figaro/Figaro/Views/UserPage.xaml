@@ -33,7 +33,7 @@
           </Picker.Items>
         </Picker>      
         <Button Text="Guardar cambios" Clicked="Post_OnClicked" />
-        <Button Text="Ver pedidos realizados" />
+        <Button Text="Ver pedidos realizados" Clicked="VerPedidos_OnClicked"/>
     
       </StackLayout>
     </ScrollView>

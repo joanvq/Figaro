@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -26,6 +27,7 @@ namespace WebServicesFigaro.Models
         [Required]
         [DisplayName("Contraseña")]
         [PasswordPropertyText(true)]
+        [JsonIgnore]
         public string Password { get; set; }
         [DisplayName("Zona")]
         [ForeignKey("Zona")]

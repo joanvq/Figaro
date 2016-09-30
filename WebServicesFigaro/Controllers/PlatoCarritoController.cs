@@ -113,6 +113,26 @@ namespace WebServicesFigaro.Controllers
             return Ok(platoCarrito);
         }
 
+        // DELETE: api/PlatoCarrito/Usuario/5
+        [ResponseType(typeof(PlatoCarrito))]
+        [Route("api/PlatoCarrito/Usuario/{userId}")]
+        public IHttpActionResult DeletePlatoCarritoByUser(int userId)
+        {
+            var listaPlatoCarrito = db.PlatoCarritoes.Where(p => p.UsuarioId == userId);
+            if (listaPlatoCarrito == null)
+            {
+                return NotFound();
+            }
+
+            foreach(PlatoCarrito platoCarrito in listaPlatoCarrito)
+            {
+                db.PlatoCarritoes.Remove(platoCarrito);
+            }
+            db.SaveChanges();
+
+            return Ok(listaPlatoCarrito);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

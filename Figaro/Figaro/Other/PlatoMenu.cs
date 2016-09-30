@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Figaro.Other
 {
-    class PlatoMenu
+    public class PlatoMenu
     {
         
         public string Id { get; set; }

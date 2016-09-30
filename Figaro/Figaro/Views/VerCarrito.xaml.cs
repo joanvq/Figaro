@@ -201,7 +201,7 @@ namespace Figaro.Views
             }
             else
             {
-                Navigation.PushAsync(new PedirDatos(costeTotal));
+                Navigation.PushAsync(new PedirDatos(ListaCarrito, costeTotal));
             }
         }
     }

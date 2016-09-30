@@ -16,13 +16,15 @@ namespace WebServicesFigaro.Controllers
     {
         private DBContext db = new DBContext();
 
+        // Bloqueado poder obtener todos los usuarios
         // GET: api/Usuario
-        public IQueryable<Usuario> GetUsuarios()
-        {
-            return db.Usuarios
-                .Include(p => p.Zona)
-                .Include(p => p.ChefSeleccionado);
-        }
+        //public IQueryable<Usuario> GetUsuarios()
+        //{
+        //    var usuarios = db.Usuarios
+        //        .Include(p => p.Zona)
+        //        .Include(p => p.ChefSeleccionado);
+            
+        //}
 
         // GET: api/Usuario/5
         [ResponseType(typeof(Usuario))]
@@ -30,6 +32,8 @@ namespace WebServicesFigaro.Controllers
         {
             Usuario usuario = db.Usuarios.Include(u => u.Zona).Include(u => u.ChefSeleccionado)
                 .FirstOrDefault(u => u.Id == id);
+            //no devuelve el password
+            usuario.Password = null;
             if (usuario == null)
             {
                 return NotFound();
@@ -88,21 +92,21 @@ namespace WebServicesFigaro.Controllers
             return CreatedAtRoute("DefaultApi", new { id = usuario.Id }, usuario);
         }
 
-        // DELETE: api/Usuario/5
-        [ResponseType(typeof(Usuario))]
-        public IHttpActionResult DeleteUsuario(int id)
-        {
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Usuario/5
+        //[ResponseType(typeof(Usuario))]
+        //public IHttpActionResult DeleteUsuario(int id)
+        //{
+        //    Usuario usuario = db.Usuarios.Find(id);
+        //    if (usuario == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Usuarios.Remove(usuario);
-            db.SaveChanges();
+        //    db.Usuarios.Remove(usuario);
+        //    db.SaveChanges();
 
-            return Ok(usuario);
-        }
+        //    return Ok(usuario);
+        //}
 
         protected override void Dispose(bool disposing)
         {

@@ -1,4 +1,5 @@
 ﻿using Figaro.Models;
+using Figaro.Other;
 using Figaro.Services;
 using Figaro.ViewModels;
 using System;
@@ -16,8 +17,21 @@ namespace Figaro.Views
 
         private decimal precioTotal;
 
-        public PedirDatos(decimal costeTotal)
+        private List<KeyValuePair<PlatoMenu, int>> listaCarrito = null;
+
+        private List<KeyValuePair<PlatoMenu, int>> ListaCarrito
         {
+            get { return listaCarrito; }
+            set
+            {
+                listaCarrito = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public PedirDatos(List<KeyValuePair<PlatoMenu, int>>  listCarrito, decimal costeTotal)
+        {
+            ListaCarrito = listCarrito;
             precioTotal = costeTotal;
             InitializeComponent();
             
@@ -38,27 +52,14 @@ namespace Figaro.Views
                 Pedido nuevoPedido = new Pedido();
                 nuevoPedido.Direccion = direccion.Text;
                 nuevoPedido.UsuarioId = mainViewModel.UsuarioLogueado.Id;
-                nuevoPedido.Estado = "No pagado";
                 nuevoPedido.ZonaId = mainViewModel.ZonaSeleccionada.Id;
                 nuevoPedido.PrecioTotal = precioTotal;
                 nuevoPedido.Comentario = comentario.Text;
                 nuevoPedido.CP = cp.Text;
                 nuevoPedido.NombreApellidos = nombreApellidos.Text;
-                //Para numero pedido deber generar y 
-                //comprovar que no existe, si existe generará uno nuevo
-                //Generar Numero Pedido unico en funcion del tiempo 
-                long ticks = DateTime.Now.Ticks;
-                byte[] bytes = BitConverter.GetBytes(ticks);
-                string nPedido = Convert.ToBase64String(bytes)
-                                        .Replace('+', '_')
-                                        .Replace('/', '-')
-                                        .TrimEnd('=');
-                nuevoPedido.NPedido = nPedido;
-                nuevoPedido.FechaPedido = DateTime.Now;
-                nuevoPedido.NombreChef = mainViewModel.UsuarioLogueado.ChefSeleccionado.NombreApellidos;
                 nuevoPedido.TipoCocina = mainViewModel.TipoCocinaSeleccionado.Titulo;
 
-                Navigation.PushAsync(new ModoPago(nuevoPedido));
+                Navigation.PushAsync(new ModoPago(ListaCarrito, nuevoPedido));
             }
 
         }

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Figaro"
+             x:Class="Figaro.Views.VerPedidos"
+             xmlns:ui="clr-namespace:Figaro.UI;assembly=Figaro"
+             BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+             x:Name="verPedidos"
+             Title="Mis pedidos">
+  <StackLayout Orientation="Vertical" Padding="12,6">
+    
+    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                   IsVisible="{Binding IsBusy}" />
+
+    <Label Text="Pedidos Activos" FontSize="24"  />
+    
+    <ListView x:Name="ListaPedidosActivos"
+              ItemsSource="{Binding ListaPedidosActivos}"
+		          HasUnevenRows="true">
+      <ListView.ItemTemplate HorizontalContentAlignment="Stretch">
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal" Padding="12,6">
+              <Label Text="{Binding NPedido}"/>
+              <Label Text="{Binding FechaPedido}"/>
+              <Label Text="{Binding PrecioTotal}"/>
+              <Label Text="{Binding Estado}"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    
+  </StackLayout>
+  
+</ContentPage>

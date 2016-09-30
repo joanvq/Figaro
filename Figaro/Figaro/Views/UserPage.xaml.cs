@@ -56,7 +56,16 @@ namespace Figaro.Views
         private void ActualizarUsuario_OnClicked(object sender, EventArgs e)
         {
             var mainViewModel = BindingContext as MainViewModel;
-            mainViewModel.UsuarioLogueado.genero = Genero.Items[Genero.SelectedIndex];
+            if (Genero.SelectedIndex != -1)
+            {
+                mainViewModel.UsuarioLogueado.genero = Genero.Items[Genero.SelectedIndex];
+            }
         }
+
+        private void VerPedidos_OnClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new VerPedidos());
+        }
+
     }
 }

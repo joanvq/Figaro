@@ -19,10 +19,24 @@ namespace Figaro.Views
     public partial class ModoPago : ContentPage
     {
 
-        private Pedido pedidoActual = new Pedido(); 
+        private Pedido pedidoActual = new Pedido();
 
-        public ModoPago(Pedido pedido)
+        private List<KeyValuePair<PlatoMenu, int>> listaCarrito = null;
+
+        private List<KeyValuePair<PlatoMenu, int>> ListaCarrito
         {
+            get { return listaCarrito; }
+            set
+            {
+                listaCarrito = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ModoPago(List<KeyValuePair<PlatoMenu, int>> listCarrito, Pedido pedido)
+        {
+            ListaCarrito = listCarrito;
+
             InitializeComponent();
 
             var mainViewModel = BindingContext as MainViewModel; 
@@ -30,9 +44,9 @@ namespace Figaro.Views
             NombreApellidos.Text = mainViewModel.UsuarioLogueado.NombreApellidos;
             Direccion.Text = pedido.Direccion;
             Zona.Text = mainViewModel.ZonaSeleccionada.Titulo;
-            NombreChef.Text = mainViewModel.UsuarioLogueado.ChefSeleccionado.Nombre; //cambiar
-            ApellidosChef.Text = mainViewModel.UsuarioLogueado.ChefSeleccionado.Apellidos; //cambiar
-            FechaHora.Text = DateTime.Now.ToString(); //cambiar
+            NombreChef.Text = mainViewModel.UsuarioLogueado.ChefSeleccionado.Nombre; 
+            ApellidosChef.Text = mainViewModel.UsuarioLogueado.ChefSeleccionado.Apellidos; 
+            FechaHora.Text = DateTime.Now.ToString(); 
 
             pedidoActual = pedido;
         }
@@ -108,11 +122,7 @@ namespace Figaro.Views
 
                 //Añadir pedido a BD
                 var isSuccessStatusCode = await mainViewModel.NuevoPedido(pedidoActual);
-
-                //Vaciar carrito de la compra y variables de pago.
-                mainViewModel.ListaPlatoCarrito = new List<PlatoCarrito>();
-                mainViewModel.ListaMenuCarrito = new List<MenuCarrito>();
-
+                
                 resumenPedido.EnviarMail(isSuccessStatusCode);
                 
             }

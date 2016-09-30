@@ -42,6 +42,9 @@ namespace Figaro.ViewModels
         private List<PlatoCarrito> listaPlatoCarrito;
         private List<MenuCarrito> listaMenuCarrito;
 
+        private List<Pedido> listaPedidosRealizados = new List<Pedido>();
+        private List<Pedido> listaPedidosActivos = new List<Pedido>();
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         /*----Propiedades-----*/
@@ -210,6 +213,26 @@ namespace Figaro.ViewModels
             {
                 usuarioLogueado = value;
                 usuarioLogueado.NombreApellidos = usuarioLogueado.Nombre + " " + usuarioLogueado.Apellidos;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<Pedido> ListaPedidosActivos
+        {
+            get { return listaPedidosActivos; }
+            set
+            {
+                listaPedidosActivos = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<Pedido> ListaPedidosRealizados
+        {
+            get { return listaPedidosRealizados; }
+            set
+            {
+                listaPedidosRealizados = value;
                 OnPropertyChanged();
             }
         }
@@ -567,66 +590,25 @@ namespace Figaro.ViewModels
             IsBusy = true;
 
             var pedidoServices = new PedidoServices();
-            var platoPedidoServices = new PlatoPedidoServices();
-            var menuPedidoServices = new MenuPedidoServices();
-
+            var platoCarritoServices = new PlatoCarritoServices();
+            var menuCarritoServices = new MenuCarritoServices();
+            
             var isSuccessStatusCode = await pedidoServices.PostPedidoAsync(pedido);
 
-            if (isSuccessStatusCode == false)
+            // Vaciar carrito de la compra y variables de pago.
+            var isSuccessBorrado = await platoCarritoServices.DeletePlatoCarritoByUserAsync(UsuarioLogueado.Id);
+            if (isSuccessBorrado)
             {
-                IsBusy = false;
-                return isSuccessStatusCode;
+                ListaPlatoCarrito = new List<PlatoCarrito>();
             }
-
-            // Obtengo el pedido que acabamos de crear para obtener el Id 
-            // creado automaticamente por la BD.
-            Pedido pedidoCreado = await pedidoServices.GetPedidoByNPedidoAsync(pedido.NPedido);
-
-            foreach (PlatoCarrito platoCarrito in  ListaPlatoCarrito)
+            isSuccessBorrado = await menuCarritoServices.DeleteMenuCarritoByUserAsync(UsuarioLogueado.Id);
+            if (isSuccessBorrado)
             {
-                PlatoPedido platoPedido = new PlatoPedido();
-                platoPedido.PedidoId = pedidoCreado.Id;
-                platoPedido.PrecioPlato = platoCarrito.Plato.Precio;
-                platoPedido.Ingredientes = platoCarrito.Plato.Ingredientes;
-                platoPedido.TiempoCocinado = platoCarrito.Plato.TiempoCocinado;
-                platoPedido.TituloPlato = platoCarrito.Plato.Titulo;
-                platoPedido.Utensilios = platoCarrito.Plato.Utensilios;
-                platoPedido.Cantidad = platoCarrito.Cantidad;
-
-                isSuccessStatusCode = await platoPedidoServices.PostPlatoPedidoAsync(platoPedido);
-                if (isSuccessStatusCode == false)
-                {
-                    IsBusy = false;
-                    return isSuccessStatusCode;
-                }
-            }
-
-            foreach (MenuCarrito menuCarrito in ListaMenuCarrito)
-            {
-                MenuPedido menuPedido = new MenuPedido();
-                menuPedido.PedidoId = pedidoCreado.Id;
-                if (menuCarrito.Menu.Entrante != null) menuPedido.Entrante = menuCarrito.Menu.Entrante.Titulo;
-                if (menuCarrito.Menu.Primero != null) menuPedido.Primero = menuCarrito.Menu.Primero.Titulo;
-                if (menuCarrito.Menu.Segundo != null) menuPedido.Segundo = menuCarrito.Menu.Segundo.Titulo;
-                if (menuCarrito.Menu.Guarnicion != null) menuPedido.Guarnicion = menuCarrito.Menu.Guarnicion.Titulo;
-                if (menuCarrito.Menu.Postre != null) menuPedido.Postre = menuCarrito.Menu.Postre.Titulo;
-                menuPedido.PrecioMenu = menuCarrito.Menu.Precio;
-                menuPedido.Ingredientes = menuCarrito.Menu.Ingredientes;
-                menuPedido.TiempoCocinado = menuCarrito.Menu.TiempoCocinado;
-                menuPedido.TituloMenu = menuCarrito.Menu.Titulo;
-                menuPedido.Utensilios = menuCarrito.Menu.Utensilios;
-                menuPedido.Cantidad = menuCarrito.Cantidad;
-
-                isSuccessStatusCode = await menuPedidoServices.PostMenuPedidoAsync(menuPedido);
-                if (isSuccessStatusCode == false)
-                {
-                    IsBusy = false;
-                    return isSuccessStatusCode;
-                }
+                ListaMenuCarrito = new List<MenuCarrito>();
             }
 
             IsBusy = false;
-            return true;
+            return isSuccessStatusCode;
 
         }
 
@@ -726,6 +708,22 @@ namespace Figaro.ViewModels
             return false;
         }
 
+        public async Task ListaPedidosAsync()
+        {
+            IsBusy = true;
+
+            var pedidoServices = new PedidoServices();
+            var listPedidos = await pedidoServices.GetPedidosUsuarioAsync(UsuarioLogueado.Id);
+            foreach (Pedido pedido in listPedidos)
+            {
+                //FALTA COMPROBAR DISPONIBILIDAD PARA FILTRAR
+                ListaPedidosActivos.Add(pedido);
+            }
+
+            IsBusy = false;
+        }
+
+        
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

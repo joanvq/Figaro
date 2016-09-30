@@ -39,8 +39,8 @@
     <Label Text="Pedido: " FontSize="18"/>
     
     <ScrollView>
-      <ListView x:Name="ListaMenus"
-                ItemsSource="{Binding CarritoCompra.listaMenus}"
+      <ListView x:Name="ListaPlatosMenus"
+                ItemsSource="{Binding ListaCarrito}"
 		            HasUnevenRows="true"
                 ItemTapped="Menu_OnItemTapped">
         <ListView.ItemTemplate>
