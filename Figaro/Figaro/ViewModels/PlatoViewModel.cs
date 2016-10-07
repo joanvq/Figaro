@@ -193,7 +193,7 @@ namespace Figaro.ViewModels
 
         public PlatoViewModel()
         {
-            InitializeDataAsync();
+             InitializeDataAsync();
         }
 
         private async Task InitializeDataAsync()

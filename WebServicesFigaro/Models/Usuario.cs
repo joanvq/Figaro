@@ -24,10 +24,9 @@ namespace WebServicesFigaro.Models
         [EmailAddress]
         public string Email { get; set; }
         public string Imagen { get; set; }
-        [Required]
         [DisplayName("Contraseña")]
         [PasswordPropertyText(true)]
-        [JsonIgnore]
+        [Required]
         public string Password { get; set; }
         [DisplayName("Zona")]
         [ForeignKey("Zona")]

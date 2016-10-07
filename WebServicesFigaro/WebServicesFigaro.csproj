@@ -182,6 +182,8 @@
     <Compile Include="Controllers\ChefMvcController.cs" />
     <Compile Include="Controllers\ComentarioChefController.cs" />
     <Compile Include="Controllers\ComentarioChefMvcController.cs" />
+    <Compile Include="Controllers\DisponibilidadController.cs" />
+    <Compile Include="Controllers\DisponibilidadMvcController.cs" />
     <Compile Include="Controllers\MenuCarritoController.cs" />
     <Compile Include="Controllers\MenuCarritoMvcController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -197,6 +199,8 @@
     <Compile Include="Controllers\PlatoController.cs" />
     <Compile Include="Controllers\PlatoPedidoController.cs" />
     <Compile Include="Controllers\PlatoPedidoMvcController.cs" />
+    <Compile Include="Controllers\ReservadoController.cs" />
+    <Compile Include="Controllers\ReservadoMvcController.cs" />
     <Compile Include="Controllers\TipoCocinaController.cs" />
     <Compile Include="Controllers\TipoCocinaMvcController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -211,6 +215,7 @@
       <DependentUpon>201609261058261_carrito.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Disponibilidad.cs" />
     <Compile Include="Models\MenuCarrito.cs" />
     <Compile Include="Models\PlatoCarrito.cs" />
     <Compile Include="Models\Chef.cs" />
@@ -221,6 +226,7 @@
     <Compile Include="Models\Plato.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\PlatoPedido.cs" />
+    <Compile Include="Models\Reservado.cs" />
     <Compile Include="Models\TipoCocina.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Zona.cs" />
@@ -349,6 +355,16 @@
     <Content Include="Views\MenuCarritoMvc\Details.cshtml" />
     <Content Include="Views\MenuCarritoMvc\Edit.cshtml" />
     <Content Include="Views\MenuCarritoMvc\Index.cshtml" />
+    <Content Include="Views\DisponibilidadMvc\Create.cshtml" />
+    <Content Include="Views\DisponibilidadMvc\Delete.cshtml" />
+    <Content Include="Views\DisponibilidadMvc\Details.cshtml" />
+    <Content Include="Views\DisponibilidadMvc\Edit.cshtml" />
+    <Content Include="Views\DisponibilidadMvc\Index.cshtml" />
+    <Content Include="Views\ReservadoMvc\Create.cshtml" />
+    <Content Include="Views\ReservadoMvc\Delete.cshtml" />
+    <Content Include="Views\ReservadoMvc\Details.cshtml" />
+    <Content Include="Views\ReservadoMvc\Edit.cshtml" />
+    <Content Include="Views\ReservadoMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

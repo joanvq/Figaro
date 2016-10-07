@@ -40,11 +40,13 @@
     </Compile>
     <Compile Include="Configuration\ViewModelLocator.cs" />
     <Compile Include="Models\ComentarioChef.cs" />
+    <Compile Include="Models\Disponibilidad.cs" />
     <Compile Include="Models\MenuCarrito.cs" />
     <Compile Include="Models\MenuPedido.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\PlatoCarrito.cs" />
     <Compile Include="Models\PlatoPedido.cs" />
+    <Compile Include="Models\Reservado.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Other\Carrito.cs" />
     <Compile Include="Models\Chef.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="RestClient\TaskModel.cs" />
     <Compile Include="Services\ChefServices.cs" />
     <Compile Include="Services\ComentarioChefServices.cs" />
+    <Compile Include="Services\DisponibilidadServices.cs" />
     <Compile Include="Services\MenuPedidoServices.cs" />
     <Compile Include="Services\MenusServices.cs" />
     <Compile Include="Services\PedidoServices.cs" />
@@ -64,6 +67,7 @@
     <Compile Include="Services\PlatoCarritoServices.cs" />
     <Compile Include="Services\PlatoPedidoServices.cs" />
     <Compile Include="Services\PlatosServices.cs" />
+    <Compile Include="Services\ReservadoServices.cs" />
     <Compile Include="Services\TipoCocinaServices.cs" />
     <Compile Include="Services\UsuarioServices.cs" />
     <Compile Include="Services\ZonaServices.cs" />
@@ -92,6 +96,9 @@
     </Compile>
     <Compile Include="Views\ResumenPedido.xaml.cs">
       <DependentUpon>ResumenPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SeleccionarDiaHora.xaml.cs">
+      <DependentUpon>SeleccionarDiaHora.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SeleccionarZona.xaml.cs">
       <DependentUpon>SeleccionarZona.xaml</DependentUpon>
@@ -294,6 +301,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\VerPedidos.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SeleccionarDiaHora.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

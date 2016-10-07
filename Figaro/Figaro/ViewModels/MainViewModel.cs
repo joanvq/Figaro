@@ -45,6 +45,10 @@ namespace Figaro.ViewModels
         private List<Pedido> listaPedidosRealizados = new List<Pedido>();
         private List<Pedido> listaPedidosActivos = new List<Pedido>();
 
+        private DateTime fecha = DateTime.Now.AddDays(1);
+        // De 0 a 47 --> 24 horas + medias horas
+        private int hora = DateTime.Now.Hour*2;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         /*----Propiedades-----*/
@@ -265,6 +269,28 @@ namespace Figaro.ViewModels
             set
             {
                 listaPlatoCarrito = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /* DISPONIBILIDAD */
+
+        public DateTime Fecha
+        {
+            get { return fecha; }
+            set
+            {
+                fecha = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Hora
+        {
+            get { return hora; }
+            set
+            {
+                hora = value;
                 OnPropertyChanged();
             }
         }
@@ -551,9 +577,9 @@ namespace Figaro.ViewModels
             var zonaServices = new ZonaServices();
             ListaZonas = await zonaServices.GetZonaAsync();
 
-            //seleccion por defecto el 1 - cambiar cuando se implemente el login
+            //seleccion por defecto el -1 - cambiar cuando se implemente el login
             var usuarioServices = new UsuarioServices();
-            UsuarioLogueado = await usuarioServices.GetUsuariosAsync(1);
+            UsuarioLogueado = await usuarioServices.GetUsuariosAsync(-1);
 
             var platoCarritoServices = new PlatoCarritoServices();
             ListaPlatoCarrito = await platoCarritoServices.GetPlatoCarritoByUsuarioAsync(UsuarioLogueado.Id);
@@ -570,6 +596,42 @@ namespace Figaro.ViewModels
             if(ZonaSeleccionada != null)
             {
                 ListaChefs = ListaChefs.Where(chef => chef.Zona.Id == ZonaSeleccionada.Id).ToList();
+            }
+
+            if(fecha != null)
+            {
+                var disponibilidadServices = new DisponibilidadServices();
+                var disponibilidadesChefsFecha = await disponibilidadServices.GetDisponibilidadesByDateAsync(fecha);
+                
+                List<Chef> nuevaListChefs = new List<Chef>();
+                foreach (Disponibilidad disponibilidad in disponibilidadesChefsFecha)
+                {
+                    // cada disponibilidad corresponde a un chef diferente
+                    // ya que Chef+Fecha es una clave unica
+                    Chef chefReserva = ListaChefs.Where(c => c.Id == disponibilidad.ChefId).FirstOrDefault();
+                    if (disponibilidad.EstaDisponible && chefReserva != null)
+                    {
+                        //chef disponible en fecha y ha pasado los filtros anteriores
+                        var reservadoServices = new ReservadoServices();
+                        var reservados = await reservadoServices.GetReservadosByDisponibilidadAsync(disponibilidad.Id);
+                        // reservados 2 horas - 4 de cada 30 min
+                        var reservado1 = reservados.Where(r => r.Hora.Hour == hora / 2 && r.Hora.Minute == hora % 2 * 30).FirstOrDefault();
+                        var reservado2 = reservados.Where(r => r.Hora.Hour == (hora + 1) / 2 && r.Hora.Minute == (hora + 1) % 2 * 30).FirstOrDefault();
+                        var reservado3 = reservados.Where(r => r.Hora.Hour == (hora + 2) / 2 && r.Hora.Minute == (hora + 2) % 2 * 30).FirstOrDefault();
+                        var reservado4 = reservados.Where(r => r.Hora.Hour == (hora + 3) / 2 && r.Hora.Minute == (hora + 3) % 2 * 30).FirstOrDefault();
+
+                        if (reservado1 != null && reservado1.PedidoId == -1
+                            && reservado2 != null && reservado2.PedidoId == -1
+                            && reservado3 != null && reservado3.PedidoId == -1
+                            && reservado4 != null && reservado4.PedidoId == -1)
+                        {
+                            // Hora no reservada durante las 2 horas siguientes
+                            nuevaListChefs.Add(chefReserva);
+
+                        }
+                    }
+                }
+                ListaChefs = nuevaListChefs;
             }
 
             IsBusy = false;

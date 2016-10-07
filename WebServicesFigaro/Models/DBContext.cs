@@ -40,5 +40,9 @@ namespace WebServicesFigaro.Models
         public System.Data.Entity.DbSet<WebServicesFigaro.Models.PlatoCarrito> PlatoCarritoes { get; set; }
 
         public System.Data.Entity.DbSet<WebServicesFigaro.Models.MenuCarrito> MenuCarritoes { get; set; }
+
+        public System.Data.Entity.DbSet<WebServicesFigaro.Models.Disponibilidad> Disponibilidads { get; set; }
+
+        public System.Data.Entity.DbSet<WebServicesFigaro.Models.Reservado> Reservadoes { get; set; }
     }
 }

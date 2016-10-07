@@ -75,6 +75,21 @@ namespace Plugin.RestClient
             return result.IsSuccessStatusCode;
         }
 
+        public async Task<bool> PutLinkAsync(int id, int id2, T t)
+        {
+            var httpClient = new HttpClient();
+
+            var json = JsonConvert.SerializeObject(t);
+
+            HttpContent httpContent = new StringContent(json);
+
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var result = await httpClient.PutAsync(WebServiceUrl + id + "/" + id2, httpContent);
+
+            return result.IsSuccessStatusCode;
+        }
+
         public async Task<bool> DeleteAsync(int id)
         {
             var httpClient = new HttpClient();
@@ -100,6 +115,17 @@ namespace Plugin.RestClient
             var httpClient = new HttpClient();
 
             var json = await httpClient.GetStringAsync(WebServiceUrl + key);
+
+            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+
+            return taskModels;
+        }
+
+        public async Task<List<T>> GetByDateAsync(DateTime date)
+        {
+            var httpClient = new HttpClient();
+
+            var json = await httpClient.GetStringAsync(WebServiceUrl + date.Year + "/" + date.Month + "/" + date.Day);
 
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 

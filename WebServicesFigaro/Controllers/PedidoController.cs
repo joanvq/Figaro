@@ -16,11 +16,11 @@ namespace WebServicesFigaro.Controllers
     {
         private DBContext db = new DBContext();
 
-        // GET: api/Pedido
-        public IQueryable<Pedido> GetPedidoes()
-        {
-            return db.Pedidoes;
-        }
+        //// GET: api/Pedido
+        //public IQueryable<Pedido> GetPedidoes()
+        //{
+        //    return db.Pedidoes;
+        //}
 
         // GET: api/Pedido/5
         [ResponseType(typeof(Pedido))]

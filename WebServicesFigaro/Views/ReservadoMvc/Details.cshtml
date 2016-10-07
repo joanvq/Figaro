@@ -1,0 +1,42 @@
+﻿@model WebServicesFigaro.Models.Reservado
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reservado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Disponibilidad.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Disponibilidad.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pedido.NPedido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pedido.NPedido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

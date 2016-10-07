@@ -17,6 +17,18 @@ namespace Figaro.Views
         {
             
             InitializeComponent();
+
+            var calendario = new ToolbarItem
+            {
+                Icon = "icono_time.png",
+                Command = new Command(() =>
+                {
+                    //DisplayAlert("Menu", "Ciudades tapped", "OK");
+                    Navigation.PushAsync(new SeleccionarDiaHora());
+                })
+            };
+            this.ToolbarItems.Add(calendario);
+
             var ciudades = new ToolbarItem
             {
                 Icon = "icono_map_maker.png",

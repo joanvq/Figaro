@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Figaro.Views.SeleccionarDiaHora"
+             xmlns:local="clr-namespace:Figaro;assembly=Figaro;"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+             Title="Seleccionar Fecha y Hora"
+             x:Name="ContentFechaHora">
+
+  <StackLayout Orientation="Vertical">
+    <!--<controls:CalendarView
+            x:Name="calendario"
+            HorizontalOptions="Fill"
+            ShowNavigationArrows="True"
+            BackgroundColor="Transparent"
+            NavigationArrowsColor="Black"
+        />-->
+    <StackLayout Orientation="Horizontal" Margin="20,0" HorizontalOptions="Center">
+      <Label Text="FECHA" FontSize="20" VerticalOptions="Center" />
+      <DatePicker x:Name="fecha"/>
+    </StackLayout>
+    <StackLayout Orientation="Horizontal" Margin="20,0" HorizontalOptions="Center">
+      <Label Text="HORARIO" FontSize="20" VerticalOptions="Center" />
+      <TimePicker x:Name="hora" PropertyChanged="Time_OnChanged" WidthRequest="100">
+      </TimePicker>
+      <Label Text="H" FontSize="20" VerticalOptions="Center" TextColor="Black"/>
+    </StackLayout>
+
+    <Button Text="Seleccionar" Clicked="Seleccionar_OnClick" Margin="20,10"/>
+    
+  </StackLayout>
+  
+</ContentPage>

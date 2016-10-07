@@ -33,7 +33,7 @@ namespace WebServicesFigaro.Controllers
             Usuario usuario = db.Usuarios.Include(u => u.Zona).Include(u => u.ChefSeleccionado)
                 .FirstOrDefault(u => u.Id == id);
             //no devuelve el password
-            usuario.Password = null;
+            //usuario.Password = null;
             if (usuario == null)
             {
                 return NotFound();
@@ -46,14 +46,19 @@ namespace WebServicesFigaro.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUsuario(int id, Usuario usuario)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             if (id != usuario.Id)
             {
                 return BadRequest();
+            }
+
+            //usuario.Password = db.Usuarios.FirstOrDefault(u => u.Id == id).Password;
+
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+            
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
             }
 
             db.Entry(usuario).State = EntityState.Modified;
