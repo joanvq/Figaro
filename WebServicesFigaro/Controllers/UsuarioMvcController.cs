@@ -44,6 +44,12 @@ namespace WebServicesFigaro.Controllers
         {
             ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo");
             ViewBag.ChefSeleccionadoId = new SelectList(db.Chefs, "Id", "Apellidos");
+            ViewBag.genero = new SelectList(
+            new List<SelectListItem> {
+                    new SelectListItem { Text = "Sin especificar", Value = "Sin especificar" },
+                    new SelectListItem { Text = "Hombre", Value = "Hombre" },
+                    new SelectListItem { Text = "Mujer", Value = "Mujer" }
+            }, "Value", "Text");
             return View();
         }
 
@@ -64,6 +70,12 @@ namespace WebServicesFigaro.Controllers
 
             ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", usuario.ZonaId);
             ViewBag.ChefSeleccionadoId = new SelectList(db.Chefs, "Id", "Apellidos", usuario.ChefSeleccionadoId);
+            ViewBag.genero = new SelectList(
+                new List<SelectListItem> {
+                    new SelectListItem { Text = "Sin especificar", Value = "Sin especificar" },
+                    new SelectListItem { Text = "Hombre", Value = "Hombre" },
+                    new SelectListItem { Text = "Mujer", Value = "Mujer" }
+                }, "Value", "Text", usuario.genero);
             return View(usuario);
         }
 
@@ -81,6 +93,13 @@ namespace WebServicesFigaro.Controllers
             }
             ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", usuario.ZonaId);
             ViewBag.ChefSeleccionadoId = new SelectList(db.Chefs, "Id", "Apellidos", usuario.ChefSeleccionadoId);
+            ViewBag.genero = new SelectList(
+                new List<SelectListItem> {
+                    new SelectListItem { Text = "Sin especificar", Value = "Sin especificar" },
+                    new SelectListItem { Text = "Hombre", Value = "Hombre" },
+                    new SelectListItem { Text = "Mujer", Value = "Mujer" }
+                }, "Value", "Text", usuario.genero);
+
             return View(usuario);
         }
 

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<WebServicesFigaro.Models.GeoPC_Places>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ISO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlaceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminName1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminCode1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminName2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminCode2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminName3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminCode3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Accuracy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZonaId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlaceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminName1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminCode1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminName2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminCode2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminName3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminCode3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Accuracy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZonaId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { ISO=item.ISO, postCode = item.PostCode }) |
+            @Html.ActionLink("Details", "Details", new { ISO = item.ISO, postCode = item.PostCode })
+        </td>
+    </tr>
+}
+
+</table>

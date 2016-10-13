@@ -45,23 +45,46 @@ namespace Figaro.Views
                 || (mainViewModel.ListaMenuCarrito.Count == 0 
                     && mainViewModel.ListaPlatoCarrito.Count == 0))
             {
-                DisplayAlert("Error", "Faltan datos", "OK");
+                DisplayAlert("Error", "Faltan datos.", "OK");
             }
             else if(direccion.Text != null && cp.Text != null && direccion.Text != "" && cp.Text != "")
             {
-                Pedido nuevoPedido = new Pedido();
-                nuevoPedido.Direccion = direccion.Text;
-                nuevoPedido.UsuarioId = mainViewModel.UsuarioLogueado.Id;
-                nuevoPedido.ZonaId = mainViewModel.ZonaSeleccionada.Id;
-                nuevoPedido.PrecioTotal = precioTotal;
-                nuevoPedido.Comentario = comentario.Text;
-                nuevoPedido.CP = cp.Text;
-                nuevoPedido.NombreApellidos = nombreApellidos.Text;
-                nuevoPedido.TipoCocina = mainViewModel.TipoCocinaSeleccionado.Titulo;
+                // Comprovar que el cp esta dentro de la zona
+                string postCode = cp.Text;
+                if(postCode.Length > 1)
+                {
+                    postCode = postCode.TrimStart('0');
+                }
+                var geoServices = new GeoPC_PlacesServices();
+                var geoPlaces = await geoServices.GetGeoPC_PlacesByZonaAsync(mainViewModel.ZonaSeleccionada.Id);
+                bool isValid = false;
+                foreach (var place in geoPlaces)
+                {
+                    if(place.PostCode == postCode)
+                    {
+                        isValid = true;
+                        break;
+                    }
+                }
+                if(isValid)
+                {
+                    Pedido nuevoPedido = new Pedido();
+                    nuevoPedido.Direccion = direccion.Text;
+                    nuevoPedido.UsuarioId = mainViewModel.UsuarioLogueado.Id;
+                    nuevoPedido.ZonaId = mainViewModel.ZonaSeleccionada.Id;
+                    nuevoPedido.PrecioTotal = precioTotal;
+                    nuevoPedido.Comentario = comentario.Text;
+                    nuevoPedido.CP = cp.Text;
+                    nuevoPedido.NombreApellidos = nombreApellidos.Text;
+                    nuevoPedido.TipoCocina = mainViewModel.TipoCocinaSeleccionado.Titulo;
 
-                Navigation.PushAsync(new ModoPago(ListaCarrito, nuevoPedido));
+                    Navigation.PushAsync(new ModoPago(ListaCarrito, nuevoPedido));
+                }
+                else
+                {
+                    DisplayAlert("Error", "El código postal no coincide con la zona seleccionada.", "OK");
+                }
             }
-
         }
     }
 }

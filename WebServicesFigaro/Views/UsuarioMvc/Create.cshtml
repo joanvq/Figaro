@@ -104,6 +104,7 @@
                     new SelectListItem { Text = "Hombre", Value="Hombre" },
                     new SelectListItem { Text = "Mujer", Value="Mujer" }
                 }, "----Selecciona género----")
+
                 @*@Html.EditorFor(model => model.genero, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.genero, "", new { @class = "text-danger" })
             </div>

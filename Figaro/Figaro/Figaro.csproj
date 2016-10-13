@@ -41,6 +41,7 @@
     <Compile Include="Configuration\ViewModelLocator.cs" />
     <Compile Include="Models\ComentarioChef.cs" />
     <Compile Include="Models\Disponibilidad.cs" />
+    <Compile Include="Models\GeoPC_Places.cs" />
     <Compile Include="Models\MenuCarrito.cs" />
     <Compile Include="Models\MenuPedido.cs" />
     <Compile Include="Models\Pedido.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Services\ChefServices.cs" />
     <Compile Include="Services\ComentarioChefServices.cs" />
     <Compile Include="Services\DisponibilidadServices.cs" />
+    <Compile Include="Services\GeoPC_PlacesServices.cs" />
     <Compile Include="Services\MenuPedidoServices.cs" />
     <Compile Include="Services\MenusServices.cs" />
     <Compile Include="Services\PedidoServices.cs" />

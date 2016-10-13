@@ -1,0 +1,106 @@
+﻿@model WebServicesFigaro.Models.GeoPC_Place
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GeoPC_Place</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlaceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlaceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminName1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminName1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminCode1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminCode1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminName2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminName2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminCode2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminCode2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminName3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminName3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminCode3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminCode3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Accuracy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Accuracy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZonaId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZonaId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

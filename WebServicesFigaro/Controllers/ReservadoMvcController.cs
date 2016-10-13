@@ -49,8 +49,9 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Hora,DisponibilidadId,PedidoId")] Reservado reservado)
+        public ActionResult Create([Bind(Include = "Id,HoraInicio,DisponibilidadId")] Reservado reservado)
         {
+            reservado.PedidoId = -1;
             if (ModelState.IsValid)
             {
                 db.Reservadoes.Add(reservado);
