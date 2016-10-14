@@ -8,39 +8,27 @@
               xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
               x:Name="platosPage"
               Title="Descubrir">
-  
-  <!--<ContentPage.BindingContext>
-    <ViewModels:MainViewModel />
-  </ContentPage.BindingContext>-->
+  <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
-  <StackLayout Orientation="Vertical">
-    <!--<Button Text="Añadir Plato"
-            Clicked="Button_OnClicked" />
-
-    <Button Text="Buscar Platos"
-            TextColor="White"
-            BackgroundColor="Purple"
-            Clicked="Search_OnClicked" />
-
-    <Button Text="Actualizar"
-        TextColor="White"
-        BackgroundColor="Green"
-        Command="{Binding Refresh}" />-->
-    
-    <Label x:Name="StatusMessage" Text="{Binding StatusMessage}" />
-    
     <ActivityIndicator IsRunning="{Binding IsBusy}"
-                       IsVisible="{Binding IsBusy}" />
+                       IsVisible="{Binding IsBusy}"
+                       HeightRequest="50" WidthRequest="50"
+                       HorizontalOptions="Center" VerticalOptions="Center"/>
     
-    <ListView x:Name="ListaPlatosView"
-              ItemsSource="{Binding ListaPlatos}"
-		          HasUnevenRows="true"
-              ItemTapped="ListView_OnItemTapped">
-      <ListView.ItemTemplate>
-        <DataTemplate>
-           <ViewCell>
-             <StackLayout Orientation="Horizontal" Padding="12,6">
-                <controls:CircleImage Source="{Binding Imagen}" WidthRequest="70.0" 
+    <StackLayout Orientation="Vertical" 
+                 IsEnabled="{Binding IsIdle}" IsVisible="{Binding IsIdle}">
+
+      <Label x:Name="StatusMessage" Text="{Binding StatusMessage}" />
+
+      <ListView x:Name="ListaPlatosView"
+                ItemsSource="{Binding ListaPlatos}"
+                HasUnevenRows="true"
+                ItemTapped="ListView_OnItemTapped">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Orientation="Horizontal" Padding="12,6">
+                <controls:CircleImage Source="{Binding Imagen}" WidthRequest="70.0"
                                       HeightRequest="70.0" Aspect="AspectFill" />
                 <Grid Padding="10,0,0,0">
                   <Grid.RowDefinitions>
@@ -52,14 +40,14 @@
                     <ColumnDefinition Width="*"/>
                   </Grid.ColumnDefinitions>
                   <Label Text="{Binding Titulo}"
-                          FontSize="24" 
+                          FontSize="24"
                           Grid.Row="0"/>
-                  <Label Text="{Binding Descripcion}" 
+                  <Label Text="{Binding Descripcion}"
                           FontSize="18"
                           Opacity="0.6"
                           Grid.Row="1"
                           Grid.Column="0"/>
-                  <Label Text="{Binding PrecioEuros}" 
+                  <Label Text="{Binding PrecioEuros}"
                           FontSize="14"
                           Opacity="0.6"
                           Grid.Row="0"
@@ -68,31 +56,32 @@
                             FontSize="24" WidthRequest="10"
                             Grid.Row="1" Grid.Column="2"
                             Clicked="AnadirCesta_OnClick"/>
-                  
+
                 </Grid>
-            </StackLayout>
-          </ViewCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
-    
-    <StackLayout HeightRequest="50" BackgroundColor="#ddd">
-      <Grid>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Image x:Name="Menu_Button" Grid.Column="0" Source="icono_menu.png" 
-               HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-        <Image x:Name="Plato_Button" Grid.Column="1" Source="icono_descubrir_select.png" 
-               HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-        <Image x:Name="Chefs_Button" Grid.Column="2" Source="icon_chefs.png"
-               HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-        <Image x:Name="Profile_Button" Grid.Column="3" Source="icono_profile.png"
-               HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-      </Grid>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+
+      <StackLayout HeightRequest="50" BackgroundColor="#ddd">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Image x:Name="Menu_Button" Grid.Column="0" Source="icono_menu.png"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+          <Image x:Name="Plato_Button" Grid.Column="1" Source="icono_descubrir_select.png"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+          <Image x:Name="Chefs_Button" Grid.Column="2" Source="icon_chefs.png"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+          <Image x:Name="Profile_Button" Grid.Column="3" Source="icono_profile.png"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+        </Grid>
+      </StackLayout>
     </StackLayout>
-  </StackLayout> 
+  </Grid>
 </ContentPage>

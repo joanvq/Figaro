@@ -8,75 +8,82 @@
               xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
               x:Name="chefsPage"
               Title="Chefs">
-  
-  <StackLayout Orientation="Vertical">
-    <Label x:Name="StatusMessage" Text="{Binding StatusMessage}" />
+
+  <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
     <ActivityIndicator IsRunning="{Binding IsBusy}"
-                       IsVisible="{Binding IsBusy}" />
+                   IsVisible="{Binding IsBusy}"
+                   HeightRequest="50" WidthRequest="50"
+                   HorizontalOptions="Center" VerticalOptions="Center"/>
+    
+    <StackLayout Orientation="Vertical"
+                 IsEnabled="{Binding IsIdle}" IsVisible="{Binding IsIdle}">
+      
+      <Label x:Name="StatusMessage" Text="{Binding StatusMessage}" />
 
-    <ListView x:Name="ListaChefsView"
-              ItemsSource="{Binding ListaChefs}"
-		          HasUnevenRows="true"
-              ItemTapped="ListView_OnItemTapped">
-      <ListView.ItemTemplate HorizontalContentAlignment="Stretch">
-        <DataTemplate>
-          <ViewCell>
-            <StackLayout Orientation="Horizontal" Padding="12,6">
-              <controls:CircleImage Source="{Binding Imagen}" WidthRequest="70.0"
-                                    HeightRequest="70.0" Aspect="AspectFill" />
-              <Grid Padding="10,0,0,0">
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="Auto"/>
-                  <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="Auto"/>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Label Text="{Binding NombreApellidos}"
-                        FontSize="24"
-                        Grid.Row="0"
-                        Grid.Column="0"/>
-                <!--Star rating-->
-                <Label Text="Rating stars" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="2" />
-                <Label Text="{Binding Subtitulo}"
-                        FontSize="16"
-                        Opacity="0.6"
-                        Grid.Row="1"
-                        Grid.Column="0" HorizontalOptions="StartAndExpand"/>
-                <Image ClassId="{Binding Id}" Source="add.png"
-                          WidthRequest="40" HeightRequest="40" Aspect="AspectFill"
-                        Grid.Row="1" Grid.Column="2" HorizontalOptions="EndAndExpand">
-                  <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ElegirChef_OnTapped"/>
-                  </Image.GestureRecognizers>
-                </Image>
-              </Grid>
-            </StackLayout>
-          </ViewCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
+      <ListView x:Name="ListaChefsView"
+                ItemsSource="{Binding ListaChefs}"
+                HasUnevenRows="true"
+                ItemTapped="ListView_OnItemTapped">
+        <ListView.ItemTemplate HorizontalContentAlignment="Stretch">
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Orientation="Horizontal" Padding="12,6">
+                <controls:CircleImage Source="{Binding Imagen}" WidthRequest="70.0"
+                                      HeightRequest="70.0" Aspect="AspectFill" />
+                <Grid Padding="10,0,0,0">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                  </Grid.ColumnDefinitions>
+                  <Label Text="{Binding NombreApellidos}"
+                          FontSize="24"
+                          Grid.Row="0"
+                          Grid.Column="0"/>
+                  <!--Star rating-->
+                  <Label Text="Rating stars" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="2" />
+                  <Label Text="{Binding Subtitulo}"
+                          FontSize="16"
+                          Opacity="0.6"
+                          Grid.Row="1"
+                          Grid.Column="0" HorizontalOptions="StartAndExpand"/>
+                  <Image ClassId="{Binding Id}" Source="add.png"
+                            WidthRequest="40" HeightRequest="40" Aspect="AspectFill"
+                          Grid.Row="1" Grid.Column="2" HorizontalOptions="EndAndExpand">
+                    <Image.GestureRecognizers>
+                      <TapGestureRecognizer Tapped="ElegirChef_OnTapped"/>
+                    </Image.GestureRecognizers>
+                  </Image>
+                </Grid>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
 
-    <StackLayout HeightRequest="50" BackgroundColor="#ddd">
-      <Grid>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Image x:Name="Menu_Button" Grid.Column="0" Source="icono_menu.png"
-               HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-        <Image x:Name="Plato_Button" Grid.Column="1" Source="icono_descubrir.png"
-               HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-        <Image x:Name="Chefs_Button" Grid.Column="2" Source="icon_chefs_select.png"
-               HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-        <Image x:Name="Profile_Button" Grid.Column="3" Source="icono_profile.png"
-               HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-      </Grid>
+      <StackLayout HeightRequest="50" BackgroundColor="#ddd">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Image x:Name="Menu_Button" Grid.Column="0" Source="icono_menu.png"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+          <Image x:Name="Plato_Button" Grid.Column="1" Source="icono_descubrir.png"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+          <Image x:Name="Chefs_Button" Grid.Column="2" Source="icon_chefs_select.png"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+          <Image x:Name="Profile_Button" Grid.Column="3" Source="icono_profile.png"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+        </Grid>
+      </StackLayout>
     </StackLayout>
-  </StackLayout>
+  </Grid>
 </ContentPage>

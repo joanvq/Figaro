@@ -302,9 +302,18 @@ namespace Figaro.ViewModels
             get { return isBusy; }
             set
             {
-                isBusy = value;
-                OnPropertyChanged();
+                if (isBusy != value)
+                {
+                    isBusy = value;
+                    OnPropertyChanged("IsBusy");
+                    OnPropertyChanged("IsIdle");
+                }
             }
+        }
+
+        public bool IsIdle
+        {
+            get { return !IsBusy; }
         }
 
         public string StatusMessage
