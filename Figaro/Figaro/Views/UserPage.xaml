@@ -11,13 +11,13 @@
   <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
     <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"  
                        HeightRequest="50" WidthRequest="50"
-                       HorizontalOptions="Center" VerticalOptions="Center"/>
+                       HorizontalOptions="Center" VerticalOptions="Center" Margin="0"/>
     <StackLayout IsEnabled="{Binding IsIdle}"
                  IsVisible="{Binding IsIdle}" >
       <ScrollView>
         <StackLayout Orientation="Vertical">
-          <controls:CircleImage Source="{Binding UsuarioLogueado.Imagen}" WidthRequest="70.0"
-                                          HeightRequest="70.0" Aspect="AspectFit" />
+          <!--controls:CircleImage Source="{Binding UsuarioLogueado.Imagen}" WidthRequest="70.0"
+                                          HeightRequest="70.0" Aspect="AspectFit" />-->
           <Label Text="Nombre" />
           <Entry x:Name="Nombre" Text="{Binding UsuarioLogueado.Nombre}" />
           <Label Text="Apellidos" />

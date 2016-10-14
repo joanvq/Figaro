@@ -64,7 +64,9 @@ namespace Figaro.Views
                     this.IsPresented = false;
                     mainViewModel.TipoCocinaSeleccionado = tipoCocina;
                     //Navigation.PopToRootAsync();
-                    mainViewModel.Refresh.Execute(null);
+                    //mainViewModel.Refresh.Execute(null);
+                    mainViewModel.FiltrarPlatosMenus();
+                    mainViewModel.FiltrarChefs();
                     //InitializeComponent();
                 }
             }

@@ -73,7 +73,7 @@ namespace Figaro.Services
         public async Task<bool> DeletePlatoCarritoAsync(int id)
         {
 
-            RestClient<PlatoCarrito> restClient = new RestClient<PlatoCarrito>("PlatoCarrito/Usuario");
+            RestClient<PlatoCarrito> restClient = new RestClient<PlatoCarrito>("PlatoCarrito");
 
             var isSuccessStatusCode = await restClient.DeleteAsync(id);
 

@@ -14,22 +14,25 @@ namespace Figaro.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private List<Plato> listaPlatos;
+        private List<Plato> allPlatos; //Lista de todos los platos que existen en la BD
+        private List<Plato> listaPlatos; //Lista filtrada
         private List<Plato> searchedPlatos;
         private string keywordPlato;
         private bool isBusy;
         private string statusMessage;
         private Plato platoSeleccionado = new Plato();
-
-        private TipoCocina tipoCocinaSeleccionado = null;
+        
         private List<TipoCocina> listaTipoCocina;
+        private TipoCocina tipoCocinaSeleccionado = null;
 
+        private List<Menu> allMenus;
         private List<Menu> listaMenus;
         private Menu menuSeleccionado = new Menu();
 
+        private List<Chef> allChefs;
         private List<Chef> listaChefs;
         private Chef chefSeleccionado = new Chef();
-
+        
         private List<Zona> listaZonas;
         private Zona zonaSeleccionada = null;
 
@@ -571,18 +574,18 @@ namespace Figaro.ViewModels
         {
             IsBusy = true;
 
-            var tipoCocinaServices = new TipoCocinaServices();
-            ListaTipoCocina = await tipoCocinaServices.GetTipoCocinaAsync();
-
             var platosServices = new PlatosServices();
-            ListaPlatos = await platosServices.GetPlatosAsync();
+            allPlatos = await platosServices.GetPlatosAsync();
 
             var menusServices = new MenusServices();
-            ListaMenus = await menusServices.GetMenusAsync();
+            allMenus = await menusServices.GetMenusAsync();
 
             var chefServices = new ChefServices();
-            ListaChefs = await chefServices.GetChefsAsync();
+            allChefs = await chefServices.GetChefsAsync();
 
+            var tipoCocinaServices = new TipoCocinaServices();
+            ListaTipoCocina = await tipoCocinaServices.GetTipoCocinaAsync();
+            
             var zonaServices = new ZonaServices();
             ListaZonas = await zonaServices.GetZonaAsync();
 
@@ -594,24 +597,69 @@ namespace Figaro.ViewModels
             ListaPlatoCarrito = await platoCarritoServices.GetPlatoCarritoByUsuarioAsync(UsuarioLogueado.Id);
             var menuCarritoServices = new MenuCarritoServices();
             ListaMenuCarrito = await menuCarritoServices.GetMenuCarritoByUsuarioAsync(UsuarioLogueado.Id);
+            ZonaSeleccionada = ListaZonas.FirstOrDefault(z => z.Id == UsuarioLogueado.ZonaId);
+            //Falta tipo cocina
+
+            FiltrarPlatosMenus();
+            IsBusy = true;
+
+            FiltrarChefs();
+            IsBusy = true;
+            
+            IsBusy = false;
+        }
+
+        public async Task InitializeComentariosAsync(int idChef)
+        {
+            IsBusy = true;
+
+            var comentarioChefServices = new ComentarioChefServices();
+            ListaComentariosChef = await comentarioChefServices.GetComentariosChefAsync(idChef);
+
+            IsBusy = false;
+        }
+
+        public void FiltrarPlatosMenus()
+        {
+            IsBusy = true;
             
             if (TipoCocinaSeleccionado != null)
             {
-                ListaPlatos = ListaPlatos.Where(plato => plato.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
-                ListaMenus = ListaMenus.Where(menu => menu.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
-                ListaChefs = ListaChefs.Where(chef => chef.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
+                ListaPlatos = allPlatos.Where(plato => plato.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
+                ListaMenus = allMenus.Where(menu => menu.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
+            }
+            else
+            {
+                ListaPlatos = allPlatos;
+                ListaMenus = allMenus;
             }
 
-            if(ZonaSeleccionada != null)
+            IsBusy = false;
+        }
+
+        public async void FiltrarChefs()
+        {
+            IsBusy = true;
+
+            if (TipoCocinaSeleccionado != null)
+            {
+                ListaChefs = allChefs.Where(chef => chef.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
+            }
+            else
+            {
+                ListaChefs = allChefs;
+            }
+
+            if (ZonaSeleccionada != null)
             {
                 ListaChefs = ListaChefs.Where(chef => chef.Zona.Id == ZonaSeleccionada.Id).ToList();
             }
 
-            if(fecha != null)
+            if (Fecha != null)
             {
                 var disponibilidadServices = new DisponibilidadServices();
                 var disponibilidadesChefsFecha = await disponibilidadServices.GetDisponibilidadesByDateAsync(fecha);
-                
+
                 List<Chef> nuevaListChefs = new List<Chef>();
                 foreach (Disponibilidad disponibilidad in disponibilidadesChefsFecha)
                 {
@@ -642,17 +690,6 @@ namespace Figaro.ViewModels
                 }
                 ListaChefs = nuevaListChefs;
             }
-
-            IsBusy = false;
-        }
-
-        public async Task InitializeComentariosAsync(int idChef)
-        {
-            IsBusy = true;
-
-            var comentarioChefServices = new ComentarioChefServices();
-            ListaComentariosChef = await comentarioChefServices.GetComentariosChefAsync(idChef);
-
             IsBusy = false;
         }
 
@@ -702,6 +739,7 @@ namespace Figaro.ViewModels
 
             if (tipoElemento == "P")
             {
+                // Es un plato
                 var platoCarrito = ListaPlatoCarrito.FirstOrDefault(l => l.Plato.Id == id);
                 if (!platoCarrito.Equals(new PlatoCarrito()))
                 {
@@ -721,8 +759,12 @@ namespace Figaro.ViewModels
                     }
                     else
                     {
-                        
-                        var isSuccess = await platoCarritoServices.PutPlatoCarritoAsync(platoCarrito);
+                        PlatoCarrito newPlatoCarrito = new PlatoCarrito();
+                        newPlatoCarrito.Id = platoCarrito.Id;
+                        newPlatoCarrito.PlatoId = platoCarrito.PlatoId;
+                        newPlatoCarrito.UsuarioId = platoCarrito.UsuarioId;
+                        newPlatoCarrito.Cantidad = cant;
+                        var isSuccess = await platoCarritoServices.PutPlatoCarritoAsync(newPlatoCarrito);
                         if(isSuccess)
                         {
                             platoCarrito.Cantidad--;
@@ -737,6 +779,7 @@ namespace Figaro.ViewModels
 
             if (tipoElemento == "M")
             {
+                // Es un menu
                 var menuCarrito = ListaMenuCarrito.FirstOrDefault(l => l.Menu.Id == id);
                 
                 if (!menuCarrito.Equals(new MenuCarrito()))
@@ -761,7 +804,7 @@ namespace Figaro.ViewModels
                         newMenuCarrito.Id = menuCarrito.Id;
                         newMenuCarrito.MenuId = menuCarrito.MenuId;
                         newMenuCarrito.UsuarioId = menuCarrito.UsuarioId;
-                        newMenuCarrito.Cantidad = menuCarrito.Cantidad;
+                        newMenuCarrito.Cantidad = cant;
                         var isSuccess = await menuCarritoServices.PutMenuCarritoAsync(newMenuCarrito);
                         if(isSuccess)
                         {

@@ -39,7 +39,7 @@ namespace Figaro.Views
                 mainViewModel.Hora = hora.Time.Hours*2 + minutos;
 
                 Navigation.PopAsync();
-                mainViewModel.InitializeDataAsync();
+                mainViewModel.FiltrarChefs();
             }
         }
 
