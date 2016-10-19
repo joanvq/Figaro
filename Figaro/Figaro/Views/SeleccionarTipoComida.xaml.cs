@@ -51,6 +51,15 @@ namespace Figaro.Views
             };
             this.ToolbarItems.Add(cesta);
 
+            // ESTO NO FUNCIONA YA QUE AUN NO ESTÁ CARGADA LA LISTA TIPO COCINA
+            // PERO SE TENDRIA QUE HACER QUE SE MARCARA EL TIPOCOCINA SELECCIONADO INICIALMENTE
+            //var mainViewModel = BindingContext as MainViewModel;
+            //foreach (var item in ListaTipoCocinaView.ItemsSource) {
+            //    if(item == mainViewModel.TipoCocinaSeleccionado)
+            //    {
+            //        ListaTipoCocinaView.SelectedItem = item;
+            //    }
+            //}
         }       
 
         public void TipoCocina_OnItemTapped(object sender, ItemTappedEventArgs e)
@@ -62,11 +71,9 @@ namespace Figaro.Views
                 if (mainViewModel != null)
                 {
                     this.IsPresented = false;
-                    mainViewModel.TipoCocinaSeleccionado = tipoCocina;
+                    mainViewModel.ElegirTipoCocinaAsync(tipoCocina);
                     //Navigation.PopToRootAsync();
                     //mainViewModel.Refresh.Execute(null);
-                    mainViewModel.FiltrarPlatosMenus();
-                    mainViewModel.FiltrarChefs();
                     //InitializeComponent();
                 }
             }

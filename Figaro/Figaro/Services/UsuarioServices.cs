@@ -36,6 +36,7 @@ namespace Figaro.Services
             nuevoUsuario.Estado = usuario.Estado;
             nuevoUsuario.FechaRegistro = usuario.FechaRegistro;
             nuevoUsuario.ChefSeleccionadoId = usuario.ChefSeleccionadoId;
+            nuevoUsuario.TipoCocinaId = usuario.TipoCocinaId;
             var index = usuario.Imagen.IndexOf("/Content");
             if (index > -1)
             {

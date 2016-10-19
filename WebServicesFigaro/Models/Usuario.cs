@@ -39,10 +39,14 @@ namespace WebServicesFigaro.Models
         public DateTime FechaRegistro { get; set; }
         [DisplayName("Género")]
         public string genero { get; set; }
-        [DisplayName("ChefSeleccionado")]
+        [DisplayName("ChefS Seleccionado")]
         [ForeignKey("ChefSeleccionado")]
         public int ChefSeleccionadoId { get; set; }
+        [DisplayName("Tipo Cocina Seleccionado")]
+        [ForeignKey("TipoCocina")]
+        public int TipoCocinaId { get; set; }
 
+        public TipoCocina TipoCocina { get; set; }
         public Chef ChefSeleccionado { get; set; }
         public Zona Zona { get; set; }
     }

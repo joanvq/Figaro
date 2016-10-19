@@ -598,7 +598,7 @@ namespace Figaro.ViewModels
             var menuCarritoServices = new MenuCarritoServices();
             ListaMenuCarrito = await menuCarritoServices.GetMenuCarritoByUsuarioAsync(UsuarioLogueado.Id);
             ZonaSeleccionada = ListaZonas.FirstOrDefault(z => z.Id == UsuarioLogueado.ZonaId);
-            //Falta tipo cocina
+            TipoCocinaSeleccionado = ListaTipoCocina.FirstOrDefault(t => t.Id == UsuarioLogueado.TipoCocinaId);
 
             FiltrarPlatosMenus();
             IsBusy = true;
@@ -630,8 +630,8 @@ namespace Figaro.ViewModels
             }
             else
             {
-                ListaPlatos = allPlatos;
-                ListaMenus = allMenus;
+                ListaPlatos = new List<Plato>();
+                ListaMenus = new List<Menu>();
             }
 
             IsBusy = false;
@@ -822,6 +822,32 @@ namespace Figaro.ViewModels
             return false;
         }
 
+        public async void VaciarCarritoAsync()
+        {
+            IsBusy = true;
+
+            if (ListaPlatoCarrito.Count > 0)
+            {
+                var platoCarritoServices = new PlatoCarritoServices();
+                var isSuccess = await platoCarritoServices.DeletePlatoCarritoByUserAsync(UsuarioLogueado.Id);
+                if (isSuccess)
+                {
+                    ListaPlatoCarrito = new List<PlatoCarrito>();
+                }
+            }
+            if (ListaMenuCarrito.Count > 0)
+            {
+                var menuCarritoServices = new MenuCarritoServices();
+                var isSuccess = await menuCarritoServices.DeleteMenuCarritoByUserAsync(UsuarioLogueado.Id);
+                if (isSuccess)
+                {
+                    ListaMenuCarrito = new List<MenuCarrito>();
+                }
+            }
+
+            IsBusy = false;
+        }
+
         public async Task ListaPedidosAsync()
         {
             IsBusy = true;
@@ -837,7 +863,34 @@ namespace Figaro.ViewModels
             IsBusy = false;
         }
 
-        
+        public async Task ElegirTipoCocinaAsync(TipoCocina tipoCocinaSel)
+        {
+            IsBusy = true;
+
+            tipoCocinaSeleccionado = tipoCocinaSel;
+            var usuarioServices = new UsuarioServices();
+            Usuario usuario = UsuarioLogueado;
+            usuario.TipoCocinaId = tipoCocinaSeleccionado.Id;
+
+            var isSuccessStatusCode = await usuarioServices.PutUsuarioAsync(usuario.Id, usuario);
+            if (isSuccessStatusCode)
+            {
+                UsuarioLogueado.TipoCocina = tipoCocinaSeleccionado;
+                UsuarioLogueado.TipoCocinaId = tipoCocinaSeleccionado.Id;
+                StatusMessage = "Se ha elegido el tipo cocina " + tipoCocinaSeleccionado.Titulo + " correctamente.";
+            }
+            else
+            {
+                StatusMessage = "Hubo un problema al elegir el tipo cocina " + tipoCocinaSeleccionado.Titulo + ".";
+            }
+
+            VaciarCarritoAsync();
+            FiltrarPlatosMenus();
+            FiltrarChefs();
+
+            IsBusy = false;
+        }
+
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

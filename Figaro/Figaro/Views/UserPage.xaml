@@ -40,7 +40,9 @@
 
         </StackLayout>
       </ScrollView>
-      <StackLayout HeightRequest="50" BackgroundColor="#ddd">
+      <StackLayout VerticalOptions="EndAndExpand">
+      </StackLayout>
+      <StackLayout HeightRequest="50" BackgroundColor="#ddd" VerticalOptions="End">
         <Grid>
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

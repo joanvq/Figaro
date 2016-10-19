@@ -30,7 +30,10 @@ namespace WebServicesFigaro.Controllers
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult GetUsuario(int id)
         {
-            Usuario usuario = db.Usuarios.Include(u => u.Zona).Include(u => u.ChefSeleccionado)
+            Usuario usuario = db.Usuarios
+                .Include(u => u.Zona)
+                .Include(u => u.ChefSeleccionado)
+                .Include(u => u.TipoCocina)
                 .FirstOrDefault(u => u.Id == id);
             //no devuelve el password
             //usuario.Password = null;

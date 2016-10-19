@@ -24,6 +24,7 @@ namespace Figaro.Models
         public string NombreApellidos { get; set; }
         public int ChefSeleccionadoId { get; set; }
         public Chef ChefSeleccionado { get; set; }
-
+        public int TipoCocinaId{ get; set; }
+        public TipoCocina TipoCocina { get; set; }
     }
 }

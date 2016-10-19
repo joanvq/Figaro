@@ -31,7 +31,9 @@ namespace WebServicesFigaro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuarios.Include(u => u.Zona).Include(u => u.ChefSeleccionado).FirstOrDefault(u => u.Id == id);
+            Usuario usuario = db.Usuarios.Include(u => u.Zona).Include(u => u.ChefSeleccionado)
+                .Include(u => u.TipoCocina)
+                .FirstOrDefault(u => u.Id == id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -44,6 +46,7 @@ namespace WebServicesFigaro.Controllers
         {
             ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo");
             ViewBag.ChefSeleccionadoId = new SelectList(db.Chefs, "Id", "Apellidos");
+            ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo");
             ViewBag.genero = new SelectList(
             new List<SelectListItem> {
                     new SelectListItem { Text = "Sin especificar", Value = "Sin especificar" },
@@ -58,7 +61,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Apellidos,Email,Imagen,Password,ZonaId,Ciudad,Direccion,Estado,FechaRegistro,genero,ChefSeleccionadoId")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Apellidos,Email,Imagen,Password,ZonaId,Ciudad,Direccion,Estado,FechaRegistro,genero,ChefSeleccionadoId,TipoCocinaId")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -70,6 +73,7 @@ namespace WebServicesFigaro.Controllers
 
             ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", usuario.ZonaId);
             ViewBag.ChefSeleccionadoId = new SelectList(db.Chefs, "Id", "Apellidos", usuario.ChefSeleccionadoId);
+            ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo", usuario.TipoCocinaId);
             ViewBag.genero = new SelectList(
                 new List<SelectListItem> {
                     new SelectListItem { Text = "Sin especificar", Value = "Sin especificar" },
@@ -93,6 +97,7 @@ namespace WebServicesFigaro.Controllers
             }
             ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", usuario.ZonaId);
             ViewBag.ChefSeleccionadoId = new SelectList(db.Chefs, "Id", "Apellidos", usuario.ChefSeleccionadoId);
+            ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo", usuario.TipoCocinaId);
             ViewBag.genero = new SelectList(
                 new List<SelectListItem> {
                     new SelectListItem { Text = "Sin especificar", Value = "Sin especificar" },
@@ -108,7 +113,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Apellidos,Email,Imagen,ZonaId,Ciudad,Direccion,Estado,FechaRegistro,genero,Password,ChefSeleccionadoId")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Apellidos,Email,Imagen,ZonaId,Ciudad,Direccion,Estado,FechaRegistro,genero,Password,ChefSeleccionadoId,TipoCocinaId")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -118,6 +123,14 @@ namespace WebServicesFigaro.Controllers
             }
             ViewBag.ZonaId = new SelectList(db.Zonas, "Id", "Titulo", usuario.ZonaId);
             ViewBag.ChefSeleccionadoId = new SelectList(db.Chefs, "Id", "Apellidos", usuario.ChefSeleccionadoId);
+            ViewBag.TipoCocinaId = new SelectList(db.TipoCocinas, "Id", "Titulo", usuario.TipoCocinaId);
+            ViewBag.genero = new SelectList(
+                            new List<SelectListItem> {
+                    new SelectListItem { Text = "Sin especificar", Value = "Sin especificar" },
+                    new SelectListItem { Text = "Hombre", Value = "Hombre" },
+                    new SelectListItem { Text = "Mujer", Value = "Mujer" }
+                            }, "Value", "Text", usuario.genero);
+
             return View(usuario);
         }
 
