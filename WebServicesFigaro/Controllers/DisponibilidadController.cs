@@ -93,6 +93,22 @@ namespace WebServicesFigaro.Controllers
         }
 
         // POST: api/Disponibilidad
+        [Route("api/Disponibilidad/{desde}/{hasta}")]
+        [ResponseType(typeof(Disponibilidad))]
+        public IHttpActionResult PostDisponibilidadReserva(Disponibilidad disponibilidad, string desde, string hasta)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Disponibilidads.Add(disponibilidad);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = disponibilidad.Id }, disponibilidad);
+        }
+
+        // POST: api/Disponibilidad
         [ResponseType(typeof(Disponibilidad))]
         public IHttpActionResult PostDisponibilidad(Disponibilidad disponibilidad)
         {

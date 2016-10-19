@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Añadir horas disponibles para un Chef</h2>
+
+@using (Html.BeginForm("Create", "AsignarDisponibilidad", FormMethod.Post, new { @id = "insertForm", @name = "insertForm" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Disponibilidad</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label"> ID Chef:</label>
+            <div class="col-md-10">
+                <div class="controls">
+                    @Html.Editor("IdChef", new { htmlAttributes = new { @class = "form-control", @id = "id_chef" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label"> Nombre Chef:</label>
+            <div class="col-md-10">
+                <div class="controls">
+                    @Html.Editor("Chef", new { htmlAttributes = new { @class = "form-control", @id = "nombre_chef", disabled = "disabled", @readonly = "readonly" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label"> Fecha Inicial:</label>
+            <div class="col-md-10">
+                <div class="controls">
+                    @Html.Editor("FechaInicial", new { htmlAttributes = new { @class = "form-control", @id = "add_fecha_ini" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label"> Fecha Final:</label>
+            <div class="col-md-10">
+                <div class="controls">
+                    @Html.Editor("FechaFinal", new { htmlAttributes = new { @class = "form-control", @id = "add_fecha_fin" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label"> Hora Inicial:</label>
+            <div class="col-md-10">
+                <div class="controls">
+                    @Html.Editor("HoraInicial", new { htmlAttributes = new { @class = "form-control", @id = "add_hora_ini", @type = "number" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label"> Hora Final:</label>
+            <div class="col-md-10">
+                <div class="controls">
+                    @Html.Editor("HoraFinal", new { htmlAttributes = new { @class = "form-control", @id = "add_hora_fin", @type = "number" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <table class="table">
+                <tr>
+                    <th>
+                        Dias de la semana
+                    </th>
+                    <th>
+                        @Html.Label("Lunes");
+                    </th>
+                    <th>
+                        @Html.Label("Martes");
+                    </th>
+                    <th>
+                        @Html.Label("Miércoles");
+                    </th>
+                    <th>
+                        @Html.Label("Jueves");
+                    </th>
+                    <th>
+                        @Html.Label("Viernes");
+                    </th>
+                    <th>
+                        @Html.Label("Sábado");
+                    </th>
+                    <th>
+                        @Html.Label("Domingo");
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                        @Html.CheckBox("Lunes", new { htmlAttributes = new { @class = "form-control", @id = "lunes" } })
+                    </th>
+                    <th>
+                        @Html.CheckBox("Martes", new { htmlAttributes = new { @class = "form-control", @id = "martes" } })
+                    </th>
+                    <th>
+                        @Html.CheckBox("Miércoles", new { htmlAttributes = new { @class = "form-control", @id = "miercoles" } })
+                    </th>
+                    <th>
+                        @Html.CheckBox("Jueves", new { htmlAttributes = new { @class = "form-control", @id = "jueves" } })
+                    </th>
+                    <th>
+                        @Html.CheckBox("Viernes", new { htmlAttributes = new { @class = "form-control", @id = "viernes" } })
+                    </th>
+                    <th>
+                        @Html.CheckBox("Sábado", new { htmlAttributes = new { @class = "form-control", @id = "sabado" } })
+                    </th>
+                    <th>
+                        @Html.CheckBox("Domingo", new { htmlAttributes = new { @class = "form-control", @id = "domingo" } })
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-default" id="submit" disabled="true">Create</button>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#add_fecha_ini").datepicker({ 
+            dateFormat: 'dd/mm/yy',
+            autoSize: true,
+            constrainInput: true,
+            firstDay: 1
+        }).val();
+        $("#add_fecha_fin").datepicker({
+            dateFormat: 'dd/mm/yy',
+            autoSize: true,
+            constrainInput: true,
+            firstDay: 1
+        }).val();
+        $('#add_fecha_ini, #add_fecha_fin, #add_hora_ini, #add_hora_fin').on("change", action);
+
+    });
+
+    function action() {
+        var fechaIni = $('#add_fecha_ini').val();
+        var fechaFin = $('#add_fecha_fin').val();
+        var horaIni = $('#add_hora_ini').val();
+        var horaFin = $('#add_hora_fin').val();
+        if (validDate(fechaIni) && validDate(fechaFin) && parseInt(horaIni) >= 0 && parseInt(horaIni) <= 23
+            && parseInt(horaFin) >= 0 && parseInt(horaFin) <= 24) {
+            $('#submit').removeAttr('disabled');
+        }
+        else {
+            $('#submit').prop('disabled', true);
+        }
+    }
+
+    function validDate(text){
+        var comp = text.split('/');
+        if (comp.length !== 3) {
+            return false;
+        }
+        var d = parseInt(comp[0], 10);
+        var m = parseInt(comp[1], 10);
+        var y = parseInt(comp[2], 10);
+        var date = new Date(y,m-1,d);
+        return (date.getFullYear() == y && date.getMonth() + 1 == m && date.getDate() == d);
+    }
+</script>

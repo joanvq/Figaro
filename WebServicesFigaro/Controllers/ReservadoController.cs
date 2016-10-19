@@ -123,7 +123,7 @@ namespace WebServicesFigaro.Controllers
             // que tener mas de 2 horas disponibles
             if (disponibilidad != null)
             {
-                if(nDisponibles > 4)
+                if(nDisponibles > 0)
                 {
                     disponibilidad.EstaDisponible = true;
                     db.Entry(disponibilidad).State = EntityState.Modified;
