@@ -190,7 +190,7 @@ namespace Figaro.Views
             {
                 DisplayAlert("Error", "No hay ningun Tipo de Cocina seleccionado.", "OK");
             }
-            else if (mainViewModel.UsuarioLogueado.ChefSeleccionado.Nombre == null || mainViewModel.UsuarioLogueado.ChefSeleccionado.Nombre == "")
+            else if (mainViewModel.UsuarioLogueado.ChefSeleccionado == null)
             {
                 DisplayAlert("Error", "No hay ningun Chef seleccionado.", "OK");
             }

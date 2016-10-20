@@ -18,8 +18,18 @@ namespace Figaro.Views
             InitializeComponent();
             fecha.MaximumDate = DateTime.Now.AddMonths(24);
             fecha.MinimumDate = DateTime.Now;
-            //calendario.MaxDate = DateTime.Now.AddMonths(24);
-
+            var mainViewModel = BindingContext as MainViewModel;
+            if(mainViewModel.Fecha != null)
+            {
+                fecha.Date = mainViewModel.Fecha;
+            }
+            if(mainViewModel.Hora != null)
+            {
+                var h = mainViewModel.Hora / 2;
+                var m = (mainViewModel.Hora % 2) * 30;
+                TimeSpan timeIni = new TimeSpan(h, m, 0);                
+                hora.Time = timeIni;
+            }
         }
 
         private async void Seleccionar_OnClick(object sender, EventArgs e)
@@ -31,15 +41,9 @@ namespace Figaro.Views
             else
             {
                 var mainViewModel = BindingContext as MainViewModel;
-                //mainViewModel.Fecha = calendario.SelectedDate.Value;
-                mainViewModel.Fecha = new DateTime(fecha.Date.Year, fecha.Date.Month, fecha.Date.Day);
-                // Guarda de media hora en media hora, sera 1 o 0 dependiendo de si
-                // se le suma la media hora o no
-                int minutos = (hora.Time.Minutes >= 30) ? 1 : 0;
-                mainViewModel.Hora = hora.Time.Hours*2 + minutos;
-
+                mainViewModel.ElegirFechaHoraAsync(fecha, hora);
+               
                 Navigation.PopAsync();
-                mainViewModel.FiltrarChefs();
             }
         }
 
@@ -62,5 +66,5 @@ namespace Figaro.Views
             }
         }
 
-        }
+    }
 }

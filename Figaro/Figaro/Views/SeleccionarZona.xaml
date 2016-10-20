@@ -21,13 +21,15 @@
                        Aspect="AspectFill"/>
                 <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
-
-                  <Label Text="{Binding Titulo}" VerticalOptions="Center"
-                      HorizontalOptions="Center" FontSize="30" TextColor="White"/>
                   
-                  <!--<Image Source="icono_select.png" VerticalOptions="Center" HorizontalOptions="Center"
-                         HeightRequest="40" Aspect="AspectFill" />-->
+                  <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="{Binding Titulo}" 
+                      HorizontalOptions="Center" FontSize="30" TextColor="White"/>
 
+                    <Image Source="icono_select.png" WidthRequest="40"
+                           HeightRequest="40" Aspect="AspectFit" IsVisible="{Binding Actual}"/>
+                  </StackLayout>
+                  
                 </Grid>
               </RelativeLayout>
             </StackLayout>

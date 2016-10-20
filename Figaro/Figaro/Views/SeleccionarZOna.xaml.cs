@@ -27,12 +27,8 @@ namespace Figaro.Views
 
                 if (mainViewModel != null)
                 {
-                    mainViewModel.ZonaSeleccionada = zona;
-                    //mainViewModel.Refresh.Execute(null);
-                    mainViewModel.FiltrarChefs();
-                    mainViewModel.FiltrarPlatosMenus();
+                    mainViewModel.ElegirZonaAsync(zona);
                     Navigation.PopAsync();
-                    //DisplayAlert("Chef", "Mostrar chef " + chef.NombreApellidos, "OK");
                 }
             }
         }

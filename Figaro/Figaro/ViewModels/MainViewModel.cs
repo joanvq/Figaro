@@ -597,7 +597,9 @@ namespace Figaro.ViewModels
             ListaPlatoCarrito = await platoCarritoServices.GetPlatoCarritoByUsuarioAsync(UsuarioLogueado.Id);
             var menuCarritoServices = new MenuCarritoServices();
             ListaMenuCarrito = await menuCarritoServices.GetMenuCarritoByUsuarioAsync(UsuarioLogueado.Id);
-            ZonaSeleccionada = ListaZonas.FirstOrDefault(z => z.Id == UsuarioLogueado.ZonaId);
+            Zona zona = ListaZonas.FirstOrDefault(z => z.Id == UsuarioLogueado.ZonaId);
+            zona.Actual = true;
+            ZonaSeleccionada = zona;
             TipoCocinaSeleccionado = ListaTipoCocina.FirstOrDefault(t => t.Id == UsuarioLogueado.TipoCocinaId);
 
             FiltrarPlatosMenus();
@@ -879,6 +881,7 @@ namespace Figaro.ViewModels
                 UsuarioLogueado.TipoCocina = tipoCocinaSeleccionado;
                 UsuarioLogueado.TipoCocinaId = tipoCocinaSeleccionado.Id;
                 UsuarioLogueado.ChefSeleccionadoId = null;
+                UsuarioLogueado.ChefSeleccionado = null;
                 StatusMessage = "Se ha elegido el tipo cocina " + tipoCocinaSeleccionado.Titulo + " correctamente.";
             }
             else
@@ -888,6 +891,79 @@ namespace Figaro.ViewModels
 
             VaciarCarritoAsync();
             FiltrarPlatosMenus();
+            FiltrarChefs();
+
+            IsBusy = false;
+        }
+
+        public async Task ElegirZonaAsync(Zona zonaSel)
+        {
+            IsBusy = true;
+
+            // Modificar actual en Zona Anterior y Actual
+            Zona zonaAnt = ListaZonas.FirstOrDefault(l => l.Id == ZonaSeleccionada.Id);
+            if (zonaAnt != null)
+            {
+                zonaAnt.Actual = false;
+            }
+            Zona zonaAct = ListaZonas.FirstOrDefault(l => l.Id == zonaSel.Id);
+            if (zonaAct != null)
+            {
+                zonaAct.Actual = true;
+                ZonaSeleccionada = zonaAct;
+            }
+
+            // Añadir ZonaSeleccionada a Usuario y poner a null el ChefSeleccionado
+            var usuarioServices = new UsuarioServices();
+            Usuario usuario = UsuarioLogueado;
+            usuario.ZonaId = zonaSeleccionada.Id;
+            usuario.ChefSeleccionadoId = null;
+
+            var isSuccessStatusCode = await usuarioServices.PutUsuarioAsync(usuario.Id, usuario);
+            if (isSuccessStatusCode)
+            {
+                UsuarioLogueado.Zona = zonaSeleccionada;
+                UsuarioLogueado.ZonaId = zonaSeleccionada.Id;
+                UsuarioLogueado.ChefSeleccionadoId = null;
+                UsuarioLogueado.ChefSeleccionado = null;
+                StatusMessage = "Se ha guardado la zona " + zonaSeleccionada.Titulo + " en las opciones de Usuario.";
+            }
+            else
+            {
+                StatusMessage = "Hubo un problema al guardar la zona " + zonaSeleccionada.Titulo + " en las opciones de Usuario.";
+            }
+
+            FiltrarChefs();
+
+            IsBusy = false;
+        }
+
+        public async Task ElegirFechaHoraAsync(DatePicker fecha, TimePicker hora)
+        {
+            IsBusy = true;
+            
+            Fecha = new DateTime(fecha.Date.Year, fecha.Date.Month, fecha.Date.Day);
+
+            // Guarda de media hora en media hora, sera 1 o 0 dependiendo de si
+            // se le suma la media hora o no
+            int minutos = (hora.Time.Minutes >= 30) ? 1 : 0;
+            Hora = hora.Time.Hours * 2 + minutos;
+            
+            var usuarioServices = new UsuarioServices();
+            Usuario usuario = UsuarioLogueado;
+            usuario.ChefSeleccionadoId = null;
+
+            var isSuccessStatusCode = await usuarioServices.PutUsuarioAsync(usuario.Id, usuario);
+            if (isSuccessStatusCode)
+            {
+                UsuarioLogueado.ChefSeleccionadoId = null;
+                UsuarioLogueado.ChefSeleccionado = null;
+            }
+            else
+            {
+                StatusMessage = "Hubo un problema cambiar la hora y borrar el chef seleccionado: " + chefSeleccionado.NombreApellidos + ".";
+            }
+            
             FiltrarChefs();
 
             IsBusy = false;
