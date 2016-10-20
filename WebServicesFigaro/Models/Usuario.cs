@@ -41,7 +41,7 @@ namespace WebServicesFigaro.Models
         public string genero { get; set; }
         [DisplayName("ChefS Seleccionado")]
         [ForeignKey("ChefSeleccionado")]
-        public int ChefSeleccionadoId { get; set; }
+        public int? ChefSeleccionadoId { get; set; }
         [DisplayName("Tipo Cocina Seleccionado")]
         [ForeignKey("TipoCocina")]
         public int TipoCocinaId { get; set; }

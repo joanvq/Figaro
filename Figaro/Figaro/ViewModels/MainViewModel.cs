@@ -871,12 +871,14 @@ namespace Figaro.ViewModels
             var usuarioServices = new UsuarioServices();
             Usuario usuario = UsuarioLogueado;
             usuario.TipoCocinaId = tipoCocinaSeleccionado.Id;
+            usuario.ChefSeleccionadoId = null;
 
             var isSuccessStatusCode = await usuarioServices.PutUsuarioAsync(usuario.Id, usuario);
             if (isSuccessStatusCode)
             {
                 UsuarioLogueado.TipoCocina = tipoCocinaSeleccionado;
                 UsuarioLogueado.TipoCocinaId = tipoCocinaSeleccionado.Id;
+                UsuarioLogueado.ChefSeleccionadoId = null;
                 StatusMessage = "Se ha elegido el tipo cocina " + tipoCocinaSeleccionado.Titulo + " correctamente.";
             }
             else
