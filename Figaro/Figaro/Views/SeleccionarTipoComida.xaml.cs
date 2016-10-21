@@ -53,6 +53,7 @@ namespace Figaro.Views
 
             // ESTO NO FUNCIONA YA QUE AUN NO ESTÁ CARGADA LA LISTA TIPO COCINA
             // PERO SE TENDRIA QUE HACER QUE SE MARCARA EL TIPOCOCINA SELECCIONADO INICIALMENTE
+            // O HACERLO CON UN CHECK COMO EN ZONA
             //var mainViewModel = BindingContext as MainViewModel;
             //foreach (var item in ListaTipoCocinaView.ItemsSource) {
             //    if(item == mainViewModel.TipoCocinaSeleccionado)

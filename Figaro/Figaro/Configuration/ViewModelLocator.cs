@@ -10,6 +10,7 @@ namespace Figaro.Configuration
     class ViewModelLocator
     {
         public MainViewModel MainViewModel { get; }
+        public FacebookViewModel FacebookViewModel { get; }
         public PlatoViewModel PlatoViewModel { get; }
         public TipoCocinaViewModel TipoCocinaViewModel { get; }
         
@@ -17,6 +18,7 @@ namespace Figaro.Configuration
         public ViewModelLocator()
         {
             MainViewModel = new MainViewModel();
+            FacebookViewModel = new FacebookViewModel();
             PlatoViewModel = new PlatoViewModel();
             TipoCocinaViewModel = new TipoCocinaViewModel();
         }

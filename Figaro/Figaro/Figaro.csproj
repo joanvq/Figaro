@@ -41,6 +41,7 @@
     <Compile Include="Configuration\ViewModelLocator.cs" />
     <Compile Include="Models\ComentarioChef.cs" />
     <Compile Include="Models\Disponibilidad.cs" />
+    <Compile Include="Models\FacebookProfile.cs" />
     <Compile Include="Models\GeoPC_Places.cs" />
     <Compile Include="Models\MenuCarrito.cs" />
     <Compile Include="Models\MenuPedido.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Services\ChefServices.cs" />
     <Compile Include="Services\ComentarioChefServices.cs" />
     <Compile Include="Services\DisponibilidadServices.cs" />
+    <Compile Include="Services\FacebookServices.cs" />
     <Compile Include="Services\GeoPC_PlacesServices.cs" />
     <Compile Include="Services\MenuPedidoServices.cs" />
     <Compile Include="Services\MenusServices.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Services\TipoCocinaServices.cs" />
     <Compile Include="Services\UsuarioServices.cs" />
     <Compile Include="Services\ZonaServices.cs" />
+    <Compile Include="ViewModels\FacebookViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PlatoViewModel.cs" />
     <Compile Include="ViewModels\TipoCocinaViewModel.cs" />
@@ -81,6 +84,12 @@
     </Compile>
     <Compile Include="Views\ChefsPage.xaml.cs">
       <DependentUpon>ChefsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginFacebook.xaml.cs">
+      <DependentUpon>LoginFacebook.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ModoPago.xaml.cs">
       <DependentUpon>ModoPago.xaml</DependentUpon>
@@ -149,8 +158,8 @@
       <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.1.6.1\lib\portable-net45+wp8+win8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\ImageCircle.Forms.Plugin.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PayPal.Forms">
@@ -309,6 +318,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SeleccionarDiaHora.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Login.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\LoginFacebook.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
