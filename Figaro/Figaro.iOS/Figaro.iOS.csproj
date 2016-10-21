@@ -115,6 +115,44 @@
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\icono_chefs_select%401x.png" />
+    <BundleResource Include="Resources\icono_chefs_select%402x.png" />
+    <BundleResource Include="Resources\icono_chefs_select%403x.png" />
+    <BundleResource Include="Resources\icono_descubrir_select%401x.png" />
+    <BundleResource Include="Resources\icono_descubrir_select%402x.png" />
+    <BundleResource Include="Resources\icono_descubrir_select%403x.png" />
+    <BundleResource Include="Resources\icono_descubrir%401x.png" />
+    <BundleResource Include="Resources\icono_descubrir%402x.png" />
+    <BundleResource Include="Resources\icono_descubrir%403x.png" />
+    <BundleResource Include="Resources\icono_map_maker%401x.png" />
+    <BundleResource Include="Resources\icono_map_maker%402x.png" />
+    <BundleResource Include="Resources\icono_map_maker%403x.png" />
+    <BundleResource Include="Resources\icono_menu_select%401x.png" />
+    <BundleResource Include="Resources\icono_menu_select%402x.png" />
+    <BundleResource Include="Resources\icono_menu_select%403x.png" />
+    <BundleResource Include="Resources\icono_menu%401x.png" />
+    <BundleResource Include="Resources\icono_menu%402x.png" />
+    <BundleResource Include="Resources\icono_menu%403x.png" />
+    <BundleResource Include="Resources\icono_profile_select%401x.png" />
+    <BundleResource Include="Resources\icono_profile_select%402x.png" />
+    <BundleResource Include="Resources\icono_profile_select%403x.png" />
+    <BundleResource Include="Resources\icono_profile%401x.png" />
+    <BundleResource Include="Resources\icono_profile%402x.png" />
+    <BundleResource Include="Resources\icono_profile%403x.png" />
+    <BundleResource Include="Resources\icono_select%401x.png" />
+    <BundleResource Include="Resources\icono_select%402x.png" />
+    <BundleResource Include="Resources\icono_select%403x.png" />
+    <BundleResource Include="Resources\icono_shopping_bag_empty%401x.png" />
+    <BundleResource Include="Resources\icono_shopping_bag_empty%403x.png" />
+    <BundleResource Include="Resources\icono_shopping-_bag_empty%402x.png" />
+    <BundleResource Include="Resources\icono_star_empty%401x.png" />
+    <BundleResource Include="Resources\icono_star_empty%402x.png" />
+    <BundleResource Include="Resources\icono_star_empty%403x.png" />
+    <BundleResource Include="Resources\icono_star%401x.png" />
+    <BundleResource Include="Resources\icono_star%402x.png" />
+    <BundleResource Include="Resources\icono_star%403x.png" />
+    <BundleResource Include="Resources\barcelona.jpg" />
+    <BundleResource Include="Resources\dublin.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ExifLib, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
