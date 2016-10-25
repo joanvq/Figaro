@@ -1,4 +1,5 @@
-﻿using Figaro.ViewModels;
+﻿using Figaro.Models;
+using Figaro.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +12,18 @@ namespace Figaro.Configuration
     {
         public MainViewModel MainViewModel { get; }
         public FacebookViewModel FacebookViewModel { get; }
-        public PlatoViewModel PlatoViewModel { get; }
-        public TipoCocinaViewModel TipoCocinaViewModel { get; }
+        public LoginViewModel LoginViewModel { get; }
+        //public PlatoViewModel PlatoViewModel { get; }
+        //public TipoCocinaViewModel TipoCocinaViewModel { get; }
         
 
         public ViewModelLocator()
         {
-            MainViewModel = new MainViewModel();
             FacebookViewModel = new FacebookViewModel();
-            PlatoViewModel = new PlatoViewModel();
-            TipoCocinaViewModel = new TipoCocinaViewModel();
+            LoginViewModel = new LoginViewModel();
+            MainViewModel = new MainViewModel();
+            //PlatoViewModel = new PlatoViewModel();
+            //TipoCocinaViewModel = new TipoCocinaViewModel();
         }
     }
 }

@@ -13,9 +13,8 @@ namespace Figaro
         public App()
         {
             InitializeComponent();
-            //MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage());
             //MainPage = new NavigationPage(new SeleccionarTipoComida());
-            MainPage = new NavigationPage(new Login());
             //MainPage = new NavigationPage(new ModoPago());
 
         }

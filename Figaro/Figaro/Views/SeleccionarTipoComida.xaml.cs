@@ -13,10 +13,12 @@ namespace Figaro.Views
     public partial class SeleccionarTipoComida : MasterDetailPage
     {
 
-        public SeleccionarTipoComida()
+        public SeleccionarTipoComida(Usuario usuarioLog)
         {
             
             InitializeComponent();
+            var mainViewModel = BindingContext as MainViewModel;
+            mainViewModel.InitializeDataAsync(usuarioLog);
 
             var calendario = new ToolbarItem
             {

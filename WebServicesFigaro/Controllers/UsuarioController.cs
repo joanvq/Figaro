@@ -100,6 +100,31 @@ namespace WebServicesFigaro.Controllers
             return CreatedAtRoute("DefaultApi", new { id = usuario.Id }, usuario);
         }
 
+        
+        // POST: api/Usuario/Facebook
+        [Route("api/Usuario/Facebook")]
+        [ResponseType(typeof(Usuario))]
+        public HttpResponseMessage  PostUsuarioFacebook(Usuario usuario)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            var usuFace = db.Usuarios.FirstOrDefault(u => u.FacebookId == usuario.FacebookId);
+            if (usuFace == null)
+            {
+                // Crear nou usuari - no existeix l'usuari a la BD
+                db.Usuarios.Add(usuario);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.Created, usuario); ;
+            }
+            else
+            {
+                // Ja existeix l'usuari a la BD
+                return Request.CreateResponse(HttpStatusCode.Created, usuario); ;
+            }
+        }
+
         //// DELETE: api/Usuario/5
         //[ResponseType(typeof(Usuario))]
         //public IHttpActionResult DeleteUsuario(int id)

@@ -21,8 +21,7 @@ namespace Plugin.RestClient
             //WebServiceUrl = "http://localhost:59998/api/" + endPoint + "/";
         }
 
-
-
+        
         public async Task<List<T>> GetAsync()
         {
             var httpClient = new HttpClient();
@@ -58,6 +57,31 @@ namespace Plugin.RestClient
             var result = await httpClient.PostAsync(WebServiceUrl, httpContent);
 
             return result.IsSuccessStatusCode;
+        }
+
+        public async Task<T> PostAsyncContent(T t)
+        {
+            var httpClient = new HttpClient();
+
+            var json = JsonConvert.SerializeObject(t);
+
+            HttpContent httpContent = new StringContent(json);
+
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var result = await httpClient.PostAsync(WebServiceUrl, httpContent);
+            if (result.IsSuccessStatusCode)
+            {
+                var contents = await result.Content.ReadAsStringAsync();
+                var taskModels = JsonConvert.DeserializeObject<T>(contents);
+                return taskModels;
+            }
+            else
+            {
+                return default(T);
+            }
+            
+                
         }
 
         public async Task<bool> PutAsync(int id, T t)

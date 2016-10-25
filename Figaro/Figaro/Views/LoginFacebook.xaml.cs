@@ -1,4 +1,5 @@
-﻿using Figaro.ViewModels;
+﻿using Figaro.Configuration;
+using Figaro.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace Figaro.Views
         {
         
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             var apiRequest =
                 "https://www.facebook.com/dialog/oauth?client_id="
                 + ClientId
@@ -48,10 +50,17 @@ namespace Figaro.Views
             {
                 var vm = BindingContext as FacebookViewModel;
 
-                await vm.SetFacebookUserProfileAsync(accessToken);
+                var isSuccess = await vm.SetFacebookUserProfileAsync(accessToken);
 
-                Content = MainStackLayout;
+                if(isSuccess)
+                {
+                    Content = MainStackLayout;
+
+                    Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new NavigationPage(new SeleccionarTipoComida(vm.UsuarioLogueado)));
+                }
+                // Sino desloguear
             }
+
         }
 
         private string ExtractAccessTokenFromUrl(string url)

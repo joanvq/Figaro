@@ -20,7 +20,6 @@ namespace WebServicesFigaro.Models
         [Required]
         public string Apellidos { get; set; }
         [DisplayName("Correo electrónico")]
-        [Required]
         [EmailAddress]
         public string Email { get; set; }
         public string Imagen { get; set; }
@@ -30,7 +29,7 @@ namespace WebServicesFigaro.Models
         public string Password { get; set; }
         [DisplayName("Zona")]
         [ForeignKey("Zona")]
-        public int ZonaId { get; set; }
+        public int? ZonaId { get; set; }
         public string Ciudad { get; set; }
         [DisplayName("Dirección")]
         public string Direccion { get; set; }
@@ -39,12 +38,14 @@ namespace WebServicesFigaro.Models
         public DateTime FechaRegistro { get; set; }
         [DisplayName("Género")]
         public string genero { get; set; }
+        [DisplayName("Facebook ID")]
+        public string FacebookId { get; set; }
         [DisplayName("ChefS Seleccionado")]
         [ForeignKey("ChefSeleccionado")]
         public int? ChefSeleccionadoId { get; set; }
         [DisplayName("Tipo Cocina Seleccionado")]
         [ForeignKey("TipoCocina")]
-        public int TipoCocinaId { get; set; }
+        public int? TipoCocinaId { get; set; }
 
         public TipoCocina TipoCocina { get; set; }
         public Chef ChefSeleccionado { get; set; }

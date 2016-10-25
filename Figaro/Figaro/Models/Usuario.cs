@@ -14,17 +14,18 @@ namespace Figaro.Models
         public string Email { get; set; }
         public string Imagen { get; set; }
         public string Password { get; set; }
-        public int ZonaId { get; set; }
+        public int? ZonaId { get; set; }
         public Zona Zona { get; set; }
         public string Ciudad { get; set; }
         public string Direccion { get; set; }
         public string Estado { get; set; }
         public DateTime FechaRegistro { get; set; }
         public string genero { get; set; }
+        public string FacebookId { get; set; }
         public string NombreApellidos { get; set; }
         public int? ChefSeleccionadoId { get; set; }
         public Chef ChefSeleccionado { get; set; }
-        public int TipoCocinaId{ get; set; }
+        public int? TipoCocinaId{ get; set; }
         public TipoCocina TipoCocina { get; set; }
     }
 }

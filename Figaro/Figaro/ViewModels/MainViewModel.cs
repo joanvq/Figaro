@@ -401,7 +401,7 @@ namespace Figaro.ViewModels
         {
             get
             {
-                return new Command(async () => await InitializeDataAsync());
+                return new Command(async () => await InitializeDataAsync(UsuarioLogueado));
             }
         }
 
@@ -566,11 +566,10 @@ namespace Figaro.ViewModels
 
         public MainViewModel()
         {
-            //Fatla Inizializar TipoCocina
-            InitializeDataAsync();
+
         }
 
-        public async Task InitializeDataAsync()
+        public async Task InitializeDataAsync(Usuario usuLog)
         {
             IsBusy = true;
 
@@ -591,15 +590,18 @@ namespace Figaro.ViewModels
 
             //seleccion por defecto el -1 - cambiar cuando se implemente el login
             var usuarioServices = new UsuarioServices();
-            UsuarioLogueado = await usuarioServices.GetUsuariosAsync(-1);
+            UsuarioLogueado = usuLog;
 
             var platoCarritoServices = new PlatoCarritoServices();
             ListaPlatoCarrito = await platoCarritoServices.GetPlatoCarritoByUsuarioAsync(UsuarioLogueado.Id);
             var menuCarritoServices = new MenuCarritoServices();
             ListaMenuCarrito = await menuCarritoServices.GetMenuCarritoByUsuarioAsync(UsuarioLogueado.Id);
             Zona zona = ListaZonas.FirstOrDefault(z => z.Id == UsuarioLogueado.ZonaId);
-            zona.Actual = true;
-            ZonaSeleccionada = zona;
+            if(zona != null)
+            {
+                zona.Actual = true;
+                ZonaSeleccionada = zona;
+            }
             TipoCocinaSeleccionado = ListaTipoCocina.FirstOrDefault(t => t.Id == UsuarioLogueado.TipoCocinaId);
 
             FiltrarPlatosMenus();

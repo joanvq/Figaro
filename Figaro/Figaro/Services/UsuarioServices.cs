@@ -56,6 +56,31 @@ namespace Figaro.Services
             return isSuccessStatusCode;
 
         }
+
+        public async Task<Usuario> PostUsuarioFacebookAsync(Usuario usuario)
+        {
+
+            RestClient<Usuario> restClient = new RestClient<Usuario>("Usuario/Facebook");
+
+            usuario.FechaRegistro = DateTime.Now;
+            Usuario result = await restClient.PostAsyncContent(usuario);
+
+            return result;
+            
+        }
+
+        public async Task<bool> PostUsuarioAsync(Usuario usuario)
+        {
+
+            RestClient<Usuario> restClient = new RestClient<Usuario>("Usuario");
+
+            usuario.FechaRegistro = DateTime.Now;
+            usuario.FacebookId = "";
+            bool isSuccess = await restClient.PostAsync(usuario);
+
+            return isSuccess;
+
+        }
     }
 
     //internal class UsuarioPost

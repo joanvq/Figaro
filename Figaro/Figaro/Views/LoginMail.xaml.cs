@@ -8,16 +8,11 @@ using Xamarin.Forms;
 
 namespace Figaro.Views
 {
-    public partial class Login : ContentPage
+    public partial class LoginMail : ContentPage
     {
-        public Login()
+        public LoginMail()
         {
             InitializeComponent();
-        }
-
-        public void LoginFacebook_OnClicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new LoginFacebook());
         }
     }
 }

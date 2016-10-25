@@ -53,8 +53,8 @@ namespace Figaro.Droid
 
         protected override void OnDestroy()
         {
+            //PayPalManagerImplementation.Manager.Destroy();
             base.OnDestroy();
-            PayPalManagerImplementation.Manager.Destroy();
         }
     }
 }
