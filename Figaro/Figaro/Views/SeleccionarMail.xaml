@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Figaro.Views.SeleccionarMail"
+            BackgroundImage="moscow.jpg"
+            BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}">
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="Start" HorizontalOptions="Center" Padding="0,20">
+      <Image Source="logo_figaro.png" Margin="0,40"/>
+      <Label x:Name="Message" Margin="0"
+       TextColor="#CC0311" IsVisible="False" IsEnabled="False"/>
+      <Entry x:Name="Email" Placeholder="CORREO ELECTRÓNICO" PlaceholderColor="White"
+              BackgroundColor="Transparent" TextColor="White"
+             Keyboard="Email"/>
+      <Button Text="CONTINUAR" Clicked="Continuar_OnClicked" Margin="0,10"
+              BackgroundColor="#CC0311" TextColor="White"/>
+      <ActivityIndicator IsRunning="{Binding IsBusy}"
+               IsVisible="{Binding IsBusy}"
+               HeightRequest="50" WidthRequest="50"
+               HorizontalOptions="Center" VerticalOptions="Center"/>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

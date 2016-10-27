@@ -16,6 +16,7 @@ namespace Figaro.ViewModels
         private bool isBusy;
         private string statusMessage;
         private TipoCocina tipoCocinaSeleccionado;
+        private Usuario usuarioLogueado;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -44,6 +45,17 @@ namespace Figaro.ViewModels
             }
         }
 
+        public Usuario UsuarioLogueado
+        {
+            get { return usuarioLogueado; }
+            set
+            {
+                usuarioLogueado = value;
+                usuarioLogueado.NombreApellidos = usuarioLogueado.Nombre + " " + usuarioLogueado.Apellidos;
+                OnPropertyChanged();
+            }
+        }
+
         public bool IsBusy
         {
             get { return isBusy; }
@@ -58,17 +70,41 @@ namespace Figaro.ViewModels
 
         public TipoCocinaViewModel()
         {
-            InitializeDataAsync();
         }
 
-        private async Task InitializeDataAsync()
+        public async Task InitializeDataAsync(Usuario usuario)
         {
             IsBusy = true;
 
             var tipoCocinaServices = new TipoCocinaServices();
             ListaTipoCocina = await tipoCocinaServices.GetTipoCocinaAsync();
+            UsuarioLogueado = usuario;
 
             IsBusy = false;
+        }
+
+        public async Task<bool> ElegirTipoCocinaAsync(TipoCocina tipoCocinaSel)
+        {
+            IsBusy = true;
+
+            tipoCocinaSeleccionado = tipoCocinaSel;
+            var usuarioServices = new UsuarioServices();
+            Usuario usuario = UsuarioLogueado;
+            usuario.TipoCocinaId = tipoCocinaSeleccionado.Id;
+            usuario.ChefSeleccionadoId = null;
+
+            var isSuccessStatusCode = await usuarioServices.PutUsuarioAsync(usuario.Id, usuario);
+            if (isSuccessStatusCode)
+            {
+                UsuarioLogueado.TipoCocina = tipoCocinaSeleccionado;
+                UsuarioLogueado.TipoCocinaId = tipoCocinaSeleccionado.Id;
+                UsuarioLogueado.ChefSeleccionadoId = null;
+                UsuarioLogueado.ChefSeleccionado = null;
+            }
+
+            IsBusy = false;
+
+            return isSuccessStatusCode;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

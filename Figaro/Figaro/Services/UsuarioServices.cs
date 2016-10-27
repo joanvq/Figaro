@@ -1,4 +1,5 @@
 ﻿using Figaro.Models;
+using Figaro.Other;
 using Plugin.RestClient;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,10 @@ namespace Figaro.Services
             RestClient<Usuario> restClient = new RestClient<Usuario>("Usuario");
 
             var usuario = await restClient.GetAsync(id);
-
-            usuario.Imagen = "http://figaro.apphb.com" + usuario.Imagen;
+            if (usuario.Imagen != null)
+            {
+                usuario.Imagen = "http://figaro.apphb.com" + usuario.Imagen;
+            }
             usuario.NombreApellidos = usuario.Nombre + " " + usuario.Apellidos;
 
             return usuario;
@@ -37,14 +40,18 @@ namespace Figaro.Services
             nuevoUsuario.FechaRegistro = usuario.FechaRegistro;
             nuevoUsuario.ChefSeleccionadoId = usuario.ChefSeleccionadoId;
             nuevoUsuario.TipoCocinaId = usuario.TipoCocinaId;
-            var index = usuario.Imagen.IndexOf("/Content");
-            if (index > -1)
+            nuevoUsuario.FacebookId = usuario.FacebookId;
+            if(usuario.Imagen != null)
             {
-                nuevoUsuario.Imagen = usuario.Imagen.Substring(index);
-            }
-            else
-            {
-                nuevoUsuario.Imagen = usuario.Imagen;
+                var index = usuario.Imagen.IndexOf("/Content");
+                if (index > -1)
+                {
+                    nuevoUsuario.Imagen = usuario.Imagen.Substring(index);
+                }
+                else
+                {
+                    nuevoUsuario.Imagen = usuario.Imagen;
+                }
             }
             nuevoUsuario.Password = usuario.Password;
             nuevoUsuario.ZonaId = usuario.ZonaId;
@@ -76,13 +83,32 @@ namespace Figaro.Services
 
             usuario.FechaRegistro = DateTime.Now;
             usuario.FacebookId = "";
+            var utils = new Utils();
+            usuario.Password = utils.HashPass(usuario.Password);
             bool isSuccess = await restClient.PostAsync(usuario);
 
             return isSuccess;
 
         }
-    }
 
+        public async Task<Usuario> GetUsuarioByEmailAsync(string email, string password)
+        {
+
+            RestClient<Usuario> restClient = new RestClient<Usuario>("Usuario/Login");
+
+            var usu = new Usuario();
+            usu.Email = email;
+            var utils = new Utils();
+            password = utils.HashPass(password);
+            usu.Password = password;
+
+            Usuario usuario = await restClient.PostAsyncContent(usu);
+
+            return usuario;
+
+        }
+    }
+    
     //internal class UsuarioPost
     //{
     //    public int Id { get; set; }

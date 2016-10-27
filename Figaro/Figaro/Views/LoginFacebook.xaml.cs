@@ -56,7 +56,11 @@ namespace Figaro.Views
                 {
                     Content = MainStackLayout;
 
-                    Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new NavigationPage(new SeleccionarTipoComida(vm.UsuarioLogueado)));
+                    var lvm = new LoginViewModel();
+                    lvm.UsuarioLogueado = vm.UsuarioLogueado;
+
+                    lvm.LoginAccess();
+                    
                 }
                 // Sino desloguear
             }

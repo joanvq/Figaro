@@ -15,10 +15,16 @@ namespace Figaro.Views
 
         public SeleccionarTipoComida(Usuario usuarioLog)
         {
-            
+
             InitializeComponent();
+            Init(usuarioLog);
+
+        }
+
+        public async void Init(Usuario usuarioLog)
+        {
             var mainViewModel = BindingContext as MainViewModel;
-            mainViewModel.InitializeDataAsync(usuarioLog);
+            var isSuccess = await mainViewModel.InitializeDataAsync(usuarioLog);
 
             var calendario = new ToolbarItem
             {
@@ -63,7 +69,8 @@ namespace Figaro.Views
             //        ListaTipoCocinaView.SelectedItem = item;
             //    }
             //}
-        }       
+        }
+
 
         public void TipoCocina_OnItemTapped(object sender, ItemTappedEventArgs e)
         {

@@ -6,6 +6,8 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebServicesFigaro.Models;
@@ -116,12 +118,30 @@ namespace WebServicesFigaro.Controllers
                 // Crear nou usuari - no existeix l'usuari a la BD
                 db.Usuarios.Add(usuario);
                 db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.Created, usuario); ;
+                usuFace = db.Usuarios.FirstOrDefault(u => u.FacebookId == usuario.FacebookId);
+            }
+            // Ja existeix l'usuari a la BD
+            return Request.CreateResponse(HttpStatusCode.Created, usuFace);
+        }
+
+        // POST: api/Usuario/Login
+        [Route("api/Usuario/Login")]
+        [ResponseType(typeof(Usuario))]
+        public HttpResponseMessage PostUsuarioLogin(Usuario usuario)
+        {
+            if (usuario.Email == null || usuario.Password == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            var usu = db.Usuarios.FirstOrDefault(u => u.Email == usuario.Email && u.Password == usuario.Password);
+            if (usu != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.Created, usu); ;
             }
             else
             {
-                // Ja existeix l'usuari a la BD
-                return Request.CreateResponse(HttpStatusCode.Created, usuario); ;
+                // No existeix l'usuari amb Email i Password
+                return null;
             }
         }
 
@@ -154,5 +174,6 @@ namespace WebServicesFigaro.Controllers
         {
             return db.Usuarios.Count(e => e.Id == id) > 0;
         }
+
     }
 }

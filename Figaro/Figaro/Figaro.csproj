@@ -57,6 +57,7 @@
     <Compile Include="Models\Zona.cs" />
     <Compile Include="Other\MenuInferior.cs" />
     <Compile Include="Other\PlatoMenu.cs" />
+    <Compile Include="Other\Utils.cs" />
     <Compile Include="RestClient\RestClient.cs" />
     <Compile Include="RestClient\TaskModel.cs" />
     <Compile Include="Services\ChefServices.cs" />
@@ -117,6 +118,15 @@
     </Compile>
     <Compile Include="Views\SeleccionarDiaHora.xaml.cs">
       <DependentUpon>SeleccionarDiaHora.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SeleccionarMail.xaml.cs">
+      <DependentUpon>SeleccionarMail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SeleccionarZonaIni.xaml.cs">
+      <DependentUpon>SeleccionarZonaIni.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SeleccionarTipoCocinaIni.xaml.cs">
+      <DependentUpon>SeleccionarTipoCocinaIni.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SeleccionarZona.xaml.cs">
       <DependentUpon>SeleccionarZona.xaml</DependentUpon>
@@ -209,6 +219,10 @@
     </Reference>
     <Reference Include="XLabs.Core, Version=2.0.5782.12218, Culture=neutral, PublicKeyToken=d65109b36e5040e4, processorArchitecture=MSIL">
       <HintPath>..\..\packages\XLabs.Core.2.0.5782\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\XLabs.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XLabs.Cryptography, Version=2.0.5782.12232, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XLabs.Cryptography.2.0.5782\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\XLabs.Cryptography.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="XLabs.Forms, Version=2.0.5782.12218, Culture=neutral, processorArchitecture=MSIL">
@@ -349,6 +363,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\LoginMail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SeleccionarMail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SeleccionarTipoCocinaIni.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SeleccionarZonaIni.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

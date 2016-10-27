@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Figaro.Views.SeleccionarZonaIni" 
+             BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}">
+  <StackLayout Orientation="Vertical"> 
+    <Label x:Name="MessageZona" IsVisible="True" IsEnabled="True" Text="Selecciona una zona"/>
+    <ListView x:Name="ListaZonaView"
+              ItemsSource="{Binding ListaZonas}"
+		          HasUnevenRows="true"
+              ItemTapped="Zona_OnItemTapped">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal"  HeightRequest="200">
+              <RelativeLayout Padding="0,0,0,0">
+                <Image Source="{Binding ImagenFondo}"
+                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                       Aspect="AspectFill"/>
+                <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+
+                  <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="{Binding Titulo}"
+                      HorizontalOptions="Center" FontSize="30" TextColor="White"/>
+
+                    <Image Source="icono_select.png" WidthRequest="40"
+                           HeightRequest="40" Aspect="AspectFit" IsVisible="{Binding Actual}"/>
+                  </StackLayout>
+
+                </Grid>
+              </RelativeLayout>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <Label x:Name="Message" IsVisible="False" IsEnabled="False"/>
+  </StackLayout>
+</ContentPage>

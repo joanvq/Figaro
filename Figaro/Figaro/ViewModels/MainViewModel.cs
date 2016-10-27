@@ -569,7 +569,7 @@ namespace Figaro.ViewModels
 
         }
 
-        public async Task InitializeDataAsync(Usuario usuLog)
+        public async Task<bool> InitializeDataAsync(Usuario usuLog)
         {
             IsBusy = true;
 
@@ -611,6 +611,8 @@ namespace Figaro.ViewModels
             IsBusy = true;
             
             IsBusy = false;
+
+            return true;
         }
 
         public async Task InitializeComentariosAsync(int idChef)
@@ -903,11 +905,15 @@ namespace Figaro.ViewModels
             IsBusy = true;
 
             // Modificar actual en Zona Anterior y Actual
-            Zona zonaAnt = ListaZonas.FirstOrDefault(l => l.Id == ZonaSeleccionada.Id);
-            if (zonaAnt != null)
+            if(ZonaSeleccionada != null)
             {
-                zonaAnt.Actual = false;
+                Zona zonaAnt = ListaZonas.FirstOrDefault(l => l.Id == ZonaSeleccionada.Id);
+                if (zonaAnt != null)
+                {
+                    zonaAnt.Actual = false;
+                }
             }
+            
             Zona zonaAct = ListaZonas.FirstOrDefault(l => l.Id == zonaSel.Id);
             if (zonaAct != null)
             {

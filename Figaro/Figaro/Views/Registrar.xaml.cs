@@ -1,4 +1,5 @@
 ﻿using Figaro.Models;
+using Figaro.Other;
 using Figaro.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -79,16 +80,20 @@ namespace Figaro.Views
                 Email.PlaceholderColor = Color.Red;
                 Email.Placeholder = "CORREO ELECTRÓNICO (Campo Obligatorio)";
             }
-            else if (!IsValidEmail(Email.Text))
-            {
-                comprobacion = false;
-                Email.TextColor = Color.Red;
-                Email.Placeholder = "CORREO ELECTRÓNICO (Campo Obligatorio)";
-            }
             else
             {
-                Email.PlaceholderColor = Color.White;
-                Email.Placeholder = "CORREO ELECTRÓNICO";
+                var util = new Utils();
+                if (!util.IsValidEmail(Email.Text))
+                {
+                    comprobacion = false;
+                    Email.TextColor = Color.Red;
+                    Email.Placeholder = "CORREO ELECTRÓNICO (Campo Obligatorio)";
+                }
+                else
+                {
+                    Email.PlaceholderColor = Color.White;
+                    Email.Placeholder = "CORREO ELECTRÓNICO";
+                }
             }
             if (Password.Text == "" || Password.Text == null)
             {
@@ -109,21 +114,6 @@ namespace Figaro.Views
                 Password.Placeholder = "CONTRSEÑA";
             }
             return comprobacion;
-        }
-
-        private bool IsValidEmail(string email)
-        {
-            try
-            {
-                return Regex.IsMatch(email,
-                      @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                      @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
-                      RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-            }
-            catch (RegexMatchTimeoutException)
-            {
-                return false;
-            }
         }
 
         public void Cancel_OnClicked(object sender, EventArgs e)

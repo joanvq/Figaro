@@ -155,6 +155,5 @@ namespace Plugin.RestClient
 
             return taskModels;
         }
-
     }
 }

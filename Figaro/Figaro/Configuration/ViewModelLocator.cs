@@ -14,8 +14,8 @@ namespace Figaro.Configuration
         public FacebookViewModel FacebookViewModel { get; }
         public LoginViewModel LoginViewModel { get; }
         //public PlatoViewModel PlatoViewModel { get; }
-        //public TipoCocinaViewModel TipoCocinaViewModel { get; }
-        
+        public TipoCocinaViewModel TipoCocinaViewModel { get; }
+
 
         public ViewModelLocator()
         {
@@ -23,7 +23,7 @@ namespace Figaro.Configuration
             LoginViewModel = new LoginViewModel();
             MainViewModel = new MainViewModel();
             //PlatoViewModel = new PlatoViewModel();
-            //TipoCocinaViewModel = new TipoCocinaViewModel();
+            TipoCocinaViewModel = new TipoCocinaViewModel();
         }
     }
 }

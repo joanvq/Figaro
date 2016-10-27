@@ -174,8 +174,25 @@ namespace WebServicesFigaro.Controllers
             MD5 md5 = new MD5CryptoServiceProvider();
             Byte[] originalBytes = ASCIIEncoding.Default.GetBytes(originalpassword);
             Byte[] encodedBytes = md5.ComputeHash(originalBytes);
+            string added = "ew#%¬plfñ@@|ºdaç";
+            Byte[] additionalBytes = ASCIIEncoding.Default.GetBytes(added);
 
-            return BitConverter.ToString(encodedBytes);
+            int length = 0;
+            if (encodedBytes.Length < additionalBytes.Length)
+            {
+                length = encodedBytes.Length;
+            }
+            else
+            {
+                length = additionalBytes.Length;
+            }
+            for (int i = 0; i < length; i++)
+            {
+                encodedBytes[i] = (byte)(encodedBytes[i] ^ additionalBytes[i]);
+            }
+            string hex = BitConverter.ToString(encodedBytes).Replace("-", "");
+            return hex;
         }
+
     }
 }

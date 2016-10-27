@@ -28,7 +28,7 @@ namespace Figaro.Views
 
         public void Login_OnClicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new LoginMail());
         }
 
     }
