@@ -122,7 +122,55 @@
             <BoxView x:Name="LineaOpinionesTab" Color="#CC0311" HeightRequest="0.5" 
                      VerticalOptions="End" Grid.Column="2" IsVisible="False"/>
           </Grid>
-          <Label x:Name="TabAMostrar" Text="{Binding PlatoSeleccionado.Ingredientes}" FontSize="14" Opacity="0.7"  TranslationX="10" TranslationY="14" /> 
+          <!--Ingredientes-->
+          <Label x:Name="IngredientesAMostrar" Text="{Binding PlatoSeleccionado.Ingredientes}" 
+                 FontSize="14" Opacity="0.7"  
+                 TranslationX="10" TranslationY="14" 
+                 HeightRequest="100"/>
+          <!--Utensilios-->
+          <Label x:Name="UtensiliosAMostrar" Text="{Binding PlatoSeleccionado.Utensilios}" 
+                 FontSize="14" Opacity="0.7"
+             TranslationX="10" TranslationY="14"
+             HeightRequest="100" IsVisible="False"/>
+          <!--Opiniones-->
+          <ListView x:Name="OpinionesAMostrar"
+                     ItemsSource="{Binding ListaComentarioPlatoMenu}"
+		                 HasUnevenRows="true"
+                     IsVisible="False">
+            <ListView.ItemTemplate HorizontalContentAlignment="Stretch">
+              <DataTemplate>
+                <ViewCell>
+                  <StackLayout Orientation="Horizontal" Padding="10,14">
+                    <Grid Padding="10,0,0,0">
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                      </Grid.RowDefinitions>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                      </Grid.ColumnDefinitions>
+                      <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                        <Label Text="Por: "
+                                FontSize="16" />
+                        <Label Text="{Binding Autor}"
+                                FontSize="16"/>
+                      </StackLayout>
+                      <!--Star rating-->
+                      <Label Text="{Binding Valoracion}" HorizontalOptions="End"
+                             Grid.Row="0" Grid.Column="2" />
+                      <Label Text="{Binding Descripcion}"
+                              FontSize="16"
+                              Opacity="0.6"
+                              Grid.Row="1"
+                              HorizontalOptions="Start"/>
+                    </Grid>
+                  </StackLayout>
+                </ViewCell>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
         </StackLayout>
       </ScrollView>
     </Grid>

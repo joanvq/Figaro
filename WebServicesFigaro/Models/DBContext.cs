@@ -46,5 +46,7 @@ namespace WebServicesFigaro.Models
         public System.Data.Entity.DbSet<WebServicesFigaro.Models.Reservado> Reservadoes { get; set; }
 
         public System.Data.Entity.DbSet<WebServicesFigaro.Models.GeoPC_Places> GeoPC_Places { get; set; }
+
+        public System.Data.Entity.DbSet<WebServicesFigaro.Models.ComentarioPlatoMenu> ComentarioPlatoMenus { get; set; }
     }
 }

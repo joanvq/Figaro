@@ -448,6 +448,8 @@
     <Compile Include="Controllers\ChefMvcController.cs" />
     <Compile Include="Controllers\ComentarioChefController.cs" />
     <Compile Include="Controllers\ComentarioChefMvcController.cs" />
+    <Compile Include="Controllers\ComentarioPlatoMenuController.cs" />
+    <Compile Include="Controllers\ComentarioPlatoMenuMvcController.cs" />
     <Compile Include="Controllers\DisponibilidadController.cs" />
     <Compile Include="Controllers\DisponibilidadMvcController.cs" />
     <Compile Include="Controllers\GeoPC_PlaceMvcController.cs" />
@@ -483,6 +485,7 @@
       <DependentUpon>201609261058261_carrito.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ComentarioPlatoMenu.cs" />
     <Compile Include="Models\Disponibilidad.cs" />
     <Compile Include="Models\GeoPC_Places.cs" />
     <Compile Include="Models\MenuCarrito.cs" />
@@ -654,6 +657,11 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\AsignarDisponibilidad\Create.cshtml" />
     <Content Include="Views\AsignarDisponibilidad\Index.cshtml" />
+    <Content Include="Views\ComentarioPlatoMenuMvc\Create.cshtml" />
+    <Content Include="Views\ComentarioPlatoMenuMvc\Delete.cshtml" />
+    <Content Include="Views\ComentarioPlatoMenuMvc\Details.cshtml" />
+    <Content Include="Views\ComentarioPlatoMenuMvc\Edit.cshtml" />
+    <Content Include="Views\ComentarioPlatoMenuMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

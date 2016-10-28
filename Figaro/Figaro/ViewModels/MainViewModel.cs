@@ -37,6 +37,7 @@ namespace Figaro.ViewModels
         private Zona zonaSeleccionada = null;
 
         private List<ComentarioChef> listaComentariosChef;
+        private List<ComentarioPlatoMenu> listaComentarioPlatoMenu;
 
         private Usuario usuarioLogueado;
         
@@ -199,7 +200,7 @@ namespace Figaro.ViewModels
             }
         }
 
-        /* COMENTARIO CHEF */
+        /* COMENTARIOS */
 
         public List<ComentarioChef> ListaComentariosChef
         {
@@ -210,6 +211,17 @@ namespace Figaro.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public List<ComentarioPlatoMenu> ListaComentarioPlatoMenu
+        {
+            get { return listaComentarioPlatoMenu; }
+            set
+            {
+                listaComentarioPlatoMenu = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         /* USUARIO */
 
@@ -615,12 +627,32 @@ namespace Figaro.ViewModels
             return true;
         }
 
-        public async Task InitializeComentariosAsync(int idChef)
+        public async Task InitializeComentariosChefAsync(int idChef)
         {
             IsBusy = true;
 
             var comentarioChefServices = new ComentarioChefServices();
             ListaComentariosChef = await comentarioChefServices.GetComentariosChefAsync(idChef);
+
+            IsBusy = false;
+        }
+
+        public async Task InitializeComentariosPlatoAsync(int idPlato)
+        {
+            IsBusy = true;
+
+            var comentarioPlatoMenuServices = new ComentarioPlatoMenuServices();
+            ListaComentarioPlatoMenu = await comentarioPlatoMenuServices.GetComentariosPlatoAsync(idPlato);
+
+            IsBusy = false;
+        }
+
+        public async Task InitializeComentariosMenuAsync(int idMenu)
+        {
+            IsBusy = true;
+
+            var comentarioPlatoMenuServices = new ComentarioPlatoMenuServices();
+            ListaComentarioPlatoMenu = await comentarioPlatoMenuServices.GetComentariosMenuAsync(idMenu);
 
             IsBusy = false;
         }

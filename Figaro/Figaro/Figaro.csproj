@@ -40,6 +40,7 @@
     </Compile>
     <Compile Include="Configuration\ViewModelLocator.cs" />
     <Compile Include="Models\ComentarioChef.cs" />
+    <Compile Include="Models\ComentarioPlatoMenu.cs" />
     <Compile Include="Models\Disponibilidad.cs" />
     <Compile Include="Models\FacebookProfile.cs" />
     <Compile Include="Models\GeoPC_Places.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="RestClient\TaskModel.cs" />
     <Compile Include="Services\ChefServices.cs" />
     <Compile Include="Services\ComentarioChefServices.cs" />
+    <Compile Include="Services\ComentarioPlatoMenuServices.cs" />
     <Compile Include="Services\DisponibilidadServices.cs" />
     <Compile Include="Services\FacebookServices.cs" />
     <Compile Include="Services\GeoPC_PlacesServices.cs" />

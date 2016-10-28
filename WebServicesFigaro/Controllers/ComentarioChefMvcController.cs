@@ -35,6 +35,8 @@ namespace WebServicesFigaro.Controllers
             ComentarioChef idChef = new ComentarioChef();
             idChef.ChefId = id;
             idChef.Id = 0;
+            // Se añade elemento adicional para que cuando no haya 
+            // ningun comentario se pueda activar el boton de atras
             var listaComentarios = comentarioChefs.ToList();
             listaComentarios.Add(idChef);
 

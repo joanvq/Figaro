@@ -131,7 +131,7 @@ namespace Figaro.Views
             OpinionesTab.GestureRecognizers.Add(tapOpinionesTab);
 
             //Inicializar comentarios Opiniones Chef
-            mainViewModel.InitializeComentariosAsync(mainViewModel.ChefSeleccionado.Id);
+            mainViewModel.InitializeComentariosChefAsync(mainViewModel.ChefSeleccionado.Id);
 
         }
 

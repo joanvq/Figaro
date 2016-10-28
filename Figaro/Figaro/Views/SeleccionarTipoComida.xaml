@@ -5,9 +5,8 @@
              xmlns:local="clr-namespace:Figaro;assembly=Figaro;"
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
              Title="Figaro"
-             Icon="funnel.png"
              BackgroundColor="#CC0311">
-  <MasterDetailPage.Master>
+  <MasterDetailPage.Master Icon="funnel.png">
     <ContentPage Title="Figaro">
       <StackLayout Orientation="Vertical">
         <ListView x:Name="ListaTipoCocinaView"

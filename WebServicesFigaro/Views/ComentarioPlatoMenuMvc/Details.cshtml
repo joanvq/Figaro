@@ -1,0 +1,69 @@
+﻿@model WebServicesFigaro.Models.ComentarioPlatoMenu
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ComentarioPlatoMenu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Menu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Menu.Titulo)
+        </dd>
+
+        <dt>
+            Plato
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plato.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Autor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valoracion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valoracion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @if (Model.PlatoId != null)
+    {
+        @Html.ActionLink("Back to List", "IndexPlato", new { id = Model.PlatoId });
+    }
+    else if (Model.MenuId != null)
+    {
+        @Html.ActionLink("Back to List", "IndexMenu", new { id = Model.MenuId });
+    }
+    else
+    {
+        @Html.ActionLink("Back to List", "Index");
+    }
+</p>

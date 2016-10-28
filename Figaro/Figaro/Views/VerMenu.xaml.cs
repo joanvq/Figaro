@@ -103,7 +103,9 @@ namespace Figaro.Views
                 OpinionesTab.TextColor = Color.Default;
                 LineaOpinionesTab.IsVisible = false;
 
-                TabAMostrar.Text = mainViewModel.MenuSeleccionado.Ingredientes;
+                IngredientesAMostrar.IsVisible = true;
+                UtensiliosAMostrar.IsVisible = false;
+                OpinionesAMostrar.IsVisible = false;
             };
             IngredientesTab.GestureRecognizers.Add(tapIngredientesTab);
 
@@ -121,7 +123,9 @@ namespace Figaro.Views
                 OpinionesTab.TextColor = Color.Default;
                 LineaOpinionesTab.IsVisible = false;
 
-                TabAMostrar.Text = mainViewModel.MenuSeleccionado.Utensilios;
+                IngredientesAMostrar.IsVisible = false;
+                UtensiliosAMostrar.IsVisible = true;
+                OpinionesAMostrar.IsVisible = false;
             };
             UtensiliosTab.GestureRecognizers.Add(tapUtensiliosTab);
 
@@ -139,9 +143,14 @@ namespace Figaro.Views
                 OpinionesTab.TextColor = Color.FromHex("#CC0311");
                 LineaOpinionesTab.IsVisible = true;
 
-                TabAMostrar.Text = "";
+                IngredientesAMostrar.IsVisible = false;
+                UtensiliosAMostrar.IsVisible = false;
+                OpinionesAMostrar.IsVisible = true;
             };
             OpinionesTab.GestureRecognizers.Add(tapOpinionesTab);
+
+            //Inicializar comentarios Opiniones Menu
+            mainViewModel.InitializeComentariosMenuAsync(mainViewModel.MenuSeleccionado.Id);
         }
 
         void Entrante_OnTapped(object sender, EventArgs e)

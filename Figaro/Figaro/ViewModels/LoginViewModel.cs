@@ -123,7 +123,8 @@ namespace Figaro.ViewModels
             else if (UsuarioLogueado.ZonaId == null)
             {
                 // Añadir Zona Seleccionada
-                Xamarin.Forms.Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new NavigationPage(new SeleccionarZonaIni(UsuarioLogueado)));
+                App.Current.MainPage = new NavigationPage(new SeleccionarZonaIni(UsuarioLogueado));
+                //Xamarin.Forms.Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new NavigationPage(new SeleccionarZonaIni(UsuarioLogueado)));
             }
             else {
                 // FALTA Encriptar pass i Guardar
