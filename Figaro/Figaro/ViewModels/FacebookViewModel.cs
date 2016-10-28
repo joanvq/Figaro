@@ -65,7 +65,9 @@ namespace Figaro.ViewModels
             var usuario = await usuarioServices.PostUsuarioFacebookAsync(UsuarioLogueado);
             if(usuario != null)
             {
+                
                 UsuarioLogueado = usuario;
+                
                 IsBusy = false;
                 return true;
             }

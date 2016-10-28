@@ -22,6 +22,7 @@ namespace Figaro.Views
 
         public async void Registrar_OnClicked(object sender, EventArgs e)
         {
+            RegistrarB.IsEnabled = false;
             var vm = BindingContext as LoginViewModel;
             if(ComprovarCampos())
             {
@@ -41,6 +42,7 @@ namespace Figaro.Views
                 else
                 {
                     this.DisplayAlert("Error", "Ha ocurrido un error en el registro.", "OK");
+                    RegistrarB.IsEnabled = true;
                 }
 
             }

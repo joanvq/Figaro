@@ -25,7 +25,11 @@
       <Entry x:Name="Password" Placeholder="CONTRASEÑA"   PlaceholderColor="White"
               BackgroundColor="Transparent" TextColor="White"
              IsPassword="True"/>
-      <Button Text="REGÍSTRARSE" Clicked="Registrar_OnClicked" Margin="0,10"
+      <ActivityIndicator IsRunning="{Binding IsBusy}"
+                     IsVisible="{Binding IsBusy}"
+                     HeightRequest="50" WidthRequest="50"
+                     HorizontalOptions="Center" VerticalOptions="Center"/>
+      <Button x:Name="RegistrarB" Text="REGÍSTRARSE" Clicked="Registrar_OnClicked" Margin="0,10"
               BackgroundColor="#CC0311" TextColor="White"/>
       <Button Text="CANCELAR"  Clicked="Cancel_OnClicked" Margin="0,10"
               BackgroundColor="Transparent" TextColor="White" />

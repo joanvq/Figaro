@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Figaro.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Xamarin.Forms;
 
 namespace Figaro.Services
 {
@@ -26,6 +27,25 @@ namespace Figaro.Services
             var facebookProfile = JsonConvert.DeserializeObject<FacebookProfile>(userJson);
 
             return facebookProfile;
+        }
+
+        public void LogoutFacebookAsync()
+        {
+            //var newView = new WebView();
+            
+            //NSHttpCookieStorage storage = NSHttpCookieStorage.SharedStorage;
+
+            //foreach (NSHttpCookie cookie in storage.Cookies)
+            //{
+            //    if (cookie.Domain == ".facebook.com")
+            //    {
+            //        storage.DeleteCookie(cookie);
+            //    }
+
+            //}
+
+
+
         }
     }
 }
