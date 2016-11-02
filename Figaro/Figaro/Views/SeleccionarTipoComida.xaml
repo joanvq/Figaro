@@ -6,7 +6,7 @@
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
              Title="Figaro"
              BackgroundColor="#CC0311">
-  <MasterDetailPage.Master Icon="funnel.png">
+  <MasterDetailPage.Master >
     <ContentPage Title="Figaro">
       <StackLayout Orientation="Vertical">
         <ListView x:Name="ListaTipoCocinaView"
@@ -24,10 +24,8 @@
                            Aspect="AspectFill"/>
                     <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
                             RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
-
                       <Label Text="{Binding Titulo}" VerticalOptions="Center"
-                          HorizontalOptions="Center" FontSize="30" TextColor="Black"/>
-                      
+                          HorizontalOptions="Center" FontSize="30" TextColor="Black"/>  
                     </Grid>
                   </RelativeLayout>
                 </StackLayout>
@@ -38,7 +36,7 @@
       </StackLayout>
     </ContentPage>
   </MasterDetailPage.Master>
-  <MasterDetailPage.Detail>
+  <MasterDetailPage.Detail >
     <local:Views.MenuPage />
   </MasterDetailPage.Detail>
 </MasterDetailPage>

@@ -21,7 +21,7 @@ namespace Figaro.Views
             var mainViewModel = BindingContext as MainViewModel;
             if(mainViewModel.Fecha != null)
             {
-                fecha.Date = mainViewModel.Fecha;
+                fecha.Date = (DateTime) mainViewModel.Fecha;
             }
             if(mainViewModel.Hora != null)
             {

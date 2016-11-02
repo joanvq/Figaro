@@ -28,7 +28,8 @@
                         "{ConstraintExpression Type=RelativeToParent, Property=Height}">
             <controls:CircleImage Source="{Binding ChefSeleccionado.Imagen}" WidthRequest="70.0"
                                       HeightRequest="70.0" Aspect="AspectFill" 
-                                  VerticalOptions="Start" HorizontalOptions="Center"/>
+                                  VerticalOptions="Start" HorizontalOptions="Center"
+                                  Margin="20,0,0,0"/>
             <Label Text="{Binding ChefSeleccionado.NombreApellidos}" VerticalOptions="End"
                 HorizontalOptions="StartAndExpand" FontSize="30" TextColor="White" Opacity="0.8"
                 TranslationX="10" TranslationY="-10" WidthRequest="200"/>
@@ -38,7 +39,7 @@
                 <RowDefinition Height="24"/>
               </Grid.RowDefinitions>
               <!--Stars Rating-->
-              <StackLayout Orientation="Horizontal" HeightRequest="70" Grid.Row="0">
+              <StackLayout Orientation="Horizontal" HeightRequest="30" Grid.Row="0">
                 <Grid>
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -111,34 +112,43 @@
             <ListView.ItemTemplate HorizontalContentAlignment="Stretch">
               <DataTemplate>
                 <ViewCell>
-                  <StackLayout Orientation="Horizontal" Padding="10,14">
-                    <Grid Padding="10,0,0,0">
-                      <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                      </Grid.RowDefinitions>
-                      <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                      </Grid.ColumnDefinitions>
-                      <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
-                        <Label Text="Por: "
-                                FontSize="16" />
-                        <Label Text="{Binding Usuario.Nombre}"
-                                FontSize="16"/> <Label Text="{Binding Usuario.Apellidos}"
-                                FontSize="16"/>
+                  <Grid Padding="12,6" >
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Orientation="Horizontal" >
+                      <controls:CircleImage Source="{Binding Usuario.Imagen}" WidthRequest="70.0"
+                                        HeightRequest="70.0" Aspect="AspectFill" />
+                      <StackLayout Orientation="Vertical" Padding="10,0,0,0">
+                        <StackLayout Orientation="Horizontal">
+                          <Label Text="Por:" FontSize="16" />
+                          <Label Text="{Binding Usuario.Nombre}" FontSize="16"/>
+                          <Label Text="{Binding Usuario.Apellidos}" FontSize="16"/>
+                        </StackLayout>
+                        <Label Text="{Binding Descripcion}" FontSize="15" Opacity="0.7" />
                       </StackLayout>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" Orientation="Vertical" Padding="0,0,10,0">
                       <!--Star rating-->
-                      <Label Text="{Binding Valoracion}" HorizontalOptions="End"
-                             Grid.Row="0" Grid.Column="2" />
-                      <Label Text="{Binding Descripcion}"
-                              FontSize="16"
-                              Opacity="0.6"
-                              Grid.Row="1"
-                              HorizontalOptions="Start"/>
-                    </Grid>
-                  </StackLayout>
+                      <StackLayout Orientation="Horizontal" HeightRequest="20" HorizontalOptions="EndAndExpand">
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                          </Grid.ColumnDefinitions>
+                          <Image x:Name="starOne" ClassId="{Binding Id}"  PropertyChanged="StarOne_OnChanged"  HeightRequest="16" Grid.Column="0"/>
+                          <Image x:Name="starTwo" ClassId="{Binding Id}" PropertyChanged="StarTwo_OnChanged" HeightRequest="16" Grid.Column="1"/>
+                          <Image x:Name="starThree" ClassId="{Binding Id}" PropertyChanged="StarThree_OnChanged" HeightRequest="16" Grid.Column="2"/>
+                          <Image x:Name="starFour" ClassId="{Binding Id}" PropertyChanged="StarFour_OnChanged" HeightRequest="16" Grid.Column="3"/>
+                          <Image x:Name="starFive" ClassId="{Binding Id}" PropertyChanged="StarFive_OnChanged" HeightRequest="16" Grid.Column="4"/>
+                        </Grid>
+                      </StackLayout>
+                    </StackLayout>
+                  </Grid>
                 </ViewCell>
               </DataTemplate>
             </ListView.ItemTemplate>

@@ -16,6 +16,7 @@ namespace Figaro.ViewModels
     {
         private List<Plato> allPlatos; //Lista de todos los platos que existen en la BD
         private List<Plato> listaPlatos; //Lista filtrada
+        private bool noPlatos;
         private List<Plato> searchedPlatos;
         private string keywordPlato;
         private bool isBusy;
@@ -27,10 +28,12 @@ namespace Figaro.ViewModels
 
         private List<Menu> allMenus;
         private List<Menu> listaMenus;
+        private bool noMenus;
         private Menu menuSeleccionado = new Menu();
 
         private List<Chef> allChefs;
         private List<Chef> listaChefs;
+        private bool noChefs;
         private Chef chefSeleccionado = new Chef();
         
         private List<Zona> listaZonas;
@@ -49,9 +52,9 @@ namespace Figaro.ViewModels
         private List<Pedido> listaPedidosRealizados = new List<Pedido>();
         private List<Pedido> listaPedidosActivos = new List<Pedido>();
 
-        private DateTime fecha = DateTime.Now.AddDays(1);
+        private DateTime? fecha = null;
         // De 0 a 47 --> 24 horas + medias horas
-        private int hora = DateTime.Now.Hour*2;
+        private int hora = DateTime.Now.Hour * 2;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -96,6 +99,16 @@ namespace Figaro.ViewModels
             set
             {
                 platoSeleccionado = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool NoPlatos
+        {
+            get { return noPlatos; }
+            set
+            {
+                noPlatos = value;
                 OnPropertyChanged();
             }
         }
@@ -150,7 +163,17 @@ namespace Figaro.ViewModels
             }
         }
 
-        /* PLATO */
+        public bool NoMenus
+        {
+            get { return noMenus; }
+            set
+            {
+                noMenus = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /* CHEF */
 
         public List<Chef> ListaChefs
         {
@@ -171,6 +194,16 @@ namespace Figaro.ViewModels
             set
             {
                 chefSeleccionado = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool NoChefs
+        {
+            get { return noChefs; }
+            set
+            {
+                noChefs = value;
                 OnPropertyChanged();
             }
         }
@@ -290,7 +323,7 @@ namespace Figaro.ViewModels
 
         /* DISPONIBILIDAD */
 
-        public DateTime Fecha
+        public DateTime? Fecha
         {
             get { return fecha; }
             set
@@ -672,6 +705,9 @@ namespace Figaro.ViewModels
                 ListaMenus = new List<Menu>();
             }
 
+            NoPlatos = ListaPlatos.Count.Equals(0);
+            NoMenus = ListaMenus.Count.Equals(0);
+
             IsBusy = false;
         }
 
@@ -685,7 +721,7 @@ namespace Figaro.ViewModels
             }
             else
             {
-                ListaChefs = allChefs;
+                ListaChefs = new List<Chef>();
             }
 
             if (ZonaSeleccionada != null)
@@ -695,8 +731,10 @@ namespace Figaro.ViewModels
 
             if (Fecha != null)
             {
+                DateTime fec = (DateTime)fecha;
+
                 var disponibilidadServices = new DisponibilidadServices();
-                var disponibilidadesChefsFecha = await disponibilidadServices.GetDisponibilidadesByDateAsync(fecha);
+                var disponibilidadesChefsFecha = await disponibilidadServices.GetDisponibilidadesByDateAsync(fec);
 
                 List<Chef> nuevaListChefs = new List<Chef>();
                 foreach (Disponibilidad disponibilidad in disponibilidadesChefsFecha)
@@ -728,6 +766,13 @@ namespace Figaro.ViewModels
                 }
                 ListaChefs = nuevaListChefs;
             }
+            else
+            {
+                ListaChefs = new List<Chef>();
+            }
+
+            NoChefs = ListaChefs.Count.Equals(0);
+
             IsBusy = false;
         }
 

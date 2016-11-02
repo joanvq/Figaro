@@ -6,8 +6,7 @@
              Title="Plato">
   
   
-  <StackLayout Orientation="Vertical"
-               Spacing="18" VerticalOptions="FillAndExpand">
+  <StackLayout Orientation="Vertical" Spacing="18" VerticalOptions="FillAndExpand">
     <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="4*"/>
@@ -140,33 +139,26 @@
             <ListView.ItemTemplate HorizontalContentAlignment="Stretch">
               <DataTemplate>
                 <ViewCell>
-                  <StackLayout Orientation="Horizontal" Padding="10,14">
-                    <Grid Padding="10,0,0,0">
-                      <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                      </Grid.RowDefinitions>
-                      <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                      </Grid.ColumnDefinitions>
-                      <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
-                        <Label Text="Por: "
-                                FontSize="16" />
-                        <Label Text="{Binding Autor}"
-                                FontSize="16"/>
+                  <Grid Padding="12,6" >
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Orientation="Horizontal" >
+                      <StackLayout Orientation="Vertical" Padding="10,0,0,0">
+                        <StackLayout Orientation="Horizontal">
+                          <Label Text="Por:" FontSize="16" />
+                          <Label Text="{Binding Autor}" FontSize="16"/>
+                        </StackLayout>
+                        <Label Text="{Binding Descripcion}" FontSize="15" Opacity="0.7" />
                       </StackLayout>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" Orientation="Vertical" Padding="0,0,10,0">
                       <!--Star rating-->
                       <Label Text="{Binding Valoracion}" HorizontalOptions="End"
                              Grid.Row="0" Grid.Column="2" />
-                      <Label Text="{Binding Descripcion}"
-                              FontSize="16"
-                              Opacity="0.6"
-                              Grid.Row="1"
-                              HorizontalOptions="Start"/>
-                    </Grid>
-                  </StackLayout>
+                    </StackLayout>
+                  </Grid>
                 </ViewCell>
               </DataTemplate>
             </ListView.ItemTemplate>

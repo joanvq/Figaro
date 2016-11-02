@@ -19,7 +19,12 @@ namespace Figaro.Services
             var usuario = await restClient.GetAsync(id);
             if (usuario.Imagen != null)
             {
-                usuario.Imagen = "http://figaro.apphb.com" + usuario.Imagen;
+                var index = usuario.Imagen.IndexOf("/Content");
+                if (index > -1)
+                {
+                    // La Imagen es local
+                    usuario.Imagen = "http://figaro.apphb.com" + usuario.Imagen; 
+                }
             }
             usuario.NombreApellidos = usuario.Nombre + " " + usuario.Apellidos;
 

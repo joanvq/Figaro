@@ -18,9 +18,13 @@
     
     <StackLayout Orientation="Vertical"
                  IsEnabled="{Binding IsIdle}" IsVisible="{Binding IsIdle}">
-      
       <Label x:Name="StatusMessage" Text="{Binding StatusMessage}" />
-
+      
+      <Label x:Name="AvisoSeleccionarDiaHora" Margin="12,6" HorizontalOptions="Center"
+             IsEnabled="{Binding NoChefs}" IsVisible="{Binding NoChefs}" FontSize="20" TextColor="#CC0311"/>
+      <Label x:Name="AvisoChefs" IsEnabled="{Binding NoChefs}" IsVisible="{Binding NoChefs}" 
+             FontSize="24" TextColor="#ddd" HorizontalOptions="Center"
+             Text="No hay chefs disponibles"/>
       <ListView x:Name="ListaChefsView"
                 ItemsSource="{Binding ListaChefs}"
                 HasUnevenRows="true"
@@ -28,39 +32,47 @@
         <ListView.ItemTemplate HorizontalContentAlignment="Stretch">
           <DataTemplate>
             <ViewCell>
-              <StackLayout Orientation="Horizontal" Padding="12,6">
-                <controls:CircleImage Source="{Binding Imagen}" WidthRequest="70.0"
-                                      HeightRequest="70.0" Aspect="AspectFill" />
-                <Grid Padding="10,0,0,0">
-                  <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                  </Grid.RowDefinitions>
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                  </Grid.ColumnDefinitions>
-                  <Label Text="{Binding NombreApellidos}"
-                          FontSize="24"
-                          Grid.Row="0"
-                          Grid.Column="0"/>
-                  <!--Star rating-->
-                  <Label Text="Rating stars" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="2" />
-                  <Label Text="{Binding Subtitulo}"
-                          FontSize="16"
-                          Opacity="0.6"
-                          Grid.Row="1"
-                          Grid.Column="0" HorizontalOptions="StartAndExpand"/>
-                  <Image ClassId="{Binding Id}" Source="add.png"
-                            WidthRequest="40" HeightRequest="40" Aspect="AspectFill"
-                          Grid.Row="1" Grid.Column="2" HorizontalOptions="EndAndExpand">
+              <Grid Padding="12,6" >
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" Orientation="Horizontal" >
+                  <controls:CircleImage Source="{Binding Imagen}" WidthRequest="70.0"
+                                    HeightRequest="70.0" Aspect="AspectFill" />
+                  <StackLayout Orientation="Vertical" Padding="10,0,0,0">
+                    <Label Grid.Row="0" Text="{Binding NombreApellidos}" FontSize="20" />
+                    <Label Grid.Row="1" Text="{Binding Subtitulo}"
+                          FontSize="15" Opacity="0.7" />
+                  </StackLayout>
+                </StackLayout>
+                <StackLayout Grid.Column="1" Orientation="Vertical" Padding="0,0,10,0">
+                  <!--<StackLayout Orientation="Horizontal" HeightRequest="20" HorizontalOptions="EndAndExpand">
+                    <Grid>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                      </Grid.ColumnDefinitions>
+                      <Image x:Name="starOne" ClassId="{Binding Id}"  PropertyChanged="StarOne_OnChanged"  HeightRequest="16" Grid.Column="0"/>
+                      <Image x:Name="starTwo" ClassId="{Binding Id}" PropertyChanged="StarTwo_OnChanged" HeightRequest="16" Grid.Column="1"/>
+                      <Image x:Name="starThree" ClassId="{Binding Id}" PropertyChanged="StarThree_OnChanged" HeightRequest="16" Grid.Column="2"/>
+                      <Image x:Name="starFour" ClassId="{Binding Id}" PropertyChanged="StarFour_OnChanged" HeightRequest="16" Grid.Column="3"/>
+                      <Image x:Name="starFive" ClassId="{Binding Id}" PropertyChanged="StarFive_OnChanged" HeightRequest="16" Grid.Column="4"/>
+                    </Grid>
+                  </StackLayout>-->
+                  
+                  <Image x:Name="ElegirChef" ClassId="{Binding Id}" Source="add.png"
+                      WidthRequest="40" HeightRequest="40" Aspect="AspectFill"
+                      HorizontalOptions="EndAndExpand">
                     <Image.GestureRecognizers>
                       <TapGestureRecognizer Tapped="ElegirChef_OnTapped"/>
                     </Image.GestureRecognizers>
                   </Image>
-                </Grid>
-              </StackLayout>
+                </StackLayout>
+              </Grid>
             </ViewCell>
           </DataTemplate>
         </ListView.ItemTemplate>

@@ -15,8 +15,9 @@ namespace Figaro.Views
 
         public SeleccionarTipoComida(Usuario usuarioLog)
         {
-
+            NavigationPage.SetHasNavigationBar(this, true);
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, true);
             Init(usuarioLog);
 
         }

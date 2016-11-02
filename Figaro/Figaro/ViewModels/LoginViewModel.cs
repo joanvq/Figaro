@@ -128,7 +128,7 @@ namespace Figaro.ViewModels
             }
             else {
                 // FALTA Encriptar pass i Guardar
-               
+
                 // Guardar usuario en local
                 //IFolder rootFolder = FileSystem.Current.LocalStorage;
                 //IFolder folder = await rootFolder.CreateFolderAsync("Conf",
@@ -136,8 +136,10 @@ namespace Figaro.ViewModels
                 //IFile file = await folder.CreateFileAsync("conf",
                 //    CreationCollisionOption.ReplaceExisting);
                 //await file.WriteAllTextAsync(UsuarioLogueado.Email + " " + UsuarioLogueado.Password);
+
+                //Xamarin.Forms.Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new NavigationPage(new SeleccionarTipoComida(UsuarioLogueado)));
                 
-                Xamarin.Forms.Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new NavigationPage(new SeleccionarTipoComida(UsuarioLogueado)));
+                App.Current.MainPage = new NavigationPage(new SeleccionarTipoComida(UsuarioLogueado));
             }
 
         }

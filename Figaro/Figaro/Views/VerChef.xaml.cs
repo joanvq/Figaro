@@ -141,5 +141,93 @@ namespace Figaro.Views
             var idChef = mainViewModel.ChefSeleccionado.Id;
             mainViewModel.ElegirChef.Execute(idChef);
         }
+
+        //FALTAAA
+        //// Imagenes estrellas valoracion
+        //private void StarOne_OnChanged(object sender, EventArgs e)
+        //{
+        //    Image star = (Image)sender;
+        //    if (star.ClassId != null && star.Source == null)
+        //    {
+        //        var mvm = BindingContext as MainViewModel;
+        //        var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+        //        if (chef.Valoracion > 0)
+        //        {
+        //            star.Source = "icono_star_gold.png";
+        //        }
+        //        else
+        //        {
+        //            star.Source = "icono_star_gold_empty.png";
+        //        }
+        //    }
+        //}
+        //private void StarTwo_OnChanged(object sender, EventArgs e)
+        //{
+        //    Image star = (Image)sender;
+        //    if (star.ClassId != null && star.Source == null)
+        //    {
+        //        var mvm = BindingContext as MainViewModel;
+        //        var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+        //        if (chef.Valoracion > 1)
+        //        {
+        //            star.Source = "icono_star_gold.png";
+        //        }
+        //        else
+        //        {
+        //            star.Source = "icono_star_gold_empty.png";
+        //        }
+        //    }
+        //}
+        //private void StarThree_OnChanged(object sender, EventArgs e)
+        //{
+        //    Image star = (Image)sender;
+        //    if (star.ClassId != null && star.Source == null)
+        //    {
+        //        var mvm = BindingContext as MainViewModel;
+        //        var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+        //        if (chef.Valoracion > 2)
+        //        {
+        //            star.Source = "icono_star_gold.png";
+        //        }
+        //        else
+        //        {
+        //            star.Source = "icono_star_gold_empty.png";
+        //        }
+        //    }
+        //}
+        //private void StarFour_OnChanged(object sender, EventArgs e)
+        //{
+        //    Image star = (Image)sender;
+        //    if (star.ClassId != null && star.Source == null)
+        //    {
+        //        var mvm = BindingContext as MainViewModel;
+        //        var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+        //        if (chef.Valoracion > 3)
+        //        {
+        //            star.Source = "icono_star_gold.png";
+        //        }
+        //        else
+        //        {
+        //            star.Source = "icono_star_gold_empty.png";
+        //        }
+        //    }
+        //}
+        //private void StarFive_OnChanged(object sender, EventArgs e)
+        //{
+        //    Image star = (Image)sender;
+        //    if (star.ClassId != null && star.Source == null)
+        //    {
+        //        var mvm = BindingContext as MainViewModel;
+        //        var comchef = mvm.ListaComentariosChef.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+        //        if (comchef.Valoracion > 4)
+        //        {
+        //            star.Source = "icono_star_gold.png";
+        //        }
+        //        else
+        //        {
+        //            star.Source = "icono_star_gold_empty.png";
+        //        }
+        //    }
+        //}
     }
 }

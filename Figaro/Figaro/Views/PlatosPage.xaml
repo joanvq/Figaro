@@ -19,7 +19,9 @@
                  IsEnabled="{Binding IsIdle}" IsVisible="{Binding IsIdle}">
 
       <Label x:Name="StatusMessage" Text="{Binding StatusMessage}" />
-
+      <Label x:Name="AvisoPlatos" IsEnabled="{Binding NoPlatos}" IsVisible="{Binding NoPlatos}" 
+             FontSize="24" TextColor="#ddd" HorizontalOptions="Center"
+             Text="No hay platos disponibles"/>
       <ListView x:Name="ListaPlatosView"
                 ItemsSource="{Binding ListaPlatos}"
                 HasUnevenRows="true"
@@ -27,38 +29,31 @@
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
-              <StackLayout Orientation="Horizontal" Padding="12,6">
-                <controls:CircleImage Source="{Binding Imagen}" WidthRequest="70.0"
-                                      HeightRequest="70.0" Aspect="AspectFill" />
-                <Grid Padding="10,0,0,0">
-                  <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
-                  </Grid.RowDefinitions>
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                  </Grid.ColumnDefinitions>
-                  <Label Text="{Binding Titulo}"
-                          FontSize="24"
-                          Grid.Row="0"/>
-                  <Label Text="{Binding Descripcion}"
-                          FontSize="18"
-                          Opacity="0.6"
-                          Grid.Row="1"
-                          Grid.Column="0"/>
+              <Grid Padding="12,6" >
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" Orientation="Horizontal" >
+                  <controls:CircleImage Source="{Binding Imagen}" WidthRequest="70.0"
+                                    HeightRequest="70.0" Aspect="AspectFill" />
+                  <StackLayout Orientation="Vertical" Padding="10,0,0,0">
+                    <Label Grid.Row="0" Text="{Binding Titulo}" FontSize="20" />
+                    <Label Grid.Row="1" Text="{Binding Descripcion}" 
+                          FontSize="15" Opacity="0.7" />                     
+                  </StackLayout>
+                </StackLayout>
+                <StackLayout Grid.Column="1" Orientation="Vertical" Padding="0,0,10,0">
                   <Label Text="{Binding PrecioEuros}"
-                          FontSize="14"
-                          Opacity="0.6"
-                          Grid.Row="0"
-                          Grid.Column="2"/>
+                        FontSize="14"
+                        Opacity="0.6"
+                        Grid.Column="1"/>
                   <Button ClassId="{Binding Id}" BackgroundColor="#CC0311" Text="+" TextColor="White"
                             FontSize="24" WidthRequest="10"
                             Grid.Row="1" Grid.Column="2"
-                            Clicked="AnadirCesta_OnClick"/>
-
-                </Grid>
-              </StackLayout>
+                            Clicked="AnadirCesta_OnClick"/>                    
+                </StackLayout>
+              </Grid>
             </ViewCell>
           </DataTemplate>
         </ListView.ItemTemplate>
