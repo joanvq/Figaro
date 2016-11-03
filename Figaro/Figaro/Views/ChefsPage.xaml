@@ -47,7 +47,7 @@
                   </StackLayout>
                 </StackLayout>
                 <StackLayout Grid.Column="1" Orientation="Vertical" Padding="0,0,10,0">
-                  <!--<StackLayout Orientation="Horizontal" HeightRequest="20" HorizontalOptions="EndAndExpand">
+                  <StackLayout Orientation="Horizontal" HeightRequest="20" HorizontalOptions="EndAndExpand">
                     <Grid>
                       <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -62,7 +62,7 @@
                       <Image x:Name="starFour" ClassId="{Binding Id}" PropertyChanged="StarFour_OnChanged" HeightRequest="16" Grid.Column="3"/>
                       <Image x:Name="starFive" ClassId="{Binding Id}" PropertyChanged="StarFive_OnChanged" HeightRequest="16" Grid.Column="4"/>
                     </Grid>
-                  </StackLayout>-->
+                  </StackLayout>
                   
                   <Image x:Name="ElegirChef" ClassId="{Binding Id}" Source="add.png"
                       WidthRequest="40" HeightRequest="40" Aspect="AspectFill"

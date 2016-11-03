@@ -11,5 +11,6 @@ namespace Figaro.Models
         public string Titulo { get; set; }
         public string ImagenFondo { get; set; }
         public bool Actual { get; set; }
+        public bool NoActual { get; set; }
     }
 }

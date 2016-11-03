@@ -6,7 +6,7 @@
              Title="Plato">
   
   
-  <StackLayout Orientation="Vertical" Spacing="18" VerticalOptions="FillAndExpand">
+  <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
     <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="4*"/>
@@ -83,7 +83,6 @@
             <x:String>12</x:String>
             <x:String>13</x:String>
             <x:String>14</x:String>
-            <x:String>10</x:String>
             <x:String>15</x:String>
             <x:String>16</x:String>
             <x:String>17</x:String>
@@ -99,7 +98,7 @@
         </Button> 
         </Grid>
       </StackLayout>
-      <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" Grid.Row="2">  
+      <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" Grid.Row="2" Margin="0">  
         <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
           <Label Text="{Binding PlatoSeleccionado.Descripcion}" FontSize="14" TranslationX="10"/>
           <Grid x:Name="GridTab" Padding="0,14,0,0">

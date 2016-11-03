@@ -68,13 +68,16 @@ namespace Figaro.Views
             {
                 var mvm = BindingContext as MainViewModel;
                 var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
-                if (chef.Valoracion > 0)
+                if (chef != null)
                 {
-                    star.Source = "icono_star_gold.png";
-                }
-                else
-                {
-                    star.Source = "icono_star_gold_empty.png";
+                    if (chef.Valoracion > 0)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
                 }
             }
         }
@@ -85,13 +88,16 @@ namespace Figaro.Views
             {
                 var mvm = BindingContext as MainViewModel;
                 var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
-                if (chef.Valoracion > 1)
+                if (chef != null)
                 {
-                    star.Source = "icono_star_gold.png";
-                }
-                else
-                {
-                    star.Source = "icono_star_gold_empty.png";
+                    if (chef.Valoracion > 1)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
                 }
             }
         }
@@ -102,13 +108,16 @@ namespace Figaro.Views
             {
                 var mvm = BindingContext as MainViewModel;
                 var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
-                if (chef.Valoracion > 2)
+                if (chef != null)
                 {
-                    star.Source = "icono_star_gold.png";
-                }
-                else
-                {
-                    star.Source = "icono_star_gold_empty.png";
+                    if (chef.Valoracion > 2)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
                 }
             }
         }
@@ -119,13 +128,16 @@ namespace Figaro.Views
             {
                 var mvm = BindingContext as MainViewModel;
                 var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
-                if (chef.Valoracion > 3)
+                if (chef != null)
                 {
-                    star.Source = "icono_star_gold.png";
-                }
-                else
-                {
-                    star.Source = "icono_star_gold_empty.png";
+                    if (chef.Valoracion > 3)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
                 }
             }
         }
@@ -136,13 +148,16 @@ namespace Figaro.Views
             {
                 var mvm = BindingContext as MainViewModel;
                 var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
-                if (chef.Valoracion > 4)
+                if (chef != null)
                 {
-                    star.Source = "icono_star_gold.png";
-                }
-                else
-                {
-                    star.Source = "icono_star_gold_empty.png";
+                    if (chef.Valoracion > 4)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
                 }
             }
         }

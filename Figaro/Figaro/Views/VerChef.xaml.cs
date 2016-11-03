@@ -83,7 +83,7 @@ namespace Figaro.Views
                 LineaOpinionesTab.IsVisible = false;
 
                 PerfilAMostrar.IsVisible = true;
-                DisponibilidadAMostrar.IsVisible = false;
+                PlatosAMostrar.IsVisible = false;
                 OpinionesAMostrar.IsVisible = false;
             };
             PerfilTab.GestureRecognizers.Add(tapPerfilTab);
@@ -104,7 +104,7 @@ namespace Figaro.Views
                 LineaOpinionesTab.IsVisible = false;
 
                 PerfilAMostrar.IsVisible = false;
-                DisponibilidadAMostrar.IsVisible = true;
+                PlatosAMostrar.IsVisible = true;
                 OpinionesAMostrar.IsVisible = false;
             };
             DisponibilidadTab.GestureRecognizers.Add(tapDisponibilidadTab);
@@ -125,7 +125,7 @@ namespace Figaro.Views
                 LineaOpinionesTab.IsVisible = true;
 
                 PerfilAMostrar.IsVisible = false;
-                DisponibilidadAMostrar.IsVisible = false;
+                PlatosAMostrar.IsVisible = false;
                 OpinionesAMostrar.IsVisible = true;
             };
             OpinionesTab.GestureRecognizers.Add(tapOpinionesTab);
@@ -142,92 +142,106 @@ namespace Figaro.Views
             mainViewModel.ElegirChef.Execute(idChef);
         }
 
-        //FALTAAA
-        //// Imagenes estrellas valoracion
-        //private void StarOne_OnChanged(object sender, EventArgs e)
-        //{
-        //    Image star = (Image)sender;
-        //    if (star.ClassId != null && star.Source == null)
-        //    {
-        //        var mvm = BindingContext as MainViewModel;
-        //        var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
-        //        if (chef.Valoracion > 0)
-        //        {
-        //            star.Source = "icono_star_gold.png";
-        //        }
-        //        else
-        //        {
-        //            star.Source = "icono_star_gold_empty.png";
-        //        }
-        //    }
-        //}
-        //private void StarTwo_OnChanged(object sender, EventArgs e)
-        //{
-        //    Image star = (Image)sender;
-        //    if (star.ClassId != null && star.Source == null)
-        //    {
-        //        var mvm = BindingContext as MainViewModel;
-        //        var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
-        //        if (chef.Valoracion > 1)
-        //        {
-        //            star.Source = "icono_star_gold.png";
-        //        }
-        //        else
-        //        {
-        //            star.Source = "icono_star_gold_empty.png";
-        //        }
-        //    }
-        //}
-        //private void StarThree_OnChanged(object sender, EventArgs e)
-        //{
-        //    Image star = (Image)sender;
-        //    if (star.ClassId != null && star.Source == null)
-        //    {
-        //        var mvm = BindingContext as MainViewModel;
-        //        var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
-        //        if (chef.Valoracion > 2)
-        //        {
-        //            star.Source = "icono_star_gold.png";
-        //        }
-        //        else
-        //        {
-        //            star.Source = "icono_star_gold_empty.png";
-        //        }
-        //    }
-        //}
-        //private void StarFour_OnChanged(object sender, EventArgs e)
-        //{
-        //    Image star = (Image)sender;
-        //    if (star.ClassId != null && star.Source == null)
-        //    {
-        //        var mvm = BindingContext as MainViewModel;
-        //        var chef = mvm.ListaChefs.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
-        //        if (chef.Valoracion > 3)
-        //        {
-        //            star.Source = "icono_star_gold.png";
-        //        }
-        //        else
-        //        {
-        //            star.Source = "icono_star_gold_empty.png";
-        //        }
-        //    }
-        //}
-        //private void StarFive_OnChanged(object sender, EventArgs e)
-        //{
-        //    Image star = (Image)sender;
-        //    if (star.ClassId != null && star.Source == null)
-        //    {
-        //        var mvm = BindingContext as MainViewModel;
-        //        var comchef = mvm.ListaComentariosChef.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
-        //        if (comchef.Valoracion > 4)
-        //        {
-        //            star.Source = "icono_star_gold.png";
-        //        }
-        //        else
-        //        {
-        //            star.Source = "icono_star_gold_empty.png";
-        //        }
-        //    }
-        //}
+        // Imágenes estrellas valoración
+        private void StarOne_OnChanged(object sender, EventArgs e)
+        {
+            Image star = (Image)sender;
+            if (star.ClassId != null && star.Source == null)
+            {
+                var mvm = BindingContext as MainViewModel;
+                var comchef = mvm.ListaComentariosChef.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+                if(comchef != null)
+                {
+                    if (comchef.Valoracion > 0)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
+                }
+            }
+        }
+        private void StarTwo_OnChanged(object sender, EventArgs e)
+        {
+            Image star = (Image)sender;
+            if (star.ClassId != null && star.Source == null)
+            {
+                var mvm = BindingContext as MainViewModel;
+                var comchef = mvm.ListaComentariosChef.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+                if (comchef != null)
+                {
+                    if (comchef.Valoracion > 1)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
+                }
+            }
+        }
+        private void StarThree_OnChanged(object sender, EventArgs e)
+        {
+            Image star = (Image)sender;
+            if (star.ClassId != null && star.Source == null)
+            {
+                var mvm = BindingContext as MainViewModel;
+                var comchef = mvm.ListaComentariosChef.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+                if (comchef != null)
+                {
+                    if (comchef.Valoracion > 2)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
+                }
+            }
+        }
+        private void StarFour_OnChanged(object sender, EventArgs e)
+        {
+            Image star = (Image)sender;
+            if (star.ClassId != null && star.Source == null)
+            {
+                var mvm = BindingContext as MainViewModel;
+                var comchef = mvm.ListaComentariosChef.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+                if (comchef != null)
+                {
+                    if (comchef.Valoracion > 3)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
+                }
+            }
+        }
+        private void StarFive_OnChanged(object sender, EventArgs e)
+        {
+            Image star = (Image)sender;
+            if (star.ClassId != null && star.Source == null)
+            {
+                var mvm = BindingContext as MainViewModel;
+                var comchef = mvm.ListaComentariosChef.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+                if (comchef != null)
+                {
+                    if (comchef.Valoracion > 4)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
+                }
+            }
+        }
     }
 }

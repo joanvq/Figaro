@@ -17,6 +17,11 @@ namespace Figaro.Services
 
             var listaZona = await restClient.GetAsync();
 
+            foreach(var zona in listaZona)
+            {
+                zona.NoActual = true;
+            }
+
             return listaZona;
         }
     }

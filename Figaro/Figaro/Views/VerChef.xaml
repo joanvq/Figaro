@@ -7,7 +7,7 @@
              Title="Chef">
   <!--<ScrollView>-->
     <StackLayout Orientation="Vertical"
-               Spacing="18" VerticalOptions="FillAndExpand">
+               Spacing="0" VerticalOptions="FillAndExpand">
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="200"/>
@@ -17,46 +17,45 @@
         <RelativeLayout Padding="0,0,0,0" Grid.Row="0">
           <Image Source="{Binding ChefSeleccionado.ImagenFondo}"
                  RelativeLayout.WidthConstraint=
-                            "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                        "{ConstraintExpression Type=RelativeToParent, Property=Width}"
                  RelativeLayout.HeightConstraint=
                         "{ConstraintExpression Type=RelativeToParent, Property=Height}"
-                 Aspect="AspectFill"
-                          />
+                 Aspect="AspectFill"/>
           <Grid RelativeLayout.WidthConstraint=
                         "{ConstraintExpression Type=RelativeToParent, Property=Width}"
-                  RelativeLayout.HeightConstraint=
+                 RelativeLayout.HeightConstraint=
                         "{ConstraintExpression Type=RelativeToParent, Property=Height}">
-            <controls:CircleImage Source="{Binding ChefSeleccionado.Imagen}" WidthRequest="70.0"
-                                      HeightRequest="70.0" Aspect="AspectFill" 
-                                  VerticalOptions="Start" HorizontalOptions="Center"
-                                  Margin="20,0,0,0"/>
-            <Label Text="{Binding ChefSeleccionado.NombreApellidos}" VerticalOptions="End"
-                HorizontalOptions="StartAndExpand" FontSize="30" TextColor="White" Opacity="0.8"
-                TranslationX="10" TranslationY="-10" WidthRequest="200"/>
-            <Grid VerticalOptions="End" HorizontalOptions="End" TranslationX="-10" TranslationY="-10" >
-              <Grid.RowDefinitions>
-                <RowDefinition Height="24"/>
-                <RowDefinition Height="24"/>
-              </Grid.RowDefinitions>
-              <!--Stars Rating-->
-              <StackLayout Orientation="Horizontal" HeightRequest="30" Grid.Row="0">
-                <Grid>
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                  </Grid.ColumnDefinitions>
-                  <Image x:Name="starOne" HeightRequest="18" Grid.Column="0"/>
-                  <Image x:Name="starTwo" HeightRequest="18" Grid.Column="1"/>
-                  <Image x:Name="starThree" HeightRequest="18" Grid.Column="2"/>
-                  <Image x:Name="starFour" HeightRequest="18" Grid.Column="3"/>
-                  <Image x:Name="starFive" HeightRequest="18" Grid.Column="4"/>
-                </Grid>
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+              <controls:CircleImage Source="{Binding ChefSeleccionado.Imagen}" WidthRequest="100"
+                                      HeightRequest="100" Aspect="AspectFill"
+                                  VerticalOptions="Start" HorizontalOptions="Center"/>
+              <StackLayout Orientation="Vertical" VerticalOptions="Center" Padding="10,0,0,0">
+                <Label Text="{Binding ChefSeleccionado.NombreApellidos}" VerticalOptions="End"
+                  HorizontalOptions="StartAndExpand" FontSize="30" TextColor="White"/>
+                <Label Text="{Binding ChefSeleccionado.Subtitulo}" FontSize="18" TextColor="White"/>
+                <StackLayout Orientation="Horizontal">
+                  <Image Source="icono_map_maker.png" HeightRequest="18" />
+                  <Label Text="{Binding ChefSeleccionado.Zona.Titulo}" FontSize="18" TextColor="White"/> 
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HeightRequest="30" Grid.Row="0">
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="starOne" HeightRequest="18" Grid.Column="0"/>
+                    <Image x:Name="starTwo" HeightRequest="18" Grid.Column="1"/>
+                    <Image x:Name="starThree" HeightRequest="18" Grid.Column="2"/>
+                    <Image x:Name="starFour" HeightRequest="18" Grid.Column="3"/>
+                    <Image x:Name="starFive" HeightRequest="18" Grid.Column="4"/>
+                  </Grid>
+                </StackLayout>
               </StackLayout>
-            </Grid>
-          </Grid>
+            </StackLayout>
+           </Grid>
         </RelativeLayout>
         <StackLayout BackgroundColor="#eee" Padding="0,0,0,0" Grid.Row="1">
           <Button BackgroundColor="#CC0311" VerticalOptions="Center" Text="Elegir chef"
@@ -75,7 +74,7 @@
             <Label x:Name="PerfilTab" TextColor="#CC0311" Text="PERFIL" FontSize="14"
                     FontAttributes="None"  Grid.Column="0" HorizontalOptions="Center"/>
             <Label x:Name="DisponibilidadTab" Text="DISPONIBILIDAD" FontSize="14"
-                    FontAttributes="Bold"  Grid.Column="1" HorizontalOptions="Center"/>
+                    FontAttributes="None"  Grid.Column="1" HorizontalOptions="Center"/>
             <Label x:Name="OpinionesTab" Text="OPINIONES" FontSize="14"
                     FontAttributes="None"  Grid.Column="2" HorizontalOptions="Center"/>
             <BoxView x:Name="LineaPerfilTab" Color="#CC0311" HeightRequest="0.5"
@@ -87,20 +86,47 @@
           </Grid>
          
           <!--Perfil-->
-          <StackLayout x:Name="PerfilAMostrar" Padding="10,0">
-            <Label Text="{Binding ChefSeleccionado.Subtitulo}" FontSize="20"/>
-            <Label Text="Descripción" FontSize="24" />
-            <Label Text="{Binding ChefSeleccionado.Descripcion}" FontSize="14" />
-            <Label Text="Tipo de Cocina" FontSize="24" />
-            <Label Text="{Binding ChefSeleccionado.TipoCocina.Titulo}" FontSize="14" />
-            <Label Text="Edad" FontSize="24" />
-            <Label Text="{Binding ChefSeleccionado.Edad}" FontSize="14" />
-            <Label Text="Ciudad/Zona" FontSize="24" />
-            <Label Text="{Binding ChefSeleccionado.Zona.Titulo}" FontSize="14" />
+          <StackLayout x:Name="PerfilAMostrar" Padding="30,30">
+            <Label Text="ABOUT US" FontSize="16" TextColor="Gray"/>
+            <Label Text="{Binding ChefSeleccionado.Descripcion}" FontSize="14" TextColor="Gray"/>
+            <Label Text="DISPONIBILIDAD" FontSize="16" TextColor="Gray" Margin="0,10,0,0"/>
+            <Label Text="-----------POR HACER-----------" FontSize="14" Opacity="0.7"
+             TranslationX="10" TranslationY="14"
+             HeightRequest="100"/>
           </StackLayout>
 
-          <!--Disponibilidad-->
-          <Label x:Name="DisponibilidadAMostrar" Text="-----------POR HACER-----------" FontSize="14" Opacity="0.7"
+          <!--Platos-->
+          <!--<Grid x:Name="PlatosAMostrar">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            --><!--<ListView x:Name="PlatosChef"
+                      ItemsSource="{Binding ListaPlatos}"
+                      HasUnevenRows="true">
+              <DataTemplate>
+                <ViewCell>
+                  <RelativeLayout Padding="0,0,0,0" Grid.Row="0">
+                    <Image Source="{Binding ChefSeleccionado.ImagenFondo}"
+                           RelativeLayout.WidthConstraint=
+                                  "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                           RelativeLayout.HeightConstraint=
+                                  "{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                           Aspect="AspectFill"/>
+                    <Grid RelativeLayout.WidthConstraint=
+                                  "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                           RelativeLayout.HeightConstraint=
+                                  "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+                      <Grid.ColumnDefinitions>
+                        
+                      </Grid.ColumnDefinitions>
+                    </Grid>
+                  </RelativeLayout>
+                </ViewCell>
+              </DataTemplate>
+            </ListView>--><!--
+          </Grid>-->
+          <Label x:Name="PlatosAMostrar" Text="-----------POR HACER-----------" FontSize="14" Opacity="0.7"
              TranslationX="10" TranslationY="14"
              HeightRequest="100" IsVisible="False"/>
 
@@ -118,15 +144,11 @@
                       <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <StackLayout Grid.Column="0" Orientation="Horizontal" >
-                      <controls:CircleImage Source="{Binding Usuario.Imagen}" WidthRequest="70.0"
-                                        HeightRequest="70.0" Aspect="AspectFill" />
-                      <StackLayout Orientation="Vertical" Padding="10,0,0,0">
-                        <StackLayout Orientation="Horizontal">
-                          <Label Text="Por:" FontSize="16" />
-                          <Label Text="{Binding Usuario.Nombre}" FontSize="16"/>
-                          <Label Text="{Binding Usuario.Apellidos}" FontSize="16"/>
-                        </StackLayout>
-                        <Label Text="{Binding Descripcion}" FontSize="15" Opacity="0.7" />
+                      <controls:CircleImage Source="{Binding Usuario.Imagen}" WidthRequest="50.0"
+                                        HeightRequest="50.0" Aspect="AspectFill" />
+                      <StackLayout Orientation="Vertical" >
+                        <Label Text="{Binding Usuario.NombreApellidos}" FontSize="16" FontAttributes="Bold"/>
+                        <Label Text="{Binding Descripcion}" FontSize="14" />
                       </StackLayout>
                     </StackLayout>
                     <StackLayout Grid.Column="1" Orientation="Vertical" Padding="0,0,10,0">
@@ -140,11 +162,16 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                           </Grid.ColumnDefinitions>
-                          <Image x:Name="starOne" ClassId="{Binding Id}"  PropertyChanged="StarOne_OnChanged"  HeightRequest="16" Grid.Column="0"/>
-                          <Image x:Name="starTwo" ClassId="{Binding Id}" PropertyChanged="StarTwo_OnChanged" HeightRequest="16" Grid.Column="1"/>
-                          <Image x:Name="starThree" ClassId="{Binding Id}" PropertyChanged="StarThree_OnChanged" HeightRequest="16" Grid.Column="2"/>
-                          <Image x:Name="starFour" ClassId="{Binding Id}" PropertyChanged="StarFour_OnChanged" HeightRequest="16" Grid.Column="3"/>
-                          <Image x:Name="starFive" ClassId="{Binding Id}" PropertyChanged="StarFive_OnChanged" HeightRequest="16" Grid.Column="4"/>
+                          <Image x:Name="starOne" ClassId="{Binding Id}"  PropertyChanged="StarOne_OnChanged" 
+                                 HeightRequest="14" Grid.Column="0" Margin="0"/>
+                          <Image x:Name="starTwo" ClassId="{Binding Id}" PropertyChanged="StarTwo_OnChanged"
+                                 HeightRequest="14" Grid.Column="1" Margin="0"/>
+                          <Image x:Name="starThree" ClassId="{Binding Id}" PropertyChanged="StarThree_OnChanged"
+                                 HeightRequest="14" Grid.Column="2" Margin="0"/>
+                          <Image x:Name="starFour" ClassId="{Binding Id}" PropertyChanged="StarFour_OnChanged"
+                                 HeightRequest="14" Grid.Column="3" Margin="0"/>
+                          <Image x:Name="starFive" ClassId="{Binding Id}" PropertyChanged="StarFive_OnChanged"
+                                 HeightRequest="14" Grid.Column="4" Margin="0"/>
                         </Grid>
                       </StackLayout>
                     </StackLayout>

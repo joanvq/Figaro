@@ -645,6 +645,7 @@ namespace Figaro.ViewModels
             if(zona != null)
             {
                 zona.Actual = true;
+                zona.NoActual = false;
                 ZonaSeleccionada = zona;
             }
             TipoCocinaSeleccionado = ListaTipoCocina.FirstOrDefault(t => t.Id == UsuarioLogueado.TipoCocinaId);
@@ -988,6 +989,7 @@ namespace Figaro.ViewModels
                 if (zonaAnt != null)
                 {
                     zonaAnt.Actual = false;
+                    zonaAnt.NoActual = true;
                 }
             }
             
@@ -995,6 +997,7 @@ namespace Figaro.ViewModels
             if (zonaAct != null)
             {
                 zonaAct.Actual = true;
+                zonaAct.NoActual = false;
                 ZonaSeleccionada = zonaAct;
             }
 

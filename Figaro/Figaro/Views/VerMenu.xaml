@@ -6,8 +6,7 @@
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              Title="Menu">
   <ScrollView>
-    <StackLayout Orientation="Vertical"
-               Spacing="18" VerticalOptions="FillAndExpand">
+    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="200"/>
@@ -84,7 +83,6 @@
                 <x:String>12</x:String>
                 <x:String>13</x:String>
                 <x:String>14</x:String>
-                <x:String>10</x:String>
                 <x:String>15</x:String>
                 <x:String>16</x:String>
                 <x:String>17</x:String>

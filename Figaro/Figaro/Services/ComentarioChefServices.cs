@@ -16,6 +16,11 @@ namespace Figaro.Services
 
             var listaComentariosChef = await restClient.GetByKeyAsync(idChef);
             
+            foreach(var comentarioChef in listaComentariosChef)
+            {
+                comentarioChef.Usuario.NombreApellidos = comentarioChef.Usuario.Nombre + " " + comentarioChef.Usuario.Apellidos;
+            }
+
             return listaComentariosChef;
         }
 
@@ -25,7 +30,9 @@ namespace Figaro.Services
             RestClient<ComentarioChef> restClient = new RestClient<ComentarioChef>("ComentariosChef");
 
             var comentarioChef = await restClient.GetAsync(id);
-            
+
+            comentarioChef.Usuario.NombreApellidos = comentarioChef.Usuario.Nombre + " " + comentarioChef.Usuario.Apellidos;
+
             return comentarioChef;
         }
     }

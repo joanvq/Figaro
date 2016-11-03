@@ -20,17 +20,22 @@ namespace Figaro.Views
         private void Zona_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             var zona = ListaZonaView.SelectedItem as Zona;
-
             if (zona != null)
             {
                 var mainViewModel = BindingContext as MainViewModel;
 
                 if (mainViewModel != null)
                 {
-                    mainViewModel.ElegirZonaAsync(zona);
-                    Navigation.PopAsync();
+                    ChangeZonaAsync(mainViewModel, zona);
                 }
             }
+        }
+
+        private async Task ChangeZonaAsync(MainViewModel mainViewModel, Zona zona)
+        {
+            mainViewModel.ElegirZonaAsync(zona);
+            //Update Binding from view
+            Navigation.PopAsync();
         }
     }
 }
