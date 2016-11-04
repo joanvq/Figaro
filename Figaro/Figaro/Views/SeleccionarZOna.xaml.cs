@@ -19,6 +19,7 @@ namespace Figaro.Views
 
         private void Zona_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
+
             var zona = ListaZonaView.SelectedItem as Zona;
             if (zona != null)
             {

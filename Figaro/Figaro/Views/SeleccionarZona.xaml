@@ -25,9 +25,9 @@
                   <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="{Binding Titulo}" 
                       HorizontalOptions="Center" FontSize="30" TextColor="White"/>
-                    <Image Source="icono_select.png" WidthRequest="40"
+                    <Image x:Name="Seleccionado" Source="icono_select.png" WidthRequest="40"
                            HeightRequest="40" Aspect="AspectFit" IsVisible="{Binding Actual}"/>
-                    <Image Source="icono_noselect.png" WidthRequest="40"
+                    <Image x:Name="NoSeleccionado" Source="icono_noselect.png" WidthRequest="40"
                             HeightRequest="40" Aspect="AspectFit" IsVisible="{Binding NoActual}"/>
                   </StackLayout>
                   

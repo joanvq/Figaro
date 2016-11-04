@@ -101,7 +101,7 @@
               <ColumnDefinition Width="*"/>
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            --><!--<ListView x:Name="PlatosChef"
+            <ListView x:Name="PlatosChef"
                       ItemsSource="{Binding ListaPlatos}"
                       HasUnevenRows="true">
               <DataTemplate>
@@ -124,11 +124,11 @@
                   </RelativeLayout>
                 </ViewCell>
               </DataTemplate>
-            </ListView>--><!--
+            </ListView>
           </Grid>-->
           <Label x:Name="PlatosAMostrar" Text="-----------POR HACER-----------" FontSize="14" Opacity="0.7"
              TranslationX="10" TranslationY="14"
-             HeightRequest="100" IsVisible="False"/>
+             HeightRequest="100" IsVisible="False" />
 
           <!--Opiniones-->
           <ListView x:Name="OpinionesAMostrar"
