@@ -24,7 +24,7 @@ namespace Figaro.Views
         {
             RegistrarB.IsEnabled = false;
             var vm = BindingContext as LoginViewModel;
-            if(ComprovarCampos())
+            if (ComprovarCampos())
             {
                 // Registrar y volver a la pagina de login
                 Usuario usuario = new Usuario();
@@ -34,9 +34,9 @@ namespace Figaro.Views
                 usuario.Password = Password.Text;
 
                 bool isSuccess = await vm.RegistrarUsuario(usuario);
-                if(isSuccess)
+                if (isSuccess)
                 {
-                    this.DisplayAlert("Registro", "Registrado correctamente.", "OK");
+                    await this.DisplayAlert("Registro", "Registrado correctamente.", "OK");
                     Navigation.PopAsync();
                 }
                 else
@@ -44,7 +44,10 @@ namespace Figaro.Views
                     this.DisplayAlert("Error", "Ha ocurrido un error en el registro.", "OK");
                     RegistrarB.IsEnabled = true;
                 }
-
+            }
+            else
+            {
+                RegistrarB.IsEnabled = true;
             }
         }
 
