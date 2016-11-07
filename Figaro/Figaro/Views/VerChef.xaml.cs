@@ -72,15 +72,18 @@ namespace Figaro.Views
                 // handle the tap
                 PerfilTab.FontAttributes = FontAttributes.Bold;
                 PerfilTab.TextColor = Color.FromHex("#CC0311");
-                LineaPerfilTab.IsVisible = true;
+                LineaPerfilTab.Color = Color.FromHex("#CC0311");
+                LineaPerfilTab.Opacity = 1;
 
                 DisponibilidadTab.FontAttributes = FontAttributes.None;
                 DisponibilidadTab.TextColor = Color.Default;
-                LineaDisponibilidadTab.IsVisible = false;
+                LineaDisponibilidadTab.Color = Color.Black;
+                LineaDisponibilidadTab.Opacity = 0.5;
 
                 OpinionesTab.FontAttributes = FontAttributes.None;
                 OpinionesTab.TextColor = Color.Default;
-                LineaOpinionesTab.IsVisible = false;
+                LineaOpinionesTab.Color = Color.Black;
+                LineaOpinionesTab.Opacity = 0.5;
 
                 PerfilAMostrar.IsVisible = true;
                 PlatosAMostrar.IsVisible = false;
@@ -93,15 +96,18 @@ namespace Figaro.Views
                 // handle the tap
                 PerfilTab.FontAttributes = FontAttributes.None;
                 PerfilTab.TextColor = Color.Default;
-                LineaPerfilTab.IsVisible = false;
+                LineaPerfilTab.Color = Color.Black;
+                LineaPerfilTab.Opacity = 0.5;
 
                 DisponibilidadTab.FontAttributes = FontAttributes.Bold;
                 DisponibilidadTab.TextColor = Color.FromHex("#CC0311");
-                LineaDisponibilidadTab.IsVisible = true;
+                LineaDisponibilidadTab.Color = Color.FromHex("#CC0311");
+                LineaDisponibilidadTab.Opacity = 1;
 
                 OpinionesTab.FontAttributes = FontAttributes.None;
                 OpinionesTab.TextColor = Color.Default;
-                LineaOpinionesTab.IsVisible = false;
+                LineaOpinionesTab.Color = Color.Black;
+                LineaOpinionesTab.Opacity = 0.5;
 
                 PerfilAMostrar.IsVisible = false;
                 PlatosAMostrar.IsVisible = true;
@@ -114,15 +120,18 @@ namespace Figaro.Views
                 // handle the tap
                 PerfilTab.FontAttributes = FontAttributes.None;
                 PerfilTab.TextColor = Color.Default;
-                LineaPerfilTab.IsVisible = false;
+                LineaPerfilTab.Color = Color.Black;
+                LineaPerfilTab.Opacity = 0.5;
 
                 DisponibilidadTab.FontAttributes = FontAttributes.None;
                 DisponibilidadTab.TextColor = Color.Default;
-                LineaDisponibilidadTab.IsVisible = false;
+                LineaDisponibilidadTab.Color = Color.Black;
+                LineaDisponibilidadTab.Opacity = 0.5;
 
                 OpinionesTab.FontAttributes = FontAttributes.Bold;
                 OpinionesTab.TextColor = Color.FromHex("#CC0311");
-                LineaOpinionesTab.IsVisible = true;
+                LineaOpinionesTab.Color = Color.FromHex("#CC0311");
+                LineaOpinionesTab.Opacity = 1;
 
                 PerfilAMostrar.IsVisible = false;
                 PlatosAMostrar.IsVisible = false;

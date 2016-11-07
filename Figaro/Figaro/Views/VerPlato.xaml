@@ -13,7 +13,7 @@
         <RowDefinition Height="*"/>
         <RowDefinition Height="5*"/>
       </Grid.RowDefinitions>
-      <RelativeLayout Padding="0,0,0,0" Grid.Row="0">
+      <RelativeLayout Padding="0,0,0,0" Grid.Row="0" BackgroundColor="#eee" Scale="1.05">
         <Image Source="{Binding PlatoSeleccionado.Imagen}" 
                RelativeLayout.WidthConstraint=
                       "{ConstraintExpression Type=RelativeToParent, Property=Width}"
@@ -27,9 +27,9 @@
                   "{ConstraintExpression Type=RelativeToParent, Property=Height}">
 
           <Label Text="{Binding PlatoSeleccionado.Titulo}" VerticalOptions="End"
-              HorizontalOptions="StartAndExpand" FontSize="30" TextColor="White" Opacity="0.8"
-              TranslationX="10" TranslationY="-10"/>
-          <Grid VerticalOptions="End" HorizontalOptions="End" TranslationX="-10" TranslationY="-10" >
+              HorizontalOptions="StartAndExpand" FontSize="28" TextColor="White" Opacity="0.8"
+              Margin="20,0,0,10"/>
+          <Grid VerticalOptions="End" HorizontalOptions="End" Margin="0,0,20,10"  >
             <Grid.RowDefinitions>
               <RowDefinition Height="24"/>
               <RowDefinition Height="24"/>
@@ -56,7 +56,7 @@
           </Grid>
         </Grid>
       </RelativeLayout>
-      <StackLayout BackgroundColor="#eee" Padding="0,0,0,0" Grid.Row="1">
+      <StackLayout BackgroundColor="#eee" Padding="0,3,0,0" Grid.Row="1">
         <Grid Padding="10, 0, 10, 0">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -99,7 +99,7 @@
         </Grid>
       </StackLayout>
       <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" Grid.Row="2" Margin="0">  
-        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="10,0">
           <Label Text="{Binding PlatoSeleccionado.Descripcion}" FontSize="14" TranslationX="10"/>
           <Grid x:Name="GridTab" Padding="0,14,0,0">
             <Grid.ColumnDefinitions>
@@ -113,12 +113,12 @@
                    FontAttributes="None"  Grid.Column="1" HorizontalOptions="Center"/>
             <Label x:Name="OpinionesTab" Text="OPINIONES" FontSize="14"  
                    FontAttributes="None"  Grid.Column="2" HorizontalOptions="Center"/>
-            <BoxView x:Name="LineaIngredientesTab" Color="#CC0311" HeightRequest="0.5" 
-                     VerticalOptions="End" Grid.Column="0" IsVisible="True"/>
-            <BoxView x:Name="LineaUtensiliosTab" Color="#CC0311" HeightRequest="0.5" 
-                     VerticalOptions="End" Grid.Column="1" IsVisible="False"/>
-            <BoxView x:Name="LineaOpinionesTab" Color="#CC0311" HeightRequest="0.5" 
-                     VerticalOptions="End" Grid.Column="2" IsVisible="False"/>
+            <BoxView x:Name="LineaIngredientesTab" Color="#CC0311" HeightRequest="1"
+                      VerticalOptions="End" Grid.Column="0" Scale="1.1"/>
+            <BoxView x:Name="LineaUtensiliosTab" Color="Black" HeightRequest="1"
+                      VerticalOptions="End" Grid.Column="1" Scale="1.1" Opacity="0.5"/>
+            <BoxView x:Name="LineaOpinionesTab" Color="Black" HeightRequest="1"
+                      VerticalOptions="End" Grid.Column="2" Scale="1.1" Opacity="0.5"/>
           </Grid>
           <!--Ingredientes-->
           <Label x:Name="IngredientesAMostrar" Text="{Binding PlatoSeleccionado.Ingredientes}" 

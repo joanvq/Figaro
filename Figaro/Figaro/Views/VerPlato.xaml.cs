@@ -71,15 +71,18 @@ namespace Figaro.Views
                 // handle the tap
                 IngredientesTab.FontAttributes = FontAttributes.Bold;
                 IngredientesTab.TextColor = Color.FromHex("#CC0311");
-                LineaIngredientesTab.IsVisible = true;
+                LineaIngredientesTab.Color = Color.FromHex("#CC0311");
+                LineaIngredientesTab.Opacity = 1;
 
                 UtensiliosTab.FontAttributes = FontAttributes.None;
                 UtensiliosTab.TextColor = Color.Default;
-                LineaUtensiliosTab.IsVisible = false;
+                LineaUtensiliosTab.Color = Color.Black;
+                LineaUtensiliosTab.Opacity = 0.5;
 
                 OpinionesTab.FontAttributes = FontAttributes.None;
                 OpinionesTab.TextColor = Color.Default;
-                LineaOpinionesTab.IsVisible = false;
+                LineaOpinionesTab.Color = Color.Black;
+                LineaOpinionesTab.Opacity = 0.5;
 
                 IngredientesAMostrar.IsVisible = true;
                 UtensiliosAMostrar.IsVisible = false;
@@ -92,15 +95,18 @@ namespace Figaro.Views
                 // handle the tap
                 IngredientesTab.FontAttributes = FontAttributes.None;
                 IngredientesTab.TextColor = Color.Default;
-                LineaIngredientesTab.IsVisible = false;
+                LineaIngredientesTab.Color = Color.Black;
+                LineaIngredientesTab.Opacity = 0.5;
 
                 UtensiliosTab.FontAttributes = FontAttributes.Bold;
                 UtensiliosTab.TextColor = Color.FromHex("#CC0311");
-                LineaUtensiliosTab.IsVisible = true;
+                LineaUtensiliosTab.Color = Color.FromHex("#CC0311");
+                LineaUtensiliosTab.Opacity = 1;
 
                 OpinionesTab.FontAttributes = FontAttributes.None;
                 OpinionesTab.TextColor = Color.Default;
-                LineaOpinionesTab.IsVisible = false;
+                LineaOpinionesTab.Color = Color.Black;
+                LineaOpinionesTab.Opacity = 0.5;
 
                 IngredientesAMostrar.IsVisible = false;
                 UtensiliosAMostrar.IsVisible = true;
@@ -112,15 +118,18 @@ namespace Figaro.Views
                 // handle the tap
                 IngredientesTab.FontAttributes = FontAttributes.None;
                 IngredientesTab.TextColor = Color.Default;
-                LineaIngredientesTab.IsVisible = false;
+                LineaIngredientesTab.Color = Color.Black;
+                LineaIngredientesTab.Opacity = 0.5;
 
                 UtensiliosTab.FontAttributes = FontAttributes.None;
                 UtensiliosTab.TextColor = Color.Default;
-                LineaUtensiliosTab.IsVisible = false;
+                LineaUtensiliosTab.Color = Color.Black;
+                LineaUtensiliosTab.Opacity = 0.5;
 
                 OpinionesTab.FontAttributes = FontAttributes.Bold;
                 OpinionesTab.TextColor = Color.FromHex("#CC0311");
-                LineaOpinionesTab.IsVisible = true;
+                LineaOpinionesTab.Color = Color.FromHex("#CC0311");
+                LineaOpinionesTab.Opacity = 1;
 
                 IngredientesAMostrar.IsVisible = false;
                 UtensiliosAMostrar.IsVisible = false;
