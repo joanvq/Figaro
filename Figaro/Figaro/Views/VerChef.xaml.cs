@@ -243,5 +243,10 @@ namespace Figaro.Views
                 }
             }
         }
+
+        private void Comentario_OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            ((ListView)sender).SelectedItem = null; // de-select the row
+        }
     }
 }

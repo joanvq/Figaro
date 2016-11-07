@@ -40,6 +40,7 @@ namespace Figaro.Views
 
             var ciudades = new ToolbarItem
             {
+                Text = "Seleccionar zona",
                 Icon = "icono_map_maker.png",
                 Command = new Command(() =>
                 {
@@ -51,6 +52,7 @@ namespace Figaro.Views
 
             var cesta = new ToolbarItem
             {
+                Text = "Cesta",
                 Icon = "icono_shopping_bag_empty.png",
                 Command = new Command(() =>
                 {
@@ -71,8 +73,7 @@ namespace Figaro.Views
             //    }
             //}
         }
-
-
+        
         public void TipoCocina_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             var tipoCocina = ListaTipoCocinaView.SelectedItem as TipoCocina;

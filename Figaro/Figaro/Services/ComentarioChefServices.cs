@@ -19,6 +19,15 @@ namespace Figaro.Services
             foreach(var comentarioChef in listaComentariosChef)
             {
                 comentarioChef.Usuario.NombreApellidos = comentarioChef.Usuario.Nombre + " " + comentarioChef.Usuario.Apellidos;
+                if (comentarioChef.Usuario.Imagen != null)
+                {
+                    var index = comentarioChef.Usuario.Imagen.IndexOf("/Content");
+                    if (index > -1)
+                    {
+                        // La Imagen es local
+                        comentarioChef.Usuario.Imagen = "http://figaro.apphb.com" + comentarioChef.Usuario.Imagen;
+                    }
+                }
             }
 
             return listaComentariosChef;
@@ -32,6 +41,15 @@ namespace Figaro.Services
             var comentarioChef = await restClient.GetAsync(id);
 
             comentarioChef.Usuario.NombreApellidos = comentarioChef.Usuario.Nombre + " " + comentarioChef.Usuario.Apellidos;
+            if (comentarioChef.Usuario.Imagen != null)
+            {
+                var index = comentarioChef.Usuario.Imagen.IndexOf("/Content");
+                if (index > -1)
+                {
+                    // La Imagen es local
+                    comentarioChef.Usuario.Imagen = "http://figaro.apphb.com" + comentarioChef.Usuario.Imagen;
+                }
+            }
 
             return comentarioChef;
         }

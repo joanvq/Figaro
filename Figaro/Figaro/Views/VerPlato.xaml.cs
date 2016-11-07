@@ -140,6 +140,112 @@ namespace Figaro.Views
             mainViewModel.AnadirPlatoCesta.Execute(idCant);
 
         }
-        
+
+        // Imágenes estrellas valoración
+        private void StarOne_OnChanged(object sender, EventArgs e)
+        {
+            Image star = (Image)sender;
+            if (star.ClassId != null && star.Source == null)
+            {
+                var mvm = BindingContext as MainViewModel;
+                var comchef = mvm.ListaComentarioPlatoMenu.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+                if (comchef != null)
+                {
+                    if (comchef.Valoracion > 0)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
+                }
+            }
+        }
+        private void StarTwo_OnChanged(object sender, EventArgs e)
+        {
+            Image star = (Image)sender;
+            if (star.ClassId != null && star.Source == null)
+            {
+                var mvm = BindingContext as MainViewModel;
+                var comchef = mvm.ListaComentarioPlatoMenu.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+                if (comchef != null)
+                {
+                    if (comchef.Valoracion > 1)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
+                }
+            }
+        }
+        private void StarThree_OnChanged(object sender, EventArgs e)
+        {
+            Image star = (Image)sender;
+            if (star.ClassId != null && star.Source == null)
+            {
+                var mvm = BindingContext as MainViewModel;
+                var comchef = mvm.ListaComentarioPlatoMenu.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+                if (comchef != null)
+                {
+                    if (comchef.Valoracion > 2)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
+                }
+            }
+        }
+        private void StarFour_OnChanged(object sender, EventArgs e)
+        {
+            Image star = (Image)sender;
+            if (star.ClassId != null && star.Source == null)
+            {
+                var mvm = BindingContext as MainViewModel;
+                var comchef = mvm.ListaComentarioPlatoMenu.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+                if (comchef != null)
+                {
+                    if (comchef.Valoracion > 3)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
+                }
+            }
+        }
+        private void StarFive_OnChanged(object sender, EventArgs e)
+        {
+            Image star = (Image)sender;
+            if (star.ClassId != null && star.Source == null)
+            {
+                var mvm = BindingContext as MainViewModel;
+                var comchef = mvm.ListaComentarioPlatoMenu.FirstOrDefault(l => l.Id == Convert.ToInt32(star.ClassId));
+                if (comchef != null)
+                {
+                    if (comchef.Valoracion > 4)
+                    {
+                        star.Source = "icono_star_gold.png";
+                    }
+                    else
+                    {
+                        star.Source = "icono_star_gold_empty.png";
+                    }
+                }
+            }
+        }
+
+        private void Comentario_OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            ((ListView)sender).SelectedItem = null; // de-select the row
+        }
     }
 }

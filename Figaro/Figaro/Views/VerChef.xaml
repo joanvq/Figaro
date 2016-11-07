@@ -134,55 +134,73 @@
           <ListView x:Name="OpinionesAMostrar"
                      ItemsSource="{Binding ListaComentariosChef}"
 		                 HasUnevenRows="true"
-                     IsVisible="False">
+                     IsVisible="False"
+                     ItemTapped="Comentario_OnItemTapped">
             <ListView.ItemTemplate HorizontalContentAlignment="Stretch">
               <DataTemplate>
                 <ViewCell>
-                  <Grid Padding="12,6" >
-                    <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="*"/>
-                      <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <StackLayout Grid.Column="0" Orientation="Horizontal" >
-                      <controls:CircleImage Source="{Binding Usuario.Imagen}" WidthRequest="50.0"
-                                        HeightRequest="50.0" Aspect="AspectFill" />
-                      <StackLayout Orientation="Vertical" >
-                        <Label Text="{Binding Usuario.NombreApellidos}" FontSize="16" FontAttributes="Bold"/>
-                        <Label Text="{Binding Descripcion}" FontSize="14" />
+                  <StackLayout Padding="12,6">
+                    <Grid>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                      </Grid.ColumnDefinitions>
+                      <StackLayout Grid.Column="0">
+                        <controls:CircleImage Source="{Binding Usuario.Imagen}" WidthRequest="50.0"
+                                              HeightRequest="50.0" Aspect="AspectFill" />
                       </StackLayout>
-                    </StackLayout>
-                    <StackLayout Grid.Column="1" Orientation="Vertical" Padding="0,0,10,0">
-                      <!--Star rating-->
-                      <StackLayout Orientation="Horizontal" HeightRequest="20" HorizontalOptions="EndAndExpand">
+                      <StackLayout Orientation="Vertical" Grid.Column="1" Padding="10,0,0,0">
                         <Grid>
-                          <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                          </Grid.ColumnDefinitions>
-                          <Image x:Name="starOne" ClassId="{Binding Id}"  PropertyChanged="StarOne_OnChanged" 
-                                 HeightRequest="14" Grid.Column="0" Margin="0"/>
-                          <Image x:Name="starTwo" ClassId="{Binding Id}" PropertyChanged="StarTwo_OnChanged"
-                                 HeightRequest="14" Grid.Column="1" Margin="0"/>
-                          <Image x:Name="starThree" ClassId="{Binding Id}" PropertyChanged="StarThree_OnChanged"
-                                 HeightRequest="14" Grid.Column="2" Margin="0"/>
-                          <Image x:Name="starFour" ClassId="{Binding Id}" PropertyChanged="StarFour_OnChanged"
-                                 HeightRequest="14" Grid.Column="3" Margin="0"/>
-                          <Image x:Name="starFive" ClassId="{Binding Id}" PropertyChanged="StarFive_OnChanged"
-                                 HeightRequest="14" Grid.Column="4" Margin="0"/>
+                          <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                          </Grid.RowDefinitions>
+                          <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="*"/>
+                              <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal">
+                              <Label Text="{Binding Usuario.NombreApellidos}" FontSize="16" FontAttributes="Bold"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Vertical">
+                              <!--Star rating-->
+                              <StackLayout Orientation="Horizontal" HeightRequest="20" HorizontalOptions="EndAndExpand">
+                                <Grid>
+                                  <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                  </Grid.ColumnDefinitions>
+                                  <Image x:Name="starOne" ClassId="{Binding Id}"  PropertyChanged="StarOne_OnChanged" 
+                                         HeightRequest="14" Grid.Column="0" Margin="0"/>
+                                  <Image x:Name="starTwo" ClassId="{Binding Id}" PropertyChanged="StarTwo_OnChanged"
+                                         HeightRequest="14" Grid.Column="1" Margin="0"/>
+                                  <Image x:Name="starThree" ClassId="{Binding Id}" PropertyChanged="StarThree_OnChanged"
+                                         HeightRequest="14" Grid.Column="2" Margin="0"/>
+                                  <Image x:Name="starFour" ClassId="{Binding Id}" PropertyChanged="StarFour_OnChanged"
+                                         HeightRequest="14" Grid.Column="3" Margin="0"/>
+                                  <Image x:Name="starFive" ClassId="{Binding Id}" PropertyChanged="StarFive_OnChanged"
+                                         HeightRequest="14" Grid.Column="4" Margin="0"/>
+                                </Grid>
+                              </StackLayout>
+                            </StackLayout>
+                          </Grid>
+                          <StackLayout Grid.Row="1">
+                            <Label Text="{Binding Descripcion}" FontSize="14" />
+                          </StackLayout>
                         </Grid>
                       </StackLayout>
-                    </StackLayout>
-                  </Grid>
+                    </Grid>
+                  </StackLayout>
                 </ViewCell>
               </DataTemplate>
             </ListView.ItemTemplate>
           </ListView>
         </StackLayout>
       </ScrollView>
-      
     </StackLayout>
   <!--</ScrollView>-->
 </ContentPage>

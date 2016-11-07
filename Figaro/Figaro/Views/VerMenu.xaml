@@ -13,7 +13,7 @@
           <RowDefinition Height="50"/>
           <!--<RowDefinition Height="5*"/>-->
         </Grid.RowDefinitions>
-        <RelativeLayout Padding="0,0,0,0" Grid.Row="0">
+        <RelativeLayout Padding="0,0,0,0" Grid.Row="0" BackgroundColor="#eee">
           <Image Source="{Binding MenuSeleccionado.Imagen}"
                  RelativeLayout.WidthConstraint=
                         "{ConstraintExpression Type=RelativeToParent, Property=Width}"
@@ -100,7 +100,7 @@
         </StackLayout>
       </Grid>
 
-      <StackLayout>
+      <StackLayout Padding="0,0,0,10">
         <Label Text="{Binding MenuSeleccionado.Descripcion}" FontSize="14" TranslationX="10"/>
       </StackLayout>
       
@@ -259,30 +259,52 @@
           <ListView x:Name="OpinionesAMostrar"
                      ItemsSource="{Binding ListaComentarioPlatoMenu}"
 		                 HasUnevenRows="true"
-                     IsVisible="False">
+                     IsVisible="False"
+                     ItemTapped="Comentario_OnItemTapped">
             <ListView.ItemTemplate HorizontalContentAlignment="Stretch">
               <DataTemplate>
                 <ViewCell>
-                  <Grid Padding="12,6" >
-                    <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="*"/>
-                      <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <StackLayout Grid.Column="0" Orientation="Horizontal" >
-                      <StackLayout Orientation="Vertical" Padding="10,0,0,0">
-                        <StackLayout Orientation="Horizontal">
-                          <Label Text="Por:" FontSize="16" />
+                  <StackLayout Padding="12,6">
+                    <Grid>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                      </Grid.ColumnDefinitions>
+                      <StackLayout Grid.Column="0" Orientation="Horizontal" >
+                        <StackLayout Orientation="Vertical" Padding="10,0,0,0">
                           <Label Text="{Binding Autor}" FontSize="16"/>
+                          <Label Text="{Binding Descripcion}" FontSize="15" Opacity="0.7" />
                         </StackLayout>
-                        <Label Text="{Binding Descripcion}" FontSize="15" Opacity="0.7" />
                       </StackLayout>
+                      <StackLayout Grid.Column="1" Orientation="Vertical" Padding="0,0,10,0">
+                        <!--Star rating-->
+                        <StackLayout Orientation="Horizontal" HeightRequest="20" HorizontalOptions="EndAndExpand">
+                          <Grid>
+                            <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="*"/>
+                              <ColumnDefinition Width="*"/>
+                              <ColumnDefinition Width="*"/>
+                              <ColumnDefinition Width="*"/>
+                              <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="starOne" ClassId="{Binding Id}"  PropertyChanged="StarOne_OnChanged"
+                                    HeightRequest="14" Grid.Column="0" Margin="0"/>
+                            <Image x:Name="starTwo" ClassId="{Binding Id}" PropertyChanged="StarTwo_OnChanged"
+                                    HeightRequest="14" Grid.Column="1" Margin="0"/>
+                            <Image x:Name="starThree" ClassId="{Binding Id}" PropertyChanged="StarThree_OnChanged"
+                                    HeightRequest="14" Grid.Column="2" Margin="0"/>
+                            <Image x:Name="starFour" ClassId="{Binding Id}" PropertyChanged="StarFour_OnChanged"
+                                    HeightRequest="14" Grid.Column="3" Margin="0"/>
+                            <Image x:Name="starFive" ClassId="{Binding Id}" PropertyChanged="StarFive_OnChanged"
+                                    HeightRequest="14" Grid.Column="4" Margin="0"/>
+                          </Grid>
+                        </StackLayout>
+                      </StackLayout>
+                    </Grid>
+                    <StackLayout Orientation="Horizontal" Padding="10,0">
+                      <Label Text="{Binding Descripcion}" FontSize="15" Opacity="0.7"/>
                     </StackLayout>
-                    <StackLayout Grid.Column="1" Orientation="Vertical" Padding="0,0,10,0">
-                      <!--Star rating-->
-                      <Label Text="{Binding Valoracion}" HorizontalOptions="End"
-                             Grid.Row="0" Grid.Column="2" />
-                    </StackLayout>
-                  </Grid>
+                  </StackLayout>
                 </ViewCell>
               </DataTemplate>
             </ListView.ItemTemplate>
