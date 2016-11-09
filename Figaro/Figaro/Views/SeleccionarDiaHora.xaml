@@ -21,7 +21,7 @@
       <DatePicker x:Name="fecha"/>
     </StackLayout>
     <StackLayout Orientation="Horizontal" Margin="20,0" HorizontalOptions="Center">
-      <Label Text="HORARIO" FontSize="20" VerticalOptions="Center" />
+      <Label Text="HORA" FontSize="20" VerticalOptions="Center" />
       <TimePicker x:Name="hora" PropertyChanged="Time_OnChanged" WidthRequest="100">
       </TimePicker>
       <Label Text="H" FontSize="20" VerticalOptions="Center" TextColor="Black"/>

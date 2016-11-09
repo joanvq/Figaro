@@ -43,7 +43,11 @@ namespace Figaro.Views
                 var mainViewModel = BindingContext as MainViewModel;
                 mainViewModel.ElegirFechaHoraAsync(fecha, hora);
                
-                Navigation.PopAsync();
+                await Navigation.PopToRootAsync();
+                var app = Application.Current as App;
+                var mainPage = (NavigationPage)app.MainPage;
+                var currentPage = (MasterDetailPage)mainPage.CurrentPage;
+                currentPage.Detail = new ChefsPage();
             }
         }
 

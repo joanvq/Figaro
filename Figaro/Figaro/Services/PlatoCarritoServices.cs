@@ -30,6 +30,21 @@ namespace Figaro.Services
 
             var listaPlatoCarrito = await restClient.GetByKeyAsync(idUsuario);
 
+            foreach (PlatoCarrito platoCarrito in listaPlatoCarrito)
+            {
+                platoCarrito.Plato.Imagen = "http://figaro.apphb.com" + platoCarrito.Plato.Imagen;
+                platoCarrito.Plato.HorasCocinado = (platoCarrito.Plato.TiempoCocinado / 60).ToString();
+                if ((platoCarrito.Plato.TiempoCocinado % 60) < 10)
+                {
+                    platoCarrito.Plato.HorasCocinado += "h 0" + (platoCarrito.Plato.TiempoCocinado % 60).ToString() + "' ⏱";
+                }
+                else
+                {
+                    platoCarrito.Plato.HorasCocinado += "h " + (platoCarrito.Plato.TiempoCocinado % 60).ToString() + "' ⏱";
+                }
+                platoCarrito.Plato.PrecioEuros = platoCarrito.Plato.Precio.ToString("0.00") + " €";
+            }
+
             return listaPlatoCarrito;
         }
 
@@ -40,6 +55,18 @@ namespace Figaro.Services
             RestClient<PlatoCarrito> restClient = new RestClient<PlatoCarrito>("PlatoCarrito");
 
             var platoCarrito = await restClient.GetAsync(id);
+
+            platoCarrito.Plato.Imagen = "http://figaro.apphb.com" + platoCarrito.Plato.Imagen;
+            platoCarrito.Plato.HorasCocinado = (platoCarrito.Plato.TiempoCocinado / 60).ToString();
+            if ((platoCarrito.Plato.TiempoCocinado % 60) < 10)
+            {
+                platoCarrito.Plato.HorasCocinado += "h 0" + (platoCarrito.Plato.TiempoCocinado % 60).ToString() + "' ⏱";
+            }
+            else
+            {
+                platoCarrito.Plato.HorasCocinado += "h " + (platoCarrito.Plato.TiempoCocinado % 60).ToString() + "' ⏱";
+            }
+            platoCarrito.Plato.PrecioEuros = platoCarrito.Plato.Precio.ToString("0.00") + " €";
 
             return platoCarrito;
         }

@@ -32,6 +32,7 @@ namespace Figaro.Views
                 usuario.Apellidos = Apellidos.Text;
                 usuario.Email = Email.Text;
                 usuario.Password = Password.Text;
+                usuario.Imagen = "/Content/user.jpg";
 
                 bool isSuccess = await vm.RegistrarUsuario(usuario);
                 if (isSuccess)

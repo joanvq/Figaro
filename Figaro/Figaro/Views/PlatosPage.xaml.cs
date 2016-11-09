@@ -47,6 +47,7 @@ namespace Figaro.Views
         private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             var plato = ListaPlatosView.SelectedItem as Plato;
+            ListaPlatosView.SelectedItem = null;
 
             if(plato != null)
             {
@@ -67,6 +68,7 @@ namespace Figaro.Views
             Button btn = (Button)sender;
             Tuple<int, int> idCant = new Tuple<int, int>(int.Parse(btn.ClassId), 1);
             mainViewModel.AnadirPlatoCesta.Execute(idCant);
+            DisplayAlert("Añadido", "Plato añadido a la cesta de la compra", "OK");
         }
         
 

@@ -261,9 +261,17 @@ namespace Figaro.Views
         {
             var mainViewModel = BindingContext as MainViewModel;
             int idMenu = mainViewModel.MenuSeleccionado.Id;
-            Tuple<int, int> idCant = new Tuple<int, int>(idMenu, int.Parse(NumeroMenus.Items[NumeroMenus.SelectedIndex]));
+            int numMenus = int.Parse(NumeroMenus.Items[NumeroMenus.SelectedIndex]);
+            Tuple<int, int> idCant = new Tuple<int, int>(idMenu, numMenus);
             mainViewModel.AnadirMenuCesta.Execute(idCant);
-            
+            if (numMenus > 1)
+            {
+                DisplayAlert("Añadido", "Menus añadidos a la cesta de la compra", "OK");
+            }
+            else
+            {
+                DisplayAlert("Añadido", "Menu añadido a la cesta de la compra", "OK");
+            }
         }
 
         // Imágenes estrellas valoración

@@ -29,6 +29,7 @@ namespace Figaro.Views
         private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             var menu = ListaMenusView.SelectedItem as Menu;
+            ListaMenusView.SelectedItem = null;
 
             if (menu != null)
             {
@@ -50,7 +51,7 @@ namespace Figaro.Views
             Button btn = (Button)sender;
             Tuple<int, int> idCant = new Tuple<int, int>(int.Parse(btn.ClassId), 1);
             mainViewModel.AnadirMenuCesta.Execute(idCant);
+            DisplayAlert("Añadido", "Menu añadido a la cesta de la compra", "OK");
         }
-
     }
 }

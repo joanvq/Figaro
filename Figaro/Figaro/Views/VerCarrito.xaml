@@ -4,24 +4,44 @@
              x:Class="Figaro.Views.VerCarrito"
              xmlns:local="clr-namespace:Figaro;assembly=Figaro;"
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
-             Title="Cesta">
+             Title="Cesta"
+             Padding="0">
+  <StackLayout Orientation="Vertical" Padding="0" VerticalOptions="FillAndExpand">
+    <ActivityIndicator IsRunning="{Binding IsBusy}"
+             IsVisible="{Binding IsBusy}"
+             HeightRequest="20" WidthRequest="20"
+             HorizontalOptions="Center" Margin="0,20,0,0"/>
 
-  <StackLayout Orientation="Vertical" Padding="0">
-    <Grid Padding="20">
+    <Grid x:Name="CestaVacia" BackgroundColor="#ddd">
       <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
+        <RowDefinition Height="1*"/>
+        <RowDefinition Height="4*"/>
+        <RowDefinition Height="4*"/>
+        <RowDefinition Height="1*"/>
       </Grid.RowDefinitions>
-
-      <StackLayout Orientation="Horizontal" Grid.Row="0">
-        <Label Text="Chef" VerticalOptions="Start" HorizontalOptions="Start" FontSize="24"/>
-        <Label Text="{Binding UsuarioLogueado.ChefSeleccionado.NombreApellidos}" />
+      <StackLayout Orientation="Vertical" Padding="0" VerticalOptions="Center"
+                Grid.Row="1">
+        <Image Source="icono_shopping_bag_empty.png" Margin="30"/>
+        <Label Text="CESTA VACÍA" FontSize="24" Margin="10" HorizontalOptions="Center"/>
       </StackLayout>
+      <StackLayout Orientation="Vertical" Padding="0" VerticalOptions="Center"
+                  Grid.Row="2">
+        <Button Text="DESCUBRE NUESTROS PLATOS" FontSize="18" Clicked="Platos_OnClicked"/>
+        <Button Text="ENCUENTRA UN CHEF" FontSize="18" Clicked="Chefs_OnClicked"/>
+      </StackLayout>
+    </Grid> 
 
-      <StackLayout Orientation="Vertical" Grid.Row="1">
+    <StackLayout x:Name="CestaLlena" Orientation="Vertical" Padding="0">
+
+      <Grid Padding="20,0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout Orientation="Vertical" Grid.Row="0">
           <ListView x:Name="ListaPlatosMenus"
-		                HasUnevenRows="true"
+                    HasUnevenRows="true"
                     ItemTapped="Menu_OnItemTapped"
                     VerticalOptions="Start">
             <ListView.ItemTemplate>
@@ -49,11 +69,12 @@
               </DataTemplate>
             </ListView.ItemTemplate>
           </ListView>
-      </StackLayout>
+        </StackLayout>
 
-      <StackLayout Orientation="Vertical" Grid.Row="2" VerticalOptions="Start">
-        <Grid>
+        <Grid VerticalOptions="End" Grid.Row="1">
           <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -66,30 +87,47 @@
           </Grid.ColumnDefinitions>
           <Label Text="TIEMPO TOTAL" FontSize="18" Grid.Row="0" Grid.Column="0"/>
           <Label x:Name="TiempoTotal" Text="Prueba" FontSize="18"
-                 HorizontalOptions="End" Grid.Row="0" Grid.Column="2"/>
-          <Label Text="COSTE" Grid.Row="1" Grid.Column="0" />
+                  HorizontalOptions="End" Grid.Row="0" Grid.Column="2" />
+          <Label Text="COSTE" Grid.Row="1" Grid.Column="0" FontSize="18"/>
           <Label x:Name="Coste" FontSize="18"
-                 HorizontalOptions="End" Grid.Row="1" Grid.Column="2"/>
-          <Label Text="DESPLAZAMIENTO" Grid.Row="2" Grid.Column="0"/>
+                  HorizontalOptions="End" Grid.Row="1" Grid.Column="2"/>
+          <Label Text="DESPLAZAMIENTO" Grid.Row="2" Grid.Column="0" FontSize="18"/>
           <Label x:Name="Desplazamiento" FontSize="18"
-                 HorizontalOptions="End" Grid.Row="2" Grid.Column="2"/>
+                  HorizontalOptions="End" Grid.Row="2" Grid.Column="2"/>
+          <Label x:Name="LabelChef" Text="CHEF" Grid.Row="3" Grid.Column="0" FontSize="18"/>
+          <Label x:Name="Chef" FontSize="18"
+                  Text="{Binding UsuarioLogueado.ChefSeleccionado.NombreApellidos}"
+                  HorizontalOptions="End" Grid.Row="3" Grid.Column="2"/>
+          <Label x:Name="LabelFecha" Text="FECHA" Grid.Row="4" Grid.Column="0" FontSize="18"/>
+          <Button x:Name="BFecha" FontSize="14" IsVisible="False"
+                  Text="Selecciona una fecha y hora" Clicked="SeleccionarDiaHora_OnTapped"
+                  HorizontalOptions="End" Grid.Row="4" Grid.Column="0"/>
+          <StackLayout HorizontalOptions="End" Grid.Row="4" Grid.Column="2" Orientation="Horizontal">
+            <Image x:Name="EditFecha" Source="edit.png" WidthRequest="18" HeightRequest="18" >
+              <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="SeleccionarDiaHora_OnTapped"/>
+              </Image.GestureRecognizers>
+            </Image>
+            <Label x:Name="Fecha" FontSize="18" HorizontalOptions="End" Margin="10,0,0,0"/>
+          </StackLayout>
+          <Label x:Name="LabelHora" Text="HORA" Grid.Row="5" Grid.Column="0" FontSize="18"/>
+          <Label x:Name="hora" FontSize="18"
+                  HorizontalOptions="End" Grid.Row="5" Grid.Column="2"/>
         </Grid>
-      </StackLayout>
-    </Grid>
+      </Grid>
 
-    <Grid VerticalOptions="End" Padding="0,0,0,0"
-                 BackgroundColor="#ddd" HeightRequest="60">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="Auto"/>
-      </Grid.ColumnDefinitions>
-      <Label Text="TOTAL:" FontSize="20" Opacity="0.7" VerticalOptions="Center" Grid.Column="0" Margin="20,0,0,0"/>
-      <Label x:Name="Total" TextColor="#CC0311" FontSize="20" VerticalOptions="Center" Grid.Column="1"/>
-      <Button Text="Pedir" TextColor="White" BackgroundColor="#CC0311"  Grid.Column="2"
-              FontSize="20" Clicked="Pedir_OnClicked" HorizontalOptions="End" Margin="0,0,20,0"/>
-    </Grid>
-
+      <Grid VerticalOptions="End" Padding="0,0,0,0"
+                   BackgroundColor="#ddd" HeightRequest="50" MinimumHeightRequest="50">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Label Text="TOTAL:" FontSize="20" Opacity="0.7" VerticalOptions="Center" Grid.Column="0" Margin="20,0,0,0"/>
+        <Label x:Name="Total" TextColor="#CC0311" FontSize="20" VerticalOptions="Center" Grid.Column="1"/>
+        <Button Text="Pedir" TextColor="White" BackgroundColor="#CC0311"  Grid.Column="2"
+                FontSize="20" Clicked="Pedir_OnClicked" HorizontalOptions="End" Margin="0,0,20,0"/>
+      </Grid>
+    </StackLayout>
   </StackLayout>
-
 </ContentPage>

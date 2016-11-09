@@ -14,7 +14,7 @@
     <Entry x:Name="direccion"/>
 
     <Label Text="Código Postal" />
-    <Entry x:Name="cp"/>
+    <Entry x:Name="cp" Keyboard="Numeric"/>
 
     <Label Text="Comentario" />
     <Editor WidthRequest="60" x:Name="comentario" />

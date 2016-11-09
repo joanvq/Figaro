@@ -61,8 +61,7 @@ namespace Figaro.Services
             var isSuccessStatusCode = await restClient.PostAsync(plato);
 
             return isSuccessStatusCode;
-
-
+            
         }
 
         public async Task<bool> PutPlatoAsync(int id, Plato plato)

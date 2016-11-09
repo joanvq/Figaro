@@ -18,7 +18,7 @@
     
     <StackLayout Orientation="Vertical"
                  IsEnabled="{Binding IsIdle}" IsVisible="{Binding IsIdle}">
-      <Label x:Name="StatusMessage" Text="{Binding StatusMessage}" />
+      <!--<Label x:Name="StatusMessage" Text="{Binding StatusMessage}" />-->
       
       <Label x:Name="AvisoSeleccionarDiaHora" Margin="12,6" HorizontalOptions="Center"
              IsEnabled="{Binding NoChefs}" IsVisible="{Binding NoChefs}" FontSize="20" TextColor="#CC0311"/>

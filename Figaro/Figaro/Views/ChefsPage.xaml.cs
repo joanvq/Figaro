@@ -38,6 +38,7 @@ namespace Figaro.Views
         private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             var chef = ListaChefsView.SelectedItem as Chef;
+            ListaChefsView.SelectedItem = null;
 
             if (chef != null)
             {

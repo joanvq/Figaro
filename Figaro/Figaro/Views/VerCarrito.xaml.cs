@@ -15,6 +15,7 @@ namespace Figaro.Views
     public partial class VerCarrito : ContentPage
     {
         private decimal costeTotal = 0;
+        private bool _userTapped = false;
 
         private List<KeyValuePair<PlatoMenu, int>> listaCarrito = null;
 
@@ -36,14 +37,45 @@ namespace Figaro.Views
             InitializeData();
         }
 
-        public void InitializeData() { 
+        public void InitializeData()
+        {
 
             var mainViewModel = BindingContext as MainViewModel;
+
+            // Cargar fecha y hora
+            if (mainViewModel.Fecha != null)
+            {
+                Fecha.Text = mainViewModel.Fecha.Value.Date.ToString("dd'/'MM'/'yyyy");
+                var h = mainViewModel.Hora / 2;
+                var m = (mainViewModel.Hora % 2) * 30;
+                var hor = h.ToString();
+                var min = m.ToString();
+                if (hor.Length == 1)
+                {
+                    hor = "0" + hor;
+                }
+                if (min.Length == 1)
+                {
+                    min = "0" + min;
+                }
+                hora.Text = hor + ":" + min;
+            }
+            else
+            {
+                LabelChef.IsVisible = false;
+                LabelFecha.IsVisible = false;
+                LabelHora.IsVisible = false;
+                Fecha.IsVisible = false;
+                hora.IsVisible = false;
+                BFecha.IsVisible = true;
+                EditFecha.IsVisible = false;
+            }
 
             // Combinar lista menus y platos para poder imprimir una sola lista 
             // Se usa la clase PlatoMenu, que es una classe generica que puede contener los 
             // campos que comparten el plato y el menú. 
             ListaCarrito = new List<KeyValuePair<PlatoMenu, int>>();
+
             foreach (var menuCarrito in mainViewModel.ListaMenuCarrito)
             {
                 PlatoMenu menu = new PlatoMenu();
@@ -78,8 +110,18 @@ namespace Figaro.Views
                 KeyValuePair<PlatoMenu, int> platoMenuCant = new KeyValuePair<PlatoMenu, int>(plato, platoCarrito.Cantidad);
                 ListaCarrito.Add(platoMenuCant);
             }
-
+            if (ListaCarrito.Count == 0)
+            {
+                CestaLlena.IsVisible = false;
+                CestaVacia.IsVisible = true;
+            }
+            else
+            {
+                CestaLlena.IsVisible = true;
+                CestaVacia.IsVisible = false;
+            }
             ListaPlatosMenus.ItemsSource = ListaCarrito;
+
 
             int tiempoTotal = 0;
             decimal coste = 0;
@@ -115,9 +157,10 @@ namespace Figaro.Views
 
             costeTotal = coste + desplazamiento;
             Total.Text = costeTotal.ToString() + " €";
+
         }
 
-        private void Menu_OnItemTapped(object sender, ItemTappedEventArgs e) 
+        private void Menu_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             ((ListView)sender).SelectedItem = null; // de-select the row
             var button = new Button
@@ -159,7 +202,7 @@ namespace Figaro.Views
             };
 
             popup.ShowPopup(popLayout);
-            
+
         }
 
         private void Plato_OnItemTapped(object sender, ItemTappedEventArgs e)
@@ -169,13 +212,41 @@ namespace Figaro.Views
 
         private async void QuitarElemento_OnTapped(object sender, EventArgs e)
         {
+            if(_userTapped)
+            {
+                return;
+            }
+
+            _userTapped = true;
+
             var mainViewModel = BindingContext as MainViewModel;
             Image img = (Image)sender;
-
             //quitar elemento del carrito local y BD
             var isStatus = await mainViewModel.QuitarElementoCarritoAsync(img.ClassId.Substring(0, 1), Int32.Parse(img.ClassId.Substring(1)));
-            
+
+            if (ListaCarrito.Count == 0)
+            {
+                CestaVacia.IsVisible = true;
+                CestaLlena.IsVisible = false;
+            }
+            else
+            {
+                CestaVacia.IsVisible = false;
+                CestaLlena.IsVisible = true;
+            }
+
+            if (!isStatus)
+            {
+                DisplayAlert("Error", "Ocurrió un error con el servidor", "OK");
+            }
             InitializeData();
+            
+            _userTapped = false;
+        }
+
+        private async void SeleccionarDiaHora_OnTapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SeleccionarDiaHora());
         }
 
         private void Pedir_OnClicked(object sender, EventArgs e)
@@ -203,6 +274,24 @@ namespace Figaro.Views
             {
                 Navigation.PushAsync(new PedirDatos(ListaCarrito, costeTotal));
             }
+        }
+
+        private async void Platos_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+            var app = Application.Current as App;
+            var mainPage = (NavigationPage)app.MainPage;
+            var currentPage = (MasterDetailPage)mainPage.CurrentPage;
+            currentPage.Detail = new PlatosPage();
+        }
+
+        private async void Chefs_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+            var app = Application.Current as App;
+            var mainPage = (NavigationPage)app.MainPage;
+            var currentPage = (MasterDetailPage)mainPage.CurrentPage;
+            currentPage.Detail = new ChefsPage();
         }
     }
 }

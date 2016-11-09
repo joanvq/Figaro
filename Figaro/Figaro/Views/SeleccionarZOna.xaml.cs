@@ -38,5 +38,11 @@ namespace Figaro.Views
             //Update Binding from view
             Navigation.PopAsync();
         }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            this.Content = null;
+        }
     }
 }

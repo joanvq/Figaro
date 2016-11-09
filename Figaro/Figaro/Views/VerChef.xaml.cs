@@ -6,14 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using XLabs.Forms.Controls;
 
 namespace Figaro.Views
 {
     public partial class VerChef : ContentPage
     {
+
+        CalendarView _calendarView;
+        StackLayout _stackLayout;
+
         public VerChef(MainViewModel mainViewModel)
         {
             InitializeComponent();
+
             //Cargar estrellas valoración
             var valoracion = Convert.ToInt32(mainViewModel.ChefSeleccionado.Valoracion);
             switch (valoracion)
@@ -75,10 +81,10 @@ namespace Figaro.Views
                 LineaPerfilTab.Color = Color.FromHex("#CC0311");
                 LineaPerfilTab.Opacity = 1;
 
-                DisponibilidadTab.FontAttributes = FontAttributes.None;
-                DisponibilidadTab.TextColor = Color.Default;
-                LineaDisponibilidadTab.Color = Color.Black;
-                LineaDisponibilidadTab.Opacity = 0.5;
+                PlatosTab.FontAttributes = FontAttributes.None;
+                PlatosTab.TextColor = Color.Default;
+                LineaPlatosTab.Color = Color.Black;
+                LineaPlatosTab.Opacity = 0.5;
 
                 OpinionesTab.FontAttributes = FontAttributes.None;
                 OpinionesTab.TextColor = Color.Default;
@@ -99,10 +105,10 @@ namespace Figaro.Views
                 LineaPerfilTab.Color = Color.Black;
                 LineaPerfilTab.Opacity = 0.5;
 
-                DisponibilidadTab.FontAttributes = FontAttributes.Bold;
-                DisponibilidadTab.TextColor = Color.FromHex("#CC0311");
-                LineaDisponibilidadTab.Color = Color.FromHex("#CC0311");
-                LineaDisponibilidadTab.Opacity = 1;
+                PlatosTab.FontAttributes = FontAttributes.Bold;
+                PlatosTab.TextColor = Color.FromHex("#CC0311");
+                LineaPlatosTab.Color = Color.FromHex("#CC0311");
+                LineaPlatosTab.Opacity = 1;
 
                 OpinionesTab.FontAttributes = FontAttributes.None;
                 OpinionesTab.TextColor = Color.Default;
@@ -113,7 +119,7 @@ namespace Figaro.Views
                 PlatosAMostrar.IsVisible = true;
                 OpinionesAMostrar.IsVisible = false;
             };
-            DisponibilidadTab.GestureRecognizers.Add(tapDisponibilidadTab);
+            PlatosTab.GestureRecognizers.Add(tapDisponibilidadTab);
 
             tapOpinionesTab.Tapped += (s, e) =>
             {
@@ -123,10 +129,10 @@ namespace Figaro.Views
                 LineaPerfilTab.Color = Color.Black;
                 LineaPerfilTab.Opacity = 0.5;
 
-                DisponibilidadTab.FontAttributes = FontAttributes.None;
-                DisponibilidadTab.TextColor = Color.Default;
-                LineaDisponibilidadTab.Color = Color.Black;
-                LineaDisponibilidadTab.Opacity = 0.5;
+                PlatosTab.FontAttributes = FontAttributes.None;
+                PlatosTab.TextColor = Color.Default;
+                LineaPlatosTab.Color = Color.Black;
+                LineaPlatosTab.Opacity = 0.5;
 
                 OpinionesTab.FontAttributes = FontAttributes.Bold;
                 OpinionesTab.TextColor = Color.FromHex("#CC0311");
@@ -142,6 +148,21 @@ namespace Figaro.Views
             //Inicializar comentarios Opiniones Chef
             mainViewModel.InitializeComentariosChefAsync(mainViewModel.ChefSeleccionado.Id);
 
+            //Inicializar calendario disponibilidad
+            _calendarView = new CalendarView()
+            {
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                MinDate = DateTime.Today,
+                MaxDate = DateTime.Now.AddMonths(24),
+                HighlightedDateBackgroundColor = Color.Transparent,
+                ShouldHighlightDaysOfWeekLabels = false,
+                SelectionBackgroundStyle = CalendarView.BackgroundStyle.CircleFill,
+                TodayBackgroundStyle = CalendarView.BackgroundStyle.CircleOutline,
+                ShowNavigationArrows = false                
+            };
+            PerfilAMostrar.Children.Add(_calendarView);
+
         }
 
         private void Elegir_OnClick(object sender, EventArgs e)
@@ -149,6 +170,7 @@ namespace Figaro.Views
             var mainViewModel = BindingContext as MainViewModel;
             var idChef = mainViewModel.ChefSeleccionado.Id;
             mainViewModel.ElegirChef.Execute(idChef);
+            DisplayAlert("Seleccionado", "Chef seleccionado correctamente", "OK");
         }
 
         // Imágenes estrellas valoración

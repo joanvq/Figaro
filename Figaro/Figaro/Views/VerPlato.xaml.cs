@@ -145,9 +145,17 @@ namespace Figaro.Views
         {
             var mainViewModel = BindingContext as MainViewModel;
             int idPlato = mainViewModel.PlatoSeleccionado.Id;
-            Tuple<int, int> idCant = new Tuple<int, int>(idPlato, int.Parse(NumeroPlatos.Items[NumeroPlatos.SelectedIndex]));
+            int numPlatos = int.Parse(NumeroPlatos.Items[NumeroPlatos.SelectedIndex]);
+            Tuple<int, int> idCant = new Tuple<int, int>(idPlato, numPlatos);
             mainViewModel.AnadirPlatoCesta.Execute(idCant);
-
+            if (numPlatos > 1)
+            {
+                DisplayAlert("Añadido", "Platos añadidos a la cesta de la compra", "OK");
+            }
+            else
+            {
+                DisplayAlert("Añadido", "Plato añadido a la cesta de la compra", "OK");
+            }
         }
 
         // Imágenes estrellas valoración
