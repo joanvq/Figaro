@@ -39,6 +39,8 @@ namespace Figaro.Views
 
             InitializeComponent();
 
+            ListaPlatosMenus.ItemsSource = ListaCarrito;
+
             var mainViewModel = BindingContext as MainViewModel; 
 
             NombreApellidos.Text = mainViewModel.UsuarioLogueado.NombreApellidos;
@@ -47,6 +49,8 @@ namespace Figaro.Views
             NombreChef.Text = mainViewModel.UsuarioLogueado.ChefSeleccionado.Nombre; 
             ApellidosChef.Text = mainViewModel.UsuarioLogueado.ChefSeleccionado.Apellidos; 
             FechaHora.Text = DateTime.Now.ToString(); 
+
+
 
             pedidoActual = pedido;
         }

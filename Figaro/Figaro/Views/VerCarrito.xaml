@@ -6,13 +6,13 @@
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
              Title="Cesta"
              Padding="0">
-  <StackLayout Orientation="Vertical" Padding="0" VerticalOptions="FillAndExpand">
+  <StackLayout Orientation="Vertical" Padding="0" VerticalOptions="FillAndExpand" BackgroundColor="#ddd">
     <ActivityIndicator IsRunning="{Binding IsBusy}"
              IsVisible="{Binding IsBusy}"
              HeightRequest="20" WidthRequest="20"
              HorizontalOptions="Center" Margin="0,20,0,0"/>
 
-    <Grid x:Name="CestaVacia" BackgroundColor="#ddd">
+    <Grid x:Name="CestaVacia" >
       <Grid.RowDefinitions>
         <RowDefinition Height="1*"/>
         <RowDefinition Height="4*"/>

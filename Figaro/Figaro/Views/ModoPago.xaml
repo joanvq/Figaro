@@ -40,7 +40,6 @@
     
     <ScrollView>
       <ListView x:Name="ListaPlatosMenus"
-                ItemsSource="{Binding ListaCarrito}"
 		            HasUnevenRows="true"
                 ItemTapped="Menu_OnItemTapped">
         <ListView.ItemTemplate>
@@ -91,7 +90,7 @@
       </ListView>
     </ScrollView>
     
-    <Button Text="Pagar con PayPal" 
+    <Button Text="PayPal"
             Clicked="PagarPaypal_OnClicked"/>
   
   </StackLayout>
