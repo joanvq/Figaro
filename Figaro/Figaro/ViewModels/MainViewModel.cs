@@ -648,8 +648,13 @@ namespace Figaro.ViewModels
                 zona.NoActual = false;
                 ZonaSeleccionada = zona;
             }
-            TipoCocinaSeleccionado = ListaTipoCocina.FirstOrDefault(t => t.Id == UsuarioLogueado.TipoCocinaId);
-
+            TipoCocina tipoCocina = ListaTipoCocina.FirstOrDefault(t => t.Id == UsuarioLogueado.TipoCocinaId);
+            if (tipoCocina != null)
+            {
+                tipoCocina.Actual = true;
+                tipoCocina.NoActual = false;
+            }
+            TipoCocinaSeleccionado = tipoCocina;
             FiltrarPlatosMenus();
             IsBusy = true;
 
@@ -950,6 +955,25 @@ namespace Figaro.ViewModels
         public async Task ElegirTipoCocinaAsync(TipoCocina tipoCocinaSel)
         {
             IsBusy = true;
+
+            // Modificar actual en TipoCocina Anterior y Actual
+            if (tipoCocinaSel != null)
+            {
+                TipoCocina tipoCocinaAnt = ListaTipoCocina.FirstOrDefault(l => l.Id == TipoCocinaSeleccionado.Id);
+                if (tipoCocinaAnt != null)
+                {
+                    tipoCocinaAnt.Actual = false;
+                    tipoCocinaAnt.NoActual = true;
+                }
+            }
+
+            TipoCocina tipoCocinaAct = ListaTipoCocina.FirstOrDefault(l => l.Id == tipoCocinaSel.Id);
+            if (tipoCocinaAct != null)
+            {
+                tipoCocinaAct.Actual = true;
+                tipoCocinaAct.NoActual = false;
+                TipoCocinaSeleccionado = tipoCocinaAct;
+            }
 
             tipoCocinaSeleccionado = tipoCocinaSel;
             var usuarioServices = new UsuarioServices();

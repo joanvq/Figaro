@@ -24,8 +24,16 @@
                            Aspect="AspectFill"/>
                     <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
                             RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
-                      <Label Text="{Binding Titulo}" VerticalOptions="Center"
-                          HorizontalOptions="Center" FontSize="30" TextColor="Black"/>  
+                      
+                      <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="{Binding Titulo}" 
+                          HorizontalOptions="Center" FontSize="30" TextColor="Black"/>
+                        <Image x:Name="Seleccionado" Source="icono_select.png" WidthRequest="40"
+                               HeightRequest="40" Aspect="AspectFit" IsVisible="{Binding Actual}"/>
+                        <Image x:Name="NoSeleccionado" Source="icono_noselect.png" WidthRequest="40"
+                                HeightRequest="40" Aspect="AspectFit" IsVisible="{Binding NoActual}"/>
+                      </StackLayout>
+                      
                     </Grid>
                   </RelativeLayout>
                 </StackLayout>

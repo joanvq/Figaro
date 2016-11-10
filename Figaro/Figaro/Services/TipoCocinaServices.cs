@@ -16,6 +16,11 @@ namespace Figaro.Services
 
             var listaTipoCocina = await restClient.GetAsync();
 
+            foreach (var tipoCocina in listaTipoCocina)
+            {
+                tipoCocina.NoActual = true;
+            }
+
             return listaTipoCocina;
         }
     }

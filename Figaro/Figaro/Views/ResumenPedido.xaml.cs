@@ -31,7 +31,6 @@ namespace Figaro.Views
             }
             else
             {
-
                 //MIRAR COM CONTROLAR AQUEST ERROR
 
                 //status.Text = "Ha ocurrido un problema mientras se guardaba el pedido." +
