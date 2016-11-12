@@ -37,8 +37,6 @@ namespace WebServicesFigaro.Models
         public string NombreChef { get; set; }
         [DisplayName("Tipo Cocina")]
         public string TipoCocina { get; set; }
-        //Falta
-        //Ocupación chef
 
         public Usuario Usuario { get; set; }
         public Zona Zona { get; set; }

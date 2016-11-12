@@ -54,7 +54,7 @@ namespace Figaro.ViewModels
 
         private DateTime? fecha = null;
         // De 0 a 47 --> 24 horas + medias horas
-        private int hora = DateTime.Now.Hour * 2;
+        private int hora = DateTime.Now.Hour * 2 + 1;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -782,15 +782,44 @@ namespace Figaro.ViewModels
             IsBusy = false;
         }
 
-        public async Task<bool> NuevoPedido(Pedido pedido)
+        public async Task<Pedido> NuevoPedido(Pedido pedido)
         {
             IsBusy = true;
 
             var pedidoServices = new PedidoServices();
             var platoCarritoServices = new PlatoCarritoServices();
             var menuCarritoServices = new MenuCarritoServices();
+            var reservadoServices = new ReservadoServices();
+            var disponibilidadServices = new DisponibilidadServices();
             
-            var isSuccessStatusCode = await pedidoServices.PostPedidoAsync(pedido);
+            Pedido pedidoCreado = await pedidoServices.PostPedidoAsync(pedido);
+            List<Disponibilidad> listDisponibilidad = await disponibilidadServices.GetDisponibilidadesByChefAsync(UsuarioLogueado.ChefSeleccionadoId);
+            var disp = listDisponibilidad.FirstOrDefault(l => l.Fecha.Date == Fecha.Value.Date);
+            if (disp != null)
+            {
+                List<Reservado> listReservado = await reservadoServices.GetReservadosByDisponibilidadAsync(disp.Id);
+                var h = Hora / 2;
+                var m = (Hora % 2) * 30;
+                IEnumerable<Reservado> reservas = null;
+                if (m == 0)
+                {
+                    reservas = listReservado.Where(l => l.Hora.Hour == h && l.Hora.Minute == m ||
+                        l.Hora.Hour == h && l.Hora.Minute == m + 30 ||
+                        l.Hora.Hour == h+1 && l.Hora.Minute == m ||
+                        l.Hora.Hour == h+1 && l.Hora.Minute == m + 30);
+                }
+                else if (m == 30)
+                {
+                    reservas = listReservado.Where(l => l.Hora.Hour == h && l.Hora.Minute == m ||
+                        l.Hora.Hour == h+1 && l.Hora.Minute == m - 30 ||
+                        l.Hora.Hour == h + 1 && l.Hora.Minute == m ||
+                        l.Hora.Hour == h + 2 && l.Hora.Minute == m - 30);
+                }
+                foreach (Reservado reserva in reservas)
+                {
+                    var isSuccessReserva = await reservadoServices.PutReservadoEnPedidoAsync(reserva.Id, pedidoCreado.Id);
+                }
+            }
 
             // Vaciar carrito de la compra y variables de pago.
             var isSuccessBorrado = await platoCarritoServices.DeletePlatoCarritoByUserAsync(UsuarioLogueado.Id);
@@ -803,9 +832,13 @@ namespace Figaro.ViewModels
             {
                 ListaMenuCarrito = new List<MenuCarrito>();
             }
+            Fecha = null;
+            Hora = DateTime.Now.Hour*2 + 1;
+
+            FiltrarChefs();
 
             IsBusy = false;
-            return isSuccessStatusCode;
+            return pedidoCreado;
 
         }
 
@@ -1077,7 +1110,6 @@ namespace Figaro.ViewModels
             }
             
             FiltrarChefs();
-
             IsBusy = false;
         }
 

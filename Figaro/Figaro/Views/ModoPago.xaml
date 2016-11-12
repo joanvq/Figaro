@@ -30,10 +30,16 @@
       <Label x:Name="NombreChef" Text="nombre" FontSize="18" /> <!--Pedido.Disponibilidad.Chef.Nombre-->
       <Label x:Name="ApellidosChef" FontSize="18" /><!--Pedido.Disponibilidad.Chef.Nombre-->
     </StackLayout>
+
+    <StackLayout Orientation="Horizontal">
+      <Label Text="Fecha y Hora Reserva: " FontSize="18"/>
+      <Label x:Name="FechaHoraReserva" FontSize="18" />
+      <!--Pedido.FechaReserva-->
+    </StackLayout>
     
     <StackLayout Orientation="Horizontal">
-      <Label Text="Fecha y Hora: " FontSize="18"/>
-      <Label x:Name="FechaHora" FontSize="18" /> <!--Pedido.Disponibilidad.FechaHora-->
+      <Label Text="Pedido Realizado en: " FontSize="18"/>
+      <Label x:Name="FechaHoraPedido" FontSize="18" /> <!--Pedido.FechaPedido-->
     </StackLayout>
     
     <Label Text="Pedido: " FontSize="18"/>
@@ -53,9 +59,9 @@
                 </Grid.ColumnDefinitions>
                   <!--Cantidad-->
                 <StackLayout Grid.Column="0" Orientation="Horizontal">
-                  <Label Text="{Binding Value}"/>
-                  <Label Text="-"/>
-                  <Label Text = "{Binding Key.Titulo}" />
+                  <Label Text="{Binding Value}" FontSize="16" Margin="10,0,0,0"/>
+                  <Label Text="-" FontSize="16"/>
+                  <Label Text = "{Binding Key.Titulo}" FontSize="16"/>
                 </StackLayout>
                 <Label Text = "{Binding Key.HorasCocinado}" HorizontalOptions="End"  Grid.Column="2"/>
               </Grid>
@@ -63,8 +69,7 @@
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
-      <ListView x:Name="ListaPlatos"
-                ItemsSource="{Binding CarritoCompra.listaPlatos}"
+      <!--<ListView x:Name="ListaPlatos"
 		            HasUnevenRows="true"
                 ItemTapped="Plato_OnItemTapped">
         <ListView.ItemTemplate>
@@ -76,18 +81,18 @@
                   <ColumnDefinition Width="*" />
                   <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <!--Cantidad-->
+                --><!--Cantidad--><!--
                 <StackLayout Grid.Column="0" Orientation="Horizontal">
-                  <Label Text="{Binding Value}"  />
-                  <Label Text="-"/>
-                  <Label Text = "{Binding Key.Titulo}" />
+                  <Label Text="{Binding Value}"   FontSize="16" Margin="10,0,0,0"/>
+                  <Label Text="-" FontSize="16"/>
+                  <Label Text = "{Binding Key.Titulo}" FontSize="16"/>
                 </StackLayout>
                 <Label Text ="{Binding Key.HorasCocinado}" HorizontalOptions="End" Grid.Column="2"/>
               </Grid>
             </ViewCell>
           </DataTemplate>
         </ListView.ItemTemplate>
-      </ListView>
+      </ListView>-->
     </ScrollView>
     
     <Button Text="PayPal"

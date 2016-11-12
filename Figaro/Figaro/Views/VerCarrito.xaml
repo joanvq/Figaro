@@ -6,7 +6,7 @@
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
              Title="Cesta"
              Padding="0">
-  <StackLayout Orientation="Vertical" Padding="0" VerticalOptions="FillAndExpand" BackgroundColor="#ddd">
+  <StackLayout Orientation="Vertical" Padding="0" VerticalOptions="FillAndExpand">
     <ActivityIndicator IsRunning="{Binding IsBusy}"
              IsVisible="{Binding IsBusy}"
              HeightRequest="20" WidthRequest="20"

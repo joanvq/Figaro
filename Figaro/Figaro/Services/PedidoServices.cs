@@ -50,14 +50,14 @@ namespace Figaro.Services
             return pedido;
         }
 
-        public async Task<bool> PostPedidoAsync(Pedido pedido)
+        public async Task<Pedido> PostPedidoAsync(Pedido pedido)
         {
 
             RestClient<Pedido> restClient = new RestClient<Pedido>("Pedido");
 
-            var isSuccessStatusCode = await restClient.PostAsync(pedido);
+            Pedido result = await restClient.PostAsyncContent(pedido);
 
-            return isSuccessStatusCode;
+            return result;
             
         }
     }

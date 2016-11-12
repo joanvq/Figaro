@@ -101,9 +101,26 @@ namespace WebServicesFigaro.Controllers
             {
                 return BadRequest(ModelState);
             }
+            // NO SE HACE AQUI AL FINAL LA RESERVA DE DISPONIBILIDAD
+            //int ini, fin, horaIni, minIni, horaFin, minFin;
+            //if (Int32.TryParse(desde, out ini))
+            //{
+            //    horaIni = ini / 2;
+            //    minIni = (ini % 2) * 30;
+            //}
+            //if (Int32.TryParse(hasta, out fin))
+            //{
+            //    horaFin = fin / 2;
+            //    minFin = (fin % 2) * 30;
+            //}
+
+            //// Modificar Reservados
+            //db.Reservadoes.FirstOrDefault(r => r.DisponibilidadId )
+
 
             db.Disponibilidads.Add(disponibilidad);
             db.SaveChanges();
+
 
             return CreatedAtRoute("DefaultApi", new { id = disponibilidad.Id }, disponibilidad);
         }

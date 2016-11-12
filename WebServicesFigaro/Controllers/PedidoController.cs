@@ -92,7 +92,7 @@ namespace WebServicesFigaro.Controllers
 
         // POST: api/Pedido
         [ResponseType(typeof(Pedido))]
-        public IHttpActionResult PostPedido(Pedido pedido)
+        public HttpResponseMessage PostPedido(Pedido pedido)
         {
 
             var usuario = db.Usuarios.FirstOrDefault(u => u.Id == pedido.UsuarioId);
@@ -146,7 +146,7 @@ namespace WebServicesFigaro.Controllers
 
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
             db.Pedidoes.Add(pedido);
@@ -155,7 +155,8 @@ namespace WebServicesFigaro.Controllers
 
             // Obtengo el pedido que acabamos de crear para obtener el Id 
             // creado automaticamente por la BD.
-            Pedido pedidoCreado = db.Pedidoes.FirstOrDefault(p => p.NPedido == nPedido);
+            Pedido pedidoCreado = db.Pedidoes.Include(p => p.Zona).Include(p => p.Usuario)
+                .FirstOrDefault(p => p.NPedido == nPedido);
 
             foreach (PlatoCarrito platoCarrito in listaPlatosCarrito)
             {
@@ -170,7 +171,6 @@ namespace WebServicesFigaro.Controllers
                     platoPedido.TituloPlato = plato.Titulo;
                     platoPedido.Utensilios = plato.Utensilios;
                     platoPedido.Cantidad = platoCarrito.Cantidad;
-
                 }
 
                 db.PlatoPedidoes.Add(platoPedido);
@@ -196,8 +196,9 @@ namespace WebServicesFigaro.Controllers
             }
 
             db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = pedido.Id }, pedido);
+            // Devuelve pedido creado para obtener la ID desde la app
+            return Request.CreateResponse(HttpStatusCode.Created, pedidoCreado);
+            //return CreatedAtRoute("DefaultApi", new { id = pedido.Id }, pedido);
         }
 
         // DELETE: api/Pedido/5

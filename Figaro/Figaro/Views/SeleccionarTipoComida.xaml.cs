@@ -26,7 +26,10 @@ namespace Figaro.Views
         {
             var mainViewModel = BindingContext as MainViewModel;
             var isSuccess = await mainViewModel.InitializeDataAsync(usuarioLog);
-
+            if (isSuccess)
+            {
+                InitializeComponent();
+            }
             //var calendario = new ToolbarItem
             //{
             //    Icon = "icono_time.png",
@@ -74,7 +77,7 @@ namespace Figaro.Views
             //}
         }
         
-        public void TipoCocina_OnItemTapped(object sender, ItemTappedEventArgs e)
+        public async void TipoCocina_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             var tipoCocina = ListaTipoCocinaView.SelectedItem as TipoCocina;
             if (tipoCocina != null)
@@ -83,10 +86,11 @@ namespace Figaro.Views
                 if (mainViewModel != null)
                 {
                     this.IsPresented = false;
-                    mainViewModel.ElegirTipoCocinaAsync(tipoCocina);
+                    await mainViewModel.ElegirTipoCocinaAsync(tipoCocina);
                     //Navigation.PopToRootAsync();
                     //mainViewModel.Refresh.Execute(null);
-                    //InitializeComponent();
+                    InitializeComponent();
+
                 }
             }
         }

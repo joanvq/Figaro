@@ -47,10 +47,20 @@ namespace Figaro.Views
             Direccion.Text = pedido.Direccion;
             Zona.Text = mainViewModel.ZonaSeleccionada.Titulo;
             NombreChef.Text = mainViewModel.UsuarioLogueado.ChefSeleccionado.Nombre; 
-            ApellidosChef.Text = mainViewModel.UsuarioLogueado.ChefSeleccionado.Apellidos; 
-            FechaHora.Text = DateTime.Now.ToString(); 
-
-
+            ApellidosChef.Text = mainViewModel.UsuarioLogueado.ChefSeleccionado.Apellidos;
+            string strMinutos = ((mainViewModel.Hora % 2) * 30).ToString();
+            if(strMinutos.Length == 1)
+            {
+                strMinutos = "0" + strMinutos;
+            }
+            string strHora = (mainViewModel.Hora / 2).ToString();
+            if (strHora.Length == 1)
+            {
+                strHora = "0" + strHora;
+            }
+            mainViewModel.Hora = mainViewModel.Hora;
+            FechaHoraReserva.Text = mainViewModel.Fecha.Value.Date.ToString("dd'/'MM'/'yyyy") + " " + strHora + ":" + strMinutos;
+            FechaHoraPedido.Text = DateTime.Now.ToString();
 
             pedidoActual = pedido;
         }
@@ -118,16 +128,16 @@ namespace Figaro.Views
                 //Navegar a una nueva pagina con los datos del pedido.
                 //await Navigation.PopToRootAsync();
 
-                ResumenPedido resumenPedido = new ResumenPedido(pedidoActual);
+                ResumenPedido resumenPedido = new ResumenPedido();
                 //Pop al inicio
                 await Navigation.PushAsync(resumenPedido);
 
                 var pedidoServices = new PedidoServices();
 
                 //Añadir pedido a BD
-                var isSuccessStatusCode = await mainViewModel.NuevoPedido(pedidoActual);
-                
-                resumenPedido.EnviarMail(isSuccessStatusCode);
+                var pedidoCreado = await mainViewModel.NuevoPedido(pedidoActual);
+                resumenPedido.InitializeData(pedidoCreado);
+                resumenPedido.EnviarMail(pedidoCreado);
                 
             }
         }

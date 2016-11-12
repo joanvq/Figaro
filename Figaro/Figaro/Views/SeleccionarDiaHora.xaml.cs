@@ -42,7 +42,8 @@ namespace Figaro.Views
             {
                 var mainViewModel = BindingContext as MainViewModel;
                 mainViewModel.ElegirFechaHoraAsync(fecha, hora);
-               
+                
+                mainViewModel.IsBusy = true;
                 await Navigation.PopToRootAsync();
                 var app = Application.Current as App;
                 var mainPage = (NavigationPage)app.MainPage;

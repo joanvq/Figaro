@@ -19,11 +19,12 @@ namespace Figaro.Services
             return listaDisponibilidades;
         }
 
-        public async Task<List<Disponibilidad>> GetDisponibilidadesByChefAsync(int idChef)
+        public async Task<List<Disponibilidad>> GetDisponibilidadesByChefAsync(int? idChef)
         {
             RestClient<Disponibilidad> restClient = new RestClient<Disponibilidad>("Disponibilidad/Chef");
 
-            var listaDisponibilidades = await restClient.GetByKeyAsync(idChef);
+            int id = idChef.Value;
+            var listaDisponibilidades = await restClient.GetByKeyAsync(id);
 
             return listaDisponibilidades;
         }
