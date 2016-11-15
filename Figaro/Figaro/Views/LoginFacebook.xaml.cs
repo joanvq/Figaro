@@ -50,11 +50,13 @@ namespace Figaro.Views
             {
                 var vm = BindingContext as FacebookViewModel;
 
+                Content = MainStackLayout;
+
                 var isSuccess = await vm.SetFacebookUserProfileAsync(accessToken);
 
                 if(isSuccess)
                 {
-                    Content = MainStackLayout;
+                    
 
                     var lvm = new LoginViewModel();
                     lvm.UsuarioLogueado = vm.UsuarioLogueado;

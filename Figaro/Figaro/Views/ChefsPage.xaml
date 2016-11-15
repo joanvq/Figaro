@@ -19,12 +19,12 @@
     <StackLayout Orientation="Vertical"
                  IsEnabled="{Binding IsIdle}" IsVisible="{Binding IsIdle}">
       <!--<Label x:Name="StatusMessage" Text="{Binding StatusMessage}" />-->
-      
-      <Label x:Name="AvisoSeleccionarDiaHora" Margin="12,6" HorizontalOptions="Center"
-             IsEnabled="{Binding NoChefs}" IsVisible="{Binding NoChefs}" FontSize="20" TextColor="#CC0311"/>
-      <Label x:Name="AvisoChefs" IsEnabled="{Binding NoChefs}" IsVisible="{Binding NoChefs}" 
-             FontSize="24" TextColor="#ddd" HorizontalOptions="Center"
+
+      <Label x:Name="AvisoChefs" IsEnabled="{Binding NoChefs}" IsVisible="{Binding NoChefs}"
+             FontSize="24" TextColor="#CC0311" HorizontalOptions="Center"
              Text="No hay chefs disponibles"/>
+      <Label x:Name="AvisoSeleccionarDiaHora" Margin="12,6" HorizontalOptions="Center"
+            IsVisible="{Binding NoFecha}" IsEnabled="{Binding NoFecha}" FontSize="20" TextColor="#CC0311"/>
       <ListView x:Name="ListaChefsView"
                 ItemsSource="{Binding ListaChefs}"
                 HasUnevenRows="true"
@@ -86,13 +86,13 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
-          <Image x:Name="Menu_Button" Grid.Column="0" Source="icono_menu.png"
+          <Image x:Name="Menu_Button" Grid.Column="0" Source="bottom_menu.png"
                  HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-          <Image x:Name="Plato_Button" Grid.Column="1" Source="icono_descubrir.png"
+          <Image x:Name="Plato_Button" Grid.Column="1" 
                  HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-          <Image x:Name="Chefs_Button" Grid.Column="2" Source="icon_chefs_select.png"
+          <Image x:Name="Chefs_Button" Grid.Column="2" Source="bottom_chefs_select.png"
                  HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-          <Image x:Name="Profile_Button" Grid.Column="3" Source="icono_profile.png"
+          <Image x:Name="Profile_Button" Grid.Column="3" Source="bottom_profile.png"
                  HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
         </Grid>
       </StackLayout>

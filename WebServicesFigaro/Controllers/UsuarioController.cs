@@ -11,6 +11,7 @@ using System.Text;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebServicesFigaro.Models;
+using WebServicesFigaro.Other;
 
 namespace WebServicesFigaro.Controllers
 {
@@ -45,6 +46,19 @@ namespace WebServicesFigaro.Controllers
             }
 
             return Ok(usuario);
+        }
+
+        // GET: api/Usuario/Email/email
+        [Route("api/Usuario/Email/{keyword}")]
+        public IQueryable<Usuario> GetUsuarioByEmail(string keyword)
+        {
+            keyword = Utils.FromBase64(keyword);
+            return db.Usuarios
+                .Include(u => u.Zona)
+                .Include(u => u.ChefSeleccionado)
+                .Include(u => u.TipoCocina)
+                .Where(u => u.Email == keyword);
+            
         }
 
         // PUT: api/Usuario/5
@@ -106,7 +120,7 @@ namespace WebServicesFigaro.Controllers
         // POST: api/Usuario/Facebook
         [Route("api/Usuario/Facebook")]
         [ResponseType(typeof(Usuario))]
-        public HttpResponseMessage  PostUsuarioFacebook(Usuario usuario)
+        public HttpResponseMessage PostUsuarioFacebook(Usuario usuario)
         {
             if (!ModelState.IsValid)
             {

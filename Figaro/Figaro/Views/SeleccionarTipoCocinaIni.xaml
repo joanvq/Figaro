@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Figaro.Views.SeleccionarTipoCocinaIni" 
              BindingContext="{Binding TipoCocinaViewModel, Source={StaticResource ViewModelLocator}}"
-             Title="Figaro"
-             BackgroundColor="#CC0311">
+             Title="Selecciona Cocina"
+             BackgroundColor="Black">
   <StackLayout Orientation="Vertical">
     <Label x:Name="Message" IsVisible="False" IsEnabled="False" />
     <ListView x:Name="ListaTipoCocinaView"
@@ -24,7 +24,7 @@
                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
 
                   <Label Text="{Binding Titulo}" VerticalOptions="Center"
-                      HorizontalOptions="Center" FontSize="30" TextColor="Black"/>
+                      HorizontalOptions="Center" FontSize="30" TextColor="White"/>
 
                 </Grid>
               </RelativeLayout>

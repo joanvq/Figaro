@@ -50,5 +50,12 @@ namespace Figaro.Other
             
             return hex;
         }
+
+        public static string ToBase64(string value)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(value);
+            return Convert.ToBase64String(bytes);
+        }
+
     }
 }

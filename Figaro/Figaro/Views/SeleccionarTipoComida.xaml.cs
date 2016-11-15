@@ -56,7 +56,7 @@ namespace Figaro.Views
             var cesta = new ToolbarItem
             {
                 Text = "Cesta",
-                Icon = "icono_shopping_bag_empty.png",
+                Icon = "cesta.png",
                 Command = new Command(() =>
                 {
                     //DisplayAlert("Menu", "Cesta tapped", "OK");

@@ -4,6 +4,7 @@ namespace Figaro.Models
 {
     public class FacebookProfile
     {
+        public string Email { get; set; }
         public string Name { get; set; }
         public Picture Picture { get; set; }
         public string Locale { get; set; }

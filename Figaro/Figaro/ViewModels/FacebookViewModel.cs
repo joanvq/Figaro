@@ -60,6 +60,7 @@ namespace Figaro.ViewModels
             UsuarioLogueado.Password = "none";
             UsuarioLogueado.Imagen = FacebookProfile.Picture.Data.Url;
             UsuarioLogueado.FacebookId = FacebookProfile.Id;
+            UsuarioLogueado.Email = FacebookProfile.Email;
              
             var usuarioServices = new UsuarioServices();
             var usuario = await usuarioServices.PostUsuarioFacebookAsync(UsuarioLogueado);

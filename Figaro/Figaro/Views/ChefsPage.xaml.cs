@@ -20,12 +20,26 @@ namespace Figaro.Views
             var mainViewModel = BindingContext as MainViewModel;
             mainViewModel.IsBusy = true;
             AvisoSeleccionarDiaHora.Text = "Seleccione una fecha y hora";
+
             var tgr = new TapGestureRecognizer ();
             tgr.Tapped += (s, e) => {
                 // handle the tap
                 Navigation.PushAsync(new SeleccionarDiaHora());
             };
             AvisoSeleccionarDiaHora.GestureRecognizers.Add(tgr);
+
+            if (mainViewModel.UsuarioLogueado.TipoCocina.Titulo == "China")
+            {
+                Plato_Button.Source = "bottom_asian.png";
+            }
+            else if (mainViewModel.UsuarioLogueado.TipoCocina.Titulo == "Italiana")
+            {
+                Plato_Button.Source = "bottom_italian.png";
+            }
+            else
+            {
+                Plato_Button.Source = "bottom_world.png";
+            }
 
             var menuInferior = new MenuInferior(this);
             menuInferior.mainViewmodel = mainViewModel;

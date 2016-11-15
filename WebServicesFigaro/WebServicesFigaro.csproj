@@ -503,6 +503,7 @@
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Zona.cs" />
     <Compile Include="Controllers\ZonaController.cs" />
+    <Compile Include="Other\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

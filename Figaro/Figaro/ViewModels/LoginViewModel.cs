@@ -82,6 +82,18 @@ namespace Figaro.ViewModels
             IsBusy = false;
         }
 
+        public async Task<bool> ExisteEmail(Usuario usuario)
+        {
+            IsBusy = true;
+
+            var usuarioServices = new UsuarioServices();
+            var existe = await usuarioServices.GetExisteUsuarioByEmailAsync(usuario.Email);
+
+            IsBusy = false;
+
+            return existe;
+        }
+
         public async Task<bool> RegistrarUsuario(Usuario usuario)
         {
             IsBusy = true;

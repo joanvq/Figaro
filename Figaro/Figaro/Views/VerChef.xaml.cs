@@ -1,4 +1,5 @@
-﻿using Figaro.ViewModels;
+﻿using Figaro.Models;
+using Figaro.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -171,6 +172,33 @@ namespace Figaro.Views
             var idChef = mainViewModel.ChefSeleccionado.Id;
             mainViewModel.ElegirChef.Execute(idChef);
             DisplayAlert("Seleccionado", "Chef seleccionado correctamente", "OK");
+        }
+
+        private void Plato_OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var plato = PlatosAMostrar.SelectedItem as Plato;
+            PlatosAMostrar.SelectedItem = null;
+
+            if (plato != null)
+            {
+                var mainViewModel = BindingContext as MainViewModel;
+
+                if (mainViewModel != null)
+                {
+                    mainViewModel.PlatoSeleccionado = plato;
+
+                    Navigation.PushAsync(new VerPlato(mainViewModel));
+                }
+            }
+        }
+
+        private void AnadirCesta_OnClick(object sender, EventArgs e)
+        {
+            var mainViewModel = BindingContext as MainViewModel;
+            Button btn = (Button)sender;
+            Tuple<int, int> idCant = new Tuple<int, int>(int.Parse(btn.ClassId), 1);
+            mainViewModel.AnadirPlatoCesta.Execute(idCant);
+            DisplayAlert("Añadido", "Plato añadido a la cesta de la compra", "OK");
         }
 
         // Imágenes estrellas valoración

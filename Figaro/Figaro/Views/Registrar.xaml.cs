@@ -23,6 +23,9 @@ namespace Figaro.Views
         public async void Registrar_OnClicked(object sender, EventArgs e)
         {
             RegistrarB.IsEnabled = false;
+            Ocupado.IsEnabled = true;
+            Ocupado.IsRunning = true;
+            Ocupado.IsVisible = true;
             var vm = BindingContext as LoginViewModel;
             if (ComprovarCampos())
             {
@@ -34,21 +37,39 @@ namespace Figaro.Views
                 usuario.Password = Password.Text;
                 usuario.Imagen = "/Content/user.jpg";
 
-                bool isSuccess = await vm.RegistrarUsuario(usuario);
-                if (isSuccess)
+                bool existe = await vm.ExisteEmail(usuario);
+                if (existe)
                 {
-                    await this.DisplayAlert("Registro", "Registrado correctamente.", "OK");
-                    Navigation.PopAsync();
+                    this.DisplayAlert("Error", "El correo electrónico introducido ya está registrado.", "OK");
+                    RegistrarB.IsEnabled = true;
+                    Ocupado.IsEnabled = false;
+                    Ocupado.IsRunning = false;
+                    Ocupado.IsVisible = false;
                 }
                 else
                 {
-                    this.DisplayAlert("Error", "Ha ocurrido un error en el registro.", "OK");
-                    RegistrarB.IsEnabled = true;
+                    bool isSuccess = await vm.RegistrarUsuario(usuario);
+                    if (isSuccess)
+                    {
+                        await this.DisplayAlert("Registro", "Registrado correctamente.", "OK");
+                        Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        this.DisplayAlert("Error", "Ha ocurrido un error en el registro.", "OK");
+                        RegistrarB.IsEnabled = true;
+                        Ocupado.IsEnabled = false;
+                        Ocupado.IsRunning = false;
+                        Ocupado.IsVisible = false;
+                    }
                 }
             }
             else
             {
                 RegistrarB.IsEnabled = true;
+                Ocupado.IsEnabled = false;
+                Ocupado.IsRunning = false;
+                Ocupado.IsVisible = false;
             }
         }
 

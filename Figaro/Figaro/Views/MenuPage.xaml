@@ -49,10 +49,13 @@
                         FontSize="14"
                         Opacity="0.6"
                         Grid.Column="1"/>
-                  <Button ClassId="{Binding Id}" BackgroundColor="#CC0311" Text="+" TextColor="White"
-                            FontSize="24" WidthRequest="10"
-                            Grid.Row="1" Grid.Column="2"
-                            Clicked="AnadirCesta_OnClick"/>
+                  <Image x:Name="AnadirMenu" ClassId="{Binding Id}" Source="add.png"
+                                        WidthRequest="40" HeightRequest="40" Aspect="AspectFill"
+                                        HorizontalOptions="EndAndExpand">
+                    <Image.GestureRecognizers>
+                      <TapGestureRecognizer Tapped="AnadirCesta_OnClick"/>
+                    </Image.GestureRecognizers>
+                  </Image>
                 </StackLayout>
               </Grid>
             </ViewCell>
@@ -68,13 +71,13 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
-          <Image x:Name="Menu_Button" Grid.Column="0" Source="icono_menu_select.png"
+          <Image x:Name="Menu_Button" Grid.Column="0" Source="bottom_menu_select.png"
                  HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-          <Image x:Name="Plato_Button" Grid.Column="1" Source="icono_descubrir.png"
+          <Image x:Name="Plato_Button" Grid.Column="1"
                  HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-          <Image x:Name="Chefs_Button" Grid.Column="2" Source="icon_chefs.png"
+          <Image x:Name="Chefs_Button" Grid.Column="2" Source="bottom_chefs.png"
                  HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-          <Image x:Name="Profile_Button" Grid.Column="3" Source="icono_profile.png"
+          <Image x:Name="Profile_Button" Grid.Column="3" Source="bottom_profile.png"
                  HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
         </Grid>
       </StackLayout>

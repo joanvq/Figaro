@@ -112,6 +112,26 @@ namespace Figaro.Services
             return usuario;
 
         }
+
+        public async Task<bool> GetExisteUsuarioByEmailAsync(string email)
+        {
+
+            RestClient<Usuario> restClient = new RestClient<Usuario>("Usuario/Email");
+            
+            email = Utils.ToBase64(email);
+
+            List<Usuario> listUsuario = await restClient.GetByKeywordAsync(email);
+            Usuario usu = listUsuario.FirstOrDefault();
+            if (usu == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
     }
     
     //internal class UsuarioPost

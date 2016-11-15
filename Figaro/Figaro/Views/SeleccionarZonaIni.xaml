@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Figaro.Views.SeleccionarZonaIni" 
-             BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}">
+             BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}"
+             Title="Selecciona Zona">
   <StackLayout Orientation="Vertical"> 
     <Label x:Name="MessageZona" IsVisible="True" IsEnabled="True" Text="Selecciona una zona"/>
     <ListView x:Name="ListaZonaView"

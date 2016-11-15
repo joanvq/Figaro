@@ -15,7 +15,7 @@ namespace Figaro.Views
         public SeleccionarZonaIni(Usuario usuario)
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
+            NavigationPage.SetHasNavigationBar(this, true);
             Init(usuario);
         }
 

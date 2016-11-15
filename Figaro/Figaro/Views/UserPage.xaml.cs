@@ -17,6 +17,20 @@ namespace Figaro.Views
             InitializeComponent();
 
             var mainViewModel = BindingContext as MainViewModel;
+
+            if (mainViewModel.UsuarioLogueado.TipoCocina.Titulo == "China")
+            {
+                Plato_Button.Source = "bottom_asian.png";
+            }
+            else if (mainViewModel.UsuarioLogueado.TipoCocina.Titulo == "Italiana")
+            {
+                Plato_Button.Source = "bottom_italian.png";
+            }
+            else
+            {
+                Plato_Button.Source = "bottom_world.png";
+            }
+
             var menuInferior = new MenuInferior(this);
             menuInferior.mainViewmodel = mainViewModel;
             Menu_Button.GestureRecognizers.Add(menuInferior.tapMenu);

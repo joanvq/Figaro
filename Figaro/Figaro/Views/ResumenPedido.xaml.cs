@@ -23,7 +23,6 @@ namespace Figaro.Views
         {
             var mvm = BindingContext as MainViewModel;
             mvm.IsBusy = true;
-
             nPedido.Text = pedido.NPedido;
             NombreApellidos.Text = pedido.NombreApellidos;
             Direccion.Text = pedido.Direccion;
@@ -51,16 +50,30 @@ namespace Figaro.Views
                     horaResMax = reservado.Hora;
                 }
             }
-            var hor = horaResMin.Hour.ToString();
-            var min = horaResMax.Hour.ToString();
-            if (hor.Length == 1)
+            var horMin = horaResMin.Hour.ToString();
+            var minMin = horaResMin.Minute.ToString();
+            var horMax = horaResMax.Hour.ToString();
+            var minMax = horaResMax.Minute.ToString();
+            if (horMin.Length == 1)
             {
-                hor = "0" + hor;
+                horMin = "0" + horMin;
             }
-            if (min.Length == 1)
+            if (minMin.Length == 1)
             {
-                min = "0" + min;
+                minMin = "0" + minMin;
             }
+            if (horMax.Length == 1)
+            {
+                horMax = "0" + horMax;
+            }
+            if (minMax.Length == 1)
+            {
+                minMax = "0" + minMax;
+            }
+
+            HoraIniRes.Text = horMin + ":" + minMin;
+
+            HoraFinRes.Text = horMax + ":" + minMax;
 
             var res = listaReservados.FirstOrDefault();
             if (res != null)
@@ -71,8 +84,9 @@ namespace Figaro.Views
             FechaPedido.Text = pedido.FechaPedido.ToString("dd/MM/yyyy HH:mm");
             Precio.Text = pedido.PrecioTotal.ToString() + " €";
 
-            InitializeComponent();
+            //InitializeComponent();
 
+            Cerrar.IsEnabled = true;
             mvm.IsBusy = false;
 
         }

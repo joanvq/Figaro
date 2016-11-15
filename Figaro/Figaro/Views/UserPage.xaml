@@ -13,11 +13,11 @@
                        HeightRequest="50" WidthRequest="50"
                        HorizontalOptions="Center" VerticalOptions="Center" Margin="0"/>
     <StackLayout IsEnabled="{Binding IsIdle}"
-                 IsVisible="{Binding IsIdle}" >
+                 IsVisible="{Binding IsIdle}" Padding="0">
       <ScrollView Margin="0">
         <StackLayout Orientation="Vertical" Padding="12,6">
-          <!--controls:CircleImage Source="{Binding UsuarioLogueado.Imagen}" WidthRequest="70.0"
-                                          HeightRequest="70.0" Aspect="AspectFit" />-->
+          <controls:CircleImage Source="{Binding UsuarioLogueado.Imagen}" WidthRequest="70.0"
+                                          HeightRequest="70.0" Aspect="AspectFit" />
           <Label Text="Nombre" />
           <Entry x:Name="Nombre" Text="{Binding UsuarioLogueado.Nombre}" />
           <Label Text="Apellidos" />
@@ -49,14 +49,14 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
-          <Image x:Name="Menu_Button" Grid.Column="0" Source="icono_menu.png"
-                  HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-          <Image x:Name="Plato_Button" Grid.Column="1" Source="icono_descubrir.png"
-                  HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-          <Image x:Name="Chefs_Button" Grid.Column="2" Source="icon_chefs.png"
-                  HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-          <Image x:Name="Profile_Button" Grid.Column="3" Source="icono_profile_select.png"
-                  HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+          <Image x:Name="Menu_Button" Grid.Column="0" Source="bottom_menu.png"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+          <Image x:Name="Plato_Button" Grid.Column="1"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+          <Image x:Name="Chefs_Button" Grid.Column="2" Source="bottom_chefs.png"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+          <Image x:Name="Profile_Button" Grid.Column="3" Source="bottom_profile_select.png"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
         </Grid>
       </StackLayout>
     </StackLayout>

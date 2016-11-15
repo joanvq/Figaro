@@ -90,8 +90,7 @@
       <Label x:Name="Precio" FontSize="18" />
     </StackLayout>
 
-
-    <Button Text="Cerrar" Clicked="Cerrar_OnClicked"/>
+    <Button x:Name="Cerrar" Text="Cerrar" Clicked="Cerrar_OnClicked" IsEnabled="False"/>
     
   </StackLayout>
   

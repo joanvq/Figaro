@@ -34,6 +34,7 @@ namespace Figaro.ViewModels
         private List<Chef> allChefs;
         private List<Chef> listaChefs;
         private bool noChefs;
+        private bool noFecha;
         private Chef chefSeleccionado = new Chef();
         
         private List<Zona> listaZonas;
@@ -204,6 +205,16 @@ namespace Figaro.ViewModels
             set
             {
                 noChefs = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool NoFecha
+        {
+            get { return noFecha; }
+            set
+            {
+                noFecha = value;
                 OnPropertyChanged();
             }
         }
@@ -721,18 +732,21 @@ namespace Figaro.ViewModels
         {
             IsBusy = true;
 
+            List<Chef> listChefs = new List<Chef>();
+            ListaChefs = new List<Chef>();
+
             if (TipoCocinaSeleccionado != null)
             {
-                ListaChefs = allChefs.Where(chef => chef.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
+                listChefs = allChefs.Where(chef => chef.TipoCocina.Id == TipoCocinaSeleccionado.Id).ToList();
             }
             else
             {
-                ListaChefs = new List<Chef>();
+                listChefs = new List<Chef>();
             }
 
             if (ZonaSeleccionada != null)
             {
-                ListaChefs = ListaChefs.Where(chef => chef.Zona.Id == ZonaSeleccionada.Id).ToList();
+                listChefs = listChefs.Where(chef => chef.Zona.Id == ZonaSeleccionada.Id).ToList();
             }
 
             if (Fecha != null)
@@ -747,7 +761,7 @@ namespace Figaro.ViewModels
                 {
                     // cada disponibilidad corresponde a un chef diferente
                     // ya que Chef+Fecha es una clave unica
-                    Chef chefReserva = ListaChefs.Where(c => c.Id == disponibilidad.ChefId).FirstOrDefault();
+                    Chef chefReserva = listChefs.Where(c => c.Id == disponibilidad.ChefId).FirstOrDefault();
                     if (disponibilidad.EstaDisponible && chefReserva != null)
                     {
                         //chef disponible en fecha y ha pasado los filtros anteriores
@@ -770,14 +784,16 @@ namespace Figaro.ViewModels
                         }
                     }
                 }
-                ListaChefs = nuevaListChefs;
+                listChefs = nuevaListChefs;
             }
             else
             {
-                ListaChefs = new List<Chef>();
+                listChefs = new List<Chef>();
             }
 
-            NoChefs = ListaChefs.Count.Equals(0);
+            NoChefs = listChefs.Count.Equals(0) && !Fecha.Equals(null);
+            NoFecha = listChefs.Count.Equals(0) && Fecha.Equals(null);
+            ListaChefs = listChefs;
 
             IsBusy = false;
         }

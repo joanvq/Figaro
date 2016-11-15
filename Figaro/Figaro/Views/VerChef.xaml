@@ -58,7 +58,7 @@
            </Grid>
         </RelativeLayout>
         <StackLayout BackgroundColor="#eee" Padding="0,0,0,0" Grid.Row="1">
-          <Button BackgroundColor="#CC0311" VerticalOptions="Center" Text="Elegir chef"
+          <Button BackgroundColor="#CC0311" VerticalOptions="Center" Text="Seleccionar chef"
                   TextColor="White" Clicked="Elegir_OnClick"/>
         </StackLayout>
       </Grid>
@@ -93,39 +93,46 @@
           </StackLayout>
 
           <!--Platos-->
-          <!--<Grid x:Name="PlatosAMostrar">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="*"/>
-              <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <ListView x:Name="PlatosChef"
-                      ItemsSource="{Binding ListaPlatos}"
-                      HasUnevenRows="true">
+          <ListView x:Name="PlatosAMostrar"
+                ItemsSource="{Binding ListaPlatos}"
+                HasUnevenRows="true"
+                ItemTapped="Plato_OnItemTapped"
+                IsVisible="False">
+            <ListView.ItemTemplate>
               <DataTemplate>
                 <ViewCell>
-                  <RelativeLayout Padding="0,0,0,0" Grid.Row="0">
-                    <Image Source="{Binding ChefSeleccionado.ImagenFondo}"
-                           RelativeLayout.WidthConstraint=
-                                  "{ConstraintExpression Type=RelativeToParent, Property=Width}"
-                           RelativeLayout.HeightConstraint=
-                                  "{ConstraintExpression Type=RelativeToParent, Property=Height}"
-                           Aspect="AspectFill"/>
-                    <Grid RelativeLayout.WidthConstraint=
-                                  "{ConstraintExpression Type=RelativeToParent, Property=Width}"
-                           RelativeLayout.HeightConstraint=
-                                  "{ConstraintExpression Type=RelativeToParent, Property=Height}">
-                      <Grid.ColumnDefinitions>
-                        
-                      </Grid.ColumnDefinitions>
-                    </Grid>
-                  </RelativeLayout>
+                  <Grid Padding="12,6" >
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Orientation="Horizontal" >
+                      <controls:CircleImage Source="{Binding Imagen}" WidthRequest="70.0"
+                                        HeightRequest="70.0" Aspect="AspectFill" />
+                      <StackLayout Orientation="Vertical" Padding="10,0,0,0">
+                        <Label Grid.Row="0" Text="{Binding Titulo}" FontSize="20" />
+                        <Label Grid.Row="1" Text="{Binding Descripcion}"
+                              FontSize="15" Opacity="0.7" />
+                      </StackLayout>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" Orientation="Vertical" Padding="0,0,10,0">
+                      <Label Text="{Binding PrecioEuros}"
+                            FontSize="14"
+                            Opacity="0.6"
+                            Grid.Column="1"/>
+                      <Button ClassId="{Binding Id}" BackgroundColor="#CC0311" Text="+" TextColor="White"
+                                FontSize="24" WidthRequest="10"
+                                Grid.Row="1" Grid.Column="2"
+                                Clicked="AnadirCesta_OnClick"/>
+                    </StackLayout>
+                  </Grid>
                 </ViewCell>
               </DataTemplate>
-            </ListView>
-          </Grid>-->
-          <Label x:Name="PlatosAMostrar" Text="-----------POR HACER-----------" FontSize="14" Opacity="0.7"
+            </ListView.ItemTemplate>
+          </ListView>
+          <!--<Label x:Name="PlatosAMostrar" Text="POR HACER FontSize="14" Opacity="0.7"
              TranslationX="10" TranslationY="14"
-             HeightRequest="100" IsVisible="False" />
+             HeightRequest="100" IsVisible="False" />-->
 
           <!--Opiniones-->
           <ListView x:Name="OpinionesAMostrar"

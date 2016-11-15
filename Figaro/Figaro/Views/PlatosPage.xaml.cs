@@ -21,6 +21,20 @@ namespace Figaro.Views
 
             var mainViewModel = BindingContext as MainViewModel;
             var menuInferior = new MenuInferior(this);
+            
+             if (mainViewModel.UsuarioLogueado.TipoCocina.Titulo == "China")
+            {
+                Plato_Button.Source = "bottom_asian_select.png";
+            }
+            else if (mainViewModel.UsuarioLogueado.TipoCocina.Titulo == "Italiana")
+            {
+                Plato_Button.Source = "bottom_italian_select.png";
+            }
+            else
+            {
+                Plato_Button.Source = "bottom_world_select.png";
+            }
+
             menuInferior.mainViewmodel = mainViewModel;
             Menu_Button.GestureRecognizers.Add(menuInferior.tapMenu);
             Plato_Button.GestureRecognizers.Add(menuInferior.tapPlato);
@@ -65,8 +79,8 @@ namespace Figaro.Views
         private void AnadirCesta_OnClick(object sender, EventArgs e)
         {
             var mainViewModel = BindingContext as MainViewModel;
-            Button btn = (Button)sender;
-            Tuple<int, int> idCant = new Tuple<int, int>(int.Parse(btn.ClassId), 1);
+            Image img = (Image)sender;
+            Tuple<int, int> idCant = new Tuple<int, int>(int.Parse(img.ClassId), 1);
             mainViewModel.AnadirPlatoCesta.Execute(idCant);
             DisplayAlert("Añadido", "Plato añadido a la cesta de la compra", "OK");
         }

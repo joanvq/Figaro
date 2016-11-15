@@ -25,7 +25,7 @@
       <Entry x:Name="Password" Placeholder="CONTRASEÑA"   PlaceholderColor="White"
               BackgroundColor="Transparent" TextColor="White"
              IsPassword="True"/>
-      <ActivityIndicator IsRunning="{Binding IsBusy}"
+      <ActivityIndicator x:Name="Ocupado" IsRunning="{Binding IsBusy}"
                      IsVisible="{Binding IsBusy}"
                      HeightRequest="50" WidthRequest="50"
                      HorizontalOptions="Center" VerticalOptions="Center"/>

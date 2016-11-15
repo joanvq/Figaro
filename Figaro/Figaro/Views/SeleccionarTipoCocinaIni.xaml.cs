@@ -15,7 +15,7 @@ namespace Figaro.Views
         public SeleccionarTipoCocinaIni(Usuario usuario)
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
+            NavigationPage.SetHasNavigationBar(this, true);
 
             var vm = BindingContext as TipoCocinaViewModel;
             vm.InitializeDataAsync(usuario);

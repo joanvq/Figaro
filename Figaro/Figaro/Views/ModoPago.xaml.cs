@@ -38,7 +38,7 @@ namespace Figaro.Views
             ListaCarrito = listCarrito;
 
             InitializeComponent();
-
+            
             ListaPlatosMenus.ItemsSource = ListaCarrito;
 
             var mainViewModel = BindingContext as MainViewModel; 
@@ -130,7 +130,8 @@ namespace Figaro.Views
 
                 ResumenPedido resumenPedido = new ResumenPedido();
                 //Pop al inicio
-                await Navigation.PushAsync(resumenPedido);
+                //await Navigation.PushAsync(resumenPedido);
+                App.Current.MainPage = new NavigationPage(resumenPedido);
 
                 var pedidoServices = new PedidoServices();
 
