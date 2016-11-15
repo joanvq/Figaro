@@ -1,6 +1,7 @@
 ﻿using Figaro.Models;
 using Figaro.Other;
 using Figaro.Services;
+using Figaro.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -382,6 +383,45 @@ namespace Figaro.ViewModels
             {
                 statusMessage = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public string PlatoFooter
+        {
+            get {
+                if (UsuarioLogueado != null)
+                {
+                    if (UsuarioLogueado.TipoCocinaId == 1)
+                    {
+                        return "bottom_asian.png";
+                    }
+                    else if (UsuarioLogueado.TipoCocinaId == 2)
+                    {
+                        return "bottom_italian.png";
+                    }
+                    return "bottom_world.png";
+                }
+                return "";
+            }
+        }
+
+        public string PlatoFooterActual
+        {
+            get
+            {
+                if (UsuarioLogueado != null)
+                {
+                    if (UsuarioLogueado.TipoCocinaId == 1)
+                    {
+                        return "bottom_asian_select.png";
+                    }
+                    else if (UsuarioLogueado.TipoCocinaId == 2)
+                    {
+                        return "bottom_italian_select.png";
+                    }
+                    return "bottom_world_select.png";
+                }
+                return "";
             }
         }
 
@@ -791,8 +831,8 @@ namespace Figaro.ViewModels
                 listChefs = new List<Chef>();
             }
 
-            NoChefs = listChefs.Count.Equals(0) && !Fecha.Equals(null);
-            NoFecha = listChefs.Count.Equals(0) && Fecha.Equals(null);
+            NoFecha = listChefs.Count.Equals(0) && !Fecha.Equals(null);
+            NoChefs = listChefs.Count.Equals(0);
             ListaChefs = listChefs;
 
             IsBusy = false;

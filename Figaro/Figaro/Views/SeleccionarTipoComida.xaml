@@ -7,7 +7,7 @@
              Title="Figaro"
              BackgroundColor="#CC0311">
   <MasterDetailPage.Master >
-    <ContentPage Title="Figaro">
+    <ContentPage Title="Figaro" >
       <StackLayout Orientation="Vertical">
         <ListView x:Name="ListaTipoCocinaView"
               ItemsSource="{Binding ListaTipoCocina}"

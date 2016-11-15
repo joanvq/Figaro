@@ -41,7 +41,7 @@
       </ScrollView>
       <StackLayout VerticalOptions="EndAndExpand">
       </StackLayout>
-      <StackLayout HeightRequest="50" BackgroundColor="#ddd" VerticalOptions="End">
+      <StackLayout HeightRequest="50" BackgroundColor="#ddd" MinimumHeightRequest="40">
         <Grid>
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -50,13 +50,14 @@
             <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
           <Image x:Name="Menu_Button" Grid.Column="0" Source="bottom_menu.png"
-                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
-          <Image x:Name="Plato_Button" Grid.Column="1"
-                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+                 HeightRequest="40" WidthRequest="40"  
+                 Aspect="AspectFit" Margin="0,6"/>
+          <Image x:Name="Plato_Button" Grid.Column="1" Source="{Binding PlatoFooter}"
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit" Margin="0,6"/>
           <Image x:Name="Chefs_Button" Grid.Column="2" Source="bottom_chefs.png"
-                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit" Margin="0,6"/>
           <Image x:Name="Profile_Button" Grid.Column="3" Source="bottom_profile_select.png"
-                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit"/>
+                 HeightRequest="40" WidthRequest="40"  Aspect="AspectFit" Margin="0,6"/>
         </Grid>
       </StackLayout>
     </StackLayout>

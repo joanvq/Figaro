@@ -18,20 +18,7 @@ namespace Figaro.Views
         {
             InitializeComponent();
             var mainViewModel = BindingContext as MainViewModel;
-
-            if (mainViewModel.UsuarioLogueado.TipoCocinaId == 1)
-            {
-                Plato_Button.Source = "bottom_asian.png";
-            }
-            else if (mainViewModel.UsuarioLogueado.TipoCocinaId == 2)
-            {
-                Plato_Button.Source = "bottom_italian.png";
-            }
-            else
-            {
-                Plato_Button.Source = "bottom_world.png";
-            }
-
+            
             var menuInferior = new MenuInferior(this);
             menuInferior.mainViewmodel = mainViewModel;
             Menu_Button.GestureRecognizers.Add(menuInferior.tapMenu);
@@ -67,5 +54,6 @@ namespace Figaro.Views
             mainViewModel.AnadirMenuCesta.Execute(idCant);
             DisplayAlert("Añadido", "Menu añadido a la cesta de la compra", "OK");
         }
+
     }
 }
