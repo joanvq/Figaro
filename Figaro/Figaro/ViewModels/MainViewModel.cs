@@ -1030,12 +1030,24 @@ namespace Figaro.ViewModels
         {
             IsBusy = true;
 
+            ListaPedidosActivos = new List<Pedido>();
+            ListaPedidosRealizados = new List<Pedido>();
             var pedidoServices = new PedidoServices();
             var listPedidos = await pedidoServices.GetPedidosUsuarioAsync(UsuarioLogueado.Id);
             foreach (Pedido pedido in listPedidos)
             {
                 //FALTA COMPROBAR DISPONIBILIDAD PARA FILTRAR
-                ListaPedidosActivos.Add(pedido);
+                var reservadoServices = new ReservadoServices();
+                var listReservados = await reservadoServices.GetReservadosByPedidoAsync(pedido.Id);
+                DateTime fecha = listReservados.FirstOrDefault().Disponibilidad.Fecha;
+                if (fecha.Date >= DateTime.Now.Date)
+                {
+                    ListaPedidosActivos.Add(pedido);
+                }
+                else
+                {
+                    ListaPedidosRealizados.Add(pedido);
+                }
             }
 
             IsBusy = false;

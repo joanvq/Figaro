@@ -30,7 +30,26 @@
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-    
-  </StackLayout>
+
+    <Label Text="Pedidos Realizados" FontSize="24"  />
+
+    <ListView x:Name="ListaPedidosRealizados"
+        ItemsSource="{Binding ListaPedidosRealizados}"
+		HasUnevenRows="true">
+        <ListView.ItemTemplate HorizontalContentAlignment="Stretch">
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal" Padding="12,6">
+                        <Label Text="{Binding NPedido}"/>
+                        <Label Text="{Binding FechaPedido}"/>
+                        <Label Text="{Binding PrecioTotal}"/>
+                        <Label Text="{Binding Estado}"/>
+                      </StackLayout>
+                 </ViewCell>
+             </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+    </StackLayout>
   
 </ContentPage>

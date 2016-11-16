@@ -8,7 +8,9 @@
   <StackLayout x:Name="MainStackLayout"
                 VerticalOptions="Center" HorizontalOptions="Center">
 
-    <ActivityIndicator IsRunning="{Binding IsBusy}"
+        <Label Text="Conectando con Facebook" IsEnabled="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+               FontSize="20" TextColor="White"/>
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
                IsVisible="{Binding IsBusy}"
                HeightRequest="50" WidthRequest="50"
                HorizontalOptions="Center" VerticalOptions="Center"/>

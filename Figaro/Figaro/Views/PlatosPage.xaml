@@ -34,7 +34,11 @@
                   <ColumnDefinition Width="*"/>
                   <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <StackLayout Grid.Column="0" Orientation="Horizontal" >
+                <Grid.RowDefinitions>
+                  <RowDefinition Width="Auto"/>
+                  <RowDefinition Width="Auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal" >
                   <controls:CircleImage Source="{Binding Imagen}" WidthRequest="70.0"
                                     HeightRequest="70.0" Aspect="AspectFill" />
                   <StackLayout Orientation="Vertical" Padding="10,0,0,0">
@@ -43,7 +47,7 @@
                           FontSize="15" Opacity="0.7" />                     
                   </StackLayout>
                 </StackLayout>
-                <StackLayout Grid.Column="1" Orientation="Vertical" Padding="0,0,10,0">
+                <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Vertical" Padding="0,0,10,0">
                   <Label Text="{Binding PrecioEuros}"
                         FontSize="14"
                         Opacity="0.6"
@@ -59,6 +63,9 @@
                       <TapGestureRecognizer Tapped="AnadirCesta_OnClick"/>
                     </Image.GestureRecognizers>
                   </Image>
+                </StackLayout>
+                <StackLayout x:Name="EnCarrito" Grid.Column="0" Grid.Row="1" Orientation="Horizontal"
+                             Padding="0,0,10,0" BackgroundColor="#ddd" IsVisible="False">
                 </StackLayout>
               </Grid>
             </ViewCell>

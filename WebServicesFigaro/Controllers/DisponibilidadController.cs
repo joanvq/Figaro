@@ -57,6 +57,31 @@ namespace WebServicesFigaro.Controllers
             return Ok(disponibilidad);
         }
 
+        ////Obtiene las disponibilidades de un pedido en concreto
+        //// GET: api/Disponibilidad/Pedido/5
+        //[ResponseType(typeof(Disponibilidad))]
+        //public IHttpActionResult GetDisponibilidadesByPedido(int idPedido)
+        //{
+        //    var reservado = db.Reservadoes
+        //        .Include(l => l.Disponibilidad)
+        //        .Include(l => l.Disponibilidad.Chef)
+        //        .FirstOrDefault(p => p.Id == idPedido);
+        //    if (reservado == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return reservado.Disponibilidad;
+        //    Disponibilidad disponibilidad = db.Disponibilidads
+        //        .Include(d => d.Chef)
+        //        .FirstOrDefault(d => d.Id == id);
+        //    if (disponibilidad == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(disponibilidad);
+        //}
+
         // PUT: api/Disponibilidad/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDisponibilidad(int id, Disponibilidad disponibilidad)

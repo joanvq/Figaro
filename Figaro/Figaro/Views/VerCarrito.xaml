@@ -21,7 +21,7 @@
       </Grid.RowDefinitions>
       <StackLayout Orientation="Vertical" Padding="0" VerticalOptions="Center"
                 Grid.Row="1">
-        <Image Source="icono_shopping_bag_empty.png" Margin="30"/>
+        <Image Source="icono_shopping_bag_empty.png" Margin="30" WidthRequest="100"/>
         <Label Text="CESTA VACÍA" FontSize="24" Margin="10" HorizontalOptions="Center"/>
       </StackLayout>
       <StackLayout Orientation="Vertical" Padding="0" VerticalOptions="Center"

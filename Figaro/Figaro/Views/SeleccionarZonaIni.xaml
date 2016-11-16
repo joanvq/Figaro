@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Figaro.Views.SeleccionarZonaIni" 
              BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}"
-             Title="Selecciona Zona">
+             Title="Selecciona Zona"
+             BackgroundColor="Black">
   <StackLayout Orientation="Vertical"> 
-    <Label x:Name="MessageZona" IsVisible="True" IsEnabled="True" Text="Selecciona una zona"/>
+    <Label x:Name="MessageZona" IsVisible="False" IsEnabled="False"/>
     <ListView x:Name="ListaZonaView"
               ItemsSource="{Binding ListaZonas}"
 		          HasUnevenRows="true"
@@ -23,11 +24,12 @@
                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
 
                   <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                    <Label Text="{Binding Titulo}"
+                    <Label Text="{Binding Titulo}" 
                       HorizontalOptions="Center" FontSize="30" TextColor="White"/>
-
-                    <Image Source="icono_select.png" WidthRequest="40"
+                    <Image x:Name="Seleccionado" Source="icono_select.png" WidthRequest="40"
                            HeightRequest="40" Aspect="AspectFit" IsVisible="{Binding Actual}"/>
+                    <Image x:Name="NoSeleccionado" Source="icono_noselect.png" WidthRequest="40"
+                            HeightRequest="40" Aspect="AspectFit" IsVisible="{Binding NoActual}"/>
                   </StackLayout>
 
                 </Grid>

@@ -120,10 +120,17 @@
                             FontSize="14"
                             Opacity="0.6"
                             Grid.Column="1"/>
-                      <Button ClassId="{Binding Id}" BackgroundColor="#CC0311" Text="+" TextColor="White"
+                      <!--<Button ClassId="{Binding Id}" BackgroundColor="#CC0311" Text="+" TextColor="White"
                                 FontSize="24" WidthRequest="10"
                                 Grid.Row="1" Grid.Column="2"
-                                Clicked="AnadirCesta_OnClick"/>
+                                Clicked="AnadirCesta_OnClick"/>-->
+                      <Image x:Name="AnadirPlato" ClassId="{Binding Id}" Source="add.png"
+                      WidthRequest="40" HeightRequest="40" Aspect="AspectFill"
+                      HorizontalOptions="EndAndExpand">
+                        <Image.GestureRecognizers>
+                          <TapGestureRecognizer Tapped="AnadirCesta_OnClick"/>
+                        </Image.GestureRecognizers>
+                      </Image>
                     </StackLayout>
                   </Grid>
                 </ViewCell>

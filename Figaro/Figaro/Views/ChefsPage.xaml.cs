@@ -34,7 +34,7 @@ namespace Figaro.Views
             Plato_Button.GestureRecognizers.Add(menuInferior.tapPlato);
             Chefs_Button.GestureRecognizers.Add(menuInferior.tapChefs) ;
             Profile_Button.GestureRecognizers.Add(menuInferior.tapProfile);
-
+            
             mainViewModel.IsBusy = false;
         }
 

@@ -53,6 +53,7 @@ namespace Figaro.Views
                     {
                         await this.DisplayAlert("Registro", "Registrado correctamente.", "OK");
                         Navigation.PopAsync();
+                        Navigation.PushAsync(new LoginMail());
                     }
                     else
                     {

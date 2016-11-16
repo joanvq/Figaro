@@ -7,7 +7,7 @@
              Title="Figaro"
              BackgroundColor="#CC0311">
   <MasterDetailPage.Master >
-    <ContentPage Title="Figaro" >
+    <ContentPage Icon="funnel.png" Title="Figaro" BackgroundColor="Black">
       <StackLayout Orientation="Vertical">
         <ListView x:Name="ListaTipoCocinaView"
               ItemsSource="{Binding ListaTipoCocina}"
@@ -16,7 +16,7 @@
           <ListView.ItemTemplate>
             <DataTemplate>
               <ViewCell>
-                <StackLayout Orientation="Horizontal" HeightRequest="100">
+                <StackLayout Orientation="Horizontal" HeightRequest="200">
                   <RelativeLayout Padding="0,0,0,0">
                     <Image Source="{Binding Imagen}"
                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
@@ -25,13 +25,15 @@
                     <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
                             RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
                       
-                      <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                      <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+                        <Image x:Name="IconoCocina" Source="{Binding Icono}" Margin="0,0,0,10" 
+                               HeightRequest="50" WidthRequest="50"/>
                         <Label Text="{Binding Titulo}" 
-                          HorizontalOptions="Center" FontSize="30" TextColor="Black"/>
+                          HorizontalOptions="Center" FontSize="26" TextColor="White"/>
                         <Image x:Name="Seleccionado" Source="icono_select.png" WidthRequest="40"
-                               HeightRequest="40" Aspect="AspectFit" IsVisible="{Binding Actual}"/>
+                               HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding Actual}"/>
                         <Image x:Name="NoSeleccionado" Source="icono_noselect.png" WidthRequest="40"
-                                HeightRequest="40" Aspect="AspectFit" IsVisible="{Binding NoActual}"/>
+                                HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding NoActual}"/>
                       </StackLayout>
                       
                     </Grid>

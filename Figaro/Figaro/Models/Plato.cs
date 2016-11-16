@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Figaro.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -29,6 +30,24 @@ namespace Figaro.Models
         public string Utensilios { get; set; }
         public string HorasCocinado { get; set; }
         public string PrecioEuros { get; set; }
+        //public bool EnCarrito { get; set; }
+        //public int Cantidad
+        //{
+        //    get(Usuario usuarioLogueado)
+        //    {
+        //        var mvm = BindingContext as MainViewModel;
+        //        var platoCarrito = mvm.ListaPlatoCarrito.FirstOrDefault(l => l.PlatoId == Id);
+        //        if (platoCarrito == null)
+        //        {
+        //            return 0;
+        //        }
+        //        else
+        //        {
+        //            return platoCarrito.Cantidad;
+        //        }
+        //    }
+        //}
+        //public Decimal 
 
     }
 }

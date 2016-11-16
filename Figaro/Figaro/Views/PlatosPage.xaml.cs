@@ -20,6 +20,7 @@ namespace Figaro.Views
             InitializeComponent();
 
             var mainViewModel = BindingContext as MainViewModel;
+
             var menuInferior = new MenuInferior(this);
             
             menuInferior.mainViewmodel = mainViewModel;

@@ -122,7 +122,7 @@ namespace Figaro.ViewModels
 
         public async void LoginAccess()
         {
-            if (UsuarioLogueado.Email == null)
+            if (UsuarioLogueado.Email == null || UsuarioLogueado.Email == "")
             {
                 // Añadir Email
                 Xamarin.Forms.Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new NavigationPage(new SeleccionarMail(UsuarioLogueado)));

@@ -16,6 +16,7 @@ namespace WebServicesFigaro.Models
         [DisplayName("Título")]
         public string Titulo { get; set; }
         public string Imagen { get; set; }
+        public string Icono { get; set; }
 
         //public ICollection<Plato> Platos { get; set; }
     }
