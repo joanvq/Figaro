@@ -14,6 +14,20 @@ namespace Figaro.Views
         public VerPlato(MainViewModel mainViewModel)
         {
             InitializeComponent();
+
+            //Cargar NavBar
+            var cesta = new ToolbarItem
+            {
+                Text = "Cesta",
+                Icon = "cesta.png",
+                Command = new Command(() =>
+                {
+                    //DisplayAlert("Menu", "Cesta tapped", "OK");
+                    Navigation.PushAsync(new VerCarrito());
+                })
+            };
+            this.ToolbarItems.Add(cesta);
+
             //Cargar estrellas valoración
             var valoracion = Convert.ToInt32(mainViewModel.PlatoSeleccionado.Valoracion);
             switch (valoracion)

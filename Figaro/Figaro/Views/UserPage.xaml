@@ -24,6 +24,8 @@
           <Entry x:Name="Apellidos" Text="{Binding UsuarioLogueado.Apellidos}" />
           <Label Text="Dirección" />
           <Entry x:Name="Direccion" Text="{Binding UsuarioLogueado.Direccion}" />
+          <Label Text="Código Postal" />
+          <Entry x:Name="CP" Text="{Binding UsuarioLogueado.CP}" />
           <Label Text="Ciudad" />
           <Entry x:Name="Ciudad" Text="{Binding UsuarioLogueado.Ciudad}" />
           <Label Text="Género" />
@@ -37,6 +39,7 @@
           </Picker>
           <Button Text="Guardar cambios" Clicked="Post_OnClicked" />
           <Button Text="Ver pedidos realizados" Clicked="VerPedidos_OnClicked"/>
+          <Button Text="Cerrar sesión" Clicked="Logout_OnClicked"/>
         </StackLayout>
       </ScrollView>
       <StackLayout VerticalOptions="EndAndExpand">

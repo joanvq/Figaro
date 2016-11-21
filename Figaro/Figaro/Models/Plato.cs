@@ -30,24 +30,16 @@ namespace Figaro.Models
         public string Utensilios { get; set; }
         public string HorasCocinado { get; set; }
         public string PrecioEuros { get; set; }
-        //public bool EnCarrito { get; set; }
-        //public int Cantidad
-        //{
-        //    get(Usuario usuarioLogueado)
-        //    {
-        //        var mvm = BindingContext as MainViewModel;
-        //        var platoCarrito = mvm.ListaPlatoCarrito.FirstOrDefault(l => l.PlatoId == Id);
-        //        if (platoCarrito == null)
-        //        {
-        //            return 0;
-        //        }
-        //        else
-        //        {
-        //            return platoCarrito.Cantidad;
-        //        }
-        //    }
-        //}
-        //public Decimal 
+        public bool EnCarrito { get; set; }
+        public int CantidadEnCarrito { get; set; }
+        public string PrecioEnCarrito {
+            get
+            {
+                var precio = (CantidadEnCarrito * Precio).ToString();
+                precio += " €";
+                return precio;
+            }
+        }
 
     }
 }

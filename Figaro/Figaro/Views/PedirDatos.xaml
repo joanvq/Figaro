@@ -6,22 +6,29 @@
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
              Title="Confirmar Datos Personales">
   
-  <StackLayout Orientation="Vertical">
-    <Label Text="Nombre y Apellidos" />
-    <Entry x:Name="nombreApellidos" Text="{Binding UsuarioLogueado.NombreApellidos}" />
-    
-    <Label Text="Dirección" />
-    <Entry x:Name="direccion"/>
+    <StackLayout Orientation="Vertical">
+        <StackLayout HorizontalOptions="CenterAndExpand" Padding="0" BackgroundColor="#CC0311" Opacity="0.6" >
+            <Label x:Name="Aviso" FontSize="16" FontAttributes="Bold" TextColor="White"
+            HorizontalOptions="CenterAndExpand" Margin="10,12" IsVisible="False" />
+        </StackLayout>
 
-    <Label Text="Código Postal" />
-    <Entry x:Name="cp" Keyboard="Numeric"/>
+        <StackLayout Orientation="Vertical" Padding="10,0" >
+            <Label Text="Nombre y Apellidos" />
+            <Entry x:Name="nombreApellidos" Text="{Binding UsuarioLogueado.NombreApellidos}" />
 
-    <Label Text="Comentario" />
-    <Editor WidthRequest="60" x:Name="comentario" />
+            <Label Text="Dirección" />
+            <Entry x:Name="direccion" Text="{Binding UsuarioLogueado.Direccion}"/>
 
-    <Button Text="Continuar"
-            Clicked="Pagar_OnClicked"/>
+            <Label Text="Código Postal" />
+            <Entry x:Name="cp" Keyboard="Numeric" Text="{Binding UsuarioLogueado.CP}"/>
 
-  </StackLayout>
+            <Label Text="Comentario (opcional)" />
+            <Entry MinimumHeightRequest="60" WidthRequest="60" x:Name="comentario" />
+
+            <Button x:Name="Continuar" Text="Continuar"
+                Clicked="Pagar_OnClicked"/>
+        </StackLayout>
+
+    </StackLayout>
   
 </ContentPage>

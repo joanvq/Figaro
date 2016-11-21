@@ -7,8 +7,13 @@
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
              Title="Seleccionar Fecha y Hora"
              x:Name="ContentFechaHora">
+    
+    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                   IsVisible="{Binding IsBusy}"
+                   HeightRequest="50" WidthRequest="50"
+                   HorizontalOptions="Center" VerticalOptions="Center"/>
 
-  <StackLayout Orientation="Vertical">
+    <StackLayout Orientation="Vertical" IsVisible="{Binding IsIdle}">
     <!--<controls:CalendarView
             x:Name="calendario"
             HorizontalOptions="Fill"

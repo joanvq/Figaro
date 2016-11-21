@@ -20,11 +20,12 @@
                  IsEnabled="{Binding IsIdle}" IsVisible="{Binding IsIdle}">
       <!--<Label x:Name="StatusMessage" Text="{Binding StatusMessage}" />-->
 
-      <Label x:Name="AvisoChefs" IsEnabled="{Binding NoFecha}" IsVisible="{Binding NoFecha}"
+      <Label x:Name="AvisoChefs" 
              FontSize="24" TextColor="#CC0311" HorizontalOptions="Center"
              Text="No hay chefs disponibles"/>
       <Label x:Name="AvisoSeleccionarDiaHora" Margin="12,6" HorizontalOptions="Center"
-            IsVisible="{Binding NoChef}" IsEnabled="{Binding NoChef}" FontSize="20" TextColor="#CC0311"/>
+             FontSize="20" TextColor="#CC0311"
+             Text = "Seleccione una fecha y hora"/>
       <ListView x:Name="ListaChefsView"
                 ItemsSource="{Binding ListaChefs}"
                 HasUnevenRows="true"

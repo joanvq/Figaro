@@ -2,23 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Figaro.Views.MainPage"
-             BackgroundImage="moscow.jpg">
+             BackgroundImage="login_background.jpg">
   <ContentPage.Content>
     <StackLayout VerticalOptions="Start" HorizontalOptions="Center" Padding="0,20">
-      <Image Source="logo_figaro.png" Margin="0,40"/>
+      <Image Source="logo_figaro.png" Margin="0,40" HeightRequest="80"/>
       <Button x:Name="ConectarFace" Clicked="LoginFacebook_OnClicked" Margin="0,10"
               BackgroundColor="#3b5998" TextColor="White" IsVisible="False"  Text="Conectar" Image="icono_facebook.png">
       </Button>
       <Button x:Name="Registrarse" Text="REGÍSTRATE" Clicked="Registrar_OnClicked" Margin="0,10"
               BackgroundColor="Transparent" BorderColor="White" TextColor="White" BorderWidth="2"
-              Image="icono_mail.png" IsVisible="False">
-        <Button.BorderRadius>
-          <OnPlatform x:TypeArguments="x:Int32">
-              <OnPlatform.Android>1</OnPlatform.Android>
-          </OnPlatform>
-        </Button.BorderRadius>
-      
-      </Button>
+              Image="icono_mail.png" IsVisible="False" BorderRadius="1">
+            <Button.BorderRadius>
+                <OnPlatform x:TypeArguments="x:Int32">
+                    <OnPlatform.Android>1</OnPlatform.Android>
+                </OnPlatform>
+            </Button.BorderRadius>
+        </Button>
       <Button x:Name="IniciarSesion" Text="INICIA SESIÓN" Clicked="Login_OnClicked" Margin="0,20"
               BackgroundColor="Transparent" BorderColor="Transparent" TextColor="#f7f7f7"  BorderWidth="0"
               IsVisible="False"/>

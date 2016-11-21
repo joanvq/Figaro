@@ -1,4 +1,5 @@
-﻿using Figaro.Models;
+﻿using Figaro.Interfaces;
+using Figaro.Models;
 using Figaro.Other;
 using Figaro.Services;
 using Figaro.Views;
@@ -527,6 +528,15 @@ namespace Figaro.ViewModels
                         {
                             //ListaPlatoCarrito.Where(p => p.Plato == platoSeleccionado).FirstOrDefault().Cantidad = platoCarrito.Cantidad;
                             enCarrito.Cantidad = platoCarrito.Cantidad;
+                            if (ListaPlatos != null)
+                            {
+                                var plato = ListaPlatos.FirstOrDefault(l => l.Id == platoCarrito.PlatoId);
+                                if (plato != null)
+                                {
+                                    plato.EnCarrito = true;
+                                    plato.CantidadEnCarrito = platoCarrito.Cantidad;
+                                }
+                            }
                             StatusMessage = "Se han añadido " + key.Item2 + " platos de " + platoSeleccionado.Titulo
                                 + " correctamente.";
                         }
@@ -547,6 +557,15 @@ namespace Figaro.ViewModels
                         {
                             List<PlatoCarrito> newListaPlatoCarrito = await platoCarritoServices.GetPlatoCarritoByUsuarioAsync(UsuarioLogueado.Id);
                             ListaPlatoCarrito.Add(newListaPlatoCarrito.Where(p => p.PlatoId == platoCarrito.PlatoId).FirstOrDefault());
+                            if (ListaPlatos != null)
+                            {
+                                var plato = ListaPlatos.FirstOrDefault(l => l.Id == platoCarrito.PlatoId);
+                                if (plato != null)
+                                {
+                                    plato.EnCarrito = true;
+                                    plato.CantidadEnCarrito = platoCarrito.Cantidad;
+                                }
+                            }
                             StatusMessage = "Se han añadido " + key.Item2 + " platos de " + platoSeleccionado.Titulo 
                                 + " correctamente.";
                         }
@@ -690,6 +709,18 @@ namespace Figaro.ViewModels
 
             var platoCarritoServices = new PlatoCarritoServices();
             ListaPlatoCarrito = await platoCarritoServices.GetPlatoCarritoByUsuarioAsync(UsuarioLogueado.Id);
+            foreach(var platoCarrito in ListaPlatoCarrito)
+            {
+                if (allPlatos != null)
+                {
+                    var plato = allPlatos.FirstOrDefault(l => l.Id == platoCarrito.PlatoId);
+                    if (plato != null)
+                    {
+                        plato.EnCarrito = true;
+                        plato.CantidadEnCarrito = platoCarrito.Cantidad;
+                    }
+                }
+            }
             var menuCarritoServices = new MenuCarritoServices();
             ListaMenuCarrito = await menuCarritoServices.GetMenuCarritoByUsuarioAsync(UsuarioLogueado.Id);
             Zona zona = ListaZonas.FirstOrDefault(z => z.Id == UsuarioLogueado.ZonaId);
@@ -768,7 +799,7 @@ namespace Figaro.ViewModels
             IsBusy = false;
         }
 
-        public async void FiltrarChefs()
+        public async Task FiltrarChefs()
         {
             IsBusy = true;
 
@@ -831,7 +862,7 @@ namespace Figaro.ViewModels
                 listChefs = new List<Chef>();
             }
 
-            NoFecha = listChefs.Count.Equals(0) && !Fecha.Equals(null);
+            NoFecha = listChefs.Count.Equals(0) || !Fecha.Equals(null);
             NoChefs = listChefs.Count.Equals(0);
             ListaChefs = listChefs;
 
@@ -882,6 +913,11 @@ namespace Figaro.ViewModels
             if (isSuccessBorrado)
             {
                 ListaPlatoCarrito = new List<PlatoCarrito>();
+                foreach(var plato in ListaPlatos)
+                {
+                    plato.EnCarrito = false;
+                    plato.CantidadEnCarrito = 0;
+                }
             }
             isSuccessBorrado = await menuCarritoServices.DeleteMenuCarritoByUserAsync(UsuarioLogueado.Id);
             if (isSuccessBorrado)
@@ -891,7 +927,7 @@ namespace Figaro.ViewModels
             Fecha = null;
             Hora = DateTime.Now.Hour*2 + 1;
 
-            FiltrarChefs();
+            await FiltrarChefs();
 
             IsBusy = false;
             return pedidoCreado;
@@ -918,7 +954,7 @@ namespace Figaro.ViewModels
             if (tipoElemento == "P")
             {
                 // Es un plato
-                var platoCarrito = ListaPlatoCarrito.FirstOrDefault(l => l.Plato.Id == id);
+                var platoCarrito = ListaPlatoCarrito.FirstOrDefault(l => l.PlatoId == id);
                 if (!platoCarrito.Equals(new PlatoCarrito()))
                 {
                     var cant = platoCarrito.Cantidad - 1;
@@ -929,6 +965,15 @@ namespace Figaro.ViewModels
                         if (isSuccess)
                         {
                             ListaPlatoCarrito.Remove(platoCarrito);
+                            if(ListaPlatos != null)
+                            {
+                                var plato = ListaPlatos.FirstOrDefault(p => p.Id == platoCarrito.PlatoId);
+                                if (plato != null)
+                                {
+                                    plato.EnCarrito = false;
+                                    plato.CantidadEnCarrito = 0;
+                                }
+                            }
                         }
 
                         IsBusy = false;
@@ -946,6 +991,15 @@ namespace Figaro.ViewModels
                         if(isSuccess)
                         {
                             platoCarrito.Cantidad--;
+                            if (ListaPlatos != null)
+                            {
+                                var plato = ListaPlatos.FirstOrDefault(p => p.Id == platoCarrito.PlatoId);
+                                if (plato != null)
+                                {
+                                    plato.EnCarrito = true;
+                                    plato.CantidadEnCarrito = cant;
+                                }
+                            }
                         }
 
                         IsBusy = false;
@@ -1011,6 +1065,11 @@ namespace Figaro.ViewModels
                 if (isSuccess)
                 {
                     ListaPlatoCarrito = new List<PlatoCarrito>();
+                    foreach (var plato in ListaPlatos)
+                    {
+                        plato.EnCarrito = false;
+                        plato.CantidadEnCarrito = 0;
+                    }
                 }
             }
             if (ListaMenuCarrito.Count > 0)
@@ -1177,8 +1236,17 @@ namespace Figaro.ViewModels
                 StatusMessage = "Hubo un problema cambiar la hora y borrar el chef seleccionado: " + chefSeleccionado.NombreApellidos + ".";
             }
             
-            FiltrarChefs();
+            await FiltrarChefs();
             IsBusy = false;
+        }
+
+        public void LogOut()
+        {
+            if (UsuarioLogueado.FacebookId != "" || UsuarioLogueado.FacebookId != null)
+            {
+                DependencyService.Get<IPlatformCookies>().DeleteCookies();
+            }
+            App.Current.MainPage = new NavigationPage(new MainPage(null));
         }
 
 

@@ -24,9 +24,9 @@
       <Label x:Name="nPedido"  FontSize="18"/>
     </StackLayout>
 
-    <StackLayout Orientation="Horizontal">
-      <Label Text="Fecha y Hora del Pedido: " FontSize="18"/>
-      <Label x:Name="FechaPedido" FontSize="18" />
+    <StackLayout Orientation="Horizontal" >
+      <Label Text="Fecha y Hora del Pedido:" FontSize="18"/>
+      <Label x:Name="FechaPedido" FontSize="18"/>
       <!--Pedido.Disponibilidad.FechaHora-->
     </StackLayout>
 
@@ -74,15 +74,9 @@
       <Label x:Name="HoraIniRes" FontSize="18" />
     </StackLayout>
 
-    <StackLayout Orientation="Horizontal">
-      <Label Text="Hora Final Reserva: " FontSize="18"/>
-      <Label x:Name="HoraFinRes" FontSize="18" />
-    </StackLayout>
-
-    <StackLayout Orientation="Horizontal">
-      <Label Text="Pedido realiado en Fecha y Hora: " FontSize="18"/>
-      <Label x:Name="FechaHoraRealizado" FontSize="18" />
-      <!--Pedido.Disponibilidad.FechaHora-->
+    <StackLayout Orientation="Horizontal" >
+        <Label Text="Hora Final Reserva: " FontSize="18"/>
+        <Label x:Name="HoraFinRes" FontSize="18" />
     </StackLayout>
 
     <StackLayout Orientation="Horizontal">

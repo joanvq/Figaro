@@ -61,7 +61,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Apellidos,Email,Imagen,Password,ZonaId,Ciudad,Direccion,Estado,FechaRegistro,genero,FacebookId,ChefSeleccionadoId,TipoCocinaId")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Apellidos,Email,Imagen,Password,ZonaId,Ciudad,Direccion,CP,Estado,FechaRegistro,genero,FacebookId,ChefSeleccionadoId,TipoCocinaId")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -113,7 +113,7 @@ namespace WebServicesFigaro.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Apellidos,Email,Imagen,ZonaId,Ciudad,Direccion,Estado,FechaRegistro,genero,FacebookId,Password,ChefSeleccionadoId,TipoCocinaId")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Apellidos,Email,Imagen,ZonaId,Ciudad,Direccion,CP,Estado,FechaRegistro,genero,FacebookId,Password,ChefSeleccionadoId,TipoCocinaId")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {

@@ -51,5 +51,11 @@ namespace Figaro.Views
                 }
             }
         }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            this.Content = null;
+        }
     }
 }

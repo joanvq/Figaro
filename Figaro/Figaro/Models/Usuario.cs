@@ -18,6 +18,7 @@ namespace Figaro.Models
         public Zona Zona { get; set; }
         public string Ciudad { get; set; }
         public string Direccion { get; set; }
+        public string CP { get; set; }
         public string Estado { get; set; }
         public DateTime FechaRegistro { get; set; }
         public string genero { get; set; }

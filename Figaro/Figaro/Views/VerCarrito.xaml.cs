@@ -293,5 +293,6 @@ namespace Figaro.Views
             var currentPage = (MasterDetailPage)mainPage.CurrentPage;
             currentPage.Detail = new ChefsPage();
         }
+
     }
 }

@@ -35,8 +35,8 @@
                   <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                  <RowDefinition Width="Auto"/>
-                  <RowDefinition Width="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal" >
                   <controls:CircleImage Source="{Binding Imagen}" WidthRequest="70.0"
@@ -64,10 +64,15 @@
                     </Image.GestureRecognizers>
                   </Image>
                 </StackLayout>
-                <StackLayout x:Name="EnCarrito" Grid.Column="0" Grid.Row="1" Orientation="Horizontal"
-                             Padding="0,0,10,0" BackgroundColor="#ddd" IsVisible="False">
+                <!--<StackLayout Grid.Column="0" Grid.Row="1" Orientation="Horizontal"
+                             Padding="0,0,10,0" BackgroundColor="#ddd" IsVisible="{Binding EnCarrito}" >
+                    <Label Text="{Binding PrecioEnCarrito}" FontSize="14" />
                 </StackLayout>
-              </Grid>
+                <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal"
+                             Padding="0,0,10,0" BackgroundColor="#ddd" IsVisible="{Binding EnCarrito}" >
+                   <Label Text="{Binding CantidadEnCarrito}" FontSize="14" />
+                </StackLayout>-->
+               </Grid>
             </ViewCell>
           </DataTemplate>
         </ListView.ItemTemplate>

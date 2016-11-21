@@ -19,7 +19,6 @@ namespace Figaro.Views
 
             var mainViewModel = BindingContext as MainViewModel;
             mainViewModel.IsBusy = true;
-            AvisoSeleccionarDiaHora.Text = "Seleccione una fecha y hora";
 
             var tgr = new TapGestureRecognizer ();
             tgr.Tapped += (s, e) => {
@@ -34,7 +33,23 @@ namespace Figaro.Views
             Plato_Button.GestureRecognizers.Add(menuInferior.tapPlato);
             Chefs_Button.GestureRecognizers.Add(menuInferior.tapChefs) ;
             Profile_Button.GestureRecognizers.Add(menuInferior.tapProfile);
-            
+
+            if (mainViewModel.Fecha == null)
+            {
+                AvisoSeleccionarDiaHora.IsVisible = true;
+                AvisoChefs.IsVisible = false;
+            }
+            else if (mainViewModel.NoChefs)
+            {
+                AvisoSeleccionarDiaHora.IsVisible = true;
+                AvisoChefs.IsVisible = true;
+            }
+            else
+            {
+                AvisoSeleccionarDiaHora.IsVisible = false;
+                AvisoChefs.IsVisible = false;
+            }
+
             mainViewModel.IsBusy = false;
         }
 
@@ -62,6 +77,7 @@ namespace Figaro.Views
             var mainViewModel = BindingContext as MainViewModel;
             Image img = (Image)sender;
             mainViewModel.ElegirChef.Execute(int.Parse(img.ClassId));
+            DisplayAlert("Seleccionado", "Chef seleccionado correctamente", "OK");
         }
 
         // Imagenes estrellas valoracion
@@ -165,5 +181,12 @@ namespace Figaro.Views
                 }
             }
         }
+
+        //private void Actu_OnChnged (object sender, EventArgs e)
+        //{
+        //    var mvm = BindingContext as MainViewModel;
+        //    var p = mvm.NoChefs;
+        //    var b = mvm.NoFecha;
+        //}
     }
 }

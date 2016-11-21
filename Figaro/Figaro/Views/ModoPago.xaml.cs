@@ -59,8 +59,10 @@ namespace Figaro.Views
                 strHora = "0" + strHora;
             }
             mainViewModel.Hora = mainViewModel.Hora;
-            FechaHoraReserva.Text = mainViewModel.Fecha.Value.Date.ToString("dd'/'MM'/'yyyy") + " " + strHora + ":" + strMinutos;
-            FechaHoraPedido.Text = DateTime.Now.ToString();
+            FechaReserva.Text = mainViewModel.Fecha.Value.Date.ToString("dd'/'MM'/'yyyy");
+            HoraReserva.Text = strHora + ":" + strMinutos;
+            FechaPedido.Text = DateTime.Now.ToString("dd'/'MM'/'yyyy");
+            HoraPedido.Text = DateTime.Now.ToString("HH:mm");
 
             pedidoActual = pedido;
         }

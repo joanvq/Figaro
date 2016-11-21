@@ -69,6 +69,11 @@ namespace Figaro.Views
             Navigation.PushAsync(new VerPedidos());
         }
         
+        private void Logout_OnClicked(object sender, EventArgs e)
+        {
+            var mvm = BindingContext as MainViewModel;
+            mvm.LogOut();
+        }
 
     }
 }

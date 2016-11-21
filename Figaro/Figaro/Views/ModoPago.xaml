@@ -32,68 +32,74 @@
     </StackLayout>
 
     <StackLayout Orientation="Horizontal">
-      <Label Text="Fecha y Hora Reserva: " FontSize="18"/>
-      <Label x:Name="FechaHoraReserva" FontSize="18" />
+        <Label Text="Fecha Reserva:" FontSize="18" LineBreakMode="TailTruncation" />
+        <Label x:Name="FechaReserva" FontSize="18" LineBreakMode="TailTruncation" />
       <!--Pedido.FechaReserva-->
     </StackLayout>
-    
     <StackLayout Orientation="Horizontal">
-      <Label Text="Pedido Realizado en: " FontSize="18"/>
-      <Label x:Name="FechaHoraPedido" FontSize="18" /> <!--Pedido.FechaPedido-->
+        <Label Text="Hora Reserva:" FontSize="18" LineBreakMode="TailTruncation" />
+        <Label x:Name="HoraReserva" FontSize="18" LineBreakMode="TailTruncation" />
     </StackLayout>
-    
+    <StackLayout Orientation="Horizontal">
+      <Label Text="Fecha Pedido:" FontSize="18"/>
+      <Label x:Name="FechaPedido" FontSize="18" /> <!--Pedido.FechaPedido-->
+    </StackLayout>
+    <StackLayout Orientation="Horizontal">
+        <Label Text="Hora Pedido:" FontSize="18"/>
+        <Label x:Name="HoraPedido" FontSize="18" />
+        <!--Pedido.FechaPedido-->
+    </StackLayout>
+
     <Label Text="Pedido: " FontSize="18"/>
     
-    <ScrollView>
-      <ListView x:Name="ListaPlatosMenus"
-		            HasUnevenRows="true"
-                ItemTapped="Menu_OnItemTapped">
-        <ListView.ItemTemplate>
-          <DataTemplate>
-            <ViewCell>
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="Auto" />
-                  <ColumnDefinition Width="*" />
-                  <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                  <!--Cantidad-->
-                <StackLayout Grid.Column="0" Orientation="Horizontal">
-                  <Label Text="{Binding Value}" FontSize="16" Margin="10,0,0,0"/>
-                  <Label Text="-" FontSize="16"/>
-                  <Label Text = "{Binding Key.Titulo}" FontSize="16"/>
-                </StackLayout>
-                <Label Text = "{Binding Key.HorasCocinado}" HorizontalOptions="End"  Grid.Column="2"/>
-              </Grid>
-            </ViewCell>
-          </DataTemplate>
-        </ListView.ItemTemplate>
-      </ListView>
-      <!--<ListView x:Name="ListaPlatos"
-		            HasUnevenRows="true"
-                ItemTapped="Plato_OnItemTapped">
-        <ListView.ItemTemplate>
-          <DataTemplate>
-            <ViewCell>
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="Auto" />
-                  <ColumnDefinition Width="*" />
-                  <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                --><!--Cantidad--><!--
-                <StackLayout Grid.Column="0" Orientation="Horizontal">
-                  <Label Text="{Binding Value}"   FontSize="16" Margin="10,0,0,0"/>
-                  <Label Text="-" FontSize="16"/>
-                  <Label Text = "{Binding Key.Titulo}" FontSize="16"/>
-                </StackLayout>
-                <Label Text ="{Binding Key.HorasCocinado}" HorizontalOptions="End" Grid.Column="2"/>
-              </Grid>
-            </ViewCell>
-          </DataTemplate>
-        </ListView.ItemTemplate>
-      </ListView>-->
-    </ScrollView>
+    <ListView x:Name="ListaPlatosMenus"
+		        HasUnevenRows="true"
+            ItemTapped="Menu_OnItemTapped">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+        <ViewCell>
+            <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+                <!--Cantidad-->
+            <StackLayout Grid.Column="0" Orientation="Horizontal">
+                <Label Text="{Binding Value}" FontSize="16" Margin="10,0,0,0"/>
+                <Label Text="-" FontSize="16"/>
+                <Label Text = "{Binding Key.Titulo}" FontSize="16"/>
+            </StackLayout>
+            <Label Text = "{Binding Key.HorasCocinado}" HorizontalOptions="End"  Grid.Column="2"/>
+            </Grid>
+        </ViewCell>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+    </ListView>
+    <!--<ListView x:Name="ListaPlatos"
+		        HasUnevenRows="true"
+            ItemTapped="Plato_OnItemTapped">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+        <ViewCell>
+            <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            --><!--Cantidad--><!--
+            <StackLayout Grid.Column="0" Orientation="Horizontal">
+                <Label Text="{Binding Value}"   FontSize="16" Margin="10,0,0,0"/>
+                <Label Text="-" FontSize="16"/>
+                <Label Text = "{Binding Key.Titulo}" FontSize="16"/>
+            </StackLayout>
+            <Label Text ="{Binding Key.HorasCocinado}" HorizontalOptions="End" Grid.Column="2"/>
+            </Grid>
+        </ViewCell>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+    </ListView>-->
     
     <Button Text="PayPal"
             Clicked="PagarPaypal_OnClicked"/>

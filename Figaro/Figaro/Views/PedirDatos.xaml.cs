@@ -34,7 +34,17 @@ namespace Figaro.Views
             ListaCarrito = listCarrito;
             precioTotal = costeTotal;
             InitializeComponent();
-            
+
+            var continuar = new ToolbarItem
+            {
+                Text = "Continuar",
+                Icon = "icono_select.png",
+                Command = new Command(() =>
+                {
+                    Pagar_OnClicked(Continuar, null);
+                })
+            };
+            this.ToolbarItems.Add(continuar);
         }
 
         public async void Pagar_OnClicked(object sender, EventArgs e)
@@ -45,10 +55,15 @@ namespace Figaro.Views
                 || (mainViewModel.ListaMenuCarrito.Count == 0 
                     && mainViewModel.ListaPlatoCarrito.Count == 0))
             {
-                DisplayAlert("Error", "Faltan datos.", "OK");
+                Aviso.Text = "Faltan datos";
+                Aviso.IsVisible = true;
             }
             else if(direccion.Text != null && cp.Text != null && direccion.Text != "" && cp.Text != "")
             {
+                Aviso.IsVisible = false;
+                
+                var isSuccess = await mainViewModel.ModificarUsuarioAsync();
+
                 // Comprovar que el cp esta dentro de la zona
                 string postCode = cp.Text;
                 if(postCode.Length > 1)
@@ -82,8 +97,14 @@ namespace Figaro.Views
                 }
                 else
                 {
-                    DisplayAlert("Error", "El código postal no coincide con la zona seleccionada.", "OK");
+                    Aviso.Text = "El código postal no coincide con la zona seleccionada";
+                    Aviso.IsVisible = true;
                 }
+            }
+            else
+            {
+                Aviso.Text = "Rellene los campos obligatorios";
+                Aviso.IsVisible = true;
             }
         }
     }

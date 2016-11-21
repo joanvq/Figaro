@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Figaro.Models;
 using Figaro.Other;
+using System.Runtime.CompilerServices;
 
 namespace Figaro.Views
 {
@@ -20,7 +21,7 @@ namespace Figaro.Views
             InitializeComponent();
 
             var mainViewModel = BindingContext as MainViewModel;
-
+            
             var menuInferior = new MenuInferior(this);
             
             menuInferior.mainViewmodel = mainViewModel;
@@ -72,7 +73,6 @@ namespace Figaro.Views
             mainViewModel.AnadirPlatoCesta.Execute(idCant);
             DisplayAlert("Añadido", "Plato añadido a la cesta de la compra", "OK");
         }
-        
 
     }
 }

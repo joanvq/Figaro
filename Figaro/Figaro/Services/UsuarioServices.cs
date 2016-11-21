@@ -39,6 +39,7 @@ namespace Figaro.Services
             nuevoUsuario.Apellidos = usuario.Apellidos;
             nuevoUsuario.Ciudad = usuario.Ciudad;
             nuevoUsuario.Direccion = usuario.Direccion;
+            nuevoUsuario.CP = usuario.CP;
             nuevoUsuario.genero = usuario.genero;
             nuevoUsuario.Email = usuario.Email;
             nuevoUsuario.Estado = usuario.Estado;

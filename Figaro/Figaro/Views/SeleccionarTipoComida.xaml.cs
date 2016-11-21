@@ -44,7 +44,7 @@ namespace Figaro.Views
             var ciudades = new ToolbarItem
             {
                 Text = "Seleccionar zona",
-                Icon = "icono_map_maker.png",
+                Icon = "map_maker.png",
                 Command = new Command(() =>
                 {
                     //DisplayAlert("Menu", "Ciudades tapped", "OK");

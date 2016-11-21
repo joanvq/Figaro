@@ -33,6 +33,8 @@ namespace WebServicesFigaro.Models
         public string Ciudad { get; set; }
         [DisplayName("Dirección")]
         public string Direccion { get; set; }
+        [DisplayName("Código Postal")]
+        public string CP { get; set; }
         public string Estado { get; set; }
         [DisplayName("Fecha de registro")]
         public DateTime FechaRegistro { get; set; }

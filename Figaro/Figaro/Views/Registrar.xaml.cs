@@ -35,7 +35,7 @@ namespace Figaro.Views
                 usuario.Apellidos = Apellidos.Text;
                 usuario.Email = Email.Text;
                 usuario.Password = Password.Text;
-                usuario.Imagen = "/Content/user.jpg";
+                usuario.Imagen = "/Content/Images/user.jpg";
 
                 bool existe = await vm.ExisteEmail(usuario);
                 if (existe)
@@ -52,8 +52,18 @@ namespace Figaro.Views
                     if (isSuccess)
                     {
                         await this.DisplayAlert("Registro", "Registrado correctamente.", "OK");
-                        Navigation.PopAsync();
-                        Navigation.PushAsync(new LoginMail());
+                        var usu = await vm.GetUsuarioByEmail(Email.Text, Password.Text);
+                        if (usu == null)
+                        {
+                            await Navigation.PopAsync();
+                            Navigation.PushAsync(new LoginMail());
+                        }
+                        else
+                        {
+                            // Loguear
+                            vm.UsuarioLogueado = usu;
+                            vm.LoginAccess();
+                        }
                     }
                     else
                     {

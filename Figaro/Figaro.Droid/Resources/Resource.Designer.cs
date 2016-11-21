@@ -5637,136 +5637,163 @@ namespace Figaro.Droid
 			public const int icon_chefs_select = 2130837673;
 			
 			// aapt resource value: 0x7f0200aa
-			public const int icono_chefs = 2130837674;
+			public const int icono = 2130837674;
 			
 			// aapt resource value: 0x7f0200ab
-			public const int icono_chefs_select = 2130837675;
+			public const int icono_chefs = 2130837675;
 			
 			// aapt resource value: 0x7f0200ac
-			public const int icono_descubrir = 2130837676;
+			public const int icono_chefs_select = 2130837676;
 			
 			// aapt resource value: 0x7f0200ad
-			public const int icono_descubrir_select = 2130837677;
+			public const int icono_descubrir = 2130837677;
 			
 			// aapt resource value: 0x7f0200ae
-			public const int icono_facebook = 2130837678;
+			public const int icono_descubrir_select = 2130837678;
 			
 			// aapt resource value: 0x7f0200af
-			public const int icono_mail = 2130837679;
+			public const int icono_facebook = 2130837679;
 			
 			// aapt resource value: 0x7f0200b0
-			public const int icono_map_maker = 2130837680;
+			public const int icono_mail = 2130837680;
 			
 			// aapt resource value: 0x7f0200b1
-			public const int icono_menu = 2130837681;
+			public const int icono_map_maker = 2130837681;
 			
 			// aapt resource value: 0x7f0200b2
-			public const int icono_menu_select = 2130837682;
+			public const int icono_menu = 2130837682;
 			
 			// aapt resource value: 0x7f0200b3
-			public const int icono_noselect = 2130837683;
+			public const int icono_menu_select = 2130837683;
 			
 			// aapt resource value: 0x7f0200b4
-			public const int icono_profile = 2130837684;
+			public const int icono_noselect = 2130837684;
 			
 			// aapt resource value: 0x7f0200b5
-			public const int icono_profile_select = 2130837685;
+			public const int icono_profile = 2130837685;
 			
 			// aapt resource value: 0x7f0200b6
-			public const int icono_select = 2130837686;
+			public const int icono_profile_select = 2130837686;
 			
 			// aapt resource value: 0x7f0200b7
-			public const int icono_shopping_bag_empty = 2130837687;
+			public const int icono_select = 2130837687;
 			
 			// aapt resource value: 0x7f0200b8
-			public const int icono_star = 2130837688;
+			public const int icono_shopping_bag_empty = 2130837688;
 			
 			// aapt resource value: 0x7f0200b9
-			public const int icono_star_empty = 2130837689;
+			public const int icono_star = 2130837689;
 			
 			// aapt resource value: 0x7f0200ba
-			public const int icono_star_gold = 2130837690;
+			public const int icono_star_empty = 2130837690;
 			
 			// aapt resource value: 0x7f0200bb
-			public const int icono_star_gold_empty = 2130837691;
+			public const int icono_star_gold = 2130837691;
 			
 			// aapt resource value: 0x7f0200bc
-			public const int icono_time = 2130837692;
+			public const int icono_star_gold_empty = 2130837692;
 			
 			// aapt resource value: 0x7f0200bd
-			public const int italian_background = 2130837693;
+			public const int icono_time = 2130837693;
 			
 			// aapt resource value: 0x7f0200be
-			public const int logo_figaro = 2130837694;
+			public const int italian_background = 2130837694;
 			
 			// aapt resource value: 0x7f0200bf
-			public const int menu_asian = 2130837695;
+			public const int login_background = 2130837695;
 			
 			// aapt resource value: 0x7f0200c0
-			public const int menu_italian = 2130837696;
+			public const int logo_figaro = 2130837696;
 			
 			// aapt resource value: 0x7f0200c1
-			public const int menu_world = 2130837697;
+			public const int map_maker = 2130837697;
 			
 			// aapt resource value: 0x7f0200c2
-			public const int minus = 2130837698;
+			public const int menu_asian = 2130837698;
 			
 			// aapt resource value: 0x7f0200c3
-			public const int moscow = 2130837699;
+			public const int menu_italian = 2130837699;
 			
 			// aapt resource value: 0x7f0200c4
-			public const int mr_dialog_material_background_dark = 2130837700;
+			public const int menu_world = 2130837700;
 			
 			// aapt resource value: 0x7f0200c5
-			public const int mr_dialog_material_background_light = 2130837701;
+			public const int minus = 2130837701;
 			
 			// aapt resource value: 0x7f0200c6
-			public const int mr_ic_audiotrack_light = 2130837702;
+			public const int moscow = 2130837702;
 			
 			// aapt resource value: 0x7f0200c7
-			public const int mr_ic_cast_dark = 2130837703;
+			public const int mr_dialog_material_background_dark = 2130837703;
 			
 			// aapt resource value: 0x7f0200c8
-			public const int mr_ic_cast_light = 2130837704;
+			public const int mr_dialog_material_background_light = 2130837704;
 			
 			// aapt resource value: 0x7f0200c9
-			public const int mr_ic_close_dark = 2130837705;
+			public const int mr_ic_audiotrack_light = 2130837705;
 			
 			// aapt resource value: 0x7f0200ca
-			public const int mr_ic_close_light = 2130837706;
+			public const int mr_ic_cast_dark = 2130837706;
 			
 			// aapt resource value: 0x7f0200cb
-			public const int mr_ic_media_route_connecting_mono_dark = 2130837707;
+			public const int mr_ic_cast_light = 2130837707;
 			
 			// aapt resource value: 0x7f0200cc
-			public const int mr_ic_media_route_connecting_mono_light = 2130837708;
+			public const int mr_ic_close_dark = 2130837708;
 			
 			// aapt resource value: 0x7f0200cd
-			public const int mr_ic_media_route_mono_dark = 2130837709;
+			public const int mr_ic_close_light = 2130837709;
 			
 			// aapt resource value: 0x7f0200ce
-			public const int mr_ic_media_route_mono_light = 2130837710;
+			public const int mr_ic_media_route_connecting_mono_dark = 2130837710;
 			
 			// aapt resource value: 0x7f0200cf
-			public const int mr_ic_pause_dark = 2130837711;
+			public const int mr_ic_media_route_connecting_mono_light = 2130837711;
 			
 			// aapt resource value: 0x7f0200d0
-			public const int mr_ic_pause_light = 2130837712;
+			public const int mr_ic_media_route_mono_dark = 2130837712;
 			
 			// aapt resource value: 0x7f0200d1
-			public const int mr_ic_play_dark = 2130837713;
+			public const int mr_ic_media_route_mono_light = 2130837713;
 			
 			// aapt resource value: 0x7f0200d2
-			public const int mr_ic_play_light = 2130837714;
-			
-			// aapt resource value: 0x7f0200d5
-			public const int notification_template_icon_bg = 2130837717;
+			public const int mr_ic_pause_dark = 2130837714;
 			
 			// aapt resource value: 0x7f0200d3
-			public const int seleccion_comida = 2130837715;
+			public const int mr_ic_pause_light = 2130837715;
 			
 			// aapt resource value: 0x7f0200d4
-			public const int world_background = 2130837716;
+			public const int mr_ic_play_dark = 2130837716;
+			
+			// aapt resource value: 0x7f0200d5
+			public const int mr_ic_play_light = 2130837717;
+			
+			// aapt resource value: 0x7f0200de
+			public const int notification_template_icon_bg = 2130837726;
+			
+			// aapt resource value: 0x7f0200d6
+			public const int seleccion_comida = 2130837718;
+			
+			// aapt resource value: 0x7f0200d7
+			public const int splash = 2130837719;
+			
+			// aapt resource value: 0x7f0200d8
+			public const int splash01 = 2130837720;
+			
+			// aapt resource value: 0x7f0200d9
+			public const int splash02 = 2130837721;
+			
+			// aapt resource value: 0x7f0200da
+			public const int splash03 = 2130837722;
+			
+			// aapt resource value: 0x7f0200db
+			public const int splash04 = 2130837723;
+			
+			// aapt resource value: 0x7f0200dc
+			public const int splash05 = 2130837724;
+			
+			// aapt resource value: 0x7f0200dd
+			public const int world_background = 2130837725;
 			
 			static Drawable()
 			{
@@ -6692,8 +6719,8 @@ namespace Figaro.Droid
 			// aapt resource value: 0x7f0a015a
 			public const int Animation_Design_BottomSheetDialog = 2131362138;
 			
-			// aapt resource value: 0x7f0a0178
-			public const int AppCompatDialogStyle = 2131362168;
+			// aapt resource value: 0x7f0a0179
+			public const int AppCompatDialogStyle = 2131362169;
 			
 			// aapt resource value: 0x7f0a00a5
 			public const int Base_AlertDialog_AppCompat = 2131361957;
@@ -7148,11 +7175,11 @@ namespace Figaro.Droid
 			// aapt resource value: 0x7f0a001a
 			public const int CardView_Light = 2131361818;
 			
-			// aapt resource value: 0x7f0a0176
-			public const int MainTheme = 2131362166;
-			
 			// aapt resource value: 0x7f0a0177
-			public const int MainTheme_Base = 2131362167;
+			public const int MainTheme = 2131362167;
+			
+			// aapt resource value: 0x7f0a0178
+			public const int MainTheme_Base = 2131362168;
 			
 			// aapt resource value: 0x7f0a0032
 			public const int Platform_AppCompat = 2131361842;
@@ -7225,6 +7252,9 @@ namespace Figaro.Droid
 			
 			// aapt resource value: 0x7f0a0050
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131361872;
+			
+			// aapt resource value: 0x7f0a0176
+			public const int Splash = 2131362166;
 			
 			// aapt resource value: 0x7f0a00d1
 			public const int TextAppearance_AppCompat = 2131362001;

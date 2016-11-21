@@ -39,6 +39,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Configuration\ViewModelLocator.cs" />
+    <Compile Include="Interfaces\IPlatformCookies.cs" />
     <Compile Include="Models\ComentarioChef.cs" />
     <Compile Include="Models\ComentarioPlatoMenu.cs" />
     <Compile Include="Models\Disponibilidad.cs" />

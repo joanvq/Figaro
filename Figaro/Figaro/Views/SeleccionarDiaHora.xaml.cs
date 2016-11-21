@@ -40,14 +40,16 @@ namespace Figaro.Views
             }
             else
             {
-                var mainViewModel = BindingContext as MainViewModel;
-                mainViewModel.ElegirFechaHoraAsync(fecha, hora);
-                
-                mainViewModel.IsBusy = true;
+
                 await Navigation.PopToRootAsync();
                 var app = Application.Current as App;
                 var mainPage = (NavigationPage)app.MainPage;
                 var currentPage = (MasterDetailPage)mainPage.CurrentPage;
+
+                var mainViewModel = BindingContext as MainViewModel;
+                mainViewModel.IsBusy = true;
+                await mainViewModel.ElegirFechaHoraAsync(fecha, hora);
+                
                 currentPage.Detail = new ChefsPage();
             }
         }
