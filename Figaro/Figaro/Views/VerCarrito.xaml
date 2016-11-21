@@ -11,7 +11,10 @@
              IsVisible="{Binding IsBusy}"
              HeightRequest="20" WidthRequest="20"
              HorizontalOptions="Center" Margin="0,20,0,0"/>
-
+    <StackLayout HorizontalOptions="CenterAndExpand" Padding="0" BackgroundColor="#CC0311" Opacity="0.6" >
+        <Label x:Name="Aviso" FontSize="16" FontAttributes="Bold" TextColor="White"
+        HorizontalOptions="CenterAndExpand" Margin="10,12" IsVisible="False" />
+    </StackLayout>
     <Grid x:Name="CestaVacia" >
       <Grid.RowDefinitions>
         <RowDefinition Height="1*"/>
@@ -97,6 +100,9 @@
           <Label x:Name="LabelChef" Text="CHEF" Grid.Row="3" Grid.Column="0" FontSize="18"/>
           <Label x:Name="Chef" FontSize="18"
                   Text="{Binding UsuarioLogueado.ChefSeleccionado.NombreApellidos}"
+                  HorizontalOptions="End" Grid.Row="3" Grid.Column="2"/>
+          <Button x:Name="BChef" FontSize="14" IsVisible="False"
+                  Text="Elige un chef" Clicked="ElegirChef_OnTapped"
                   HorizontalOptions="End" Grid.Row="3" Grid.Column="2"/>
           <Label x:Name="LabelFecha" Text="FECHA" Grid.Row="4" Grid.Column="0" FontSize="18"/>
           <Button x:Name="BFecha" FontSize="14" IsVisible="False"

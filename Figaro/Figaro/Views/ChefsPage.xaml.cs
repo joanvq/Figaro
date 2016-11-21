@@ -38,16 +38,26 @@ namespace Figaro.Views
             {
                 AvisoSeleccionarDiaHora.IsVisible = true;
                 AvisoChefs.IsVisible = false;
+                AvisoFiltro.IsVisible = false;
+                //CerrarFiltro.IsVisible = false;
             }
             else if (mainViewModel.NoChefs)
             {
                 AvisoSeleccionarDiaHora.IsVisible = true;
                 AvisoChefs.IsVisible = true;
+                AvisoFiltro.Text = "Chefs filtrados para: " + mainViewModel.Fecha.Value.Date.ToString("dd/MM/yyyy") +
+                    " " + (mainViewModel.Hora) / 2 + ":" + (mainViewModel.Hora % 2) * 30;
+                AvisoFiltro.IsVisible = true;
+                //CerrarFiltro.IsVisible = true;
             }
             else
             {
                 AvisoSeleccionarDiaHora.IsVisible = false;
                 AvisoChefs.IsVisible = false;
+                AvisoFiltro.Text = "Chefs filtrados para: " + mainViewModel.Fecha.Value.Date.ToString("dd/MM/yyyy") +
+                    " " + (mainViewModel.Hora) / 2 + ":" + (mainViewModel.Hora%2)*30;
+                AvisoFiltro.IsVisible = true;
+                //CerrarFiltro.IsVisible = true;
             }
 
             mainViewModel.IsBusy = false;
@@ -76,8 +86,18 @@ namespace Figaro.Views
         {
             var mainViewModel = BindingContext as MainViewModel;
             Image img = (Image)sender;
+            // Si mvm.fecha es null hay que elegir fecha antes 
             mainViewModel.ElegirChef.Execute(int.Parse(img.ClassId));
             DisplayAlert("Seleccionado", "Chef seleccionado correctamente", "OK");
+        }
+
+        private async void CerrarFiltro_OnTapped(object sender, EventArgs e)
+        {
+            var mainViewModel = BindingContext as MainViewModel;
+            AvisoChefs.IsVisible = false;
+            //CerrarFiltro.IsVisible = false;
+            mainViewModel.Fecha = null;
+            await mainViewModel.FiltrarChefs();
         }
 
         // Imagenes estrellas valoracion

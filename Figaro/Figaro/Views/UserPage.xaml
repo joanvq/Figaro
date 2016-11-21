@@ -27,7 +27,7 @@
           <Label Text="Código Postal" />
           <Entry x:Name="CP" Text="{Binding UsuarioLogueado.CP}" />
           <Label Text="Ciudad" />
-          <Entry x:Name="Ciudad" Text="{Binding UsuarioLogueado.Ciudad}" />
+          <Entry x:Name="Ciudad" Keyboard="Numeric" Text="{Binding UsuarioLogueado.Ciudad}" />
           <Label Text="Género" />
           <Picker x:Name="Genero" SelectedIndex="{Binding UsuarioLogueado.Genero}"
                   HorizontalOptions="FillAndExpand" SelectedIndexChanged="ActualizarUsuario_OnClicked">

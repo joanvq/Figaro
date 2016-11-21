@@ -45,6 +45,19 @@ namespace Figaro.Views
             // Cargar fecha y hora
             if (mainViewModel.Fecha != null)
             {
+                if (mainViewModel.UsuarioLogueado.ChefSeleccionadoId == null)
+                {
+                    if (mainViewModel.ListaChefs.Count > 0)
+                    {
+                        LabelChef.IsVisible = false;
+                        BChef.IsVisible = true;
+                    }
+                    else
+                    {
+                        Aviso.Text = "No hay chefs disponibles para esta fecha y hora";
+                        Aviso.IsVisible = true;
+                    }
+                }
                 Fecha.Text = mainViewModel.Fecha.Value.Date.ToString("dd'/'MM'/'yyyy");
                 var h = mainViewModel.Hora / 2;
                 var m = (mainViewModel.Hora % 2) * 30;
@@ -247,6 +260,11 @@ namespace Figaro.Views
         private async void SeleccionarDiaHora_OnTapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SeleccionarDiaHora());
+        }
+
+        private async void ElegirChef_OnTapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ChefsPage());
         }
 
         private void Pedir_OnClicked(object sender, EventArgs e)

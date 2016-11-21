@@ -857,10 +857,6 @@ namespace Figaro.ViewModels
                 }
                 listChefs = nuevaListChefs;
             }
-            else
-            {
-                listChefs = new List<Chef>();
-            }
 
             NoFecha = listChefs.Count.Equals(0) || !Fecha.Equals(null);
             NoChefs = listChefs.Count.Equals(0);
