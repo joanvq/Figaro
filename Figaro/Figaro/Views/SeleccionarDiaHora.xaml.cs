@@ -48,7 +48,9 @@ namespace Figaro.Views
 
                 var mainViewModel = BindingContext as MainViewModel;
                 mainViewModel.IsBusy = true;
-                await mainViewModel.ElegirFechaHoraAsync(fecha, hora);
+                DateTime fechaDate = new DateTime(fecha.Date.Year, fecha.Date.Month, fecha.Date.Day);
+                DateTime horaDate = new DateTime(2000, 01, 01, hora.Time.Hours, hora.Time.Minutes, 0);
+                await mainViewModel.ElegirFechaHoraAsync(fechaDate, horaDate);
                 
                 currentPage.Detail = new ChefsPage();
             }

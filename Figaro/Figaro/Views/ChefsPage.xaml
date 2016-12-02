@@ -19,21 +19,20 @@
 
     <StackLayout Orientation="Vertical"
                  IsEnabled="{Binding IsIdle}" IsVisible="{Binding IsIdle}" >
-      <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" 
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" 
                    BackgroundColor="#CC0311" Opacity="0.6">
-        <Label x:Name="AvisoFiltro" FontSize="16" FontAttributes="Bold" TextColor="White"
-            HorizontalOptions="CenterAndExpand" Margin="10,12" IsVisible="False" />
-        <!--Cerrar filtro-->
-        <!--<Image x:Name="CerrarFiltro">
-            <Image.GestureRecognizers Tapped="CerrarFiltro_OnTapped"/>
-        </Image>-->
+            <Label x:Name="AvisoFiltro" FontSize="16" FontAttributes="Bold" TextColor="White"
+                    HorizontalOptions="CenterAndExpand" Margin="10,12" IsVisible="False" />
+            <Button x:Name="CerrarFiltro" Image="close_popup.png" BackgroundColor="Transparent" 
+                    BorderColor="Transparent" BorderWidth="0" HeightRequest="40" VerticalOptions="Center"
+                    HorizontalOptions="Center" Clicked="CerrarFiltro_OnTapped" IsVisible="False"/>
       </StackLayout>
-      <Label x:Name="AvisoChefs" 
+            <Label x:Name="AvisoChefs" 
              FontSize="24" TextColor="#CC0311" HorizontalOptions="Center"
-             Text="No hay chefs disponibles"/>
-      <Label x:Name="AvisoSeleccionarDiaHora" Margin="12,6" HorizontalOptions="Center"
+             Text="No hay chefs disponibles" IsVisible="{Binding NoChefs}"/>
+            <Label x:Name="AvisoSeleccionarDiaHora" Margin="12,6" HorizontalOptions="Center"
              FontSize="20" TextColor="#CC0311"
-             Text = "Seleccione una fecha y hora"/>
+             Text = "Seleccione una fecha y hora" IsVisible="{Binding NoFecha}"/>
       <ListView x:Name="ListaChefsView"
                 ItemsSource="{Binding ListaChefs}"
                 HasUnevenRows="true"

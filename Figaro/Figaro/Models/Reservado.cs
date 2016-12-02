@@ -11,6 +11,7 @@ namespace Figaro.Models
         public DateTime Hora { get; set; }
         public int DisponibilidadId { get; set; }
         public int PedidoId { get; set; }
+        public string Fondo { get; set; }
 
         public Pedido Pedido { get; set; }
         public Disponibilidad Disponibilidad { get; set; }

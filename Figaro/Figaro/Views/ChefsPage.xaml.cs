@@ -15,12 +15,18 @@ namespace Figaro.Views
     {
         public ChefsPage()
         {
+            InitChefPage();
+            
+        }
+
+        private void InitChefPage()
+        {
             InitializeComponent();
 
             var mainViewModel = BindingContext as MainViewModel;
             mainViewModel.IsBusy = true;
 
-            var tgr = new TapGestureRecognizer ();
+            var tgr = new TapGestureRecognizer();
             tgr.Tapped += (s, e) => {
                 // handle the tap
                 Navigation.PushAsync(new SeleccionarDiaHora());
@@ -31,7 +37,7 @@ namespace Figaro.Views
             menuInferior.mainViewmodel = mainViewModel;
             Menu_Button.GestureRecognizers.Add(menuInferior.tapMenu);
             Plato_Button.GestureRecognizers.Add(menuInferior.tapPlato);
-            Chefs_Button.GestureRecognizers.Add(menuInferior.tapChefs) ;
+            Chefs_Button.GestureRecognizers.Add(menuInferior.tapChefs);
             Profile_Button.GestureRecognizers.Add(menuInferior.tapProfile);
 
             if (mainViewModel.Fecha == null)
@@ -39,25 +45,43 @@ namespace Figaro.Views
                 AvisoSeleccionarDiaHora.IsVisible = true;
                 AvisoChefs.IsVisible = false;
                 AvisoFiltro.IsVisible = false;
-                //CerrarFiltro.IsVisible = false;
+                CerrarFiltro.IsVisible = false;
             }
             else if (mainViewModel.NoChefs)
             {
                 AvisoSeleccionarDiaHora.IsVisible = true;
                 AvisoChefs.IsVisible = true;
+                string strHora, strMinuto;
+                int hora = mainViewModel.Hora / 2;
+                int minuto = (mainViewModel.Hora % 2) * 30;
+                if (hora < 10)
+                {
+                    strHora = "0" + hora;
+                }
+                else
+                {
+                    strHora = hora.ToString();
+                }
+                if (minuto < 10)
+                {
+                    strMinuto = "0" + minuto;
+                }
+                else {
+                    strMinuto = minuto.ToString();
+                }
                 AvisoFiltro.Text = "Chefs filtrados para: " + mainViewModel.Fecha.Value.Date.ToString("dd/MM/yyyy") +
-                    " " + (mainViewModel.Hora) / 2 + ":" + (mainViewModel.Hora % 2) * 30;
+                    " " + strHora + ":" + strMinuto;
                 AvisoFiltro.IsVisible = true;
-                //CerrarFiltro.IsVisible = true;
+                CerrarFiltro.IsVisible = true;
             }
             else
             {
                 AvisoSeleccionarDiaHora.IsVisible = false;
                 AvisoChefs.IsVisible = false;
                 AvisoFiltro.Text = "Chefs filtrados para: " + mainViewModel.Fecha.Value.Date.ToString("dd/MM/yyyy") +
-                    " " + (mainViewModel.Hora) / 2 + ":" + (mainViewModel.Hora%2)*30;
+                    " " + (mainViewModel.Hora) / 2 + ":" + (mainViewModel.Hora % 2) * 30;
                 AvisoFiltro.IsVisible = true;
-                //CerrarFiltro.IsVisible = true;
+                CerrarFiltro.IsVisible = true;
             }
 
             mainViewModel.IsBusy = false;
@@ -82,22 +106,38 @@ namespace Figaro.Views
             }
         }
 
-        private void ElegirChef_OnTapped(object sender, EventArgs e)
+        private async void ElegirChef_OnTapped(object sender, EventArgs e)
         {
             var mainViewModel = BindingContext as MainViewModel;
             Image img = (Image)sender;
-            // Si mvm.fecha es null hay que elegir fecha antes 
-            mainViewModel.ElegirChef.Execute(int.Parse(img.ClassId));
-            DisplayAlert("Seleccionado", "Chef seleccionado correctamente", "OK");
+            await mainViewModel.ElegirChef(int.Parse(img.ClassId));
+            if (mainViewModel.Fecha == null)
+            {
+                mainViewModel.ChefSeleccionado = mainViewModel.ListaChefs.FirstOrDefault(l => l.Id == int.Parse(img.ClassId));
+                Navigation.PushAsync(new VerChef(mainViewModel));
+                DisplayAlert("", "Seleccione una fecha y hora de reserva", "OK");
+            }
+            else
+            {
+                if (mainViewModel.ListaMenuCarrito.Count == 0 && mainViewModel.ListaPlatoCarrito.Count == 0)
+                {
+                    DisplayAlert("", "Elige un menu o plato", "OK");
+                    Navigation.PopAsync();
+                }
+                else
+                {
+                    DisplayAlert("Seleccionado", "Chef seleccionado correctamente", "OK");
+                    Navigation.PushAsync(new VerCarrito());
+                }
+            }
         }
 
         private async void CerrarFiltro_OnTapped(object sender, EventArgs e)
         {
             var mainViewModel = BindingContext as MainViewModel;
-            AvisoChefs.IsVisible = false;
-            //CerrarFiltro.IsVisible = false;
             mainViewModel.Fecha = null;
             await mainViewModel.FiltrarChefs();
+            InitChefPage();
         }
 
         // Imagenes estrellas valoracion

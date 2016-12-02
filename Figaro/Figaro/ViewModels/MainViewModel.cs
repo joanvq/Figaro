@@ -58,6 +58,7 @@ namespace Figaro.ViewModels
         private DateTime? fecha = null;
         // De 0 a 47 --> 24 horas + medias horas
         private int hora = DateTime.Now.Hour * 2 + 1;
+        private List<Reservado> listaLibres;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -356,6 +357,16 @@ namespace Figaro.ViewModels
             }
         }
 
+        public List<Reservado> ListaLibres
+        {
+            get { return listaLibres; }
+            set
+            {
+                listaLibres = value;
+                OnPropertyChanged();
+            }
+        }
+
         /* OTROS */
 
         public bool IsBusy
@@ -645,37 +656,37 @@ namespace Figaro.ViewModels
             }
         }
 
-        public Command ElegirChef
-        {
-            get
-            {
-                return new Command<int>(async (key) =>
-                {
-                    IsBusy = true;
+        //public Command ElegirChef
+        //{
+        //    get
+        //    {
+        //        return new Command<int>(async (key) =>
+        //        {
+        //            IsBusy = true;
 
-                    var chefServices = new ChefServices();
-                    chefSeleccionado = await chefServices.GetChefsAsync(key);
-                    var usuarioServices = new UsuarioServices();
-                    Usuario usuario = UsuarioLogueado;
-                    usuario.ChefSeleccionadoId = chefSeleccionado.Id;
+        //            var chefServices = new ChefServices();
+        //            chefSeleccionado = await chefServices.GetChefsAsync(key);
+        //            var usuarioServices = new UsuarioServices();
+        //            Usuario usuario = UsuarioLogueado;
+        //            usuario.ChefSeleccionadoId = chefSeleccionado.Id;
 
-                    var isSuccessStatusCode = await usuarioServices.PutUsuarioAsync(usuario.Id, usuario);
-                    if (isSuccessStatusCode)
-                    {
-                        UsuarioLogueado.ChefSeleccionado = chefSeleccionado;
-                        UsuarioLogueado.ChefSeleccionadoId = chefSeleccionado.Id;
-                        StatusMessage = "Se ha elegido el chef " + chefSeleccionado.NombreApellidos + " correctamente.";
-                    }
-                    else
-                    {
-                        StatusMessage = "Hubo un problema al elegir el chef " + chefSeleccionado.NombreApellidos + ".";
-                    }
-                    //carritoCompra.chef = chefSeleccionado;
+        //            var isSuccessStatusCode = await usuarioServices.PutUsuarioAsync(usuario.Id, usuario);
+        //            if (isSuccessStatusCode)
+        //            {
+        //                UsuarioLogueado.ChefSeleccionado = chefSeleccionado;
+        //                UsuarioLogueado.ChefSeleccionadoId = chefSeleccionado.Id;
+        //                StatusMessage = "Se ha elegido el chef " + chefSeleccionado.NombreApellidos + " correctamente.";
+        //            }
+        //            else
+        //            {
+        //                StatusMessage = "Hubo un problema al elegir el chef " + chefSeleccionado.NombreApellidos + ".";
+        //            }
+        //            //carritoCompra.chef = chefSeleccionado;
 
-                    IsBusy = false;
-                });
-            }
-        }
+        //            IsBusy = false;
+        //        });
+        //    }
+        //}
 
         /*-----FUNCTIONS-----*/
 
@@ -858,7 +869,7 @@ namespace Figaro.ViewModels
                 listChefs = nuevaListChefs;
             }
 
-            NoFecha = listChefs.Count.Equals(0) || !Fecha.Equals(null);
+            NoFecha = listChefs.Count.Equals(0) || Fecha.Equals(null);
             NoChefs = listChefs.Count.Equals(0);
             ListaChefs = listChefs;
 
@@ -1206,16 +1217,16 @@ namespace Figaro.ViewModels
             IsBusy = false;
         }
 
-        public async Task ElegirFechaHoraAsync(DatePicker fecha, TimePicker hora)
+        public async Task ElegirFechaHoraAsync(DateTime fecha, DateTime hora)
         {
             IsBusy = true;
-            
-            Fecha = new DateTime(fecha.Date.Year, fecha.Date.Month, fecha.Date.Day);
+
+            Fecha = fecha;
 
             // Guarda de media hora en media hora, sera 1 o 0 dependiendo de si
             // se le suma la media hora o no
-            int minutos = (hora.Time.Minutes >= 30) ? 1 : 0;
-            Hora = hora.Time.Hours * 2 + minutos;
+            int minutos = (hora.Minute >= 30) ? 1 : 0;
+            Hora = hora.Hour * 2 + minutos;
             
             var usuarioServices = new UsuarioServices();
             Usuario usuario = UsuarioLogueado;
@@ -1236,6 +1247,32 @@ namespace Figaro.ViewModels
             IsBusy = false;
         }
 
+        public async Task ElegirChef(int idChef)
+        {
+            IsBusy = true;
+
+            var chefServices = new ChefServices();
+            chefSeleccionado = await chefServices.GetChefsAsync(idChef);
+            var usuarioServices = new UsuarioServices();
+            Usuario usuario = UsuarioLogueado;
+            usuario.ChefSeleccionadoId = chefSeleccionado.Id;
+
+            var isSuccessStatusCode = await usuarioServices.PutUsuarioAsync(usuario.Id, usuario);
+            if (isSuccessStatusCode)
+            {
+                UsuarioLogueado.ChefSeleccionado = chefSeleccionado;
+                UsuarioLogueado.ChefSeleccionadoId = chefSeleccionado.Id;
+                StatusMessage = "Se ha elegido el chef " + chefSeleccionado.NombreApellidos + " correctamente.";
+            }
+            else
+            {
+                StatusMessage = "Hubo un problema al elegir el chef " + chefSeleccionado.NombreApellidos + ".";
+            }
+            //carritoCompra.chef = chefSeleccionado;
+
+            IsBusy = false;
+        }
+
         public void LogOut()
         {
             if (UsuarioLogueado.FacebookId != "" || UsuarioLogueado.FacebookId != null)
@@ -1245,6 +1282,14 @@ namespace Figaro.ViewModels
             App.Current.MainPage = new NavigationPage(new MainPage(null));
         }
 
+        public async void InitLibres()
+        {
+            IsBusy = true;
+            ReservadoServices reservadoServices = new ReservadoServices();
+            ListaLibres = await reservadoServices.GetReservadosLibresByChefAsync(ChefSeleccionado.Id);
+            ListaLibres = ListaLibres.OrderBy(item => item.DisponibilidadId).ThenBy(item => item.Hora).ToList();
+            IsBusy = false;
+        }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

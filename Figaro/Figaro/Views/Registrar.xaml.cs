@@ -87,6 +87,7 @@ namespace Figaro.Views
         private bool ComprovarCampos()
         {
             var comprobacion = true;
+            string textoComprobacion = null;
             if (Nombre.Text == "" || Nombre.Text == null) {
                 comprobacion = false;
                 Nombre.PlaceholderColor = Color.Red;
@@ -126,6 +127,7 @@ namespace Figaro.Views
                     comprobacion = false;
                     Email.TextColor = Color.Red;
                     Email.Placeholder = "CORREO ELECTRÓNICO (Campo Obligatorio)";
+                    textoComprobacion = "El correo electrónico no es válido";
                 }
                 else
                 {
@@ -145,12 +147,24 @@ namespace Figaro.Views
                 comprobacion = false;
                 Password.TextColor = Color.Red;
                 Password.Placeholder = "CONTRSEÑA (Campo Obligatorio)";
+                textoComprobacion = "La contraseña debe contener 7 o más carácteres";
+
             }
             else
             {
                 Password.PlaceholderColor = Color.White;
                 Password.Placeholder = "CONTRSEÑA";
             }
+
+            if(!comprobacion)
+            {
+                if (textoComprobacion == null)
+                {
+                    textoComprobacion = "Revise los campos obligatorio";
+                }
+                DisplayAlert("", textoComprobacion, "OK");
+            }
+
             return comprobacion;
         }
 

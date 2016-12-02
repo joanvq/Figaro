@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -40,6 +41,18 @@ namespace WebServicesFigaro.Controllers
                 .Include(r => r.Disponibilidad)
                 .Include(r => r.Pedido)
                 .Where(r => r.PedidoId == id);
+        }
+
+        // GET: api/Reservado/LibresChef/{idChef}
+        [Route("api/Reservado/LibresChef/{id}")]
+        public IQueryable<Reservado> GetReservadoesLibresByChef(int id)
+        {
+            return db.Reservadoes
+                .Include(r => r.Disponibilidad)
+                .Include(r => r.Disponibilidad.Chef)
+                .Include(r => r.Pedido)
+                .Where(r => r.Disponibilidad.ChefId == id && r.PedidoId == -1);
+                //Falta filtrar fechas para que no aparezcan las anteriores a hoy
         }
 
         // GET: api/Reservado/5

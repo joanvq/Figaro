@@ -1,4 +1,5 @@
 ﻿using Figaro.Models;
+using Figaro.Services;
 using Figaro.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,8 @@ namespace Figaro.Views
 {
     public partial class VerChef : ContentPage
     {
-
-        CalendarView _calendarView;
-        StackLayout _stackLayout;
+        private DateTime currentDate;
+        private CalendarView _calendarView;
 
         public VerChef(MainViewModel mainViewModel)
         {
@@ -173,18 +173,101 @@ namespace Figaro.Views
                 ShouldHighlightDaysOfWeekLabels = false,
                 SelectionBackgroundStyle = CalendarView.BackgroundStyle.CircleFill,
                 TodayBackgroundStyle = CalendarView.BackgroundStyle.CircleOutline,
-                ShowNavigationArrows = false                
+                ShowNavigationArrows = true             
             };
-            PerfilAMostrar.Children.Add(_calendarView);
+            Calendario.Children.Add(_calendarView);
+
+            _calendarView.DateSelected += (object sender, DateTime selectedDate) =>
+            {
+                RefreshCalendarListView(selectedDate, mainViewModel);
+                currentDate = selectedDate.Date;
+            };
+            mainViewModel.InitLibres();
+
 
         }
 
-        private void Elegir_OnClick(object sender, EventArgs e)
+        private void RefreshCalendarListView(DateTime selectedDate, MainViewModel mvm)
         {
-            var mainViewModel = BindingContext as MainViewModel;
-            var idChef = mainViewModel.ChefSeleccionado.Id;
-            mainViewModel.ElegirChef.Execute(idChef);
-            DisplayAlert("Seleccionado", "Chef seleccionado correctamente", "OK");
+            SeleccioneFecha.IsVisible = false;
+            listViewCalendars.SelectedItem = null;
+            var listaHoras = mvm.ListaLibres.Where(l => l.Disponibilidad.Fecha.Date == selectedDate);
+            if (selectedDate == DateTime.Today)
+            {
+                listaHoras = listaHoras.Where(l => l.Hora.Hour > DateTime.Now.Hour);
+            }
+            if (listaHoras.Count() < 4)
+            {
+                NoDisponible.IsVisible = true;
+                listViewCalendars.ItemsSource = null;
+                listViewCalendars.SelectedItem = null;
+            }
+            else
+            {
+                var listaFinal = new List<Reservado>();
+                var count = 1;
+                for(int i = 1; i < listaHoras.Count(); i++)
+                {
+                    var horaAct = listaHoras.ElementAt(i);
+                    var horaAnt = listaHoras.ElementAt(i-1);
+                    if (horaAnt.Hora.AddMinutes(30) == horaAct.Hora)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        count = 1;
+                    }
+                    if(count >= 4)
+                    {
+                        // Si hay 2 horas seguidas libres (4 medias horas) añade a la lista
+                        // el elemento de 2 horas anterior
+                        listaFinal.Add(listaHoras.ElementAt(i - 3));
+                    }
+                }
+                if (listaFinal.Count == 0)
+                {
+                    NoDisponible.IsVisible = true;
+                    listViewCalendars.ItemsSource = null;
+                    listViewCalendars.SelectedItem = null;
+                }
+                else
+                {
+                    NoDisponible.IsVisible = false;
+                    listViewCalendars.ItemsSource = listaFinal;
+                }
+            }
+        }
+
+        private async void Elegir_OnClick(object sender, EventArgs e)
+        {
+            if (currentDate == null || listViewCalendars == null || listViewCalendars.SelectedItem == null)
+            {
+                DisplayAlert("Error", "Por favor, seleccione una fecha y hora disponible", "OK");
+            }
+            else
+            {
+                var mainViewModel = BindingContext as MainViewModel;
+                var idChef = mainViewModel.ChefSeleccionado.Id;
+
+                mainViewModel.Fecha = currentDate.Date;
+                var hora = (Reservado)listViewCalendars.SelectedItem;
+                await mainViewModel.ElegirFechaHoraAsync(currentDate.Date, hora.Hora);
+                await mainViewModel.ElegirChef(idChef);
+                DisplayAlert("Seleccionado", "Chef seleccionado correctamente", "OK");
+                if (mainViewModel.ListaMenuCarrito.Count == 0 && mainViewModel.ListaPlatoCarrito.Count == 0)
+                {
+                    Navigation.PopAsync();                
+                } 
+                else
+                {
+                    Navigation.PushAsync(new VerCarrito());
+                }
+            }
+        }
+
+        private void Hora_OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
         }
 
         private void Plato_OnItemTapped(object sender, ItemTappedEventArgs e)

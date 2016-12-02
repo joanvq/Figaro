@@ -417,6 +417,21 @@
   <ItemGroup>
     <BundleResource Include="Resources\splash05.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\splash01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\splash02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\splash03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\splash04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\splash05.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.0.107\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.0.107\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

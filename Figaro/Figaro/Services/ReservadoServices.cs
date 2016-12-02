@@ -28,6 +28,15 @@ namespace Figaro.Services
             return listaReservados;
         }
 
+        public async Task<List<Reservado>> GetReservadosLibresByChefAsync(int idChef)
+        {
+            RestClient<Reservado> restClient = new RestClient<Reservado>("Reservado/LibresChef");
+
+            var listaReservados = await restClient.GetByKeyAsync(idChef);
+
+            return listaReservados;
+        }
+
         public async Task<Reservado> GetReservadosAsync(int id)
         {
             RestClient<Reservado> restClient = new RestClient<Reservado>("Reservado");
@@ -36,7 +45,7 @@ namespace Figaro.Services
 
             return disponibilidad;
         }
-
+        
         public async Task<bool> PutReservadoEnPedidoAsync(int reservadoId, int pedidoId)
         {
 

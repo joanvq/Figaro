@@ -76,6 +76,7 @@ namespace Figaro.Views
             else
             {
                 LabelChef.IsVisible = false;
+                Chef.IsVisible = false;
                 LabelFecha.IsVisible = false;
                 LabelHora.IsVisible = false;
                 Fecha.IsVisible = false;
@@ -287,6 +288,10 @@ namespace Figaro.Views
                     && mainViewModel.ListaMenuCarrito.Count == 0)
             {
                 DisplayAlert("Error", "No hay ningun Plato o Menú seleccionado.", "OK");
+            }
+            else if (mainViewModel.Fecha == null)
+            {
+                DisplayAlert("Error", "No hay ninguna Fecha y Hora seleccionada.", "OK");
             }
             else
             {
