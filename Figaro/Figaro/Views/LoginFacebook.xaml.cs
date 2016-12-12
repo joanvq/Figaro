@@ -56,7 +56,6 @@ namespace Figaro.Views
 
                 if(isSuccess)
                 {
-                    
 
                     var lvm = new LoginViewModel();
                     lvm.UsuarioLogueado = vm.UsuarioLogueado;

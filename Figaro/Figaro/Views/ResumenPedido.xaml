@@ -7,85 +7,87 @@
              BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
              x:Name="resumenPedido"
              Title="Resumen Pedido"
-             NavigationPage.HasBackButton="False">  
+             NavigationPage.HasBackButton="False">
 
-  <StackLayout Orientation="Vertical" Padding="20">
+    <StackLayout Orientation="Vertical" Padding="20">
 
-    <ActivityIndicator IsRunning="{Binding IsBusy}"
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
                        IsVisible="{Binding IsBusy}" />
+        <StackLayout Orientation="Horizontal"  IsVisible="{Binding IsBusy}" HorizontalOptions="Center">
+            <Label Text="Por favor espere mientras procesamos su petición..." FontSize="18"/>
+        </StackLayout>
+        <StackLayout IsVisible="{Binding IsIdle}">
+            <StackLayout Orientation="Horizontal">
+                <Label x:Name="status"/>
+                <Label x:Name="emailUsuario"/>
+            </StackLayout>
 
-    <StackLayout Orientation="Horizontal">
-      <Label x:Name="status"/>
-      <Label x:Name="emailUsuario"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Numero de pedido:" FontSize="18"/>
+                <Label x:Name="nPedido"  FontSize="18"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Fecha y Hora del Pedido:" FontSize="18"/>
+                <Label x:Name="FechaPedido" FontSize="18"/>
+                <!--Pedido.Disponibilidad.FechaHora-->
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Nombre: " FontSize="18"/>
+                <Label x:Name="NombreApellidos" FontSize="18" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Dirección: " FontSize="18"/>
+                <Label x:Name ="Direccion" Text="{Binding pedido.Direccion}" FontSize="18" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="CP: " FontSize="18"/>
+                <Label x:Name ="CP" Text="{Binding pedido.Direccion}" FontSize="18" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Zona: " FontSize="18"/>
+                <Label x:Name="Zona" FontSize="18" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Cocina: " FontSize="18"/>
+                <Label x:Name="TipoCocina" FontSize="18" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Chef: " FontSize="18"/>
+                <Label x:Name="NombreChef" Text="nombre" FontSize="18" />
+                <!--Pedido.Disponibilidad.Chef.Nombre-->
+                <Label x:Name="ApellidosChef" FontSize="18" />
+                <!--Pedido.Disponibilidad.Chef.Nombre-->
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Fecha Reserva: " FontSize="18"/>
+                <Label x:Name="FechaReservada" FontSize="18" />
+                <!--Pedido.Disponibilidad.FechaHora-->
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Hora Inicial Reserva: " FontSize="18"/>
+                <Label x:Name="HoraIniRes" FontSize="18" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Hora Final Reserva: " FontSize="18"/>
+                <Label x:Name="HoraFinRes" FontSize="18" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Total Pagado: " FontSize="18"/>
+                <Label x:Name="Precio" FontSize="18" />
+            </StackLayout>
+
+            <Button x:Name="Cerrar" Text="Cerrar" Clicked="Cerrar_OnClicked" IsEnabled="False"/>
+        </StackLayout>
     </StackLayout>
-
-    <StackLayout Orientation="Horizontal">
-      <Label Text="Numero de pedido:" FontSize="18"/>
-      <Label x:Name="nPedido"  FontSize="18"/>
-    </StackLayout>
-
-    <StackLayout Orientation="Horizontal" >
-      <Label Text="Fecha y Hora del Pedido:" FontSize="18"/>
-      <Label x:Name="FechaPedido" FontSize="18"/>
-      <!--Pedido.Disponibilidad.FechaHora-->
-    </StackLayout>
-
-    <StackLayout Orientation="Horizontal">
-      <Label Text="Nombre: " FontSize="18"/>
-      <Label x:Name="NombreApellidos" FontSize="18" />
-    </StackLayout>
-
-    <StackLayout Orientation="Horizontal">
-      <Label Text="Dirección: " FontSize="18"/>
-      <Label x:Name ="Direccion" Text="{Binding pedido.Direccion}" FontSize="18" />
-    </StackLayout>
-
-    <StackLayout Orientation="Horizontal">
-      <Label Text="CP: " FontSize="18"/>
-      <Label x:Name ="CP" Text="{Binding pedido.Direccion}" FontSize="18" />
-    </StackLayout>
-
-    <StackLayout Orientation="Horizontal">
-      <Label Text="Zona: " FontSize="18"/>
-      <Label x:Name="Zona" FontSize="18" />
-    </StackLayout>
-
-    <StackLayout Orientation="Horizontal">
-      <Label Text="Cocina: " FontSize="18"/>
-      <Label x:Name="TipoCocina" FontSize="18" />
-    </StackLayout>
-
-    <StackLayout Orientation="Horizontal" >
-      <Label Text="Chef: " FontSize="18"/>
-      <Label x:Name="NombreChef" Text="nombre" FontSize="18" />
-      <!--Pedido.Disponibilidad.Chef.Nombre-->
-      <Label x:Name="ApellidosChef" FontSize="18" />
-      <!--Pedido.Disponibilidad.Chef.Nombre-->
-    </StackLayout>
-
-    <StackLayout Orientation="Horizontal">
-      <Label Text="Fecha Reserva: " FontSize="18"/>
-      <Label x:Name="FechaReservada" FontSize="18" />
-      <!--Pedido.Disponibilidad.FechaHora-->
-    </StackLayout>
-
-    <StackLayout Orientation="Horizontal">
-      <Label Text="Hora Inicial Reserva: " FontSize="18"/>
-      <Label x:Name="HoraIniRes" FontSize="18" />
-    </StackLayout>
-
-    <StackLayout Orientation="Horizontal" >
-        <Label Text="Hora Final Reserva: " FontSize="18"/>
-        <Label x:Name="HoraFinRes" FontSize="18" />
-    </StackLayout>
-
-    <StackLayout Orientation="Horizontal">
-      <Label Text="Total Pagado: " FontSize="18"/>
-      <Label x:Name="Precio" FontSize="18" />
-    </StackLayout>
-
-    <Button x:Name="Cerrar" Text="Cerrar" Clicked="Cerrar_OnClicked" IsEnabled="False"/>
-    
-  </StackLayout>
-  
 </ContentPage>
