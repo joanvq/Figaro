@@ -151,7 +151,7 @@ namespace Figaro.ViewModels
 
                 //Xamarin.Forms.Device.BeginInvokeOnMainThread(() => App.Current.MainPage = new NavigationPage(new SeleccionarTipoComida(UsuarioLogueado)));
                 
-                App.Current.MainPage = new NavigationPage(new SeleccionarTipoComida(UsuarioLogueado));
+                App.Current.MainPage = new NavigationPage(new MenuPage(UsuarioLogueado));
             }
 
         }

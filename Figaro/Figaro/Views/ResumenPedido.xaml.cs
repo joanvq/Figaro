@@ -113,7 +113,7 @@ namespace Figaro.Views
         public void Cerrar_OnClicked(object sender, EventArgs e)
         {
             var mvm = BindingContext as MainViewModel;
-            App.Current.MainPage = new NavigationPage(new SeleccionarTipoComida(mvm.UsuarioLogueado));
+            App.Current.MainPage = new NavigationPage(new MenuPage(mvm.UsuarioLogueado));
         }
     }
 }

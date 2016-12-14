@@ -83,8 +83,59 @@ namespace Figaro.Views
                 AvisoFiltro.IsVisible = true;
                 CerrarFiltro.IsVisible = true;
             }
+            InitNavBar();
 
             mainViewModel.IsBusy = false;
+        }
+
+        public void InitNavBar()
+        {
+            //var calendario = new ToolbarItem
+            //{
+            //    Icon = "icono_time.png",
+            //    Command = new Command(() =>
+            //    {
+            //        //DisplayAlert("Menu", "Ciudades tapped", "OK");
+            //        Navigation.PushAsync(new SeleccionarDiaHora());
+            //    })
+            //};
+            //this.ToolbarItems.Add(calendario);
+
+            var cocina = new ToolbarItem
+            {
+                Text = "Seleccionar cocina",
+                Icon = "seleccion_comida.png",
+                Command = new Command(() =>
+                {
+                    //DisplayAlert("Menu", "Ciudades tapped", "OK");
+                    Navigation.PushAsync(new SeleccionarTipoCocina());
+                })
+            };
+            this.ToolbarItems.Add(cocina);
+
+            var ciudades = new ToolbarItem
+            {
+                Text = "Seleccionar zona",
+                Icon = "map_maker.png",
+                Command = new Command(() =>
+                {
+                    //DisplayAlert("Menu", "Ciudades tapped", "OK");
+                    Navigation.PushAsync(new SeleccionarZona());
+                })
+            };
+            this.ToolbarItems.Add(ciudades);
+
+            var cesta = new ToolbarItem
+            {
+                Text = "Cesta",
+                Icon = "cesta.png",
+                Command = new Command(() =>
+                {
+                    //DisplayAlert("Menu", "Cesta tapped", "OK");
+                    Navigation.PushAsync(new VerCarrito());
+                })
+            };
+            this.ToolbarItems.Add(cesta);
         }
 
         private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)

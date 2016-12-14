@@ -1061,7 +1061,7 @@ namespace Figaro.ViewModels
             return false;
         }
 
-        public async void VaciarCarritoAsync()
+        public async Task VaciarCarritoAsync()
         {
             IsBusy = true;
 

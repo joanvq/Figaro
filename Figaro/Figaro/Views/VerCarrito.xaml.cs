@@ -133,6 +133,32 @@ namespace Figaro.Views
             {
                 CestaLlena.IsVisible = true;
                 CestaVacia.IsVisible = false;
+                if(this.ToolbarItems.FirstOrDefault() == null)
+                {
+                    var vaciarCesta = new ToolbarItem
+                    {
+                        Text = "Vaciar cesta",
+                        Order = ToolbarItemOrder.Secondary,
+                        Command = new Command(async () =>
+                        {
+                            // Vaciar cesta
+                            await mainViewModel.VaciarCarritoAsync();
+                            // Recargar view
+                            if (mainViewModel.ListaMenuCarrito.Count == 0 && mainViewModel.ListaPlatoCarrito.Count == 0)
+                            {
+                                CestaLlena.IsVisible = false;
+                                CestaVacia.IsVisible = true;
+                                if (this.ToolbarItems.FirstOrDefault() != null)
+                                {
+                                    this.ToolbarItems.Remove(this.ToolbarItems.FirstOrDefault());
+                                }
+                            }
+
+                        })
+                    };
+                    this.ToolbarItems.Add(vaciarCesta);
+                }
+                
             }
             ListaPlatosMenus.ItemsSource = ListaCarrito;
 
@@ -302,19 +328,13 @@ namespace Figaro.Views
         private async void Platos_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
-            var app = Application.Current as App;
-            var mainPage = (NavigationPage)app.MainPage;
-            var currentPage = (MasterDetailPage)mainPage.CurrentPage;
-            currentPage.Detail = new PlatosPage();
+            App.Current.MainPage = new NavigationPage(new PlatosPage());
         }
 
         private async void Chefs_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
-            var app = Application.Current as App;
-            var mainPage = (NavigationPage)app.MainPage;
-            var currentPage = (MasterDetailPage)mainPage.CurrentPage;
-            currentPage.Detail = new ChefsPage();
+            App.Current.MainPage = new NavigationPage(new ChefsPage());
         }
 
     }

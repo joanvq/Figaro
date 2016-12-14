@@ -25,6 +25,81 @@ namespace Figaro.Views
             Plato_Button.GestureRecognizers.Add(menuInferior.tapPlato);
             Chefs_Button.GestureRecognizers.Add(menuInferior.tapChefs);
             Profile_Button.GestureRecognizers.Add(menuInferior.tapProfile);
+            InitNavBar();
+        }
+
+        public MenuPage(Usuario usuarioLog)
+        {
+            InitializeComponent();
+
+            Init(usuarioLog);
+
+        }
+
+        public async void Init(Usuario usuarioLog)
+        {
+            var mainViewModel = BindingContext as MainViewModel;
+            var isSuccess = await mainViewModel.InitializeDataAsync(usuarioLog);
+            if (isSuccess)
+            {
+                InitializeComponent();
+                var menuInferior = new MenuInferior(this);
+                menuInferior.mainViewmodel = mainViewModel;
+                Menu_Button.GestureRecognizers.Add(menuInferior.tapMenu);
+                Plato_Button.GestureRecognizers.Add(menuInferior.tapPlato);
+                Chefs_Button.GestureRecognizers.Add(menuInferior.tapChefs);
+                Profile_Button.GestureRecognizers.Add(menuInferior.tapProfile);
+            }
+            InitNavBar();
+        }
+        
+        public void InitNavBar() { 
+            //var calendario = new ToolbarItem
+            //{
+            //    Icon = "icono_time.png",
+            //    Command = new Command(() =>
+            //    {
+            //        //DisplayAlert("Menu", "Ciudades tapped", "OK");
+            //        Navigation.PushAsync(new SeleccionarDiaHora());
+            //    })
+            //};
+            //this.ToolbarItems.Add(calendario);
+
+            var cocina = new ToolbarItem
+            {
+                Text = "Seleccionar cocina",
+                Icon = "seleccion_comida.png",
+                Command = new Command(() =>
+                {
+                    //DisplayAlert("Menu", "Ciudades tapped", "OK");
+                    Navigation.PushAsync(new SeleccionarTipoCocina());
+                })
+            };
+            this.ToolbarItems.Add(cocina);
+
+            var ciudades = new ToolbarItem
+            {
+                Text = "Seleccionar zona",
+                Icon = "map_maker.png",
+                Command = new Command(() =>
+                {
+                    //DisplayAlert("Menu", "Ciudades tapped", "OK");
+                    Navigation.PushAsync(new SeleccionarZona());
+                })
+            };
+            this.ToolbarItems.Add(ciudades);
+
+            var cesta = new ToolbarItem
+            {
+                Text = "Cesta",
+                Icon = "cesta.png",
+                Command = new Command(() =>
+                {
+                    //DisplayAlert("Menu", "Cesta tapped", "OK");
+                    Navigation.PushAsync(new VerCarrito());
+                })
+            };
+            this.ToolbarItems.Add(cesta);
         }
 
         private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)

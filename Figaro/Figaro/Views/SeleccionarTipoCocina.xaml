@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Figaro.Views.SeleccionarTipoCocina"
+             xmlns:local="clr-namespace:Figaro;assembly=Figaro;"
+             BindingContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+             Title="Seleccionar Cocina"
+             BackgroundColor="Black">
+    <StackLayout Orientation="Vertical">
+        <ListView x:Name="ListaTipoCocinaView"
+              ItemsSource="{Binding ListaTipoCocina}"
+		          HasUnevenRows="true"
+              ItemTapped="TipoCocina_OnItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" HeightRequest="200">
+                            <RelativeLayout Padding="0,0,0,0">
+                                <Image Source="{Binding Imagen}"
+                           RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                           RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                           Aspect="AspectFill"/>
+                                <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+
+                                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+                                        <Image x:Name="IconoCocina" Source="{Binding Icono}" Margin="0,0,0,10" 
+                               HeightRequest="50" WidthRequest="50"/>
+                                        <Label Text="{Binding Titulo}" 
+                          HorizontalOptions="Center" FontSize="26" TextColor="White"/>
+                                        <Image x:Name="Seleccionado" Source="icono_select.png" WidthRequest="40"
+                               HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding Actual}"/>
+                                        <Image x:Name="NoSeleccionado" Source="icono_noselect.png" WidthRequest="40"
+                                HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding NoActual}"/>
+                                    </StackLayout>
+
+                                </Grid>
+                            </RelativeLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

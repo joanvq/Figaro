@@ -22,35 +22,23 @@ namespace Figaro.Other
         {
             tapMenu.Tapped += (s, e) => {
                 // handle the tap
-                var app = Application.Current as App;
-                var mainPage = (NavigationPage)app.MainPage;
-                var currentPage = (MasterDetailPage)mainPage.CurrentPage;
-                currentPage.Detail = new MenuPage();
+                App.Current.MainPage = new NavigationPage(new MenuPage());
             };
 
             tapPlato.Tapped += (s, e) => {
                 // handle the tap
-                var app = Application.Current as App;
-                var mainPage = (NavigationPage)app.MainPage;
-                var currentPage = (MasterDetailPage)mainPage.CurrentPage;
-                currentPage.Detail = new PlatosPage();
+                App.Current.MainPage = new NavigationPage(new PlatosPage());
             };
 
             tapChefs.Tapped += (s, e) => {
                 // handle the tap
-                var app = Application.Current as App;
-                var mainPage = (NavigationPage)app.MainPage;
-                var currentPage = (MasterDetailPage)mainPage.CurrentPage;
-                currentPage.Detail = new ChefsPage();
+                App.Current.MainPage = new NavigationPage(new  ChefsPage());
 
             };
 
             tapProfile.Tapped += (s, e) => {
                 // handle the tap
-                var app = Application.Current as App;
-                var mainPage = (NavigationPage)app.MainPage;
-                var currentPage = (MasterDetailPage)mainPage.CurrentPage;
-                currentPage.Detail = new UserPage();
+                App.Current.MainPage = new NavigationPage(new UserPage());
             };
         }
         

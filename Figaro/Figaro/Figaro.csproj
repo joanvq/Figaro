@@ -125,6 +125,9 @@
     <Compile Include="Views\SeleccionarMail.xaml.cs">
       <DependentUpon>SeleccionarMail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SeleccionarTipoCocina.xaml.cs">
+      <DependentUpon>SeleccionarTipoCocina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SeleccionarZonaIni.xaml.cs">
       <DependentUpon>SeleccionarZonaIni.xaml</DependentUpon>
     </Compile>
@@ -268,6 +271,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -405,6 +409,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SeleccionarZonaIni.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SeleccionarTipoCocina.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
