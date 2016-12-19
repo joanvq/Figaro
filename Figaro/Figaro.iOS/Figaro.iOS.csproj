@@ -283,9 +283,6 @@
     <BundleResource Include="Resources\dublin.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon_profile_select%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\icono_chefs_select%401x.png" />
   </ItemGroup>
   <ItemGroup>
@@ -403,21 +400,6 @@
     <BundleResource Include="Resources\splash.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\splash01.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splash02.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splash03.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splash04.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splash05.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\splash01.png" />
   </ItemGroup>
   <ItemGroup>
@@ -431,6 +413,81 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splash05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\asian_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bottom_italian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bottom_italian_select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bottom_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bottom_menu_select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bottom_profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bottom_profile_select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bottom_world.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bottom_world_select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\close_popup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bottom_asian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bottom_asian_select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bottom_chefs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bottom_chefs_select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icono_mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\italian_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu_asian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu_italian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu_world.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\world_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.0.107\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.0.107\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
