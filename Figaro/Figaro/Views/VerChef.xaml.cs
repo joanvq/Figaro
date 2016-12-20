@@ -16,6 +16,7 @@ namespace Figaro.Views
     {
         private DateTime currentDate;
         private CalendarView _calendarView;
+        private ActivityIndicator _activityIndicator;
 
         public VerChef(MainViewModel mainViewModel)
         {
@@ -173,18 +174,31 @@ namespace Figaro.Views
                 ShouldHighlightDaysOfWeekLabels = false,
                 SelectionBackgroundStyle = CalendarView.BackgroundStyle.CircleFill,
                 TodayBackgroundStyle = CalendarView.BackgroundStyle.CircleOutline,
-                ShowNavigationArrows = true             
+                ShowNavigationArrows = true,
+                IsVisible = false          
+            };
+            _activityIndicator = new ActivityIndicator()
+            {
+                IsRunning = true,
+                IsVisible = true
             };
             Calendario.Children.Add(_calendarView);
+            Calendario.Children.Add(_activityIndicator);
 
             _calendarView.DateSelected += (object sender, DateTime selectedDate) =>
             {
                 RefreshCalendarListView(selectedDate, mainViewModel);
                 currentDate = selectedDate.Date;
             };
-            mainViewModel.InitLibres();
+            InitDisponibilidad(mainViewModel);
+        }
 
-
+        private async void InitDisponibilidad(MainViewModel mvm)
+        {
+            await mvm.InitLibres();
+            _activityIndicator.IsVisible = false;
+            _activityIndicator.IsRunning = false;
+            _calendarView.IsVisible = true;
         }
 
         private void RefreshCalendarListView(DateTime selectedDate, MainViewModel mvm)

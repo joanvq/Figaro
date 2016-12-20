@@ -1282,7 +1282,7 @@ namespace Figaro.ViewModels
             App.Current.MainPage = new NavigationPage(new MainPage(null));
         }
 
-        public async void InitLibres()
+        public async Task InitLibres()
         {
             IsBusy = true;
             ReservadoServices reservadoServices = new ReservadoServices();
